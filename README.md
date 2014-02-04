@@ -1,4 +1,8 @@
-specification
-=============
+XProc: An XML Pipeline Language
+===============================
 
-The XProc: An XML Pipeline Language specification
+This repository contains the XProc language specification.
+
+The XProc 1.0 specification is in the `xproc10` branch.
+
+The `master` branch contains only this README.
