@@ -1,0 +1,53 @@
+SAXON=saxon
+XSV=wxsv
+XMLPARSE=rxp -VNxsz -D p:$$de ../schemas/xproc.dtd
+
+DTD_PARTS=xproc_dtd_1.ent xproc_dtd_2.ent xproc_dtd_3.ent xproc_dtd_4.ent
+
+XSD_PARTS=xproc_xsd_1.frag xproc_xsd_2.frag xproc_xsd_3.frag
+
+all: steps.rnc xproc.rng xproc.dtd xproc.xsd
+
+steps.rnc: ../typed-pipeline-library.xml ../../style/library-to-rnc.xsl
+	$(SAXON) ../typed-pipeline-library.xml ../../style/library-to-rnc.xsl $@
+
+xproc.rng: xproc.rnc steps.rnc
+	trang $< $@
+
+xproc.dtd: $(DTD_PARTS)
+	cat $^ > $@
+
+xproc_dtd_2.ent xproc_dtd_4.ent: ../typed-pipeline-library.xml ../../style/library-to-dtd.xsl
+	$(SAXON) ../typed-pipeline-library.xml ../../style/library-to-dtd.xsl step-cm=xproc_dtd_2.ent step-decls=xproc_dtd_4.ent
+
+xproc.xsd: $(XSD_PARTS)
+	cat $^ > $@
+
+xproc_xsd_2.frag: ../typed-pipeline-library.xml ../../style/library-to-xsd.xsl
+	$(SAXON) ../typed-pipeline-library.xml ../../style/library-to-xsd.xsl | sed '1d;/xmlns:/d;/<.wrapper/d' > $@
+
+clean:
+	rm -f xproc.rng xproc.dtd xproc.xsd
+	rm -f xproc_dtd_2.ent xproc_dtd_4.ent xproc_xsd_2.frag
+	rm -f steps.rnc steps.rng errs_dtd.tmp errs_xsd.tmp
+
+testDTD: xproc.dtd
+	for f in ../examples/*.{xml,xpl} ;\
+	 do de=`lxprintf -e '/*' '%s\n' 'local-name(.)' $$f` ;\
+	 case $$de in \
+	  pipeline|declare-step|library) \
+	    $(XMLPARSE) $$f ;;\
+	  esac ;\
+	 done 2> errs_dtd.tmp || :
+	diff -bw errs_dtd.txt errs_dtd.tmp
+
+testXSD: xproc.xsd
+	for f in ../examples/*.{xml,xpl} ;\
+	 do de=`lxprintf -e '/*' '%s\n' 'local-name(.)' $$f` ;\
+	 case $$de in \
+	  pipeline|declare-step|library) \
+	    $(XSV) $$f xproc.xsd ;;\
+	  esac ; echo -n . ;\
+	 done 2> errs_xsd.tmp || :
+	echo
+	diff -bwi errs_xsd.txt errs_xsd.tmp
