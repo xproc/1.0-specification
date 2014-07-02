@@ -133,9 +133,10 @@ exactly one of which will be evaluated.</p>
 <div class="quote">
 <p>After a
 <span class="diff-del">subpipeline</span><span class="diff-add">branch</span>
-is selected, it is evaluated as if
-<span class="diff-add">it was a subpipeline and</span> only it had
-been present.
+is selected, it is evaluated as if only
+<span class="diff-del">it</span>
+<span class="diff-add">its children</span>
+had been present.
 </p>
 </div>
     </dd>
@@ -198,7 +199,8 @@ the first syntax box) as follows:</p>
   option. For steps invoked within a pipeline,</span>
 it
 is a static error (err:XS0018) to <span class="diff-del">invoke the step</span>
-<span class="diff-add">specify an invocation</span> without specifying a
+<span class="diff-add">specify an invocation</span> without
+<span class="diff-chg">providing</span> a
 value for <span class="diff-del">that</span><span class="diff-add">a
 required</span> option.
 <span class="diff-add">For pipelines invoked directly by an external
@@ -378,13 +380,14 @@ working group products.</span></p></dd>
     <dt class="plusmarge">Section
 <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#input-output">2 Pipeline Concepts</a></dt>
     <dd><p>Clarify that the output of a compound step may be connected to any readable port, as specified
-in <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.pipe">5.11 p:pipe</a></p>
+in <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#input-output">2.2 Inputs and Outputs</a></p>
+
     <div class="quote">
 Within a compound step, the <em>declared outputs</em> of the step can be connected to:
 <ul>
 <li><span class="diff-add">Any one of the compound step's readable ports.</span></li>
 <li>The output port of some contained step.</li>
-<li>A fixed, inline document<span class="diff-del"> or sequence of documents</span>.</li>
+<li>A fixed, inline document or sequence of documents.</li>
 <li>A document read from a URI.</li>
 </ul>
     </div>
