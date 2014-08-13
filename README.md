@@ -1,8 +1,8 @@
 XProc: An XML Pipeline Language
 ===============================
 
-This git repository contains the /XProc: An XML
-Pipeline Language/ version 1.0 Recommendation.
+This git repository contains
+the *XProc: An XML Pipeline Language* version 1.0 Recommendation.
 
 These files were copied from the original W3C CVS repository.
 On 3 Feb 2014, they produced the following diff from the version
