@@ -1,11 +1,16 @@
 SAXON=saxon
 TIDY=/usr/bin/tidy
 CALABASH=calabash
+STEPREPO=../../steps
 
 TARGETS=langspec.html error-list.xml \
         pipeline-library.xml typed-pipeline-library.xml
 
 all: $(TARGETS)
+	$(MAKE) -C $(STEPREPO)
+	$(MAKE) -C ns-p
+	$(MAKE) -C ns-c
+	$(MAKE) -C ns-err
 
 langspec.html: ,langspec.xml typed-pipeline-library.xml \
                ../style/docbook.xsl ../style/dbspec.xsl \
@@ -32,3 +37,6 @@ clean:
 	rm -f $(TARGETS) ,langspec.xml
 	$(MAKE) -C schemas clean
 	$(MAKE) -C examples clean
+	$(MAKE) -C ns-c clean
+	$(MAKE) -C ns-err clean
+	$(MAKE) -C ns-p clean
