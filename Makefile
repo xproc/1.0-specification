@@ -1,4 +1,6 @@
-all: build/langspec/Overview.html
+spec: build/langspec/Overview.html
+
+all: spec build/langreq/Overview.html
 
 build/langspec/Overview.html: langspec/langspec.html
 	cp langspec/langspec.html $@
@@ -12,7 +14,16 @@ langspec/langspec.html: langspec/langspec.xml
 	$(MAKE) -C schema
 	$(MAKE) -C langspec
 
+build/langreq/Overview.html: langreq/xproc-v2-req.html
+	cp langreq/xproc-v2-req.html $@
+
+langreq/xproc-v2-req.html: langreq/xproc-v2-req.xml
+	mkdir -p build/langreq
+	$(MAKE) -C schema
+	$(MAKE) -C langreq
+
 clean:
 	rm -rf build
 	$(MAKE) -C schema clean
 	$(MAKE) -C langspec clean
+	$(MAKE) -C langreq clean
