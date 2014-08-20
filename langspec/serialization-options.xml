@@ -1,0 +1,27 @@
+<p:pipeline xmlns:p="http://www.w3.org/ns/xproc"
+            xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"
+            version="1.0">
+
+  <!-- This isn't a real pipeline; it is used to document the serialization
+       parameters
+  -->
+
+  <p:option name="byte-order-mark" e:type="xsd:boolean"/>
+  <p:option name="cdata-section-elements" select="''" e:type="ListOfQNames"/>
+  <p:option name="doctype-public" e:type="xsd:string"/>
+  <p:option name="doctype-system" e:type="xsd:anyURI"/>
+  <p:option name="encoding" e:type="xsd:string"/>
+  <p:option name="escape-uri-attributes" select="'false'" e:type="xsd:boolean"/>
+  <p:option name="include-content-type" select="'true'" e:type="xsd:boolean"/>
+  <p:option name="indent" select="'false'" e:type="xsd:boolean"/>
+  <p:option name="media-type" e:type="xsd:string"/>
+  <p:option name="method" select="'xml'" e:type="xsd:QName"/>
+  <p:option name="normalization-form" select="'none'" e:type="NormalizationForm"/>
+  <p:option name="omit-xml-declaration" select="'true'" e:type="xsd:boolean"/>
+  <p:option name="standalone" select="'omit'" e:type="true|false|omit"/>
+  <p:option name="undeclare-prefixes" e:type="xsd:boolean"/>
+  <p:option name="version" select="'1.0'" e:type="xsd:string"/>'>
+
+  <p:identity/>
+
+</p:pipeline>

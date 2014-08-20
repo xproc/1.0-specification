@@ -1,37 +1,4 @@
 <?xml version='1.0'?>
-<!DOCTYPE section [
-<!ENTITY serialization-options
- '<p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="byte-order-mark" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="cdata-section-elements" select="&apos;&apos;" e:type="ListOfQNames"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="doctype-public" e:type="xsd:string"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="doctype-system" e:type="xsd:anyURI"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="encoding" e:type="xsd:string"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="escape-uri-attributes" select="&apos;false&apos;" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="include-content-type" select="&apos;true&apos;" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="indent" select="&apos;false&apos;" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="media-type" e:type="xsd:string"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="method" select="&apos;xml&apos;" e:type="xsd:QName"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="normalization-form" select="&apos;none&apos;" e:type="NormalizationForm"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="omit-xml-declaration" select="&apos;true&apos;" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="standalone" select="&apos;omit&apos;" e:type="true|false|omit"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="undeclare-prefixes" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="version" select="&apos;1.0&apos;" e:type="xsd:string"/>'>
-
-<!ENTITY serialization-options-for-escape-markup
- '<p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="cdata-section-elements" select="&apos;&apos;" e:type="ListOfQNames"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="doctype-public" e:type="xsd:string"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="doctype-system" e:type="xsd:anyURI"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="escape-uri-attributes" select="&apos;false&apos;" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="include-content-type" select="&apos;true&apos;" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="indent" select="&apos;false&apos;" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="media-type" e:type="xsd:string"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="method" select="&apos;xml&apos;" e:type="xsd:QName"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="omit-xml-declaration" select="&apos;true&apos;" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="standalone" select="&apos;omit&apos;" e:type="true|false|omit"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="undeclare-prefixes" e:type="xsd:boolean"/>
-  <p:option xmlns:p="http://www.w3.org/ns/xproc" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" name="version" select="&apos;1.0&apos;" e:type="xsd:string"/>'>
-]>
-<?oxygen RNGSchema="../schema/dbspec.rnc" type="compact"?>
 <section xmlns="http://docbook.org/ns/docbook"
 	 xmlns:xlink="http://www.w3.org/1999/xlink"
 	 xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -157,7 +124,7 @@ of the element <rfc2119>must</rfc2119> also be amended accordingly.</para>
 <!-- ************************************************************************-->
 
 <section xml:id="c.add-xml-base">
-   
+
 <title>p:add-xml-base</title>
 
 <para>The <code>p:add-xml-base</code> step exposes the base URI via
@@ -172,10 +139,10 @@ by the options on this step.</para>
    <p:option name="all" select="'false'" e:type="xsd:boolean"/>
    <p:option name="relative" select="'true'" e:type="xsd:boolean"/>
 </p:declare-step>
- 
+
  <para>The value of the <option>all</option> option
 <rfc2119>must</rfc2119> be a boolean.</para>
- 
+
  <para>The value of the <option>relative</option> option
 <rfc2119>must</rfc2119> be a boolean.</para>
 
@@ -231,9 +198,9 @@ equality.</para>
    <p:output port="result" primary="false" e:type="xsd:boolean"/>
    <p:option name="fail-if-not-equal" select="'false'" e:type="xsd:boolean"/>
 </p:declare-step>
- 
+
  <para>The value of the <option>fail-if-not-equal</option> option <rfc2119>must</rfc2119> be a boolean.</para>
- 
+
  <para>This step takes single documents on each of two ports and compares them
 using the <function>fn:deep-equal</function> (as defined in
 <biblioref linkend="xpath-functions"/>).  <error code="C0019">It is a
@@ -319,7 +286,7 @@ directory.</para>
   <p:option name="include-filter" e:type="RegularExpression"/>
   <p:option name="exclude-filter" e:type="RegularExpression"/>
 </p:declare-step>
- 
+
 <para>The value of the <option>path</option> option
 <rfc2119>must</rfc2119> be an <type>anyURI</type>. It is interpreted
 as an IRI reference. If it is relative, it is made absolute against
@@ -333,14 +300,14 @@ identify a directory.</error> <error code="C0012">It is a
 <glossterm>dynamic error</glossterm> if the contents of the directory
 path are not available to the step due to access restrictions in the
 environment in which the pipeline is run.</error></para>
- 
+
 <para><impl>Conformant processors <rfc2119>must</rfc2119> support directory paths whose
 scheme is <code>file</code>. It is
 <glossterm>implementation-defined</glossterm> what other schemes are
 supported by <tag>p:directory-list</tag>, and what the interpretation
 of 'directory', 'file' and 'contents' is for those schemes.</impl>
 </para>
- 
+
 <para>If present, the value of the <option>include-filter</option>
 or <option>exclude-filter</option>
 option <rfc2119>must</rfc2119> be a regular expression as specified in <biblioref
@@ -493,10 +460,13 @@ serialized.</para>
 <p:declare-step type="p:escape-markup">
   <p:input port="source"/>
   <p:output port="result"/>
-  &serialization-options-for-escape-markup;
+  <xi:include href="serialization-options-for-escape-markup.xml"
+              xpointer="xmlns(p=http://www.w3.org/ns/xproc)
+                        xpath(/p:pipeline/p:option)"
+              parse="xml"/>
 </p:declare-step>
 
-<para>This step supports the standard serialization options as specified in <link linkend="serialization-options"/>.  These 
+<para>This step supports the standard serialization options as specified in <link linkend="serialization-options"/>.  These
 options control how the output markup is produced before it is escaped.
 </para>
 
@@ -534,7 +504,7 @@ based on a (possibly dynamically constructed) XPath select expression.</para>
   <p:option name="select" required="true" e:type="XPathExpression"/>
 </p:declare-step>
 
-<para>This step behaves just like an <tag>p:input</tag> with 
+<para>This step behaves just like an <tag>p:input</tag> with
 a <tag class="attribute">select</tag> expression except that the select
 expression is computed dynamically.</para>
 
@@ -556,7 +526,10 @@ including an entity body (content) for the request.</para>
 <p:declare-step type="p:http-request">
   <p:input port="source"/>
   <p:output port="result"/>
-  &serialization-options;
+  <xi:include href="serialization-options.xml"
+              xpointer="xmlns(p=http://www.w3.org/ns/xproc)
+                        xpath(/p:pipeline/p:option)"
+              parse="xml"/>
 </p:declare-step>
 
 <para>The standard serialization options are provided to control the
@@ -569,7 +542,7 @@ occurs in constructing a request.</para>
 <para><error code="C0040">It is a <glossterm>dynamic error</glossterm>
 if the document element of the document that arrives on the
 <port>source</port> port is not <tag>c:request</tag>.</error></para>
- 
+
 <section xml:id="cv.request">
 <title>Specifying a request</title>
 
@@ -625,7 +598,7 @@ the challenge are used to generate an
 that authorization fails, the request is not retried.</para>
 
 <para>Appropriate values for the <code>auth-method</code> attribute
-are “Basic” or “Digest” but other values are allowed. 
+are “Basic” or “Digest” but other values are allowed.
 If the authentication method is “Basic” or “Digest”, authentication
 is handled as per <biblioref linkend="rfc2617"/>.
 <impl>The
@@ -642,10 +615,10 @@ the requested
 challenge contains an authentication method that isn't
 supported.</error> All implementations are required to support "Basic"
 and "Digest" authentication per <biblioref linkend="rfc2617"/>.</para>
-  
+
   <para>The <code>c:header</code> element specifies a
 header name and value, either for inclusion in a request, or as received in a response.</para>
-  
+
 <e:rng-pattern name="VocabHeader" xml:id="cv.header"/>
 
 <para>The request is formulated from the attribute values on the
@@ -779,9 +752,9 @@ document:</para>
 </doc>
 </c:body>
 </c:request>]]>
-</programlisting> 
+</programlisting>
   <para>The corresponding request should look something like this:</para>
-  
+
   <programlisting><![CDATA[POST http://example.com/someservice HTTP/1.1
 Host: example.com
 Content-Type: application/xml; charset="utf-8"
@@ -792,7 +765,7 @@ Content-Type: application/xml; charset="utf-8"
 </doc>
 ]]></programlisting>
 </section>
- 
+
 <section xml:id="c.request_response">
 <title>Managing the response</title>
 
@@ -801,7 +774,7 @@ of the step's result document is controlled by the
 <code>status-only</code>, <code>override-content-type</code> and
 <code>detailed</code> attributes on the <tag>c:request</tag>
 input.</para>
-  
+
 <para>The <code>override-content-type</code> attribute controls
 interpretation of the response's <code>Content-Type</code> header. If
 this attribute is present, the response will be treated as if it
@@ -896,7 +869,7 @@ authentication protocol.</para>
  </section>
 
 <section xml:id="c.response_body">
-<title>Converting Response Entity Bodies</title>   
+<title>Converting Response Entity Bodies</title>
 
 <para>The entity of a response may be multipart per <biblioref
 linkend="rfc1521"/>. In those situations, the result document will be
@@ -1031,7 +1004,7 @@ the following list:
 <para>“<literal>after</literal>” - the insertion is made as the immediate following sibling of the match.</para>
 </listitem>
 </itemizedlist>
- 
+
 <para><error code="C0025">It is a <glossterm>dynamic error</glossterm>
 if the match pattern matches anything other than an element node and
 the value of the <option>position</option> option is
@@ -1110,7 +1083,7 @@ order) matched gets the value “<literal>1</literal>”, the second gets
 the value “<literal>2</literal>”, the third, “<literal>3</literal>”,
 etc.</para>
 
-<para>The result of the p:label-elements step is the input document with the 
+<para>The result of the p:label-elements step is the input document with the
 attribute labels associated with matched elements.  All other non-matching content
 remains the same.</para>
 
@@ -1193,7 +1166,7 @@ XSLTMatchPattern.
 <error code="C0023">It is a <glossterm>dynamic error</glossterm> if
 the pattern matches anything other than element or attribute
 nodes.</error></para>
- 
+
 <para>The value of the <option>base-uri</option> option
 <rfc2119>must</rfc2119> be an <type>anyURI</type>. It is interpreted
 as an IRI reference. If it is relative, it is made absolute against
@@ -1201,7 +1174,7 @@ the base URI of the element on which it is specified
 (<tag>p:with-option</tag> or <tag>p:make-absolute-uris</tag> in the case of
 a <link linkend="option-shortcut">syntactic shortcut</link>
 value).</para>
- 
+
 <para>For every element or attribute in the input document which
 matches the specified pattern, its XPath string-value is resolved
 against the specified base URI and the resulting absolute IRI is used
@@ -1230,7 +1203,7 @@ the results are <glossterm>implementation-dependent</glossterm>.</impl>
 
 <para>The <code>p:namespace-rename</code> step renames any namespace declaration or
 use of a namespace in a document to a new IRI value.</para>
- 
+
  <p:declare-step type="p:namespace-rename">
    <p:input port="source"/>
    <p:output port="result"/>
@@ -1238,12 +1211,12 @@ use of a namespace in a document to a new IRI value.</para>
    <p:option name="to" e:type="xsd:anyURI"/>
    <p:option name="apply-to" select="'all'" e:type="all|elements|attributes"/>
 </p:declare-step>
- 
+
 <para>The value of the <option>from</option> option
 <rfc2119>must</rfc2119> be an <type>anyURI</type>. It
 <rfc2119>should</rfc2119> be either empty or absolute, but will not be
 resolved in any case.</para>
- 
+
 <para>The value of the <option>to</option> option
 <rfc2119>must</rfc2119> be an <type>anyURI</type>. It
 <rfc2119>should</rfc2119> be empty or absolute, but will not be
@@ -1256,7 +1229,7 @@ If the value is “<literal>elements</literal>”, only elements will be
 renamed, if the value is “<literal>attributes</literal>”, only attributes
 will be renamed, if the value is “<literal>all</literal>”, both elements
 and attributes will be renamed.</para>
- 
+
 <para><error code="C0014">It is a <glossterm>dynamic error</glossterm>
 if the XML namespace (<uri>http://www.w3.org/XML/1998/namespace</uri>)
 or the XMLNS namespace (<uri>http://www.w3.org/2000/xmlns/</uri>) is
@@ -1285,13 +1258,13 @@ option, provided it is present and not the empty string;</para>
      <para>otherwise (the <option>to</option> option is
 not specified or has an empty string as its value) absent from the output.</para>
     </listitem>
-   </itemizedlist>   
+   </itemizedlist>
    <para>If the <option>from</option> option is absent, or its value is the empty string,
 then no bindings are changed or removed.</para>
   </listitem>
   <listitem>
    <para>Elements and attributes: If the <option>from</option> option is present
-and its value is not the empty string, for every element and attribute, 
+and its value is not the empty string, for every element and attribute,
 as appropriate, in the input whose namespace name is the same as the value of the
 <option>from</option> option, in the output its namespace name is</para>
    <itemizedlist>
@@ -1326,7 +1299,7 @@ not specified or has an empty string as its value) the namespace attribute is ab
    </itemizedlist>
   </listitem>
  </itemizedlist>
- 
+
 <note><para>The <option>apply-to</option> option is primarily intended to make
 it possible to avoid renaming attributes when the <option>from</option> option
 specifies no namespace, since many attributes are in no namespace.</para>
@@ -1400,7 +1373,7 @@ as a <tag>c:param-set</tag> document.</para>
 <tag>c:param</tag> element. The step resolves duplicate parameters in
 the normal way (see <link linkend="parameter-inputs"/>) so at most one
 parameter with any given name will appear in the result.
-The resulting <tag>c:param</tag> elements are wrapped in a 
+The resulting <tag>c:param</tag> elements are wrapped in a
 <tag>c:param-set</tag> and the parameter set document is written
 to the <port>result</port> port.
 <impl>The
@@ -1415,7 +1388,7 @@ have names that are in a namespace, the
 
 <para>The base URI of the output document is the URI of the pipeline document
 that contains the step.</para>
- 
+
 <note>
 <para>Since the <port>parameters</port> port is <emphasis>not</emphasis>
 primary, any explicit <tag>p:with-param</tag> settings <rfc2119>must</rfc2119> include a
@@ -1471,7 +1444,7 @@ attribute named “<replaceable>new-name</replaceable>” was deleted before
 renaming the matched attribute.</para>
 
 <para>With respect to attributes named “<literal>xml:base</literal>”, the
-following semantics apply: renaming an <emphasis>from</emphasis> 
+following semantics apply: renaming an <emphasis>from</emphasis>
 “<literal>xml:base</literal>” <emphasis>to</emphasis> something else has
 no effect on the underlying base URI of the element; however,
 if an attribute is renamed <emphasis>from</emphasis> something else
@@ -1501,7 +1474,7 @@ its primary input with the document element of the
    <p:output port="result"/>
    <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
 </p:declare-step>
- 
+
 <para>The value of the <option>match</option> option
 <rfc2119>must</rfc2119> be an XSLTMatchPattern. <error code="C0023">It
 is a <glossterm>dynamic error</glossterm> if that pattern matches
@@ -1531,7 +1504,7 @@ matching elements.</para>
    <p:output port="result"/>
    <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
 </p:declare-step>
- 
+
  <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
  XSLTMatchPattern. <error code="C0023">It is a <glossterm>dynamic
  error</glossterm> if that pattern matches anything other than element
@@ -1552,7 +1525,7 @@ with the matching elements' attributes modified.</para>
 If no elements match, the step will not change any elements.</para>
 
 <para>This step must not copy namespace declarations.  If the attributes
-copied from the <port>attributes</port> use namespaces, prefixes, or 
+copied from the <port>attributes</port> use namespaces, prefixes, or
 prefixes bound to different namespaces, the document produced on the
 <port>result</port> output port will require
 <link linkend="namespace-fixup">namespace fixup</link>.</para>
@@ -1592,7 +1565,7 @@ documents and divides it into two sequences.</para>
   <p:option name="initial-only" select="'false'" e:type="xsd:boolean"/>
   <p:option name="test" required="true" e:type="XPathExpression"/>
 </p:declare-step>
- 
+
  <para>The value of the <option>test</option> option <rfc2119>must</rfc2119> be an XPathExpression.</para>
 
 <para>The XPath expression in the <option>test</option> option is
@@ -1645,7 +1618,10 @@ stored document.</para>
   <p:input port="source"/>
   <p:output port="result" primary="false"/>
   <p:option name="href" required='true' e:type="xsd:anyURI"/>
-  &serialization-options;
+  <xi:include href="serialization-options.xml"
+              xpointer="xmlns(p=http://www.w3.org/ns/xproc)
+                        xpath(/p:pipeline/p:option)"
+              parse="xml"/>
 </p:declare-step>
 
 <para>The value of the <option>href</option> option
@@ -1730,7 +1706,7 @@ is the reverse of the <tag>p:escape-markup</tag> step.</para>
   <p:option name="encoding" e:type="xsd:string"/>
   <p:option name="charset" e:type="xsd:string"/>
 </p:declare-step>
- 
+
 <para>The value of the <option>namespace</option> option
 <rfc2119>must</rfc2119> be an <type>anyURI</type>. It
 <rfc2119>should</rfc2119> be absolute, but will not be
@@ -2015,13 +1991,13 @@ if an XInclude error occurs during processing.</error> </para>
   <p:option name="output-base-uri" e:type="xsd:anyURI"/>
   <p:option name="version" e:type="xsd:string"/>
 </p:declare-step>
- 
+
 <para>If present, the value of the <option>initial-mode</option>
 option <rfc2119>must</rfc2119> be a <type>QName</type>.</para>
- 
+
 <para>If present, the value of the <option>template-name</option>
 option <rfc2119>must</rfc2119> be a <type>QName</type>.</para>
- 
+
 <para>If present, the value of the <option>output-base-uri</option>
 option <rfc2119>must</rfc2119> be an <type>anyURI</type>. If it is
 relative, it is made absolute against the base URI of the element on
@@ -2168,10 +2144,13 @@ from standard error.</para>
   <p:option name="path-separator" e:type="xsd:string"/>
   <p:option name="failure-threshold" e:type="xsd:integer"/>
   <p:option name="arg-separator" select="' '" e:type="xsd:string"/>
-  
+
   <!-- plus the serialization options -->
-  &serialization-options;
-</p:declare-step>  
+  <xi:include href="serialization-options.xml"
+              xpointer="xmlns(p=http://www.w3.org/ns/xproc)
+                        xpath(/p:pipeline/p:option)"
+              parse="xml"/>
+</p:declare-step>
 
 <para>The values of the <option>command</option>, <option>args</option>,
 <option>cwd</option>, <option>path-separator</option>, and
@@ -2179,7 +2158,7 @@ from standard error.</para>
 
 <para>The values of the <option>source-is-xml</option>,
 <option>result-is-xml</option>, <option>errors-is-xml</option>,
-and <option>fix-slashes</option> options <rfc2119>must</rfc2119> be 
+and <option>fix-slashes</option> options <rfc2119>must</rfc2119> be
 boolean.</para>
 
 <para>The <tag>p:exec</tag> step executes the command passed on
@@ -2318,7 +2297,7 @@ it is 1.</para>
 
 <para>A hash is constructed from the string specified in the
 <option>value</option> option using the specified algorithm and version.
-Implementations <rfc2119>must</rfc2119> support 
+Implementations <rfc2119>must</rfc2119> support
 <biblioref linkend="bib.crc"/>,
 <biblioref linkend="rfc1321"/>, and <biblioref linkend="bib.sha"/>
 hashes. <impl>It is
@@ -2327,7 +2306,7 @@ supported.</impl>
 The resulting hash <rfc2119>should</rfc2119> be returned as a string of
 hexadecimal characters.
 </para>
- 
+
 <para>The value of the <option>match</option> option must be an
 XSLTMatchPattern.</para>
 
@@ -2336,7 +2315,7 @@ parameters specified. <error code="C0036">It is a
 <glossterm>dynamic error</glossterm> if the requested hash algorithm is not
 one that the processor understands or if the value or parameters are
 not appropriate for that algorithm.</error></para>
- 
+
 <para>The matched nodes are specified with the match pattern in the
 <option>match</option> option. For each matching node, the string
 value of the computed hash is used in the output (if more than one node
@@ -2388,7 +2367,7 @@ computed is
 the necessary inputs are made available for computing other versions,
 is <glossterm>implementation-defined</glossterm>.</impl>
 </para>
- 
+
 <para>The matched nodes are specified with the match pattern in the
 <option>match</option> option. For each matching node, the generated
 UUID is used in the output (if more than one node matches, the
@@ -2411,7 +2390,7 @@ its contents) is replaced by the UUID.</para>
 <section xml:id="c.validate-with-relax-ng">
 <title>p:validate-with-relax-ng</title>
 
-<para>The <tag>p:validate-with-relax-ng</tag> step applies 
+<para>The <tag>p:validate-with-relax-ng</tag> step applies
 <biblioref linkend="iso19757-2"/>
 validation to the <port>source</port> document.</para>
 
@@ -2423,7 +2402,7 @@ validation to the <port>source</port> document.</para>
   <p:option name="dtd-id-idref-warnings" select="'false'" e:type="xsd:boolean"/>
   <p:option name="assert-valid" select="'true'" e:type="xsd:boolean"/>
 </p:declare-step>
- 
+
 <para>The values of the <option>dtd-attribute-values</option> and
 <option>dtd-id-idref-warnings</option> options
 <rfc2119>must</rfc2119> be booleans.</para>
@@ -2440,7 +2419,7 @@ text node descendants of the element as a
 <biblioref linkend="relaxng-dtd-compat"/> are also applied.</para>
 
 <para>If the <option>dtd-id-idref-warnings</option> option is
-<literal>true</literal>, then the validator <rfc2119>should</rfc2119> 
+<literal>true</literal>, then the validator <rfc2119>should</rfc2119>
 treat a schema that is incompatible with the ID/IDREF/IDREFs feature
 of <biblioref linkend="relaxng-dtd-compat"/> as if the document
 was invalid.
@@ -2519,13 +2498,13 @@ validity assessment to the <port>source</port> input.</para>
   <p:option name="assert-valid" select="'true'" e:type="xsd:boolean"/>
   <p:option name="mode" select="'strict'" e:type="strict|lax"/>
 </p:declare-step>
- 
+
 <para>The values of the <option>use-location-hints</option>,
-<option>try-namespaces</option>, and 
+<option>try-namespaces</option>, and
 <option>assert-valid</option>
 options
  <rfc2119>must</rfc2119> be boolean.</para>
- 
+
 <para>The value of the <option>mode</option> option
 <rfc2119>must</rfc2119> be an NMTOKEN whose value is either
 “<literal>strict</literal>” or “<literal>lax</literal>”.</para>
@@ -2615,7 +2594,7 @@ by the XML Schema recommendation.</para>
 </p:declare-step>
 
 <para>The <option>value</option> option is interpreted as a string of
-parameter values encoded using the 
+parameter values encoded using the
 <literal>x-www-form-urlencoded</literal> algorithm. It turns each such
 encoded name/value pair into a parameter. The entire set of parameters
 is written (as a <tag>c:param-set</tag>) on the <port>result</port>
@@ -2623,7 +2602,7 @@ output port.</para>
 
 <para><error code="C0037">It is a
 <glossterm>dynamic error</glossterm> if the <option>value</option> provided
-is not a properly 
+is not a properly
 <literal>x-www-form-urlencoded</literal> value.</error>
 <error code="C0061">It is a
 <glossterm>dynamic error</glossterm> if the name of any encoded parameter
@@ -2663,7 +2642,7 @@ injects it into the <port>source</port> document.</para>
 <para>The value of the <option>match</option> option must be an
 XSLTMatchPattern.</para>
 
-<para>The set of parameters is encoded as a single 
+<para>The set of parameters is encoded as a single
 <literal>x-www-form-urlencoded</literal> string of name/value pairs.
 When parameters are encoded into name/value pairs,
 <emphasis>only</emphasis> the local name of each parameter is used.
@@ -2679,7 +2658,7 @@ second, etc. reading from left to right.</para>
 string is used in the output. Nodes that do not
 match are copied without change.</para>
 
-<para>If the expression given in the <option>match</option> option 
+<para>If the expression given in the <option>match</option> option
 matches an <emphasis>attribute</emphasis>, the encoded
 string is used as the new value of the attribute in the output.
 If the expression matches any other kind of node, the entire
@@ -2768,7 +2747,7 @@ declare namespace atom="http://www.w3.org/2005/Atom";
 <para>The output of this step
 <rfc2119>may</rfc2119> include PSVI annotations.</para>
 
-<para>The static context of the XQuery processor is augmented in the following 
+<para>The static context of the XQuery processor is augmented in the following
 way:</para>
 
 <variablelist>
@@ -2904,7 +2883,7 @@ port.</para>
   <p:option name="href" required="true" e:type="xsd:anyURI"/>
   <p:option name="content-type" e:type="xsd:string"/>
 </p:declare-step>
- 
+
 <para>The value of the <option>href</option> option
 <rfc2119>must</rfc2119> be an <type>anyURI</type>. If it is relative,
 it is made absolute against the base URI of the element on which it is
