@@ -1,4 +1,8 @@
-TRANG=trang
+empty :=
+space := $(empty) $(empty)
+
+CLASSPATH=$(subst  $(space),:,$(wildcard ../lib/*.jar))
+TRANG=java -cp $(CLASSPATH) com.thaiopensource.relaxng.translate.Driver
 
 .SUFFIXES: .rng .rnc
 
