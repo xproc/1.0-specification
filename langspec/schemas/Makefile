@@ -4,6 +4,7 @@ space := $(empty) $(empty)
 CLASSPATH=$(subst  $(space),:,$(wildcard ../../lib/*.jar))
 SAXON=java -cp $(CLASSPATH) -jar ../../lib/saxon9he.jar
 CALABASH=java -cp $(CLASSPATH) com.xmlcalabash.drivers.Main
+TRANG=java -cp $(CLASSPATH) com.thaiopensource.relaxng.translate.Driver
 
 XSV=wxsv
 XMLPARSE=rxp -VNxsz -D p:$$de ../schemas/xproc.dtd
@@ -17,7 +18,7 @@ steps.rnc: ../typed-pipeline-library.xml ../../style/library-to-rnc.xsl
 	$(SAXON) -s:../typed-pipeline-library.xml -xsl:../../style/library-to-rnc.xsl -o:$@
 
 xproc.rng: xproc.rnc steps.rnc
-	trang $< $@
+	$(TRANG) $< $@
 
 xproc.dtd: $(DTD_PARTS)
 	cat $^ > $@
