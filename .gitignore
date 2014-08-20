@@ -1,5 +1,5 @@
 build/
-langspec/,langspec.xml
+langspec/,*
 langspec/error-list.xml
 langspec/examples/choose.txt
 langspec/examples/exclude-pfx.txt
@@ -26,6 +26,17 @@ langspec/examples/xquery.txt
 langspec/examples/xslt-empty.txt
 langspec/examples/xslt.txt
 langspec/langspec.html
+langspec/ns-c/,*
+langspec/ns-c/ns-xproc-c-incl.xml
+langspec/ns-c/xproc-step.html
+langspec/ns-err/,*
+langspec/ns-err/error-list.xml
+langspec/ns-err/tmpl-error-list.xml
+langspec/ns-err/xproc-error.html
+langspec/ns-p/,*
+langspec/ns-p/ns-tmpl-p-incl.xml
+langspec/ns-p/ns-xproc-p-incl.xml
+langspec/ns-p/xproc.html
 langspec/pipeline-library.xml
 langspec/schemas/steps.rnc
 langspec/schemas/steps.rng
