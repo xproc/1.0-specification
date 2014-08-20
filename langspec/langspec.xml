@@ -9,7 +9,7 @@
   <info>
     <title>XProc: An XML Pipeline Language</title>
     <w3c-shortname>xproc</w3c-shortname>
-    <pubdate>2014-08-20</pubdate>
+    <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
     <bibliorelation role="errata" type="references" xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
     <bibliorelation role="translations" type="references" xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
     <bibliorelation type="isformatof" xlink:href="langspec.xml">XML</bibliorelation>

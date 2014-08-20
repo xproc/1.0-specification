@@ -72,7 +72,8 @@
 <!-- ============================================================ -->
 
 <xsl:variable name="pubdate"
-	      select="xs:date(db:specification/db:info/db:pubdate)"/>
+	      select="(xs:date(db:specification/db:info/db:pubdate),
+                       current-date())[1]"/>
 
 <xsl:variable name="thisuri" as="xs:string">
   <xsl:value-of>
