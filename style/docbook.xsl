@@ -18,7 +18,9 @@
 <xsl:param name="w3c-doctype" select="/db:specification/@class"/>
 
 <xsl:param name="docbook.css">
-  <xsl:text>http://www.w3.org/StyleSheets/TR/</xsl:text>
+  <xsl:if test="db:specification/db:info/db:pubdate">
+    <xsl:text>http://www.w3.org/StyleSheets/TR/</xsl:text>
+  </xsl:if>
   <xsl:choose>
     <xsl:when test="$w3c-doctype='ed'">base</xsl:when>
     <xsl:when test="$w3c-doctype='fpwd'">W3C-WD</xsl:when>
@@ -363,6 +365,13 @@
 
       <xsl:text> </xsl:text>
       <xsl:value-of select="format-date($pubdate, '[D1] [MNn] [Y0001]')"/>
+      <xsl:if test="not(db:specification/db:info/db:pubdate)">
+        <xsl:text> at </xsl:text>
+        <xsl:variable name="dtz"
+                      select="adjust-dateTime-to-timezone(current-dateTime(),
+                                 xs:dayTimeDuration('PT0H'))"/>
+        <xsl:value-of select="format-dateTime($dtz, '[H01]:[m01]&#160;Z')"/>
+      </xsl:if>
     </h2>
 
     <dl>
