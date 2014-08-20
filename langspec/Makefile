@@ -1,13 +1,11 @@
 SAXON=saxon
 TIDY=/usr/bin/tidy
 CALABASH=calabash
-STEPREPO=../../steps
 
 TARGETS=langspec.html error-list.xml \
         pipeline-library.xml typed-pipeline-library.xml
 
 all: $(TARGETS)
-	$(MAKE) -C $(STEPREPO)
 	$(MAKE) -C ns-p
 	$(MAKE) -C ns-c
 	$(MAKE) -C ns-err

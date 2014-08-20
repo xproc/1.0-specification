@@ -1,7 +1,6 @@
 SAXON=saxon
 TIDY=/usr/bin/tidy
 CALABASH=calabash
-STEPREPO=../../steps
 
 TARGETS=xproc-v2-req.html
 

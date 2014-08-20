@@ -1,7 +1,6 @@
 SAXON=saxon
 TIDY=/usr/bin/tidy
 CALABASH=calabash
-STEPREPO=../../../steps
 
 TARGETS=xproc-step.html ns-xproc-c-incl.xml
 
