@@ -8,6 +8,8 @@ build/langspec/Overview.html: langspec/langspec.html
 	cp langspec/ns-p/xproc.html build/langspec/ns/
 	cp langspec/ns-c/xproc-step.html build/langspec/ns/
 	cp langspec/ns-err/xproc-error.html build/langspec/ns/
+	cp style/xproc.css build/langspec/
+	cp style/xproc.css build/langspec/ns/
 
 langspec/langspec.html: langspec/langspec.xml
 	mkdir -p build/langspec build/langspec/ns

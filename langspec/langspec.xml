@@ -3,11 +3,13 @@
                xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:cs="http://www.w3.org/XML/XProc/2006/04/components#"
-  xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" class="rec"
+  xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"
+  class="ed"
   version="5.0-extension w3c-xproc">
-  <info><title>XProc: An XML Pipeline Language</title>
+  <info>
+    <title>XProc: An XML Pipeline Language</title>
     <w3c-shortname>xproc</w3c-shortname>
-    <pubdate>2010-05-11</pubdate>
+    <pubdate>2014-08-20</pubdate>
     <bibliorelation role="errata" type="references" xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
     <bibliorelation role="translations" type="references" xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
     <bibliorelation type="isformatof" xlink:href="langspec.xml">XML</bibliorelation>
