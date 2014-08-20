@@ -1,9 +1,8 @@
 SAXON=saxon
 TIDY=/usr/bin/tidy
 CALABASH=calabash
-STEPREPO=../../../steps
 
-TARGETS=xproc-error.html error-list.xml tmpl-error-list.xml
+TARGETS=xproc-error.html error-list.xml
 
 all: $(TARGETS)
 
@@ -13,7 +12,7 @@ xproc-error.html: ,xproc-error.xml
 
 # Cannot validate schema=../../schema/dbspec.rng
 # Fix it so that it validates!
-,xproc-error.xml: xproc-error.xml error-list.xml tmpl-error-list.xml \
+,xproc-error.xml: xproc-error.xml error-list.xml \
                ../../style/docbook.xsl ../../style/dbspec.xsl \
                ../../style/xprocns.xsl ../../style/rngsyntax.xsl
 	@echo FIXME: make this validate
@@ -21,9 +20,6 @@ xproc-error.html: ,xproc-error.xml
                     ../../style/validate.xpl
 
 error-list.xml: ../,langspec.xml ../../style/error-list.xsl
-	$(SAXON) $< ../../style/error-list.xsl $@
-
-tmpl-error-list.xml: $(STEPREPO)/template/,template.xml ../../style/error-list.xsl
 	$(SAXON) $< ../../style/error-list.xsl $@
 
 clean:
