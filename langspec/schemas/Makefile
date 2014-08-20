@@ -1,15 +1,20 @@
-SAXON=saxon
+empty :=
+space := $(empty) $(empty)
+
+CLASSPATH=$(subst  $(space),:,$(wildcard ../../lib/*.jar))
+SAXON=java -cp $(CLASSPATH) -jar ../../lib/saxon9he.jar
+CALABASH=java -cp $(CLASSPATH) com.xmlcalabash.drivers.Main
+
 XSV=wxsv
 XMLPARSE=rxp -VNxsz -D p:$$de ../schemas/xproc.dtd
 
 DTD_PARTS=xproc_dtd_1.ent xproc_dtd_2.ent xproc_dtd_3.ent xproc_dtd_4.ent
-
 XSD_PARTS=xproc_xsd_1.frag xproc_xsd_2.frag xproc_xsd_3.frag
 
 all: steps.rnc xproc.rng xproc.dtd xproc.xsd
 
 steps.rnc: ../typed-pipeline-library.xml ../../style/library-to-rnc.xsl
-	$(SAXON) ../typed-pipeline-library.xml ../../style/library-to-rnc.xsl $@
+	$(SAXON) -s:../typed-pipeline-library.xml -xsl:../../style/library-to-rnc.xsl -o:$@
 
 xproc.rng: xproc.rnc steps.rnc
 	trang $< $@
@@ -18,13 +23,13 @@ xproc.dtd: $(DTD_PARTS)
 	cat $^ > $@
 
 xproc_dtd_2.ent xproc_dtd_4.ent: ../typed-pipeline-library.xml ../../style/library-to-dtd.xsl
-	$(SAXON) ../typed-pipeline-library.xml ../../style/library-to-dtd.xsl step-cm=xproc_dtd_2.ent step-decls=xproc_dtd_4.ent
+	$(SAXON) -s:../typed-pipeline-library.xml -xsl:../../style/library-to-dtd.xsl step-cm=xproc_dtd_2.ent step-decls=xproc_dtd_4.ent
 
 xproc.xsd: $(XSD_PARTS)
 	cat $^ > $@
 
 xproc_xsd_2.frag: ../typed-pipeline-library.xml ../../style/library-to-xsd.xsl
-	$(SAXON) ../typed-pipeline-library.xml ../../style/library-to-xsd.xsl | sed '1d;/xmlns:/d;/<.wrapper/d' > $@
+	$(SAXON) -s:../typed-pipeline-library.xml -xsl:../../style/library-to-xsd.xsl | sed '1d;/xmlns:/d;/<.wrapper/d' > $@
 
 clean:
 	rm -f xproc.rng xproc.dtd xproc.xsd

@@ -1,14 +1,16 @@
-SAXON=saxon
-TIDY=/usr/bin/tidy
-CALABASH=calabash
+empty :=
+space := $(empty) $(empty)
+
+CLASSPATH=$(subst  $(space),:,$(wildcard ../../lib/*.jar))
+SAXON=java -cp $(CLASSPATH) -jar ../../lib/saxon9he.jar
+CALABASH=java -cp $(CLASSPATH) com.xmlcalabash.drivers.Main
 
 TARGETS=xproc-error.html error-list.xml
 
 all: $(TARGETS)
 
 xproc-error.html: ,xproc-error.xml
-	$(SAXON) $< ../../style/dbspec.xsl $@
-	$(TIDY) --doctype loose --output-xhtml true -q -utf8 -mn $@
+	$(SAXON) -s:$< -xsl:../../style/dbspec.xsl -o:$@
 
 # Cannot validate schema=../../schema/dbspec.rng
 # Fix it so that it validates!
@@ -20,7 +22,7 @@ xproc-error.html: ,xproc-error.xml
                     ../../style/validate.xpl
 
 error-list.xml: ../,langspec.xml ../../style/error-list.xsl
-	$(SAXON) $< ../../style/error-list.xsl $@
+	$(SAXON) -s:$< -xsl:../../style/error-list.xsl -o:$@
 
 clean:
 	rm -f $(TARGETS) ,xproc-error.xml
