@@ -1,2 +1,9 @@
 language: java
 script: make
+
+env:
+  global:
+    secure: X7PRnn++wNsa6rtiLx8FBxk09MX08UMWxWbq3rjCF8X5UTH1loGIIDm1uacASRZJLO2FZ9ugxFumAca7lcLaQPMKTNNlweIBEtWTGxolDseffZ4RoyMTRUHd0NPtvVRAwLpIAffjnJ5YBB32F+g3FZXOUcaQUNxjzaRp5tmVsbU=
+
+after_success:
+- .travis/publish-spec.sh
