@@ -161,7 +161,7 @@ xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure"
       a result document. The Validate with XML Schema step reads the pipeline input “schemas” and
       the result of the XInclude step and produces its own result document. The result of the
       validation, “result”, is the result of the pipeline. (For consistency across the step
-      vocabulary, the standard input is usually named “source” and and the standard output is
+      vocabulary, the standard input is usually named “source” and the standard output is
       usually named “result”.) </para>
     <para>The pipeline document determines how the steps are connected together inside the pipeline,
       that is, how the output of one step becomes the input of another.</para>
@@ -340,14 +340,14 @@ xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure"
           the default name “<literal>!1</literal>”; the <tag>p:choose</tag> gets the name
             “<literal>!1.1</literal>”; the first <tag>p:when</tag> gets the name
             “<literal>!1.1.1</literal>”; the <tag>p:otherwise</tag> gets the name
-            “<literal>!1.1.2</literal>”, etc. If the <tag>p:choose</tag> had had a name, it would
+            “<literal>!1.1.2</literal>”, etc. If the <tag>p:choose</tag> had a name, it would
           not have received a default name, but it would still have been counted and its first
             <tag>p:when</tag> would still have been “<literal>!1.1.1</literal>”.</para>
         <para>Providing every step in the pipeline with an interoperable name has several
           benefits:</para>
         <orderedlist>
           <listitem>
-            <para>It allows implementors to refer to all steps in an interoperable fashion, for
+            <para>It allows implementers to refer to all steps in an interoperable fashion, for
               example, in error messages.</para>
           </listitem>
           <listitem>
@@ -1915,7 +1915,7 @@ forwards-compatible mode. </para>
 <section xml:id="vers-backcomp">
 <title>Backwards-compatible Mode</title>
 <para>If the processor encounters a request for a previous version of
-XProc (e.g, if a "2.0" processor encounters an explicit request for
+XProc (e.g., if a "2.0" processor encounters an explicit request for
 the "1.0" language), it <rfc2119>must</rfc2119> process the pipeline
 as if it was a processor for the requested version: it
 <rfc2119>must</rfc2119> enforce the semantics
@@ -2602,7 +2602,7 @@ attribute">extension attributes</glossterm>.</error>
           <para><error code="D0030">It is a <glossterm>dynamic error</glossterm> if a step is unable
               or incapable of performing its function.</error> This is a general error code for
             “step failed” (e.g., if the input isn't of the expected type or if attempting to process
-            the input causes the implementation to abort). Users and implementors who create
+            the input causes the implementation to abort). Users and implementers who create
             extension steps are encouraged to use this code for general failures.</para>
         </listitem>
         <listitem>
@@ -2629,7 +2629,7 @@ attribute">extension attributes</glossterm>.</error>
     <para>This section describes the core steps of XProc.</para>
     <para>Several of the steps defined in this specification refer to other, evolving XML
       technologies (XSLT, XQuery, XSL-FO, etc.). Where this specification identifies a specific
-      version of a technology, implementors <rfc2119>must</rfc2119> implement the specified version
+      version of a technology, implementers <rfc2119>must</rfc2119> implement the specified version
       or any subsequent edition or version that is backwards compatible. At user option, they may
       support other, incompatible versions or extensions.</para>
     <section xml:id="p.pipeline"><title>p:pipeline</title><para>A <tag>p:pipeline</tag> declares a
@@ -3046,7 +3046,7 @@ its containing <tag>p:try</tag>.</para>
         messages in the document.</para><section xml:id="err-vocab">
         <title>The Error Vocabulary</title>
         <para>In general, it is very difficult to predict error behavior. Step failure may be
-          catastrophic (programmer error), or it may be be the result of user error, resource
+          catastrophic (programmer error), or it may be the result of user error, resource
           failures, etc. Steps may detect more than one error, and the failure of one step may cause
           other steps to fail as well.</para>
         <para>The <tag>p:try</tag>/<tag>p:catch</tag> mechanism gives pipeline authors the
