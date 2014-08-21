@@ -470,13 +470,15 @@
       </xsl:for-each>
     </dl>
 
-    <xsl:apply-templates
-        select="db:info/db:bibliorelation[@type='references'
-                                          and @role='errata']"/>
+    <xsl:if test="not($travis = 'true')">
+      <xsl:apply-templates
+          select="db:info/db:bibliorelation[@type='references'
+                                            and @role='errata']"/>
 
-    <xsl:apply-templates
-        select="db:info/db:bibliorelation[@type='references'
-                                          and @role='translations']"/>
+      <xsl:apply-templates
+          select="db:info/db:bibliorelation[@type='references'
+                                            and @role='translations']"/>
+    </xsl:if>
 
     <xsl:if test="db:info/db:bibliorelation[@type='isformatof']">
       <p>
