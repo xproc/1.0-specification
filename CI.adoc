@@ -1,0 +1,13 @@
+= Travis CI
+
+To build and publish the spec on your gh-pages, create the following
+secure environment variables for your repo and send them back in
+a pull request on .travis.yml:
+
+* GH_TOKEN="your git token"
+* GIT_EMAIL="you@example.com"
+* GIT_NAME="you"
+* GIT_PUB_REPO="you/specification"
+* GIT_PUB_BRANCH="xproc20"
+
+You also have to setup a gh-pages branch, naturally.

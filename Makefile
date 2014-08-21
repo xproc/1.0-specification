@@ -1,3 +1,5 @@
+STYLES=$(wildcard style/*.xsl)
+
 spec: build/langspec/Overview.html
 
 all: spec build/langreq/Overview.html
@@ -10,8 +12,10 @@ build/langspec/Overview.html: langspec/langspec.html
 	cp langspec/ns-err/xproc-error.html build/langspec/ns/
 	cp style/xproc.css build/langspec/
 	cp style/xproc.css build/langspec/ns/
+	curl -s -o build/langspec/base.css http://www.w3.org/StyleSheets/TR/base.css
 
-langspec/langspec.html: langspec/langspec.xml
+
+langspec/langspec.html: langspec/langspec.xml $(STYLES)
 	mkdir -p build/langspec build/langspec/ns
 	$(MAKE) -C schema
 	$(MAKE) -C langspec
