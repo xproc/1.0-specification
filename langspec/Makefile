@@ -16,7 +16,7 @@ all: $(TARGETS)
 langspec.html: ,langspec.xml typed-pipeline-library.xml \
                ../style/docbook.xsl ../style/dbspec.xsl \
                ../style/xprocns.xsl ../style/rngsyntax.xsl
-	$(SAXON) -s:$< -xsl:../style/dbspec.xsl -o:$@
+	$(CALABASH) -isource=$< -oresult=$@ ../style/formatspec.xpl
 
 ,langspec.xml: langspec.xml
 	$(MAKE) -C examples

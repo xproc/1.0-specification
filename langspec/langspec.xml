@@ -10,15 +10,16 @@
     <title>XProc: An XML Pipeline Language</title>
     <w3c-shortname>xproc</w3c-shortname>
     <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
-    <bibliorelation role="errata" type="references" xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
-    <bibliorelation role="translations" type="references" xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
+    <bibliorelation role="errata" type="references"
+                    xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
+    <bibliorelation role="translations" type="references"
+                    xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
     <bibliorelation type="isformatof" xlink:href="langspec.xml">XML</bibliorelation>
 <!--
-    <bibliorelation type="isformatof" xlink:href="diff.html">Revision markup</bibliorelation>
--->
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/PR-xproc-20100309/"/>
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/WD-xproc-20100105/"/>
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2009/CR-xproc-20090528/"/>
+-->
     <!--
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2008/CR-xproc-20081126/"/>
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2008/WD-xproc-20080814/"/>

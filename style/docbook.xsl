@@ -370,14 +370,36 @@
         <xsl:variable name="dtz"
                       select="adjust-dateTime-to-timezone(current-dateTime(),
                                  xs:dayTimeDuration('PT0H'))"/>
-        <xsl:value-of select="format-dateTime($dtz, '[H01]:[m01]&#160;Z')"/>
+        <xsl:value-of select="format-dateTime($dtz, '[H01]:[m01]&#160;UTC')"/>
+        <xsl:if test="$travis-build-number != ''">
+          <xsl:text> (</xsl:text>
+          <a href="https://github.com/{$travis-user}//{$travis-repo}/commit/{$travis-commit}">
+            <xsl:text>build </xsl:text>
+            <xsl:value-of select="$travis-build-number"/>
+          </a>
+          <xsl:text>)</xsl:text>
+        </xsl:if>
       </xsl:if>
     </h2>
 
     <dl>
       <dt>This Version:</dt>
-      <dd><a href="{$thisuri}"><xsl:value-of select="$thisuri"/></a></dd>
-
+      <dd>
+        <xsl:choose>
+          <xsl:when test="$travis = 'true'">
+            <a href="https://{$travis-user}.github.io/{$travis-repo}/langspec">
+              <xsl:value-of select="concat('https://',
+                                           $travis-user,
+                                           '.github.io/',
+                                           $travis-repo,
+                                           '/langspec')"/>
+            </a>
+          </xsl:when>
+          <xsl:otherwise>
+            <a href="{$thisuri}"><xsl:value-of select="$thisuri"/></a>
+          </xsl:otherwise>
+        </xsl:choose>
+      </dd>
       <dt>Latest Version:</dt>
       <dd>
 	<xsl:choose>
@@ -448,13 +470,15 @@
       </xsl:for-each>
     </dl>
 
-    <xsl:apply-templates
-        select="db:info/db:bibliorelation[@type='references'
-                                          and @role='errata']"/>
+    <xsl:if test="not($travis = 'true')">
+      <xsl:apply-templates
+          select="db:info/db:bibliorelation[@type='references'
+                                            and @role='errata']"/>
 
-    <xsl:apply-templates
-        select="db:info/db:bibliorelation[@type='references'
-                                          and @role='translations']"/>
+      <xsl:apply-templates
+          select="db:info/db:bibliorelation[@type='references'
+                                            and @role='translations']"/>
+    </xsl:if>
 
     <xsl:if test="db:info/db:bibliorelation[@type='isformatof']">
       <p>
