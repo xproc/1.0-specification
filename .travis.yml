@@ -1,9 +1,9 @@
 language: java
 script: make
-
 env:
   global:
-    secure: X7PRnn++wNsa6rtiLx8FBxk09MX08UMWxWbq3rjCF8X5UTH1loGIIDm1uacASRZJLO2FZ9ugxFumAca7lcLaQPMKTNNlweIBEtWTGxolDseffZ4RoyMTRUHd0NPtvVRAwLpIAffjnJ5YBB32F+g3FZXOUcaQUNxjzaRp5tmVsbU=
-
+  - secure: X7PRnn++wNsa6rtiLx8FBxk09MX08UMWxWbq3rjCF8X5UTH1loGIIDm1uacASRZJLO2FZ9ugxFumAca7lcLaQPMKTNNlweIBEtWTGxolDseffZ4RoyMTRUHd0NPtvVRAwLpIAffjnJ5YBB32F+g3FZXOUcaQUNxjzaRp5tmVsbU=
+  - secure: bUFJI9JBjseiuhI/9ggF4PQkbkQbeFG0+knf6FXXkMgHjA0OR6+xd9uV7qwbRmEbz2FnWD7/mgBjt4/5Hdvibha+Xrysfc6cxo39teLXtjSp3LIyvAKjFpqCgkmHGjkP9tU43eOJGrmj0nr9wJQ1R3ZKHq489v5yBdjzdB9nE2s=
+  - secure: EFrIZMl15IXo9nrRSWKbnH+DsyWhXFjhxkx5xxbCQi3BVWyfsSKNWS5jQvxmBwLcHL93+lnYaLKOD5ybMki6xYx+FAoSCDlaUNghJEetr5+TGF62fE/M6yknJc+miHCMn9BS9SgDcs6oTKtxfOK+uB39N5srw+i0RFFSJ+bvZbw=
 after_success:
 - .travis/publish-spec.sh
