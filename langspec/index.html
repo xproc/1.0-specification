@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html
   PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>XProc: An XML Pipeline Language</title><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><link rel="alternate" href="http://www.w3.org/TR/2010/PR-xproc-20100309/" title="09 Mar 2010 Working Draft" /><link rel="alternate" href="http://www.w3.org/TR/2010/WD-xproc-20100105/" title="05 Jan 2010 Working Draft" /><link rel="alternate" href="http://www.w3.org/TR/2009/CR-xproc-20090528/" title="28 May 2009 Working Draft" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="base.css" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc: An XML Pipeline Language</h1><h2>W3C Editor's Draft  21 August 2014 at 16:40 Z</h2><dl><dt>This Version:</dt><dd><a href="http://www.w3.org/TR/2014/ED-xproc-20140821/">http://www.w3.org/TR/2014/ED-xproc-20140821/</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc/">http://www.w3.org/TR/xproc/</a></dd><dt>Previous versions:</dt><dd><a href="http://www.w3.org/TR/2010/PR-xproc-20100309/">http://www.w3.org/TR/2010/PR-xproc-20100309/</a><br /><a href="http://www.w3.org/TR/2010/WD-xproc-20100105/">http://www.w3.org/TR/2010/WD-xproc-20100105/</a><br /><a href="http://www.w3.org/TR/2009/CR-xproc-20090528/">http://www.w3.org/TR/2009/CR-xproc-20090528/</a><br /></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <tt class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</tt></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <tt class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</tt></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <tt class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</tt></dd></dl><p>Please refer to the <a href="http://www.w3.org/XML/2010/xproc-errata.html"><strong>errata</strong></a> for this document, which may include some normative corrections.</p><p>See also <a href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc"><strong>translations</strong></a>.</p><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a></p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>XProc: An XML Pipeline Language</title><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><link rel="alternate" href="http://www.w3.org/TR/2010/PR-xproc-20100309/" title="09 Mar 2010 Working Draft" /><link rel="alternate" href="http://www.w3.org/TR/2010/WD-xproc-20100105/" title="05 Jan 2010 Working Draft" /><link rel="alternate" href="http://www.w3.org/TR/2009/CR-xproc-20090528/" title="28 May 2009 Working Draft" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="base.css" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc: An XML Pipeline Language</h1><h2>W3C Editor's Draft  21 August 2014 at 16:51 Z</h2><dl><dt>This Version:</dt><dd><a href="http://www.w3.org/TR/2014/ED-xproc-20140821/">http://www.w3.org/TR/2014/ED-xproc-20140821/</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc/">http://www.w3.org/TR/xproc/</a></dd><dt>Previous versions:</dt><dd><a href="http://www.w3.org/TR/2010/PR-xproc-20100309/">http://www.w3.org/TR/2010/PR-xproc-20100309/</a><br /><a href="http://www.w3.org/TR/2010/WD-xproc-20100105/">http://www.w3.org/TR/2010/WD-xproc-20100105/</a><br /><a href="http://www.w3.org/TR/2009/CR-xproc-20090528/">http://www.w3.org/TR/2009/CR-xproc-20090528/</a><br /></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <tt class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</tt></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <tt class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</tt></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <tt class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</tt></dd></dl><p>Please refer to the <a href="http://www.w3.org/XML/2010/xproc-errata.html"><strong>errata</strong></a> for this document, which may include some normative corrections.</p><p>See also <a href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc"><strong>translations</strong></a>.</p><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a></p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
 © 2010 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
 <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved.
 W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
@@ -93,7 +93,7 @@ Claim(s)</a> must disclose the information in accordance with <a href="http://ww
       a result document. The Validate with XML Schema step reads the pipeline input “schemas” and
       the result of the XInclude step and produces its own result document. The result of the
       validation, “result”, is the result of the pipeline. (For consistency across the step
-      vocabulary, the standard input is usually named “source” and and the standard output is
+      vocabulary, the standard input is usually named “source” and the standard output is
       usually named “result”.) </p>
     <p>The pipeline document determines how the steps are connected together inside the pipeline,
       that is, how the output of one step becomes the input of another.</p>
@@ -301,13 +301,13 @@ Claim(s)</a> must disclose the information in accordance with <a href="http://ww
           the default name “<tt class="literal">!1</tt>”; the <a href="#p.choose"><tt class="tag-element">p:choose</tt></a> gets the name
             “<tt class="literal">!1.1</tt>”; the first <a href="#p.when"><tt class="tag-element">p:when</tt></a> gets the name
             “<tt class="literal">!1.1.1</tt>”; the <a href="#p.otherwise"><tt class="tag-element">p:otherwise</tt></a> gets the name
-            “<tt class="literal">!1.1.2</tt>”, etc. If the <a href="#p.choose"><tt class="tag-element">p:choose</tt></a> had had a name, it would
+            “<tt class="literal">!1.1.2</tt>”, etc. If the <a href="#p.choose"><tt class="tag-element">p:choose</tt></a> had a name, it would
           not have received a default name, but it would still have been counted and its first
             <a href="#p.when"><tt class="tag-element">p:when</tt></a> would still have been “<tt class="literal">!1.1.1</tt>”.</p>
         <p>Providing every step in the pipeline with an interoperable name has several
           benefits:</p>
         <div class="orderedlist"><ol style="list-style: decimal;"><li>
-            <p>It allows implementors to refer to all steps in an interoperable fashion, for
+            <p>It allows implementers to refer to all steps in an interoperable fashion, for
               example, in error messages.</p>
           </li><li>
             <p>Pragmatically, we say that <em class="glossterm"><a href="#dt-readable-ports">readable ports</a></em> are identified by
@@ -1645,7 +1645,7 @@ forwards-compatible mode. </p>
 <div class="section"><h5><a name="vers-backcomp" id="vers-backcomp"></a>2.13.1 Backwards-compatible Mode</h5>
 
 <p>If the processor encounters a request for a previous version of
-XProc (e.g, if a "2.0" processor encounters an explicit request for
+XProc (e.g., if a "2.0" processor encounters an explicit request for
 the "1.0" language), it <span class="rfc2119">must</span> process the pipeline
 as if it was a processor for the requested version: it
 <span class="rfc2119">must</span> enforce the semantics
@@ -2259,7 +2259,7 @@ or collections.
           <p><a name="err.inline.D0030"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0030"><code class="errqname">err:XD0030</code></a>) if a step is unable
               or incapable of performing its function. This is a general error code for
             “step failed” (e.g., if the input isn't of the expected type or if attempting to process
-            the input causes the implementation to abort). Users and implementors who create
+            the input causes the implementation to abort). Users and implementers who create
             extension steps are encouraged to use this code for general failures.</p>
         </li><li>
           <p>In most steps which use a select expression or match pattern, any kind of node can
@@ -2283,7 +2283,7 @@ or collections.
     <p>This section describes the core steps of XProc.</p>
     <p>Several of the steps defined in this specification refer to other, evolving XML
       technologies (XSLT, XQuery, XSL-FO, etc.). Where this specification identifies a specific
-      version of a technology, implementors <span class="rfc2119">must</span> implement the specified version
+      version of a technology, implementers <span class="rfc2119">must</span> implement the specified version
       or any subsequent edition or version that is backwards compatible. At user option, they may
       support other, incompatible versions or extensions.</p>
     <div class="section"><h4><a name="p.pipeline" id="p.pipeline"></a>4.1 p:pipeline</h4><p>A <tt class="tag-element">p:pipeline</tt> declares a
@@ -2760,7 +2760,7 @@ item is undefined.</p>
         messages in the document.</p><div class="section"><h5><a name="err-vocab" id="err-vocab"></a>4.6.1 The Error Vocabulary</h5>
         
         <p>In general, it is very difficult to predict error behavior. Step failure may be
-          catastrophic (programmer error), or it may be be the result of user error, resource
+          catastrophic (programmer error), or it may be the result of user error, resource
           failures, etc. Steps may detect more than one error, and the failure of one step may cause
           other steps to fail as well.</p>
         <p>The <a href="#p.try"><tt class="tag-element">p:try</tt></a>/<a href="#p.catch"><tt class="tag-element">p:catch</tt></a> mechanism gives pipeline authors the
