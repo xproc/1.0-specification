@@ -19,7 +19,7 @@ xproc-error.html: ,xproc-error.xml
                ../../style/xprocns.xsl ../../style/rngsyntax.xsl
 	@echo FIXME: make this validate
 	$(CALABASH) -isource=$< -oresult=$@ \
-                    ../../style/validate.xpl
+                    ../../style/validate.xpl schema=../../schema/dbspec.rng
 
 error-list.xml: ../,langspec.xml ../../style/error-list.xsl
 	$(SAXON) -s:$< -xsl:../../style/error-list.xsl -o:$@

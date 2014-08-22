@@ -12,6 +12,7 @@ namespace db = "http://docbook.org/ns/docbook"
 namespace html = "http://www.w3.org/1999/xhtml"
 namespace p = "http://www.w3.org/ns/xproc"
 namespace e ="http://www.w3.org/1999/XSL/Spec/ElementSyntax"
+namespace err = "http://www.w3.org/ns/xproc-error"
 default namespace = "http://docbook.org/ns/docbook"
 
 include "dbw3c.rnc" {
@@ -21,7 +22,12 @@ include "dbw3c.rnc" {
    }
 }
 
-db.all.blocks |= spec.component | e.rng-pattern | e.rng-fragment | p.declare-step
+db.all.blocks |=
+   spec.component
+ | e.rng-pattern
+ | e.rng-fragment
+ | p.declare-step
+ | err.error-list
 
 e.rng-pattern =
    element e:rng-pattern {
@@ -74,6 +80,22 @@ db.error =
    }
 
 db.error.inlines |= db.error
+
+# ======================================================================
+
+err.error-list =
+   element err:error-list {
+      db.common.attributes,
+      (err.error*)
+   }
+
+err.error =
+   element err:error {
+      attribute class { "static" | "dynamic" }?,
+      attribute code { text },
+      db.common.attributes,
+      text
+   }
 
 # ======================================================================
 
