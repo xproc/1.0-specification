@@ -7,3 +7,6 @@ They have no normative status whatsoever.
 
 Developments, including errata, for the XProc 1.0 specification are
 in the `xproc10` branch.
+
+You can view formatted versions of the latest editor's drafts at
+https://xproc.github.io/specification/
