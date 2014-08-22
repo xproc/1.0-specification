@@ -2066,9 +2066,8 @@ option is specified.</para>
 
 
 <para>The static and initial dynamic contexts of the XSLT processor
-are the contexts defined in <xref linkend="step-xpath-context-10"/>
-for an XSLT 1.0 processor and
-<xref linkend="step-xpath-context-20"/> for an XSLT 2.0 processor
+are the contexts defined in
+<xref linkend="step-xpath-context-20"/>
 with the following adjustments.</para>
 
 <para>The dynamic context is augmented as follows:</para>
