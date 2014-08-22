@@ -1,12 +1,16 @@
 XProc: An XML Pipeline Language
 ===============================
 
-The `xproc20` branch in this git repository contains
-the *XProc: An XML Pipeline Language* version 2.0 editorial drafts.
-They have no normative status whatsoever.
+This is the `xproc20` branch of the repository; it contains the
+*XProc: An XML Pipeline Language* version 2.0 editorial drafts. They
+have no normative status whatsoever.
 
-Developments, including errata, for the XProc 1.0 specification are
-in the `xproc10` branch.
+The goal of XProc 2.0 is to address the published
+[XProc V2.0 Requirements](http://www.w3.org/TR/xproc-v2-req/).
 
 You can view formatted versions of the latest editor's drafts at
 https://xproc.github.io/specification/
+
+Developments, including proposed errata, for
+[XProc 1.0](http://www.w3.org/TR/xproc/) are in
+the [`xproc10`](tree/xproc10) branch.
