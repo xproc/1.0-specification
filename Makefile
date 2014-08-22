@@ -14,10 +14,20 @@ build/langspec/Overview.html: langspec/langspec.html
 	cp style/xproc.css build/langspec/
 	cp style/xproc.css build/langspec/ns/
 	curl -s -o build/langspec/base.css http://www.w3.org/StyleSheets/TR/base.css
-
+	cp build/langspec/base.css build/langspec/ns/
+	cp langspec/ns-p/xproc.html build/langspec/ns/
+	cp langspec/ns-p/,xproc.xml build/langspec/ns/xproc.xml
+	cp langspec/ns-c/xproc-step.html build/langspec/ns/
+	cp langspec/ns-c/,xproc-step.xml build/langspec/ns/xproc-step.xml
+	cp langspec/ns-err/xproc-error.html build/langspec/ns/
+	cp langspec/ns-err/,xproc-error.xml build/langspec/ns/xproc-error.xml
+	cp langspec/schemas/xproc.rng build/langspec/schemas/
+	cp langspec/schemas/xproc.rnc build/langspec/schemas/
+	cp langspec/schemas/xproc.xsd build/langspec/schemas/
+	cp langspec/schemas/xproc.dtd build/langspec/schemas/
 
 langspec/langspec.html: langspec/langspec.xml $(STYLES)
-	mkdir -p build/langspec build/langspec/ns
+	mkdir -p build/langspec build/langspec/schemas build/langspec/ns
 	$(MAKE) -C schema
 	$(MAKE) -C langspec
 
