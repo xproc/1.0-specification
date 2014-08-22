@@ -512,6 +512,25 @@
 
 <!-- ============================================================ -->
 
+<xsl:template match="err:error-list"
+              xmlns:err="http://www.w3.org/ns/xproc-error">
+  <dl>
+    <xsl:apply-templates/>
+  </dl>
+</xsl:template>
+
+<xsl:template match="err:error"
+              xmlns:err="http://www.w3.org/ns/xproc-error">
+  <dt><code>err:<xsl:value-of select="@code"/></code></dt>
+  <dd>
+    <p>
+      <xsl:apply-templates/>
+    </p>
+  </dd>
+</xsl:template>
+
+<!-- ============================================================ -->
+
 <xsl:template match="processing-instruction('implementation-dependent-features')">
   <ol class="features">
     <xsl:call-template name="format-feature-list">
