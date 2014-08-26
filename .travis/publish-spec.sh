@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#set | grep TRAVIS
-#set | grep GIT
+set | grep TRAVIS
 
 if [ "$TRAVIS_REPO_SLUG" == "$GIT_PUB_REPO" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "$GIT_PUB_BRANCH" ]; then
 
