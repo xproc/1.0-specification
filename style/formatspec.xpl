@@ -8,7 +8,7 @@
 <p:input port="source"/>
 <p:input port="parameters" kind="parameter"/>
 <p:output port="result"/>
-<p:serialization port="result" indent="false" method="html"/>
+<p:serialization port="result" indent="false" method="xhtml"/>
 
 <p:declare-step type="pos:env">
   <p:output port="result"/>
