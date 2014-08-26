@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>XProc Error Namespace</title><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /></head><body><div class="specification"><div class="head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc Error Namespace</h1></div><hr /><div class="section"><h3><a name="introduction" id="introduction"></a>1 Introduction</h3>
+
+
+<p>This document describes the names that are defined in
+the <tt class="uri">http://www.w3.org/ns/xproc-error</tt>
+namespace at the time of publication. The W3C reserves the right to
+define additional names in this namespace in the future.
+Only the <a href="http://www.w3.org/XML/Processing/">XML Processing Model
+Working Group</a> or its successors
+may amend this namespace.</p>
+
+</div><div class="section"><h3><a name="names" id="names"></a>2 Names in the XProc Error Namespace</h3>
+
+
+<p>The following names are defined in the
+<a href="http://www.w3.org/TR/2010/REC-xproc-20100506/">XProc: An XML
+Pipeline Language</a> specification (May, 2010 version).
+For updated information, please refer to the latest version of the
+<a href="http://www.w3.org/TR/xproc/">specification</a>.
+</p>
+
+<dl xmlns:err="http://www.w3.org/ns/xproc-error">
+   <dt><code>err:XC0002</code></dt><dd><p>It is a dynamic error if the value starts with the string “--”.</p></dd>
+   <dt><code>err:XC0003</code></dt><dd><p>It is a dynamic error if a username or password is specified without specifying an auth-method, if the requested auth-method isn't supported, or the authentication challenge contains an authentication method that isn't supported.</p></dd>
+   <dt><code>err:XC0004</code></dt><dd><p>It is a dynamic error if the status-only attribute has the value true and the detailed attribute does not have the value true.</p></dd>
+   <dt><code>err:XC0005</code></dt><dd><p>It is a dynamic error if the request contains a c:body or c:multipart but the method does not allow for an entity body being sent with the request.</p></dd>
+   <dt><code>err:XC0006</code></dt><dd><p>It is a dynamic error if the method is not specified on a c:request.</p></dd>
+   <dt><code>err:XC0010</code></dt><dd><p>It is a dynamic error if an encoding of base64 is specified and the character set is not specified or if the specified character set is not supported by the implementation.</p></dd>
+   <dt><code>err:XC0012</code></dt><dd><p>It is a dynamic error if the contents of the directory path are not available to the step due to access restrictions in the environment in which the pipeline is run.</p></dd>
+   <dt><code>err:XC0013</code></dt><dd><p>It is a dynamic error if the pattern matches a processing instruction and the new name has a non-null namespace.</p></dd>
+   <dt><code>err:XC0014</code></dt><dd><p>It is a dynamic error if the XML namespace (http://www.w3.org/XML/1998/namespace) or the XMLNS namespace (http://www.w3.org/2000/xmlns/) is the value of either the from option or the to option.</p></dd>
+   <dt><code>err:XC0017</code></dt><dd><p>It is a dynamic error if the absolute path does not identify a directory.</p></dd>
+   <dt><code>err:XC0019</code></dt><dd><p>It is a dynamic error if the documents are not equal, and the value of the fail-if-not-equal option is true.</p></dd>
+   <dt><code>err:XC0020</code></dt><dd><p>It is a dynamic error if the the user specifies a value or values that are inconsistent with each other or with the requirements of the step or protocol.</p></dd>
+   <dt><code>err:XC0022</code></dt><dd><p>it is a dynamic error if the content of the c:body element does not consist of exactly one element, optionally preceded and/or followed by any number of processing instructions, comments or whitespace characters</p></dd>
+   <dt><code>err:XC0023</code></dt><dd><p>It is a dynamic error if a select expression or match pattern returns a node type that is not allowed by the step.</p></dd>
+   <dt><code>err:XC0025</code></dt><dd><p>It is a dynamic error if the match pattern matches anything other than an element node and the value of the position option is “first-child” or “last-child”.</p></dd>
+   <dt><code>err:XC0027</code></dt><dd><p>It is a dynamic error if the document is not valid or the step doesn't support DTD validation.</p></dd>
+   <dt><code>err:XC0028</code></dt><dd><p>it is a dynamic error if the content of the c:body element does not consist entirely of characters</p></dd>
+   <dt><code>err:XC0029</code></dt><dd><p>It is a dynamic error if an XInclude error occurs during processing.</p></dd>
+   <dt><code>err:XC0030</code></dt><dd><p>It is a dynamic error if the override-content-type value cannot be used (e.g. text/plain to override image/png).</p></dd>
+   <dt><code>err:XC0033</code></dt><dd><p>It is a dynamic error if the command cannot be run.</p></dd>
+   <dt><code>err:XC0034</code></dt><dd><p>It is a dynamic error if the current working directory cannot be changed to the value of the cwd option.</p></dd>
+   <dt><code>err:XC0035</code></dt><dd><p>It is a dynamic error to specify both result-is-xml and wrap-result-lines.</p></dd>
+   <dt><code>err:XC0036</code></dt><dd><p>It is a dynamic error if the requested hash algorithm is not one that the processor understands or if the value or parameters are not appropriate for that algorithm.</p></dd>
+   <dt><code>err:XC0037</code></dt><dd><p>It is a dynamic error if the value provided is not a properly x-www-form-urlencoded value.</p></dd>
+   <dt><code>err:XC0038</code></dt><dd><p>It is a dynamic error if the specified version of XSLT is not available.</p></dd>
+   <dt><code>err:XC0039</code></dt><dd><p>It is a dynamic error if a sequence of documents (including an empty sequence) is provided to an XSLT 1.0 step.</p></dd>
+   <dt><code>err:XC0040</code></dt><dd><p>It is a dynamic error if the document element of the document that arrives on the source port is not c:request.</p></dd>
+   <dt><code>err:XC0050</code></dt><dd><p>It is a dynamic error if the URI scheme is not supported or the step cannot store to the specified location.</p></dd>
+   <dt><code>err:XC0051</code></dt><dd><p>It is a dynamic error if the content-type specified is not supported by the implementation.</p></dd>
+   <dt><code>err:XC0052</code></dt><dd><p>It is a dynamic error if the encoding specified is not supported by the implementation.</p></dd>
+   <dt><code>err:XC0053</code></dt><dd><p>It is a dynamic error if the assert-valid option is true and the input document is not valid.</p></dd>
+   <dt><code>err:XC0054</code></dt><dd><p>It is a dynamic error if the assert-valid option is true and any Schematron assertions fail.</p></dd>
+   <dt><code>err:XC0055</code></dt><dd><p>It is a dynamic error if the implementation does not support the specified mode.</p></dd>
+   <dt><code>err:XC0056</code></dt><dd><p>It is a dynamic error if the specified initial mode or named template cannot be applied to the specified stylesheet.</p></dd>
+   <dt><code>err:XC0057</code></dt><dd><p>It is a dynamic error if the sequence that results from evaluating the XQuery contains items other than documents and elements.</p></dd>
+   <dt><code>err:XC0058</code></dt><dd><p>It is a dynamic error if the all and relative options are bothtrue.</p></dd>
+   <dt><code>err:XC0059</code></dt><dd><p>It is a dynamic error if the QName value in the attribute-name option uses the prefix “xmlns” or any other prefix that resolves to the namespace name “http://www.w3.org/2000/xmlns/”.</p></dd>
+   <dt><code>err:XC0060</code></dt><dd><p>It is a dynamic error if the processor does not support the specified version of the UUID algorithm.</p></dd>
+   <dt><code>err:XC0061</code></dt><dd><p>It is a dynamic error if the name of any encoded parameter name is not a valid xs:NCName.</p></dd>
+   <dt><code>err:XC0062</code></dt><dd><p>It is a dynamic error if the match option matches a namespace node.</p></dd>
+   <dt><code>err:XC0063</code></dt><dd><p>It is a dynamic error if the path-separator option is specified and is not exactly one character long.</p></dd>
+   <dt><code>err:XC0064</code></dt><dd><p>It is a dynamic error if the exit code from the command is greater than the specified failure-threshold value.</p></dd>
+   <dt><code>err:XC0066</code></dt><dd><p>It is a dynamic error if the arg-separator option is specified and is not exactly one character long.</p></dd>
+   <dt><code>err:XD0001</code></dt><dd><p>It is a dynamic error if a non-XML resource is produced on a step output or arrives on a step input.</p></dd>
+   <dt><code>err:XD0003</code></dt><dd><p>It is a dynamic error if the viewport source does not provide exactly one document.</p></dd>
+   <dt><code>err:XD0004</code></dt><dd><p>It is a dynamic error if no subpipeline is selected by the p:choose and no default is provided.</p></dd>
+   <dt><code>err:XD0005</code></dt><dd><p>It is a dynamic error if more than one document appears on the connection for the xpath-context.</p></dd>
+   <dt><code>err:XD0006</code></dt><dd><p>If sequence is not specified, or has the value false, then it is a dynamic error unless exactly one document appears on the declared port.</p></dd>
+   <dt><code>err:XD0007</code></dt><dd><p>If sequence is not specified on p:output, or has the value false, then it is a dynamic error if the step does not produce exactly one document on the declared port.</p></dd>
+   <dt><code>err:XD0008</code></dt><dd><p>It is a dynamic error if a document sequence appears where a document to be used as the context node is expected.</p></dd>
+   <dt><code>err:XD0009</code></dt><dd><p>It is a dynamic error if the element attribute on p:namespaces is specified and it does not identify a single element node.</p></dd>
+   <dt><code>err:XD0010</code></dt><dd><p>It is a dynamic error if the match expression on p:viewport does not match an element or document.</p></dd>
+   <dt><code>err:XD0011</code></dt><dd><p>It is a dynamic error if the resource referenced by a p:document element does not exist, cannot be accessed, or is not a well-formed XML document.</p></dd>
+   <dt><code>err:XD0012</code></dt><dd><p>It is a dynamic error if any attempt is made to dereference a URI where the scheme of the URI reference is not supported.</p></dd>
+   <dt><code>err:XD0013</code></dt><dd><p>It is a dynamic error if the specified namespace bindings are inconsistent; that is, if the same prefix is bound to two different namespace names.</p></dd>
+   <dt><code>err:XD0014</code></dt><dd><p>It is a dynamic error for any unqualified attribute names other than “name”, “namespace”, or “value” to appear on a c:param element.</p></dd>
+   <dt><code>err:XD0015</code></dt><dd><p>It is a dynamic error if the specified QName cannot be resolved with the in-scope namespace declarations.</p></dd>
+   <dt><code>err:XD0016</code></dt><dd><p>It is a dynamic error if the select expression on a p:input returns atomic values or anything other than element or document nodes (or an empty sequence).</p></dd>
+   <dt><code>err:XD0017</code></dt><dd><p>It is a dynamic error if the running pipeline attempts to invoke a step which the processor does not know how to perform.</p></dd>
+   <dt><code>err:XD0018</code></dt><dd><p>It is a dynamic error if the parameter list contains any elements other than c:param.</p></dd>
+   <dt><code>err:XD0019</code></dt><dd><p>It is a dynamic error if any option value does not satisfy the type required for that option.</p></dd>
+   <dt><code>err:XD0020</code></dt><dd><p>It is a dynamic error if the combination of serialization options specified or defaulted is not allowed.</p></dd>
+   <dt><code>err:XD0021</code></dt><dd><p>It is a dynamic error for a pipeline to attempt to access a resource for which it has insufficient privileges or perform a step which is forbidden.</p></dd>
+   <dt><code>err:XD0022</code></dt><dd><p>It is a dynamic error if a processor that does not support PSVI annotations attempts to invoke a step which asserts that they are required.</p></dd>
+   <dt><code>err:XD0023</code></dt><dd><p>It is a dynamic error if an XPath expression is encountered which cannot be evaluated (because it is syntactically incorrect, contains references to unbound variables or unknown functions, or for any other reason).</p></dd>
+   <dt><code>err:XD0024</code></dt><dd><p>It is a dynamic error if a 2.0 processor encounters an XPath 1.0 expression and it does not support XPath 1.0 compatibility mode.</p></dd>
+   <dt><code>err:XD0025</code></dt><dd><p>It is a dynamic error if the namespace attribute is specified, the name contains a colon, and the specified namespace is not the same as the in-scope namespace binding for the specified prefix.</p></dd>
+   <dt><code>err:XD0026</code></dt><dd><p>It is a dynamic error if the select expression makes reference to the context node, size, or position when the context item is undefined.</p></dd>
+   <dt><code>err:XD0027</code></dt><dd><p>It is a dynamic error if the processor encounters an xpath-version that it does not support.</p></dd>
+   <dt><code>err:XD0028</code></dt><dd><p>It is a dynamic error if any attribute value does not satisfy the type required for that attribute.</p></dd>
+   <dt><code>err:XD0029</code></dt><dd><p>It is a dynamic error if the document referenced by a p:data element does not exist, cannot be accessed, or cannot be encoded as specified.</p></dd>
+   <dt><code>err:XD0030</code></dt><dd><p>It is a dynamic error if a step is unable or incapable of performing its function.</p></dd>
+   <dt><code>err:XD0031</code></dt><dd><p>It is a dynamic error to use the XProc namespace in the name of a parameter.</p></dd>
+   <dt><code>err:XD0033</code></dt><dd><p>It is a dynamic error if the name specified is not the name of an in-scope option or variable.</p></dd>
+   <dt><code>err:XD0034</code></dt><dd><p>It is a dynamic error to specify a new namespace or prefix if the lexical value of the specified name contains a colon (or if no wrapper is explicitly specified).</p></dd>
+   <dt><code>err:XS0001</code></dt><dd><p>It is a static error if there are any loops in the connections between steps: no step can be connected to itself nor can there be any sequence of connections through other steps that leads back to itself.</p></dd>
+   <dt><code>err:XS0002</code></dt><dd><p>All steps in the same scope must have unique names: it is a static error if two steps with the same name appear in the same scope.</p></dd>
+   <dt><code>err:XS0003</code></dt><dd><p>It is a static error if any declared input is not connected.</p></dd>
+   <dt><code>err:XS0004</code></dt><dd><p>It is a static error if an option or variable declaration duplicates the name of any other option or variable in the same environment.</p></dd>
+   <dt><code>err:XS0005</code></dt><dd><p>It is a static error if the primary output port of any step is not connected.</p></dd>
+   <dt><code>err:XS0006</code></dt><dd><p>It is a static error if the primary output port has no explicit connection and the last step in the subpipeline does not have a primary output port.</p></dd>
+   <dt><code>err:XS0007</code></dt><dd><p>It is a static error if two subpipelines in a p:choose declare different outputs.</p></dd>
+   <dt><code>err:XS0008</code></dt><dd><p>It is a static error if any element in the XProc namespace has attributes not defined by this specification unless they are extension attributes.</p></dd>
+   <dt><code>err:XS0009</code></dt><dd><p>It is a static error if the p:group and p:catch subpipelines declare different outputs.</p></dd>
+   <dt><code>err:XS0010</code></dt><dd><p>It is a static error if a pipeline contains a step whose specified inputs, outputs, and options do not match the signature for steps of that type.</p></dd>
+   <dt><code>err:XS0011</code></dt><dd><p>It is a static error to identify two ports with the same name on the same step.</p></dd>
+   <dt><code>err:XS0014</code></dt><dd><p>It is a static error to identify more than one output port as primary.</p></dd>
+   <dt><code>err:XS0015</code></dt><dd><p>It is a static error if a compound step has no contained steps.</p></dd>
+   <dt><code>err:XS0017</code></dt><dd><p>It is a static error to specify that an option is both requiredand has a default value.</p></dd>
+   <dt><code>err:XS0018</code></dt><dd><p>If an option is required, it is a static error to invoke the step without specifying a value for that option.</p></dd>
+   <dt><code>err:XS0019</code></dt><dd><p>it is a static error for a variable's document connection to refer to the output port of any step in the surrounding container's contained steps</p></dd>
+   <dt><code>err:XS0020</code></dt><dd><p>It is a static error if the binding attribute on p:namespaces is specified and its value is not the name of an in-scope binding.</p></dd>
+   <dt><code>err:XS0022</code></dt><dd><p>In all cases except the p:output of a compound step, it is a static error if the port identified by a p:pipe is not in the readable ports of the step that contains the p:pipe.</p></dd>
+   <dt><code>err:XS0024</code></dt><dd><p>It is a static error if the content of the p:inline element does not consist of exactly one element, optionally preceded and/or followed by any number of processing instructions, comments or whitespace characters.</p></dd>
+   <dt><code>err:XS0025</code></dt><dd><p>It is a static error if the expanded-QName value of the type attribute is in no namespace or in the XProc namespace.</p></dd>
+   <dt><code>err:XS0026</code></dt><dd><p>It is a static error if the port specified on the p:log is not the name of an output port on the step in which it appears or if more than one p:log element is applied to the same port.</p></dd>
+   <dt><code>err:XS0027</code></dt><dd><p>It is a static error if an option is specified with both the shortcut form and the long form.</p></dd>
+   <dt><code>err:XS0028</code></dt><dd><p>It is a static error to declare an option or variable in the XProc namespace.</p></dd>
+   <dt><code>err:XS0029</code></dt><dd><p>It is a static error to specify a connection for a p:output inside a p:declare-step for an atomic step.</p></dd>
+   <dt><code>err:XS0030</code></dt><dd><p>It is a static error to specify that more than one input port is the primary.</p></dd>
+   <dt><code>err:XS0031</code></dt><dd><p>It is a static error to use an option on an atomic step that is not declared on steps of that type.</p></dd>
+   <dt><code>err:XS0032</code></dt><dd><p>It is a static error if no connection is provided and the default readable port is undefined.</p></dd>
+   <dt><code>err:XS0033</code></dt><dd><p>It is a static error to specify any kind of input other than “document” or “parameter”.</p></dd>
+   <dt><code>err:XS0034</code></dt><dd><p>It is a static error if the specified port is not a parameter input port or if no port is specified and the step does not have a primary parameter input port.</p></dd>
+   <dt><code>err:XS0035</code></dt><dd><p>It is a static error if the declaration of a parameter input port contains a connection; parameter input port declarations must be empty.</p></dd>
+   <dt><code>err:XS0036</code></dt><dd><p>All the step types in a pipeline or library must have unique names: it is a static error if any step type name is built-in and/or declared or defined more than once in the same scope.</p></dd>
+   <dt><code>err:XS0037</code></dt><dd><p>It is a static error if any step directly contains text nodes that do not consist entirely of whitespace.</p></dd>
+   <dt><code>err:XS0038</code></dt><dd><p>It is a static error if any required attribute is not provided.</p></dd>
+   <dt><code>err:XS0039</code></dt><dd><p>It is a static error if the port specified on the p:serialization is not the name of an output port on the pipeline in which it appears or if more than one p:serialization element is applied to the same port.</p></dd>
+   <dt><code>err:XS0040</code></dt><dd><p>It is a static error to specify any value other than true.</p></dd>
+   <dt><code>err:XS0041</code></dt><dd><p>It is a static error to specify both binding and element on the same p:namespaces element.</p></dd>
+   <dt><code>err:XS0042</code></dt><dd><p>It is a static error to attempt to provide a connection for an input port on the declaration of an atomic step.</p></dd>
+   <dt><code>err:XS0044</code></dt><dd><p>It is a static error if any element in the XProc namespace or any step has element children other than those specified for it by this specification. In particular, the presence of atomic steps for which there is no visible declaration may raise this error.</p></dd>
+   <dt><code>err:XS0048</code></dt><dd><p>It is a static error to use a declared step as a compound step.</p></dd>
+   <dt><code>err:XS0051</code></dt><dd><p>It is a static error if the except-prefixes attribute on p:namespaces does not contain a list of tokens or if any of those tokens is not a prefix bound to a namespace in the in-scope namespaces of the p:namespaces element.</p></dd>
+   <dt><code>err:XS0052</code></dt><dd><p>It is a static error if the URI of a p:import cannot be retrieved or if, once retrieved, it does not point to a p:library, p:declare-step, or p:pipeline.</p></dd>
+   <dt><code>err:XS0053</code></dt><dd><p>It is a static error to import a single pipeline if that pipeline does not have a type.</p></dd>
+   <dt><code>err:XS0055</code></dt><dd><p>It is a static error if a primary parameter input port is unconnected and the pipeline that contains the step has no primary parameter input port unless at least one explicit p:with-param is provided for that port.</p></dd>
+   <dt><code>err:XS0057</code></dt><dd><p>It is a static error if the exclude-inline-prefixes attribute does not contain a list of tokens or if any of those tokens (except #all or #default) is not a prefix bound to a namespace in the in-scope namespaces of the element on which it occurs.</p></dd>
+   <dt><code>err:XS0058</code></dt><dd><p>It is a static error if the value #default is used within the exclude-inline-prefixes attribute and there is no default namespace in scope.</p></dd>
+   <dt><code>err:XS0059</code></dt><dd><p>It is a static error if the pipeline element is not p:pipeline, p:declare-step, or p:library.</p></dd>
+   <dt><code>err:XS0060</code></dt><dd><p>It is a static error if the processor encounters an explicit request for a previous version of the language and it is unable to process the pipeline using those semantics.</p></dd>
+   <dt><code>err:XS0061</code></dt><dd><p>It is a static error if a use-when expression refers to the context or attempts to refer to any documents or collections.</p></dd>
+   <dt><code>err:XS0062</code></dt><dd><p>It is a static error if a required version attribute is not present.</p></dd>
+   <dt><code>err:XS0063</code></dt><dd><p>It is a static error if the value of the version attribute is not a xs:decimal.</p></dd>
+</dl>
+
+
+
+</div></div></body></html>
