@@ -490,6 +490,12 @@
 	  </a>
 	  <xsl:if test="position() &lt; last()">, </xsl:if>
 	</xsl:for-each>
+
+        <xsl:if test="$auto-diff != ''">
+          <xsl:text>, </xsl:text>
+	  automatic <a href="diff.html">change markup</a> from the previous draft
+          courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.
+        </xsl:if>
       </p>
     </xsl:if>
 
