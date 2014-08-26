@@ -4,6 +4,9 @@ set | grep TRAVIS
 
 if [ "$TRAVIS_REPO_SLUG" == "$GIT_PUB_REPO" ] && [ "$TRAVIS_BRANCH" == "$GIT_PUB_BRANCH" ]; then
 
+    cp -R build/langspec $HOME/langspec
+    mv $HOME/langspec/Overview.html $HOME/langspec/index.html
+
     cd $HOME
     git config --global user.email ${GIT_EMAIL}
     git config --global user.name ${GIT_NAME}
@@ -11,9 +14,6 @@ if [ "$TRAVIS_REPO_SLUG" == "$GIT_PUB_REPO" ] && [ "$TRAVIS_BRANCH" == "$GIT_PUB
 
     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         echo -e "Publishing specification...\n"
-
-        cp -R build/langspec $HOME/langspec
-        mv $HOME/langspec/Overview.html $HOME/langspec/index.html
 
         cd gh-pages
         git rm -rf ./langspec
@@ -26,9 +26,6 @@ if [ "$TRAVIS_REPO_SLUG" == "$GIT_PUB_REPO" ] && [ "$TRAVIS_BRANCH" == "$GIT_PUB
         echo -e "Published specification to gh-pages.\n"
     else
         echo -e "Publishing pull request $TRAVIS_PULL_REQUEST...\n"
-
-        cp -R build/langspec $HOME/langspec
-        mv $HOME/langspec/Overview.html $HOME/langspec/index.html
 
         cd gh-pages
         git rm -rf ./pulls/$TRAVIS_PULL_REQUEST
