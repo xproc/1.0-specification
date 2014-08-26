@@ -37,6 +37,8 @@
                 select="substring-after(
                           /c:result/c:env[@name='TRAVIS_REPO_SLUG']/@value,
                           '/')"/>
+  <p:with-param name="auto-diff"
+                select="string(/c:result/c:env[@name='DELTA_BASE']/@value)"/>
 </p:xslt>
 
 </p:declare-step>
