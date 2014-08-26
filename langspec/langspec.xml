@@ -96,9 +96,9 @@ mailing list
 
 <para>There is an
 <link xlink:href="http://www.w3.org/XML/XProc/2010/02/ir.html">Implementation
-Report for XProc</link>. It documents the performance of implementations
+Report for XProc 1.0</link>. It documents the performance of implementations
 against the
-<link xlink:href="http://tests.xproc.org/">XProc Test Suite</link>.
+<link xlink:href="http://tests.xproc.org/">XProc 1.0 Test Suite</link>.
 </para>
 
 <para>This document was produced by a group operating under the <link xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
