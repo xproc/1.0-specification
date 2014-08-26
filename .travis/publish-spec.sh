@@ -3,6 +3,7 @@
 set | grep TRAVIS
 
 if [ "$TRAVIS_REPO_SLUG" == "$GIT_PUB_REPO" ] && [ "$TRAVIS_BRANCH" == "$GIT_PUB_BRANCH" ]; then
+    echo -e "Setting up for publication...\n"
 
     cp -R build/langspec $HOME/langspec
     mv $HOME/langspec/Overview.html $HOME/langspec/index.html
