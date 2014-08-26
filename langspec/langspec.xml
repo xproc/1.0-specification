@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <specification xmlns="http://docbook.org/ns/docbook"
                xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:xi="http://www.w3.org/2001/XInclude"
   xmlns:cs="http://www.w3.org/XML/XProc/2006/04/components#"
   xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
   class="ed"
   version="5.0-extension w3c-xproc">
   <info>
