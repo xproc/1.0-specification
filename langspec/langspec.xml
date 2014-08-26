@@ -69,7 +69,6 @@ documents as output. Pipelines are made up of simple steps which
 perform atomic operations on XML documents and constructs similar to
 conditionals, iteration, and exception handlers which control which
 steps are executed.</para>
-
 </abstract>
 
 <legalnotice role="status">
