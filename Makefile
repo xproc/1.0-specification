@@ -5,9 +5,9 @@ spec: build/langspec/Overview.html
 all: spec build/langreq/Overview.html
 
 build/langspec/Overview.html: langspec/langspec.html
-	cp langspec/langspec.html $@
+	cp langspec/.html build/langspec/
+	mv build/langspec/langspec.html $@
 	cp langspec/,langspec.xml build/langspec/langspec.xml
-	cp langspec/diff.html build/langspec/
 	cd langspec && tar cf - graphics | (cd ../build/langspec; tar xf -)
 	cp langspec/ns-p/xproc.html build/langspec/ns/
 	cp langspec/ns-c/xproc-step.html build/langspec/ns/
