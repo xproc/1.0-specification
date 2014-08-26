@@ -5,7 +5,7 @@ spec: build/langspec/Overview.html
 all: spec build/langreq/Overview.html
 
 build/langspec/Overview.html: langspec/langspec.html
-	cp langspec/.html build/langspec/
+	cp langspec/*.html build/langspec/
 	mv build/langspec/langspec.html $@
 	cp langspec/,langspec.xml build/langspec/langspec.xml
 	cd langspec && tar cf - graphics | (cd ../build/langspec; tar xf -)
