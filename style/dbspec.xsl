@@ -16,6 +16,7 @@
 <xsl:param name="travis-build-number" select="''" as="xs:string"/>
 <xsl:param name="travis-user" select="''" as="xs:string"/>
 <xsl:param name="travis-repo" select="''" as="xs:string"/>
+<xsl:param name="auto-diff" select="''" as="xs:string"/>
 
 <!-- Default macros -->
 <xsl:variable name="ml:defaultMacros" select="document($defaultMacros)"/>
