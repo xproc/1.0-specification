@@ -26,6 +26,8 @@ langspec/examples/xquery.txt
 langspec/examples/xslt-empty.txt
 langspec/examples/xslt.txt
 langspec/langspec.html
+langspec/changelog.html
+langspec/diff.html
 langspec/ns-c/,*
 langspec/ns-c/ns-xproc-c-incl.xml
 langspec/ns-c/xproc-step.html
