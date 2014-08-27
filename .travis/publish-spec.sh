@@ -19,9 +19,9 @@ if [ "$TRAVIS_REPO_SLUG" == "$GIT_PUB_REPO" ]; then
         TIP=${TRAVIS_TAG:="head"}
 
         cd gh-pages
-        git rm -rf ./langspec/{$TRAVIS_BRANCH}/{$TIP}
-        mkdir -p ./langspec/{$TRAVIS_BRANCH}/{$TIP}
-        cp -Rf $HOME/langspec ./langspec/{$TRAVIS_BRANCH}/{$TIP}
+        git rm -rf ./langspec/${TRAVIS_BRANCH}/${TIP}
+        mkdir -p ./langspec/${TRAVIS_BRANCH}/${TIP}
+        cp -Rf $HOME/langspec ./langspec/${TRAVIS_BRANCH}/${TIP}
 
         git add -f .
         git commit -m "Successful travis build $TRAVIS_BUILD_NUMBER"
