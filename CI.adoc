@@ -11,3 +11,11 @@ a pull request on .travis.yml:
 * GIT_PUB_BRANCH="xproc20"
 
 You also have to setup a gh-pages branch, naturally.
+
+== Builds
+
+For any given branch, the most recent build is in
+`/specification/langspec/{branch}/head`.
+
+Tagged versions are built in
+`/specification/langspec/{branch}/{tag}`.

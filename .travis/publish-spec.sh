@@ -2,7 +2,7 @@
 
 set | grep TRAVIS
 
-if [ "$TRAVIS_REPO_SLUG" == "$GIT_PUB_REPO" ] && [ "$TRAVIS_BRANCH" == "$GIT_PUB_BRANCH" ]; then
+if [ "$TRAVIS_REPO_SLUG" == "$GIT_PUB_REPO" ]; then
     echo -e "Setting up for publication...\n"
 
     cp -R build/langspec $HOME/langspec
@@ -16,12 +16,15 @@ if [ "$TRAVIS_REPO_SLUG" == "$GIT_PUB_REPO" ] && [ "$TRAVIS_BRANCH" == "$GIT_PUB
     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
         echo -e "Publishing specification...\n"
 
+        TIP=${TRAVIS_TAG:="head"}
+
         cd gh-pages
-        git rm -rf ./langspec
-        cp -Rf $HOME/langspec ./langspec
+        git rm -rf ./langspec/${TRAVIS_BRANCH}/${TIP}
+        mkdir -p ./langspec/${TRAVIS_BRANCH}/${TIP}
+        cp -Rf $HOME/langspec/* ./langspec/${TRAVIS_BRANCH}/${TIP}
 
         git add -f .
-        git commit -m "Latest specification on successful travis build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages"
+        git commit -m "Successful travis build $TRAVIS_BUILD_NUMBER"
         git push -fq origin gh-pages > /dev/null
 
         echo -e "Published specification to gh-pages.\n"
