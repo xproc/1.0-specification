@@ -14,7 +14,10 @@
                     xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
     <bibliorelation role="translations" type="references"
                     xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
+
     <bibliorelation type="isformatof" xlink:href="langspec.xml">XML</bibliorelation>
+    <bibliorelation type="isformatof" xlink:href="changelog.html">ChangeLog</bibliorelation>
+
 <!--
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/PR-xproc-20100309/"/>
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/WD-xproc-20100105/"/>
