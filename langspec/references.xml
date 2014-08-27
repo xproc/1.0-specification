@@ -46,11 +46,6 @@ in XML 1.1 (Second Edition)</citetitle>. Tim Bray,
 Dave Hollander, Andrew Layman, et. al.,
 editors. W3C Recommendation 16 August 2006.</bibliomixed>
 
-<bibliomixed xml:id="xpath"><abbrev>XPath 1.0</abbrev>
-<citetitle xlink:href="http://www.w3.org/TR/xpath">XML Path Language (XPath)
-Version 1.0</citetitle>. James Clark and Steve DeRose, editors.
-W3C Recommendation. 16 November 1999.</bibliomixed>
-
 <bibliomixed xml:id="xslt10"><abbrev>XSLT 1.0</abbrev>
 <citetitle xlink:href="http://www.w3.org/TR/xslt">XSL Transformations (XSLT)
 Version 1.0</citetitle>. James Clark, editor.
