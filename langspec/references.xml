@@ -10,10 +10,11 @@
 <title>Normative References</title>
 
 <bibliolist>
-<bibliomixed xml:id="use-cases"><abbrev>XProc Requirements</abbrev>
-<citetitle xlink:href="http://www.w3.org/TR/xproc-requirements/">XML
-Processing Model Requirements and Use Cases</citetitle>.
-Alex Milowski, editor. W3C Working Draft 11 April 2006.
+<bibliomixed xml:id="use-cases"><abbrev>XProc V2.0 Requirements</abbrev>
+<citetitle xlink:href="http://www.w3.org/TR/xproc-v2-req/">XProc V2.0
+Requirements</citetitle>.
+Alex Milowski, James Fuller, and Norman Walsh editors.
+W3C Working Draft 5 November 2013.
 </bibliomixed>
 
 <bibliomixed xml:id="xml-infoset-rec"><abbrev>Infoset</abbrev>
