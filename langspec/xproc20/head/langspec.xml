@@ -1,6 +1,6 @@
 <specification xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:cs="http://www.w3.org/XML/XProc/2006/04/components#" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" xmlns:xi="http://www.w3.org/2001/XInclude" class="ed" version="5.0-extension w3c-xproc">
   <info>
-    <title>XProc: An XML Pipeline Language</title>
+    <title>XProc 2.0: An XML Pipeline Language</title>
     <w3c-shortname>xproc</w3c-shortname>
     <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
     <bibliorelation role="errata" type="references" xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
@@ -53,7 +53,7 @@
 
 <abstract>
 <para>This specification describes the syntax and semantics of
-<citetitle>XProc: An XML Pipeline Language</citetitle>, a language for
+<citetitle>XProc 2.0: An XML Pipeline Language</citetitle>, a language for
 describing operations to be performed on XML documents.</para>
 
 <para>An XML Pipeline specifies a sequence of operations to be
@@ -73,9 +73,8 @@ document. A list of current W3C publications and the latest revision
 of this technical report can be found in the <link xlink:href="http://www.w3.org/TR/">W3C technical reports index</link>
 at http://www.w3.org/TR/.</emphasis></para>
 
-<para>This document is a
-<link xlink:href="http://www.w3.org/2005/10/Process-20051014/tr.html#q74">W3C
-Recommendation</link>. It implements the requirements and use cases
+<para>This document is an editor's draft without normative standing.
+It implements the requirements and use cases
 documented in <biblioref linkend="use-cases"/>. This document is a
 product of the
 <link xlink:href="http://www.w3.org/XML/Processing/">XML Processing Model
@@ -84,24 +83,18 @@ as part of the W3C
 <link xlink:href="http://www.w3.org/XML/Activity">XML Activity</link>.
 </para>
 
-<para>This document has been reviewed by W3C Members, by software
-developers, and by other W3C groups and interested parties, and is
-endorsed by the Director as a W3C Recommendation. It is a stable
-document and may be used as reference material or cited from another
-document. W3C's role in making the Recommendation is to draw attention
-to the specification and to promote its widespread deployment. This
-enhances the functionality and interoperability of the Web.</para>
-
-<para>Please report errors in this document to the public
-mailing list
-<link xlink:href="mailto:public-xml-processing-model-comments@w3.org">public-xml-processing-model-comments@w3.org</link> (public
-<link xlink:href="http://lists.w3.org/Archives/Public/public-xml-processing-model-comments/">archives</link> are available).</para>
+<para>Please report errors in this document by
+<link xlink:href="https://github.com/xproc/specification/issues">raising
+issues</link> on the
+<link xlink:href="https://github.com/xproc/specification">specification
+repository</link>.</para>
 
 <para>There is an
 <link xlink:href="http://www.w3.org/XML/XProc/2010/02/ir.html">Implementation
 Report for XProc 1.0</link>. It documents the performance of implementations
 against the
 <link xlink:href="http://tests.xproc.org/">XProc 1.0 Test Suite</link>.
+At this time, there are no such reports for XProc 2.0.
 </para>
 
 <para>This document was produced by a group operating under the <link xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
@@ -7723,10 +7716,11 @@ in the PSVI, are preserved between steps.</impl></para>
 <title>Normative References</title>
 
 <bibliolist>
-<bibliomixed xml:id="use-cases"><abbrev>XProc Requirements</abbrev>
-<citetitle xlink:href="http://www.w3.org/TR/xproc-requirements/">XML
-Processing Model Requirements and Use Cases</citetitle>.
-Alex Milowski, editor. W3C Working Draft 11 April 2006.
+<bibliomixed xml:id="use-cases"><abbrev>XProc V2.0 Requirements</abbrev>
+<citetitle xlink:href="http://www.w3.org/TR/xproc-v2-req/">XProc V2.0
+Requirements</citetitle>.
+Alex Milowski, James Fuller, and Norman Walsh editors.
+W3C Working Draft 5 November 2013.
 </bibliomixed>
 
 <bibliomixed xml:id="xml-infoset-rec"><abbrev>Infoset</abbrev>

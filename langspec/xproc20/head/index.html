@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc: An XML Pipeline Language</title><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="base.css" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc: An XML Pipeline Language</h1><h2>W3C Editor's Draft  3 September 2014 at 15:08 UTC (<a href="https://github.com/xproc//specification/commit/0d01eeec44e2052d50cd08339f598c83e2abebbf">build 44</a>)</h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc/">http://www.w3.org/TR/xproc/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <tt class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</tt></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <tt class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</tt></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <tt class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</tt></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: An XML Pipeline Language</title><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="base.css" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc 2.0: An XML Pipeline Language</h1><h2>W3C Editor's Draft  3 September 2014 at 15:09 UTC (<a href="https://github.com/xproc//specification/commit/915c7d9f6a3158e01aebf9370da48af7cab9a2b9">build 45</a>)</h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc/">http://www.w3.org/TR/xproc/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <tt class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</tt></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <tt class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</tt></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <tt class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</tt></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
 	  automatic <a href="diff.html">change markup</a> from the previous draft
           courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.
         </p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
@@ -9,7 +9,7 @@ W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">lia
 and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document
 use</a> rules apply.</p><hr /><div class="abstract"><h2>Abstract</h2>
 <p>This specification describes the syntax and semantics of
-<em class="citetitle">XProc: An XML Pipeline Language</em>, a language for
+<em class="citetitle">XProc 2.0: An XML Pipeline Language</em>, a language for
 describing operations to be performed on XML documents.</p>
 
 <p>An XML Pipeline specifies a sequence of operations to be
@@ -27,10 +27,9 @@ document. A list of current W3C publications and the latest revision
 of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a>
 at http://www.w3.org/TR/.</em></p>
 
-<p>This document is a
-<a href="http://www.w3.org/2005/10/Process-20051014/tr.html#q74">W3C
-Recommendation</a>. It implements the requirements and use cases
-documented in [<a href="#use-cases"><span class="abbrev">XProc Requirements</span></a>]. This document is a
+<p>This document is an editor's draft without normative standing.
+It implements the requirements and use cases
+documented in [<a href="#use-cases"><span class="abbrev">XProc V2.0 Requirements</span></a>]. This document is a
 product of the
 <a href="http://www.w3.org/XML/Processing/">XML Processing Model
 Working Group</a>
@@ -38,24 +37,18 @@ as part of the W3C
 <a href="http://www.w3.org/XML/Activity">XML Activity</a>.
 </p>
 
-<p>This document has been reviewed by W3C Members, by software
-developers, and by other W3C groups and interested parties, and is
-endorsed by the Director as a W3C Recommendation. It is a stable
-document and may be used as reference material or cited from another
-document. W3C's role in making the Recommendation is to draw attention
-to the specification and to promote its widespread deployment. This
-enhances the functionality and interoperability of the Web.</p>
-
-<p>Please report errors in this document to the public
-mailing list
-<a href="mailto:public-xml-processing-model-comments@w3.org">public-xml-processing-model-comments@w3.org</a> (public
-<a href="http://lists.w3.org/Archives/Public/public-xml-processing-model-comments/">archives</a> are available).</p>
+<p>Please report errors in this document by
+<a href="https://github.com/xproc/specification/issues">raising
+issues</a> on the
+<a href="https://github.com/xproc/specification">specification
+repository</a>.</p>
 
 <p>There is an
 <a href="http://www.w3.org/XML/XProc/2010/02/ir.html">Implementation
 Report for XProc 1.0</a>. It documents the performance of implementations
 against the
 <a href="http://tests.xproc.org/">XProc 1.0 Test Suite</a>.
+At this time, there are no such reports for XProc 2.0.
 </p>
 
 <p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
@@ -7026,10 +7019,11 @@ in the PSVI, are preserved between steps.</p>
 
 
 <div class="bibliolist">
-<div class="bibliomixed" id="use-cases"><p>[<span class="abbrev">XProc Requirements</span>] 
-<a href="http://www.w3.org/TR/xproc-requirements/"><span class="citetitle"><cite>XML
-Processing Model Requirements and Use Cases</cite></span></a>.
-Alex Milowski, editor. W3C Working Draft 11 April 2006.
+<div class="bibliomixed" id="use-cases"><p>[<span class="abbrev">XProc V2.0 Requirements</span>] 
+<a href="http://www.w3.org/TR/xproc-v2-req/"><span class="citetitle"><cite>XProc V2.0
+Requirements</cite></span></a>.
+Alex Milowski, James Fuller, and Norman Walsh editors.
+W3C Working Draft 5 November 2013.
 </p></div>
 
 <div class="bibliomixed" id="xml-infoset-rec"><p>[<span class="abbrev">Infoset</span>] 
