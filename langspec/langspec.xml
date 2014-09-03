@@ -14,7 +14,10 @@
                     xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
     <bibliorelation role="translations" type="references"
                     xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
+
     <bibliorelation type="isformatof" xlink:href="langspec.xml">XML</bibliorelation>
+    <bibliorelation type="isformatof" xlink:href="changelog.html">ChangeLog</bibliorelation>
+
 <!--
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/PR-xproc-20100309/"/>
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/WD-xproc-20100105/"/>
@@ -820,217 +823,17 @@ pipeline is
           >select</tag> attributes on variables, options, parameters, and inputs, in <tag
           class="attribute">match</tag> attributes on <tag>p:viewport</tag>, and in <tag
           class="attribute">test</tag> attributes on <tag>p:when</tag> steps.</para>
-      <para>An XProc implementation can use <emphasis>either</emphasis>
-        <biblioref linkend="xpath"/> or <biblioref linkend="xpath2"/> to evaluate these
-        expressions.</para>
-      <note>
-        <para>Allowing either XPath 1.0 or XPath 2.0 is a compromise driven entirely by the timing
-          of XProc development. During the development of this specification, the community
-          indicated that it was too early to mandate that all implementations use XPath 2.0 and too
-          late to mandate that all implementations use XPath 1.0.</para>
-      </note>
-      <para>Many, many expressions that are likely to be used in XProc pipelines are the same in
-        both versions (simple element tests, ancestor and descendant tests, string-based attribute
-        tests, etc.).</para>
-      <para>As an aid to interoperability, pipeline authors may indicate the version of XPath that
-        they require. The attribute <tag class="attribute">xpath-version</tag> may be used on
-          <tag>p:pipeline</tag>, <tag>p:declare-step</tag>, or <tag>p:library</tag> to identify the
-        XPath version that <rfc2119>must</rfc2119> be used to evaluate XPath expressions on the
-        pipeline(s). The attribute is lexically scoped, but see below.</para>
 
-<note>
-<para>In Version 1.0 of XProc, no similar level of control is provided
-for specifying (or testing) the version of XSLT used when evaluating
-<type>XSLTMatchPattern</type>s. The expectation is that XPath 1.0 processors
-will be using XSLT 1.0 match patterns and XPath 2.0 processors will be using
-XSLT 2.0 match patterns, but that is not necessarily the case.
-</para>
-<para>As XPath, XSLT, and XProc continue to evolve, additional facilities for
-specifying and testing the version of XSLT used to evaluate match patterns
-may be added to XProc.</para>
-</note>
-
-      <para>If an <tag class="attribute">xpath-version</tag> is specified on a <tag>p:pipeline</tag>
-        or <tag>p:declare-step</tag>, then that is the version of XPath that the step requires. If
-        it does not specify a version, but a version is specified on one of its ancestors, the
-        nearest ancestor version specified is the version that it requires. An <tag
-          class="attribute">xpath-version</tag> attribute on a <tag>p:library</tag> specifies a
-        default version for all steps defined in that library. <impl>If no version is specified on
-          the step or among its ancestors, then its XPath version is
-            <glossterm>implementation-defined</glossterm>.</impl>
-      </para>
-      <note>
-        <para>The decision about which XPath version applies can be made dynamically. For example,
-          if a pipeline explicitly labeled with <tag class="attribute">xpath-version</tag> “1.0”
-          imports a library that does not specify a version, the implementation may elect to make
-          the implementation-defined XPath version of the steps in the library also “1.0”. If the
-          same implementation imports that library into a pipeline explicitly labeled with <tag
-            class="attribute">xpath-version</tag> “2.0”, it can make the implementation-defined
-          version of those steps “2.0”. </para>
-      </note>
-      <para>The following rules determine how the indicated version and the implementation's actual
-        version interact:</para>
-      <orderedlist>
-        <listitem>
-          <para>If the indicated version and the implementation version are the same, then that
-            version is used.</para>
-        </listitem>
-        <listitem>
-          <para>If the indicated version is 1.0 and the implementation uses XPath 2.0 (or later),
-            the expression <rfc2119>must</rfc2119> be evaluated in XPath 1.0 compatibility mode.
-              <error code="D0024">It is a <glossterm>dynamic error</glossterm> if a 2.0 processor
-              encounters an XPath 1.0 expression and it does not support XPath 1.0 compatibility
-              mode.</error>
-          </para>
-        </listitem>
-        <listitem>
-          <para>Otherwise: <error code="D0027">It is a <glossterm>dynamic error</glossterm> if the
-              processor encounters an <tag class="attribute">xpath-version</tag> that it does not
-              support.</error>
-          </para>
-        </listitem>
-      </orderedlist>
-      <para>XProc processors divide naturally into two classes: XPath 1.0 processors and XPath 2.0
-        processors.</para>
-      <para>Irrespective of which version of XPath is used, all expressions evaluated by XProc or
-        passed to steps for evaluation must be valid XPath expressions. <error code="D0023">It is a
-            <glossterm>dynamic error</glossterm> if an XPath expression is encountered which cannot
-          be evaluated (because it is syntactically incorrect, contains references to unbound
-          variables or unknown functions, or for any other reason). </error></para>
-      <section xml:id="xpath10-processors">
-        <title>XPath 1.0 processors</title>
-        <para>XProc processors that support only XPath 1.0 do not support any types (or features)
-          beyond those described in <biblioref linkend="xpath"/>. They use the XPath 1.0 data model.
-          Processors <rfc2119>must</rfc2119> implement all of the XPath 1.0 functions, but are not
-          expected to implement the functions described in <biblioref linkend="xslt10"/>.</para>
-        <section xml:id="xproc-xpath-context-10">
-          <title>Processor XPath Context</title>
-          <para>When the XProc processor evaluates an XPath expression using XPath 1.0, unless
-            otherwise indicated by a particular step, it does so with the following initial
-            context:</para>
-          <variablelist>
-            <varlistentry>
-              <term>context node</term>
-              <listitem>
-                <para>The document node of a document. The document is either specified with a
-                    <glossterm>connection</glossterm> or is taken from the <glossterm>default
-                    readable port</glossterm>. <error code="D0008">It is a <glossterm>dynamic
-                      error</glossterm> if a document sequence appears where a document to be used
-                    as the context node is expected.</error>
-                </para>
-                <para>If there is no explicit connection and there is no default readable port then
-                  the context node is an empty document node.</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>context position and context size</term>
-              <listitem>
-                <para>The context position and context size are both “1”. </para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>variable bindings</term>
-              <listitem>
-                <para>The union of the in-scope <glossterm>specified options</glossterm> and
-                  variables are available as variable bindings to the XPath processor. </para>
-                <note>
-                  <para>An option that has neither a specified value nor a default value will not
-                    appear as an in-scope variable. Consequently, an attempt to refer to that
-                    variable will raise an error.</para>
-                </note>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>function library</term>
-              <listitem>
-                <para>The <biblioref linkend="xpath"/> core function library and the <xref
-                    linkend="xpath-extension-functions"/>. Function names that do not contain a
-                  colon always refer to the XPath 1.0 functions, any in-scope binding for the
-                  default namespace <emphasis>does not</emphasis> apply.</para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>in-scope namespaces</term>
-              <listitem>
-                <para>The namespace bindings in-scope on the element where the expression occurred.
-                </para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-        </section>
-        <section xml:id="step-xpath-context-10">
-          <title>Step XPath Context</title>
-          <para>When <emphasis>a step</emphasis> evaluates an XPath expression using XPath 1.0,
-            unless otherwise indicated by a particular step, it does so with the following initial
-            context:</para>
-          <variablelist>
-            <varlistentry>
-              <term>context node</term>
-              <listitem>
-                <para>The document node that appears on the primary input port of the step, unless
-                  otherwise specified by the step. </para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>context position and context size</term>
-              <listitem>
-                <para>The position and size are both “1”, unless otherwise specified by the step.
-                </para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>variable bindings</term>
-              <listitem>
-                <para>None, unless otherwise specified by the step. </para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>function library</term>
-              <listitem>
-                <para>The <biblioref linkend="xpath"/> core function library, unless otherwise
-                  specified by the step. Function names that do not contain a colon always refer to
-                  the XPath 1.0 functions, any in-scope binding for the default namespace
-                    <emphasis>does not</emphasis> apply. </para>
-              </listitem>
-            </varlistentry>
-            <varlistentry>
-              <term>in-scope namespaces</term>
-              <listitem>
-                <para>The set of namespace bindings provided by the XProc processor. The processor
-                  computes this set of bindings by taking a union of the bindings on the step
-                  element itself as well as the bindings on any of the options and parameters used
-                  in computing values for the step (see <xref linkend="opt-param-bindings"
-                  />).</para>
-                <para><impl>The results of computing the union of namespaces in the presence of
-                    conflicting declarations for a particular prefix are
-                      <glossterm>implementation-dependent</glossterm>.</impl></para>
-              </listitem>
-            </varlistentry>
-          </variablelist>
-          <note>
-            <para>Some steps may also provide for implementation-defined or implementation-dependent
-              amendments to the contexts. Those amendments are in addition to any specified by
-              XProc.</para>
-          </note>
-        </section>
-      </section>
-      <section xml:id="xpath20-processors">
-        <title>XPath 2.0 processors</title>
-        <para>XProc processors that support XPath 2.0 are XPath 2.0 processors. Such processors can
-          refer to the primitive atomic schema types, but cannot import additional types.</para>
-        <para>XPath 2.0 processors <rfc2119>must</rfc2119> implement all of the XPath 2.0 functions,
-          but are not expected to implement the functions described in <biblioref linkend="xslt20"
-          />.</para>
         <section xml:id="xproc-xpath-context-20">
           <title>Processor XPath Context</title>
-          <para>When the XProc processor evaluates an XPath expression using XPath 2.0, unless
-            otherwise indicated by a particular step, it does so with the following static
-            context:</para>
+<para>When the XProc processor evaluates an XPath expression using
+XPath, unless otherwise indicated by a particular step, it does so
+with the following static context:</para>
           <variablelist>
             <varlistentry>
               <term>XPath 1.0 compatibility mode</term>
               <listitem>
-                <para>Is true if the indicated XPath version is 1.0, false otherwise.</para>
+                <para>False</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -1230,7 +1033,7 @@ may be added to XProc.</para>
             <varlistentry>
               <term>XPath 1.0 compatibility mode</term>
               <listitem>
-                <para>Is true if the indicated XPath version is 1.0, false otherwise.</para>
+                <para>False</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -1379,16 +1182,14 @@ may be added to XProc.</para>
               XProc.</para>
           </note>
         </section>
-      </section>
     </section>
     <section xml:id="xpath-extension-functions">
       <title>XPath Extension Functions</title>
-      <para>The XProc processor <rfc2119>must</rfc2119> support the additional functions described
-        in this section in XPath expressions evaluated by the processor.</para>
-      <para>In the following descriptions, the names of types (<type>string</type>,
-          <type>boolean</type>, etc.) should be taken to mean the corresponding <biblioref
-          linkend="xmlschema-2"/> data types for an implementation that uses XPath 2.0 and as the
-        most appropriate XPath 1.0 types for an XPath 1.0 implementation.</para>
+
+<para>The XProc processor <rfc2119>must</rfc2119> support the
+additional functions described in this section in XPath expressions
+evaluated by the processor.</para>
+
       <section xml:id="f.system-property">
         <title>System Properties</title>
         <para>XPath expressions within a pipeline document can interrogate the processor for
@@ -1480,9 +1281,8 @@ return “2.0”.</para>
             <listitem>
               <para>Returns the version(s) of XPath implemented by the processor for evaluating
                 XPath expressions on XProc elements. The result is a space-separated list of versions supported. For
-                example, a processor that only supports XPath 1.0 would return “1.0”; a processor
-                that supports XPath 2.0 and XPath 1.0 backwards compatibility mode could return “1.0
-                2.0”; a processor that supports only XPath 2.0 would return “2.0”.</para>
+                example, a processor that only supports XPath 2.0 would return “2.0”; a processor
+                that supports XPath 2.0 and XPath 3.0 could return “2.0 3.0”; a processor that supports only XPath 2.0 would return “2.0”.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -1605,64 +1405,6 @@ among the ancestors of the element on which the expression involving
 <function>p:iteration-size</function> occurs, it returns 1.</para>
 
 </section>
-
-      <section xml:id="f.base-uri">
-        <title>Base URI</title>
-        <para>Returns the base URI of the specified node, if it has one. This function provides an
-          interoperable way for XPath 1.0 based processors to access the base URI of a node. It is
-          conceptually the same as the XPath 2.0 <literal>fn:base-uri()</literal> function.</para>
-
-<methodsynopsis>
-<type>xs:string</type>
-<methodname>p:base-uri</methodname>
-<void/>
-</methodsynopsis>
-
-<methodsynopsis>
-<type>xs:string</type>
-<methodname>p:base-uri</methodname>
-<methodparam><type>node()</type><parameter>node</parameter></methodparam>
-</methodsynopsis>
-
-        <para>If no argument is specified, the context node is taken to be the argument.</para>
-        <para>This function returns the <literal>[base-uri]</literal> property of its argument, or
-          the empty string if no base URI is defined for that argument or argument type.</para>
-        <note>
-          <para>This function is defined in our namespace because it would be inappropriate to
-            require XPath 1.0 based processors to support the <literal>fn:base-uri</literal>
-            function; its semantics are deeply rooted in the XPath 2.0 data model which differs from
-            the XPath 1.0 data model.</para>
-        </note>
-      </section>
-
-      <section xml:id="f.resolve-uri">
-        <title>Resolve URI</title>
-        <para>Resolves a relative URI with respect to a particular base URI. This function provides
-          an interoperable way for XPath 1.0 based processors to compose URI references. It is
-          conceptually the same as the XPath 2.0 <literal>fn:resolve-uri()</literal>
-          function.</para>
-
-<methodsynopsis>
-<type>xs:string</type>
-<methodname>p:resolve-uri</methodname>
-<methodparam><type>xs:string</type><parameter>relative</parameter></methodparam>
-</methodsynopsis>
-
-<methodsynopsis>
-<type>xs:string</type>
-<methodname>p:resolve-uri</methodname>
-<methodparam><type>xs:string</type><parameter>relative</parameter></methodparam>
-<methodparam><type>xs:string</type><parameter>base</parameter></methodparam>
-</methodsynopsis>
-
-        <para>If no base is specified, the base URI of the context node is used. </para>
-        <note>
-          <para>This function is defined in our namespace because it would be inappropriate to
-            require XPath 1.0 based processors to support the <literal>fn:resolve-uri</literal>
-            function; its semantics are rooted in the XPath 2.0 data model which differs from the
-            XPath 1.0 data model.</para>
-        </note>
-      </section>
 
 <section xml:id="f.version-available">
 <title>Version Available</title>
@@ -2293,11 +2035,6 @@ variable with the same name.
                 <glossterm>default readable port</glossterm> will be assumed. Making the connection
               explicitly empty guarantees that the connection will be to an empty sequence of
               documents.</para>
-            <para xml:id="empty-xpath-context">It is inconsistent with the <biblioref
-                linkend="xpath"/> specification to specify an empty connection as the context for
-              evaluating an XPath expression. When an empty connection is specified for an XPath 1.0
-              expression, an empty document node <rfc2119>must</rfc2119> be used instead as the
-              context node.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -2535,12 +2272,14 @@ or collections.</error>
             <type>NMTOKEN</type>, per <biblioref linkend="xmlschema-2"/>, including whitespace
             normalization. </para>
         </listitem>
-        <listitem>
-          <para><type>XPathExpression</type>, <type>XSLTMatchPattern</type>: As a string per
-              <biblioref linkend="xmlschema-2"/>, including whitespace normalization, and the
-            further requirement to be a conformant Expression per <biblioref linkend="xpath"/> or
-              <biblioref linkend="xpath2"/>, as appropriate, or Match pattern per <biblioref
-              linkend="xslt10"/> or <biblioref linkend="xslt20"/>, as appropriate. </para>
+
+<listitem>
+<para><type>XPathExpression</type>, <type>XSLTMatchPattern</type>: As
+a string per <biblioref linkend="xmlschema-2"/>, including whitespace
+normalization, and the further requirement to be a conformant
+Expression per <biblioref linkend="xpath2"/> or Match pattern per
+<biblioref linkend="xslt20"/>.
+</para>
         </listitem>
       </itemizedlist></section>
     <section xml:id="common-errors">
@@ -2910,11 +2649,9 @@ The context node is specified as a <glossterm>connection</glossterm>
 in the <tag>p:xpath-context</tag>. If no explicit connection is
 provided,
 the <glossterm>default readable port</glossterm> is used.
-In an XPath 1.0 implementation, if the context node is connected
+If the context node is connected
 to <tag>p:empty</tag>, or is unconnected and the <glossterm>default
-readable port</glossterm> is undefined, an <link
-linkend="empty-xpath-context">empty document node</link> is used
-instead as the context. In an XPath 2.0 implementation, the context
+readable port</glossterm> is undefined, the context
 item is undefined.</para>
 
 <para>Each conditional
@@ -2936,11 +2673,13 @@ item is undefined.</para>
           only provides the context node. The namespace bindings, in-scope variables, and other
           aspects of the context come from the element on which the XPath expression
           occurs.</para>
-<para>In an XPath 1.0 implementation, if the context node is connected to
-            <tag>p:empty</tag>, or is unconnected and the <glossterm>default readable
-            port</glossterm> is undefined, an <link linkend="empty-xpath-context">empty document
-            node</link> is used instead as the context. In an XPath 2.0 implementation, the context
-          item is undefined.</para></section><section xml:id="p.when"><title>p:when</title><para>A
+
+<para>If the context node is connected to <tag>p:empty</tag>, or is
+unconnected and the <glossterm>default readable port</glossterm> is
+undefined, the context item is undefined.</para>
+</section>
+
+<section xml:id="p.when"><title>p:when</title><para>A
           when specifies one subpipeline guarded by a test expression. </para>
         <e:rng-pattern name="When"/>
         <para>Each <tag>p:when</tag> branch of the <tag>p:choose</tag> has a <tag class="attribute"
@@ -3618,20 +3357,23 @@ pipeline. These parameters are available on the
           specified. The content of the <tag class="attribute">select</tag> attribute is an XPath
           expression which will be evaluated to provide the value of the variable.</para>
         <e:rng-pattern name="VariableSelect"/>
-        <para>If a <tag class="attribute">select</tag> expression is given, it is evaluated as an
-          XPath expression using the appropriate context as described in <xref
-            linkend="xpath-context"/>, for the enclosing <glossterm>container</glossterm>, with the
-          addition of bindings for all preceding-sibling <tag>p:variable</tag> and
-            <tag>p:option</tag> elements. Regardless of the implicit type of the expression, when
-          XPath 1.0 is being used, the string value of the expression becomes the value of the
-          variable; when XPath 2.0 is being used, the type is treated as an
-            <type>xs:untypedAtomic</type>.</para>
-<para>Since all <glossterm>in-scope
-            bindings</glossterm> are present in the Processor XPath Context as variable bindings,
-            <tag class="attribute">select</tag> expressions may refer to the value of
-            <glossterm>in-scope bindings</glossterm> by variable reference. If a variable reference
-          uses a QName that is not the name of an <glossterm baseform="in-scope bindings">in-scope
-            binding</glossterm>, an XPath evaluation error will occur.</para>
+
+<para>If a <tag class="attribute">select</tag> expression is given, it
+is evaluated as an XPath expression using the appropriate context as
+described in <xref linkend="xpath-context"/>, for the enclosing
+<glossterm>container</glossterm>, with the addition of bindings for
+all preceding-sibling <tag>p:variable</tag> and <tag>p:option</tag>
+elements. Regardless of the implicit type of the expression, the type
+is treated as an <type>xs:untypedAtomic</type>.</para>
+
+<para>Since all <glossterm>in-scope bindings</glossterm> are present
+in the Processor XPath Context as variable bindings, <tag
+class="attribute">select</tag> expressions may refer to the value of
+<glossterm>in-scope bindings</glossterm> by variable reference. If a
+variable reference uses a QName that is not the name of an <glossterm
+baseform="in-scope bindings">in-scope binding</glossterm>, an XPath
+evaluation error will occur.</para>
+
 <para>If a <tag
             class="attribute">select</tag> expression is given, the <glossterm>readable
             ports</glossterm> available for document connections are the <glossterm>readable
@@ -3653,12 +3395,9 @@ readable port, the connection is treated as if <tag>p:empty</tag> was
 specified.</para>
 
 <para><error code="D0008">It is a <glossterm>dynamic error</glossterm>
-if a sequence of more than one document appears on the connection for a
-<tag>p:variable</tag>.</error> In an XPath 1.0 implementation, if
-<tag>p:empty</tag> is given or implied as the document connection, an
-<link linkend="empty-xpath-context">empty document node</link> is used as
-the context node. In an XPath 2.0 implementation, the context item is
-undefined.
+if a sequence of more than one document appears on the connection for
+a <tag>p:variable</tag>.</error> If <tag>p:empty</tag> is given or
+implied as the document connection, the context item is undefined.
 <error code="D0026">It is a <glossterm>dynamic error</glossterm> if
 the <tag class="attribute">select</tag> expression makes reference to
 the context node, size, or position when the context item is
@@ -3712,8 +3451,7 @@ type being declared. In this case, it is evaluated as described in
 
 <itemizedlist>
           <listitem>
-            <para>In an XPath 1.0 implementation, an <link linkend="empty-xpath-context">empty
-                document node</link> is used as the context. In an XPath 2.0 implementation, the
+            <para>The
               context item is undefined.</para>
           </listitem>
           <listitem>
@@ -3736,10 +3474,8 @@ default value.</error></para>
 the <tag class="attribute">select</tag> expression makes reference to
 the context node, size, or position.</error></para>
 
-<para>Regardless of the implicit type of the expression, when XPath
-1.0 is being used, the string value of the expression becomes the
-value of the option; when XPath 2.0 is being used, the value is an
-<type>xs:untypedAtomic</type>.</para>
+<para>Regardless of the implicit type of the expression, the value is
+an <type>xs:untypedAtomic</type>.</para>
 </section>
 
 <!-- ============================================================ -->
@@ -3772,10 +3508,8 @@ the value of the variable.</para>
 
 <e:rng-pattern name="WithOptionSelect"/>
 
-<para>Regardless of the implicit type of the expression, when XPath
-1.0 is being used, the string value of the expression becomes the
-value of the option; when XPath 2.0 is being used, the value is an
-<type>xs:untypedAtomic</type>.</para>
+<para>Regardless of the implicit type of the expression, the value is
+an <type>xs:untypedAtomic</type>.</para>
 
 <para>All <glossterm>in-scope bindings</glossterm> for the step
 instance itself are present in the Processor XPath Context as variable
@@ -3793,12 +3527,9 @@ readable port, the connection is treated as if <tag>p:empty</tag> was
 specified.</para>
 
 <para><error code="D0008">It is a <glossterm>dynamic error</glossterm>
-if a sequence of more than one document appears on the connection for a
-<tag>p:with-option</tag>. </error> In an XPath 1.0 implementation, if
-<tag>p:empty</tag> is given or implied as the document connection, an
-<link linkend="empty-xpath-context">empty document node</link> is used as
-the context node. In an XPath 2.0 implementation, the context item is
-undefined.
+if a sequence of more than one document appears on the connection for
+a <tag>p:with-option</tag>. </error> If <tag>p:empty</tag> is given or
+implied as the document connection, the context item is undefined.
 <error code="D0026">It is a <glossterm>dynamic error</glossterm> if
 the <tag class="attribute">select</tag> expression makes reference to
 the context node, size, or position when the context item is
@@ -3842,10 +3573,8 @@ linkend="xpath-context"/>, for the containing step, with the addition
 of variable bindings for all options declared in the containing step's
 <glossterm>signature</glossterm>.</para>
 
-<para>Regardless of the implicit type of the expression, when XPath
-1.0 is being used, the string value of the expression becomes the
-value of the parameter; when XPath 2.0 is being used, the value is an
-<type>xs:untypedAtomic</type>.</para>
+<para>Regardless of the implicit type of the expression, the value is
+an <type>xs:untypedAtomic</type>.</para>
 
 <para>All <glossterm>in-scope bindings</glossterm> for the step
 instance itself are present in the Processor XPath Context as variable
@@ -3865,11 +3594,9 @@ specified.</para>
 
 <para><error code="D0008">It is a <glossterm>dynamic error</glossterm>
 if a sequence of more than one document appears on the connection for a
-<tag>p:with-param</tag>. </error> In an XPath 1.0 implementation, if
-<tag>p:empty</tag> is given or implied as the document connection, an
-<link linkend="empty-xpath-context">empty document node</link> is used as
-the context node. In an XPath 2.0 implementation, the context item is
-undefined.
+<tag>p:with-param</tag>. </error> If
+<tag>p:empty</tag> is given or implied as the document connection,
+the context item is undefined.
 <error code="D0026">It is a <glossterm>dynamic error</glossterm> if
 the <tag class="attribute">select</tag> expression makes reference to
 the context node, size, or position when the context item is
@@ -3897,12 +3624,14 @@ parameter input port.</error>
           to travel with the option.</para>
 <para>The default namespace bindings associated with a
           variable, option or parameter value are computed as follows:</para><orderedlist>
-          <listitem>
-            <para>If the <tag class="attribute">select</tag> attribute was used to specify the value
-              and it consisted of a single <literal>VariableReference</literal> (per <biblioref
-                linkend="xpath"/> or <biblioref linkend="xpath2"/>, as appropriate), then the
-              namespace bindings from the referenced option or variable are used.</para>
-          </listitem>
+
+<listitem>
+<para>If the <tag class="attribute">select</tag> attribute was used to
+specify the value and it consisted of a single
+<literal>VariableReference</literal> (per <biblioref
+linkend="xpath2"/>), then the namespace bindings from the referenced
+option or variable are used.</para>
+</listitem>
           <listitem>
             <para>If the <tag class="attribute">select</tag> attribute was used to specify the value
               and it evaluated to a node-set, then the in-scope namespaces from the first node in

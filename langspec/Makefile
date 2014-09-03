@@ -5,7 +5,7 @@ CLASSPATH=$(subst  $(space),:,$(wildcard ../lib/*.jar))
 SAXON=java -cp $(CLASSPATH) -jar ../lib/saxon9he.jar
 CALABASH=java -cp $(CLASSPATH) com.xmlcalabash.drivers.Main
 
-TARGETS=langspec.html diff.html error-list.xml \
+TARGETS=langspec.html changelog.html diff.html error-list.xml \
         pipeline-library.xml typed-pipeline-library.xml
 
 all: $(TARGETS)
@@ -19,6 +19,9 @@ diff.html: langspec.html
 langspec.html: ,langspec.xml typed-pipeline-library.xml \
                ../style/docbook.xsl ../style/dbspec.xsl \
                ../style/xprocns.xsl ../style/rngsyntax.xsl
+	$(CALABASH) -isource=$< -oresult=$@ ../style/formatspec.xpl
+
+changelog.html: changelog.xml
 	$(CALABASH) -isource=$< -oresult=$@ ../style/formatspec.xpl
 
 ,langspec.xml: langspec.xml
