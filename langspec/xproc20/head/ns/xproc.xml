@@ -57,11 +57,6 @@ For updated information, please refer to the latest version of the
    </listitem>
    <listitem>
       <simpara>
-         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.base-uri">p:base-uri</link>
-      </simpara>
-   </listitem>
-   <listitem>
-      <simpara>
          <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.choose">p:choose</link>
       </simpara>
    </listitem>
@@ -268,11 +263,6 @@ For updated information, please refer to the latest version of the
    <listitem>
       <simpara>
          <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.replace">p:replace</link>
-      </simpara>
-   </listitem>
-   <listitem>
-      <simpara>
-         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.resolve-uri">p:resolve-uri</link>
       </simpara>
    </listitem>
    <listitem>

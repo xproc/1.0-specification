@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc: An XML Pipeline Language</title><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="base.css" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc: An XML Pipeline Language</h1><h2>W3C Editor's Draft  27 August 2014 at 03:13 UTC (<a href="https://github.com/xproc//specification/commit/19cbbf213f0f2bfc438eaaf1239a96f6b4e417b9">build 38</a>)</h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc/">http://www.w3.org/TR/xproc/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <tt class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</tt></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <tt class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</tt></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <tt class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</tt></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, 
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc: An XML Pipeline Language</title><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="base.css" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc: An XML Pipeline Language</h1><h2>W3C Editor's Draft  3 September 2014 at 15:08 UTC (<a href="https://github.com/xproc//specification/commit/0d01eeec44e2052d50cd08339f598c83e2abebbf">build 44</a>)</h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc/">http://www.w3.org/TR/xproc/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <tt class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</tt></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <tt class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</tt></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <tt class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</tt></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
 	  automatic <a href="diff.html">change markup</a> from the previous draft
           courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.
         </p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
@@ -67,7 +67,7 @@ patent which the individual believes contains <a href="http://www.w3.org/Consort
 Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
 6 of the W3C Patent Policy</a>.</p>
 
-</div></div><hr /><div id="spectoc"><div class="toc"><h2 id="TableOfContents">Table of Contents</h2><dl class="toc"><dt><span>1 <a href="#introduction">Introduction</a></span></dt><dt><span>2 <a href="#pipeline-concepts">Pipeline Concepts</a></span></dt><dd><dl class="toc"><dt><span>2.1 <a href="#step-concept">Steps</a></span></dt><dd><dl class="toc"><dt><span>2.1.1 <a href="#step-names">Step names</a></span></dt></dl></dd><dt><span>2.2 <a href="#input-output">Inputs and Outputs</a></span></dt><dd><dl class="toc"><dt><span>2.2.1 <a href="#external-docs">External Documents</a></span></dt><dt><span>2.2.2 <a href="#binary">Non-XML Documents</a></span></dt></dl></dd><dt><span>2.3 <a href="#primary-input-output">Primary Inputs and Outputs</a></span></dt><dt><span>2.4 <a href="#connections">Connections</a></span></dt><dd><dl class="toc"><dt><span>2.4.1 <a href="#namespace-fixup">Namespace Fixup on Outputs</a></span></dt></dl></dd><dt><span>2.5 <a href="#environment">Environment</a></span></dt><dt><span>2.6 <a href="#xpath-context">XPaths in XProc</a></span></dt><dd><dl class="toc"><dt><span>2.6.1 <a href="#xpath10-processors">XPath 1.0 processors</a></span></dt><dt><span>2.6.2 <a href="#xpath20-processors">XPath 2.0 processors</a></span></dt></dl></dd><dt><span>2.7 <a href="#xpath-extension-functions">XPath Extension Functions</a></span></dt><dd><dl class="toc"><dt><span>2.7.1 <a href="#f.system-property">System Properties</a></span></dt><dt><span>2.7.2 <a href="#f.step-available">Step Available</a></span></dt><dt><span>2.7.3 <a href="#f.value-available">Value Available</a></span></dt><dt><span>2.7.4 <a href="#f.iteration-position">Iteration Position</a></span></dt><dt><span>2.7.5 <a href="#f.iteration-size">Iteration Size</a></span></dt><dt><span>2.7.6 <a href="#f.base-uri">Base URI</a></span></dt><dt><span>2.7.7 <a href="#f.resolve-uri">Resolve URI</a></span></dt><dt><span>2.7.8 <a href="#f.version-available">Version Available</a></span></dt><dt><span>2.7.9 <a href="#f.xpath-version-available">XPath Version Available</a></span></dt><dt><span>2.7.10 <a href="#other-xpath-extension-functions">Other XPath Extension Functions</a></span></dt></dl></dd><dt><span>2.8 <a href="#psvi-support">PSVIs in XProc</a></span></dt><dt><span>2.9 <a href="#variables">Variables</a></span></dt><dt><span>2.10 <a href="#options">Options</a></span></dt><dt><span>2.11 <a href="#parameters">Parameters</a></span></dt><dt><span>2.12 <a href="#security-considerations">Security Considerations</a></span></dt><dt><span>2.13 <a href="#versioning-considerations">Versioning Considerations</a></span></dt><dd><dl class="toc"><dt><span>2.13.1 <a href="#vers-backcomp">Backwards-compatible Mode</a></span></dt><dt><span>2.13.2 <a href="#vers-forwcomp">Forwards-compatible Mode</a></span></dt></dl></dd></dl></dd><dt><span>3 <a href="#syntax">Syntax Overview</a></span></dt><dd><dl class="toc"><dt><span>3.1 <a href="#namespaces">XProc Namespaces</a></span></dt><dt><span>3.2 <a href="#scoping">Scoping of Names</a></span></dt><dt><span>3.3 <a href="#xml-base-attribute">Base URIs and xml:base</a></span></dt><dt><span>3.4 <a href="#xml-id-attribute">Unique identifiers</a></span></dt><dt><span>3.5 <a href="#syntax-docs-ports">Associating Documents with Ports</a></span></dt><dt><span>3.6 <a href="#documentation">Documentation</a></span></dt><dt><span>3.7 <a href="#annotations">Processor annotations</a></span></dt><dt><span>3.8 <a href="#extension-attributes">Extension attributes</a></span></dt><dt><span>3.9 <a href="#use-when">Conditional Element Exclusion</a></span></dt><dt><span>3.10 <a href="#syntax-summaries">Syntax Summaries</a></span></dt><dt><span>3.11 <a href="#common-errors">Common errors</a></span></dt></dl></dd><dt><span>4 <a href="#steps">Steps</a></span></dt><dd><dl class="toc"><dt><span>4.1 <a href="#p.pipeline">p:pipeline</a></span></dt><dt><span>4.2 <a href="#p.for-each">p:for-each</a></span></dt><dd><dl class="toc"><dt><span>4.2.1 <a href="#for-each-xpath-context">XPath Context</a></span></dt></dl></dd><dt><span>4.3 <a href="#p.viewport">p:viewport</a></span></dt><dd><dl class="toc"><dt><span>4.3.1 <a href="#viewport-xpath-context">XPath Context</a></span></dt></dl></dd><dt><span>4.4 <a href="#p.choose">p:choose</a></span></dt><dd><dl class="toc"><dt><span>4.4.1 <a href="#p.xpath-context">p:xpath-context</a></span></dt><dt><span>4.4.2 <a href="#p.when">p:when</a></span></dt><dt><span>4.4.3 <a href="#p.otherwise">p:otherwise</a></span></dt></dl></dd><dt><span>4.5 <a href="#p.group">p:group</a></span></dt><dt><span>4.6 <a href="#p.try">p:try</a></span></dt><dd><dl class="toc"><dt><span>4.6.1 <a href="#err-vocab">The Error Vocabulary</a></span></dt></dl></dd><dt><span>4.7 <a href="#p.atomic">Atomic Steps</a></span></dt><dt><span>4.8 <a href="#p.extension">Extension Steps</a></span></dt><dd><dl class="toc"><dt><span>4.8.1 <a href="#option-shortcut">Syntactic Shortcut for Option Values</a></span></dt></dl></dd></dl></dd><dt><span>5 <a href="#other-elements">Other pipeline elements</a></span></dt><dd><dl class="toc"><dt><span>5.1 <a href="#p.input">p:input</a></span></dt><dd><dl class="toc"><dt><span>5.1.1 <a href="#document-inputs">Document Inputs</a></span></dt><dt><span>5.1.2 <a href="#parameter-inputs">Parameter Inputs</a></span></dt></dl></dd><dt><span>5.2 <a href="#p.iteration-source">p:iteration-source</a></span></dt><dt><span>5.3 <a href="#p.viewport-source">p:viewport-source</a></span></dt><dt><span>5.4 <a href="#p.output">p:output</a></span></dt><dt><span>5.5 <a href="#p.log">p:log</a></span></dt><dt><span>5.6 <a href="#p.serialization">p:serialization</a></span></dt><dt><span>5.7 <a href="#variables-options-parameters">Variables, Options, and Parameters</a></span></dt><dd><dl class="toc"><dt><span>5.7.1 <a href="#p.variable">p:variable</a></span></dt><dt><span>5.7.2 <a href="#p.option">p:option</a></span></dt><dt><span>5.7.3 <a href="#p.with-option">p:with-option</a></span></dt><dt><span>5.7.4 <a href="#p.with-param">p:with-param</a></span></dt><dt><span>5.7.5 <a href="#opt-param-bindings">Namespaces on variables, options, and
+</div></div><hr /><div id="spectoc"><div class="toc"><h2 id="TableOfContents">Table of Contents</h2><dl class="toc"><dt><span>1 <a href="#introduction">Introduction</a></span></dt><dt><span>2 <a href="#pipeline-concepts">Pipeline Concepts</a></span></dt><dd><dl class="toc"><dt><span>2.1 <a href="#step-concept">Steps</a></span></dt><dd><dl class="toc"><dt><span>2.1.1 <a href="#step-names">Step names</a></span></dt></dl></dd><dt><span>2.2 <a href="#input-output">Inputs and Outputs</a></span></dt><dd><dl class="toc"><dt><span>2.2.1 <a href="#external-docs">External Documents</a></span></dt><dt><span>2.2.2 <a href="#binary">Non-XML Documents</a></span></dt></dl></dd><dt><span>2.3 <a href="#primary-input-output">Primary Inputs and Outputs</a></span></dt><dt><span>2.4 <a href="#connections">Connections</a></span></dt><dd><dl class="toc"><dt><span>2.4.1 <a href="#namespace-fixup">Namespace Fixup on Outputs</a></span></dt></dl></dd><dt><span>2.5 <a href="#environment">Environment</a></span></dt><dt><span>2.6 <a href="#xpath-context">XPaths in XProc</a></span></dt><dd><dl class="toc"><dt><span>2.6.1 <a href="#xproc-xpath-context-20">Processor XPath Context</a></span></dt><dt><span>2.6.2 <a href="#step-xpath-context-20">Step XPath Context</a></span></dt></dl></dd><dt><span>2.7 <a href="#xpath-extension-functions">XPath Extension Functions</a></span></dt><dd><dl class="toc"><dt><span>2.7.1 <a href="#f.system-property">System Properties</a></span></dt><dt><span>2.7.2 <a href="#f.step-available">Step Available</a></span></dt><dt><span>2.7.3 <a href="#f.value-available">Value Available</a></span></dt><dt><span>2.7.4 <a href="#f.iteration-position">Iteration Position</a></span></dt><dt><span>2.7.5 <a href="#f.iteration-size">Iteration Size</a></span></dt><dt><span>2.7.6 <a href="#f.version-available">Version Available</a></span></dt><dt><span>2.7.7 <a href="#f.xpath-version-available">XPath Version Available</a></span></dt><dt><span>2.7.8 <a href="#other-xpath-extension-functions">Other XPath Extension Functions</a></span></dt></dl></dd><dt><span>2.8 <a href="#psvi-support">PSVIs in XProc</a></span></dt><dt><span>2.9 <a href="#variables">Variables</a></span></dt><dt><span>2.10 <a href="#options">Options</a></span></dt><dt><span>2.11 <a href="#parameters">Parameters</a></span></dt><dt><span>2.12 <a href="#security-considerations">Security Considerations</a></span></dt><dt><span>2.13 <a href="#versioning-considerations">Versioning Considerations</a></span></dt><dd><dl class="toc"><dt><span>2.13.1 <a href="#vers-backcomp">Backwards-compatible Mode</a></span></dt><dt><span>2.13.2 <a href="#vers-forwcomp">Forwards-compatible Mode</a></span></dt></dl></dd></dl></dd><dt><span>3 <a href="#syntax">Syntax Overview</a></span></dt><dd><dl class="toc"><dt><span>3.1 <a href="#namespaces">XProc Namespaces</a></span></dt><dt><span>3.2 <a href="#scoping">Scoping of Names</a></span></dt><dt><span>3.3 <a href="#xml-base-attribute">Base URIs and xml:base</a></span></dt><dt><span>3.4 <a href="#xml-id-attribute">Unique identifiers</a></span></dt><dt><span>3.5 <a href="#syntax-docs-ports">Associating Documents with Ports</a></span></dt><dt><span>3.6 <a href="#documentation">Documentation</a></span></dt><dt><span>3.7 <a href="#annotations">Processor annotations</a></span></dt><dt><span>3.8 <a href="#extension-attributes">Extension attributes</a></span></dt><dt><span>3.9 <a href="#use-when">Conditional Element Exclusion</a></span></dt><dt><span>3.10 <a href="#syntax-summaries">Syntax Summaries</a></span></dt><dt><span>3.11 <a href="#common-errors">Common errors</a></span></dt></dl></dd><dt><span>4 <a href="#steps">Steps</a></span></dt><dd><dl class="toc"><dt><span>4.1 <a href="#p.pipeline">p:pipeline</a></span></dt><dt><span>4.2 <a href="#p.for-each">p:for-each</a></span></dt><dd><dl class="toc"><dt><span>4.2.1 <a href="#for-each-xpath-context">XPath Context</a></span></dt></dl></dd><dt><span>4.3 <a href="#p.viewport">p:viewport</a></span></dt><dd><dl class="toc"><dt><span>4.3.1 <a href="#viewport-xpath-context">XPath Context</a></span></dt></dl></dd><dt><span>4.4 <a href="#p.choose">p:choose</a></span></dt><dd><dl class="toc"><dt><span>4.4.1 <a href="#p.xpath-context">p:xpath-context</a></span></dt><dt><span>4.4.2 <a href="#p.when">p:when</a></span></dt><dt><span>4.4.3 <a href="#p.otherwise">p:otherwise</a></span></dt></dl></dd><dt><span>4.5 <a href="#p.group">p:group</a></span></dt><dt><span>4.6 <a href="#p.try">p:try</a></span></dt><dd><dl class="toc"><dt><span>4.6.1 <a href="#err-vocab">The Error Vocabulary</a></span></dt></dl></dd><dt><span>4.7 <a href="#p.atomic">Atomic Steps</a></span></dt><dt><span>4.8 <a href="#p.extension">Extension Steps</a></span></dt><dd><dl class="toc"><dt><span>4.8.1 <a href="#option-shortcut">Syntactic Shortcut for Option Values</a></span></dt></dl></dd></dl></dd><dt><span>5 <a href="#other-elements">Other pipeline elements</a></span></dt><dd><dl class="toc"><dt><span>5.1 <a href="#p.input">p:input</a></span></dt><dd><dl class="toc"><dt><span>5.1.1 <a href="#document-inputs">Document Inputs</a></span></dt><dt><span>5.1.2 <a href="#parameter-inputs">Parameter Inputs</a></span></dt></dl></dd><dt><span>5.2 <a href="#p.iteration-source">p:iteration-source</a></span></dt><dt><span>5.3 <a href="#p.viewport-source">p:viewport-source</a></span></dt><dt><span>5.4 <a href="#p.output">p:output</a></span></dt><dt><span>5.5 <a href="#p.log">p:log</a></span></dt><dt><span>5.6 <a href="#p.serialization">p:serialization</a></span></dt><dt><span>5.7 <a href="#variables-options-parameters">Variables, Options, and Parameters</a></span></dt><dd><dl class="toc"><dt><span>5.7.1 <a href="#p.variable">p:variable</a></span></dt><dt><span>5.7.2 <a href="#p.option">p:option</a></span></dt><dt><span>5.7.3 <a href="#p.with-option">p:with-option</a></span></dt><dt><span>5.7.4 <a href="#p.with-param">p:with-param</a></span></dt><dt><span>5.7.5 <a href="#opt-param-bindings">Namespaces on variables, options, and
           parameters</a></span></dt></dl></dd><dt><span>5.8 <a href="#p.declare-step">p:declare-step</a></span></dt><dd><dl class="toc"><dt><span>5.8.1 <a href="#declare-atomic-steps">Declaring atomic steps</a></span></dt><dt><span>5.8.2 <a href="#declare-pipelines">Declaring pipelines</a></span></dt></dl></dd><dt><span>5.9 <a href="#p.library">p:library</a></span></dt><dt><span>5.10 <a href="#p.import">p:import</a></span></dt><dt><span>5.11 <a href="#p.pipe">p:pipe</a></span></dt><dt><span>5.12 <a href="#p.inline">p:inline</a></span></dt><dt><span>5.13 <a href="#p.document">p:document</a></span></dt><dt><span>5.14 <a href="#p.data">p:data</a></span></dt><dt><span>5.15 <a href="#p.empty">p:empty</a></span></dt><dt><span>5.16 <a href="#p.documentation">p:documentation</a></span></dt><dt><span>5.17 <a href="#p.pipeinfo">p:pipeinfo</a></span></dt></dl></dd><dt><span>6 <a href="#errors">Errors</a></span></dt><dd><dl class="toc"><dt><span>6.1 <a href="#static-errors">Static Errors</a></span></dt><dt><span>6.2 <a href="#dynamic-errors">Dynamic Errors</a></span></dt><dt><span>6.3 <a href="#step-errors">Step Errors</a></span></dt></dl></dd><dt><span>7 <a href="#std-components">Standard Step Library</a></span></dt><dd><dl class="toc"><dt><span>7.1 <a href="#std-required">Required Steps</a></span></dt><dd><dl class="toc"><dt><span>7.1.1 <a href="#c.add-attribute">p:add-attribute</a></span></dt><dt><span>7.1.2 <a href="#c.add-xml-base">p:add-xml-base</a></span></dt><dt><span>7.1.3 <a href="#c.compare">p:compare</a></span></dt><dt><span>7.1.4 <a href="#c.count">p:count</a></span></dt><dt><span>7.1.5 <a href="#c.delete">p:delete</a></span></dt><dt><span>7.1.6 <a href="#c.directory-list">p:directory-list</a></span></dt><dt><span>7.1.7 <a href="#c.error">p:error</a></span></dt><dt><span>7.1.8 <a href="#c.escape-markup">p:escape-markup</a></span></dt><dt><span>7.1.9 <a href="#c.filter">p:filter</a></span></dt><dt><span>7.1.10 <a href="#c.http-request">p:http-request</a></span></dt><dt><span>7.1.11 <a href="#c.identity">p:identity</a></span></dt><dt><span>7.1.12 <a href="#c.insert">p:insert</a></span></dt><dt><span>7.1.13 <a href="#c.label-elements">p:label-elements</a></span></dt><dt><span>7.1.14 <a href="#c.load">p:load</a></span></dt><dt><span>7.1.15 <a href="#c.make-absolute-uris">p:make-absolute-uris</a></span></dt><dt><span>7.1.16 <a href="#c.namespace-rename">p:namespace-rename</a></span></dt><dt><span>7.1.17 <a href="#c.pack">p:pack</a></span></dt><dt><span>7.1.18 <a href="#c.parameters">p:parameters</a></span></dt><dt><span>7.1.19 <a href="#c.rename">p:rename</a></span></dt><dt><span>7.1.20 <a href="#c.replace">p:replace</a></span></dt><dt><span>7.1.21 <a href="#c.set-attributes">p:set-attributes</a></span></dt><dt><span>7.1.22 <a href="#c.sink">p:sink</a></span></dt><dt><span>7.1.23 <a href="#c.split-sequence">p:split-sequence</a></span></dt><dt><span>7.1.24 <a href="#c.store">p:store</a></span></dt><dt><span>7.1.25 <a href="#c.string-replace">p:string-replace</a></span></dt><dt><span>7.1.26 <a href="#c.unescape-markup">p:unescape-markup</a></span></dt><dt><span>7.1.27 <a href="#c.unwrap">p:unwrap</a></span></dt><dt><span>7.1.28 <a href="#c.wrap">p:wrap</a></span></dt><dt><span>7.1.29 <a href="#c.wrap-sequence">p:wrap-sequence</a></span></dt><dt><span>7.1.30 <a href="#c.xinclude">p:xinclude</a></span></dt><dt><span>7.1.31 <a href="#c.xslt">p:xslt</a></span></dt></dl></dd><dt><span>7.2 <a href="#std-optional">Optional Steps</a></span></dt><dd><dl class="toc"><dt><span>7.2.1 <a href="#c.exec">p:exec</a></span></dt><dt><span>7.2.2 <a href="#c.hash">p:hash</a></span></dt><dt><span>7.2.3 <a href="#c.uuid">p:uuid</a></span></dt><dt><span>7.2.4 <a href="#c.validate-with-relax-ng">p:validate-with-relax-ng</a></span></dt><dt><span>7.2.5 <a href="#c.validate-with-schematron">p:validate-with-schematron</a></span></dt><dt><span>7.2.6 <a href="#c.validate-with-xml-schema">p:validate-with-xml-schema</a></span></dt><dt><span>7.2.7 <a href="#c.www-form-urldecode">p:www-form-urldecode</a></span></dt><dt><span>7.2.8 <a href="#c.www-form-urlencode">p:www-form-urlencode</a></span></dt><dt><span>7.2.9 <a href="#c.xquery">p:xquery</a></span></dt><dt><span>7.2.10 <a href="#c.xsl-formatter">p:xsl-formatter</a></span></dt></dl></dd><dt><span>7.3 <a href="#serialization-options">Serialization Options</a></span></dt></dl></dd></dl></div><h3><a name="appendices" id="appendices"></a>Appendices</h3><div class="toc"><dl class="toc"><dt><span>A <a href="#conformance">Conformance</a></span></dt><dd><dl class="toc"><dt><span>A.1 <a href="#implementation-defined">Implementation-defined features</a></span></dt><dt><span>A.2 <a href="#implementation-dependent">Implementation-dependent features</a></span></dt><dt><span>A.3 <a href="#infoset-conformance">Infoset Conformance</a></span></dt></dl></dd><dt><span>B <a href="#references">References</a></span></dt><dd><dl class="toc"><dt><span>B.1 <a href="#normative-references">Normative References</a></span></dt><dt><span>B.2 <a href="#informative-references">Informative References</a></span></dt></dl></dd><dt><span>C <a href="#glossary">Glossary</a></span></dt><dt><span>D <a href="#language-summary">Pipeline Language Summary</a></span></dt><dt><span>E <a href="#errors-list">List of Error Codes</a></span></dt><dd><dl class="toc"><dt><span>E.1 <a href="#app.static-errors">Static Errors</a></span></dt><dt><span>E.2 <a href="#app.dynamic-errors">Dynamic Errors</a></span></dt><dt><span>E.3 <a href="#app.step-errors">Step Errors</a></span></dt></dl></dd><dt><span>F <a href="#namespace-fixup-guidance">Guidance on Namespace Fixup (Non-Normative)</a></span></dt><dt><span>G <a href="#handling-imports">Handling Circular and Re-entrant Library Imports (Non-Normative)</a></span></dt><dt><span>H <a href="#parallelism">Sequential steps, parallelism, and side-effects</a></span></dt><dt><span>I <a href="#xproc-media-type">The <tt class="code">application/xproc+xml</tt> media type</a></span></dt><dd><dl class="toc"><dt><span>I.1 <a href="#media-type-registration">Registration of MIME media type application/xproc+xml</a></span></dt><dt><span>I.2 <a href="#fragid">Fragment Identifiers</a></span></dt></dl></dd></dl></div></div><div class="section"><h3><a name="introduction" id="introduction"></a>1 Introduction</h3>
     
     <p>An XML Pipeline specifies a sequence of operations to be performed on a collection of XML
@@ -709,185 +709,16 @@ pipeline is
         nature of the <a href="#c.split-sequence"><tt class="tag-element">p:split-sequence</tt></a> is that <em>it evaluates</em> the
         expression. Only some options on some steps expect XPath expressions. </p>
       <p>The XProc processor evaluates all of the XPath expressions in <tt class="tag-attribute">select</tt> attributes on variables, options, parameters, and inputs, in <tt class="tag-attribute">match</tt> attributes on <a href="#p.viewport"><tt class="tag-element">p:viewport</tt></a>, and in <tt class="tag-attribute">test</tt> attributes on <a href="#p.when"><tt class="tag-element">p:when</tt></a> steps.</p>
-      <p>An XProc implementation can use <em>either</em>
-        [<a href="#xpath"><span class="abbrev">XPath 1.0</span></a>] or [<a href="#xpath2"><span class="abbrev">XPath 2.0</span></a>] to evaluate these
-        expressions.</p>
-      <div class="admonition"><div class="admon-title">Note</div><p>Allowing either XPath 1.0 or XPath 2.0 is a compromise driven entirely by the timing
-          of XProc development. During the development of this specification, the community
-          indicated that it was too early to mandate that all implementations use XPath 2.0 and too
-          late to mandate that all implementations use XPath 1.0.</p></div>
-      <p>Many, many expressions that are likely to be used in XProc pipelines are the same in
-        both versions (simple element tests, ancestor and descendant tests, string-based attribute
-        tests, etc.).</p>
-      <p>As an aid to interoperability, pipeline authors may indicate the version of XPath that
-        they require. The attribute <tt class="tag-attribute">xpath-version</tt> may be used on
-          <a href="#p.pipeline"><tt class="tag-element">p:pipeline</tt></a>, <a href="#p.declare-step"><tt class="tag-element">p:declare-step</tt></a>, or <a href="#p.library"><tt class="tag-element">p:library</tt></a> to identify the
-        XPath version that <span class="rfc2119">must</span> be used to evaluate XPath expressions on the
-        pipeline(s). The attribute is lexically scoped, but see below.</p>
 
-<div class="admonition"><div class="admon-title">Note</div><p>In Version 1.0 of XProc, no similar level of control is provided
-for specifying (or testing) the version of XSLT used when evaluating
-<tt class="type">XSLTMatchPattern</tt>s. The expectation is that XPath 1.0 processors
-will be using XSLT 1.0 match patterns and XPath 2.0 processors will be using
-XSLT 2.0 match patterns, but that is not necessarily the case.
-</p><p>As XPath, XSLT, and XProc continue to evolve, additional facilities for
-specifying and testing the version of XSLT used to evaluate match patterns
-may be added to XProc.</p></div>
-
-      <p>If an <tt class="tag-attribute">xpath-version</tt> is specified on a <a href="#p.pipeline"><tt class="tag-element">p:pipeline</tt></a>
-        or <a href="#p.declare-step"><tt class="tag-element">p:declare-step</tt></a>, then that is the version of XPath that the step requires. If
-        it does not specify a version, but a version is specified on one of its ancestors, the
-        nearest ancestor version specified is the version that it requires. An <tt class="tag-attribute">xpath-version</tt> attribute on a <a href="#p.library"><tt class="tag-element">p:library</tt></a> specifies a
-        default version for all steps defined in that library. <a name="impl-10"></a>If no version is specified on
-          the step or among its ancestors, then its XPath version is
-            <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
-      </p>
-      <div class="admonition"><div class="admon-title">Note</div><p>The decision about which XPath version applies can be made dynamically. For example,
-          if a pipeline explicitly labeled with <tt class="tag-attribute">xpath-version</tt> “1.0”
-          imports a library that does not specify a version, the implementation may elect to make
-          the implementation-defined XPath version of the steps in the library also “1.0”. If the
-          same implementation imports that library into a pipeline explicitly labeled with <tt class="tag-attribute">xpath-version</tt> “2.0”, it can make the implementation-defined
-          version of those steps “2.0”. </p></div>
-      <p>The following rules determine how the indicated version and the implementation's actual
-        version interact:</p>
-      <div class="orderedlist"><ol style="list-style: decimal;"><li>
-          <p>If the indicated version and the implementation version are the same, then that
-            version is used.</p>
-        </li><li>
-          <p>If the indicated version is 1.0 and the implementation uses XPath 2.0 (or later),
-            the expression <span class="rfc2119">must</span> be evaluated in XPath 1.0 compatibility mode.
-              <a name="err.inline.D0024"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0024"><code class="errqname">err:XD0024</code></a>) if a 2.0 processor
-              encounters an XPath 1.0 expression and it does not support XPath 1.0 compatibility
-              mode.
-          </p>
-        </li><li>
-          <p>Otherwise: <a name="err.inline.D0027"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0027"><code class="errqname">err:XD0027</code></a>) if the
-              processor encounters an <tt class="tag-attribute">xpath-version</tt> that it does not
-              support.
-          </p>
-        </li></ol></div>
-      <p>XProc processors divide naturally into two classes: XPath 1.0 processors and XPath 2.0
-        processors.</p>
-      <p>Irrespective of which version of XPath is used, all expressions evaluated by XProc or
-        passed to steps for evaluation must be valid XPath expressions. <a name="err.inline.D0023"></a>It is a
-            <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0023"><code class="errqname">err:XD0023</code></a>) if an XPath expression is encountered which cannot
-          be evaluated (because it is syntactically incorrect, contains references to unbound
-          variables or unknown functions, or for any other reason). </p>
-      <div class="section"><h5><a name="xpath10-processors" id="xpath10-processors"></a>2.6.1 XPath 1.0 processors</h5>
-        
-        <p>XProc processors that support only XPath 1.0 do not support any types (or features)
-          beyond those described in [<a href="#xpath"><span class="abbrev">XPath 1.0</span></a>]. They use the XPath 1.0 data model.
-          Processors <span class="rfc2119">must</span> implement all of the XPath 1.0 functions, but are not
-          expected to implement the functions described in [<a href="#xslt10"><span class="abbrev">XSLT 1.0</span></a>].</p>
-        <div class="section"><h6><a name="xproc-xpath-context-10" id="xproc-xpath-context-10"></a>2.6.1.1 Processor XPath Context</h6>
+        <div class="section"><h5><a name="xproc-xpath-context-20" id="xproc-xpath-context-20"></a>2.6.1 Processor XPath Context</h5>
           
-          <p>When the XProc processor evaluates an XPath expression using XPath 1.0, unless
-            otherwise indicated by a particular step, it does so with the following initial
-            context:</p>
-          <div class="variablelist"><dl>
-              <dt>context node</dt>
-              <dd>
-                <p>The document node of a document. The document is either specified with a
-                    <em class="glossterm"><a href="#dt-connection">connection</a></em> or is taken from the <em class="glossterm"><a href="#dt-default-readable-port">default
-                    readable port</a></em>. <a name="err.inline.D0008"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic
-                      error</a></em> (<a href="#err.D0008"><code class="errqname">err:XD0008</code></a>) if a document sequence appears where a document to be used
-                    as the context node is expected.
-                </p>
-                <p>If there is no explicit connection and there is no default readable port then
-                  the context node is an empty document node.</p>
-              </dd>
-            
-              <dt>context position and context size</dt>
-              <dd>
-                <p>The context position and context size are both “1”. </p>
-              </dd>
-            
-              <dt>variable bindings</dt>
-              <dd>
-                <p>The union of the in-scope <em class="glossterm"><a href="#dt-specified-options">specified options</a></em> and
-                  variables are available as variable bindings to the XPath processor. </p>
-                <div class="admonition"><div class="admon-title">Note</div><p>An option that has neither a specified value nor a default value will not
-                    appear as an in-scope variable. Consequently, an attempt to refer to that
-                    variable will raise an error.</p></div>
-              </dd>
-            
-              <dt>function library</dt>
-              <dd>
-                <p>The [<a href="#xpath"><span class="abbrev">XPath 1.0</span></a>] core function library and the <a href="#xpath-extension-functions" title="XPath Extension Functions">Section 2.7, “XPath Extension Functions”</a>. Function names that do not contain a
-                  colon always refer to the XPath 1.0 functions, any in-scope binding for the
-                  default namespace <em>does not</em> apply.</p>
-              </dd>
-            
-              <dt>in-scope namespaces</dt>
-              <dd>
-                <p>The namespace bindings in-scope on the element where the expression occurred.
-                </p>
-              </dd>
-            </dl></div>
-        </div>
-        <div class="section"><h6><a name="step-xpath-context-10" id="step-xpath-context-10"></a>2.6.1.2 Step XPath Context</h6>
-          
-          <p>When <em>a step</em> evaluates an XPath expression using XPath 1.0,
-            unless otherwise indicated by a particular step, it does so with the following initial
-            context:</p>
-          <div class="variablelist"><dl>
-              <dt>context node</dt>
-              <dd>
-                <p>The document node that appears on the primary input port of the step, unless
-                  otherwise specified by the step. </p>
-              </dd>
-            
-              <dt>context position and context size</dt>
-              <dd>
-                <p>The position and size are both “1”, unless otherwise specified by the step.
-                </p>
-              </dd>
-            
-              <dt>variable bindings</dt>
-              <dd>
-                <p>None, unless otherwise specified by the step. </p>
-              </dd>
-            
-              <dt>function library</dt>
-              <dd>
-                <p>The [<a href="#xpath"><span class="abbrev">XPath 1.0</span></a>] core function library, unless otherwise
-                  specified by the step. Function names that do not contain a colon always refer to
-                  the XPath 1.0 functions, any in-scope binding for the default namespace
-                    <em>does not</em> apply. </p>
-              </dd>
-            
-              <dt>in-scope namespaces</dt>
-              <dd>
-                <p>The set of namespace bindings provided by the XProc processor. The processor
-                  computes this set of bindings by taking a union of the bindings on the step
-                  element itself as well as the bindings on any of the options and parameters used
-                  in computing values for the step (see <a href="#opt-param-bindings" title="Namespaces on variables, options, and&#xA;          parameters">Section 5.7.5, “Namespaces on variables, options, and
-          parameters”</a>).</p>
-                <p><a name="impl-11"></a>The results of computing the union of namespaces in the presence of
-                    conflicting declarations for a particular prefix are
-                      <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p>
-              </dd>
-            </dl></div>
-          <div class="admonition"><div class="admon-title">Note</div><p>Some steps may also provide for implementation-defined or implementation-dependent
-              amendments to the contexts. Those amendments are in addition to any specified by
-              XProc.</p></div>
-        </div>
-      </div>
-      <div class="section"><h5><a name="xpath20-processors" id="xpath20-processors"></a>2.6.2 XPath 2.0 processors</h5>
-        
-        <p>XProc processors that support XPath 2.0 are XPath 2.0 processors. Such processors can
-          refer to the primitive atomic schema types, but cannot import additional types.</p>
-        <p>XPath 2.0 processors <span class="rfc2119">must</span> implement all of the XPath 2.0 functions,
-          but are not expected to implement the functions described in [<a href="#xslt20"><span class="abbrev">XSLT 2.0</span></a>].</p>
-        <div class="section"><h6><a name="xproc-xpath-context-20" id="xproc-xpath-context-20"></a>2.6.2.1 Processor XPath Context</h6>
-          
-          <p>When the XProc processor evaluates an XPath expression using XPath 2.0, unless
-            otherwise indicated by a particular step, it does so with the following static
-            context:</p>
+<p>When the XProc processor evaluates an XPath expression using
+XPath, unless otherwise indicated by a particular step, it does so
+with the following static context:</p>
           <div class="variablelist"><dl>
               <dt>XPath 1.0 compatibility mode</dt>
               <dd>
-                <p>Is true if the indicated XPath version is 1.0, false otherwise.</p>
+                <p>False</p>
               </dd>
             
               <dt>Statically known namespaces</dt>
@@ -961,7 +792,7 @@ Model (XDM)</span></a>]. </p>
               <dt>Statically known collations</dt>
               <dd>
                 <p>Implementation-defined but <span class="rfc2119">must</span> include the Unicode code
-                  point collation. <a name="impl-12"></a>The version of Unicode supported is
+                  point collation. <a name="impl-10"></a>The version of Unicode supported is
                       <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>, but it is recommended that the
                     most recent version of Unicode be used.
                 </p>
@@ -993,7 +824,7 @@ Model (XDM)</span></a>]. </p>
               <dd>
                 <p>The document node of a document. The document is either specified with a
                     <em class="glossterm"><a href="#dt-connection">connection</a></em> or is taken from the <em class="glossterm"><a href="#dt-default-readable-port">default
-                    readable port</a></em>. <a name="err.inline.D0008.1"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic
+                    readable port</a></em>. <a name="err.inline.D0008"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic
                       error</a></em> (<a href="#err.D0008"><code class="errqname">err:XD0008</code></a>) if a document sequence appears where a document to be used
                     as the context node is expected.
                 </p>
@@ -1019,26 +850,26 @@ Model (XDM)</span></a>]. </p>
             
               <dt>Current dateTime</dt>
               <dd>
-                <p><a name="impl-13"></a>The point in time returned as the current dateTime is
+                <p><a name="impl-11"></a>The point in time returned as the current dateTime is
                       <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
                 </p>
               </dd>
             
               <dt>Implicit timezone</dt>
               <dd>
-                <p><a name="impl-14"></a>The implicit timezone is
+                <p><a name="impl-12"></a>The implicit timezone is
                     <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
               </dd>
             
               <dt>Available documents</dt>
               <dd>
-                <p><a name="impl-15"></a>The set of available documents (those that may be retrieved with a URI)
+                <p><a name="impl-13"></a>The set of available documents (those that may be retrieved with a URI)
                     is <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p>
               </dd>
             
               <dt>Available collections</dt>
               <dd>
-                <p><a name="impl-16"></a>The set of available collections is
+                <p><a name="impl-14"></a>The set of available collections is
                       <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p>
               </dd>
             
@@ -1048,14 +879,14 @@ Model (XDM)</span></a>]. </p>
               </dd>
             </dl></div>
         </div>
-        <div class="section"><h6><a name="step-xpath-context-20" id="step-xpath-context-20"></a>2.6.2.2 Step XPath Context</h6>
+        <div class="section"><h5><a name="step-xpath-context-20" id="step-xpath-context-20"></a>2.6.2 Step XPath Context</h5>
           
           <p>When a step evaluates an XPath expression using XPath 2.0, unless otherwise
             indicated by a particular step, it does so with the following static context:</p>
           <div class="variablelist"><dl>
               <dt>XPath 1.0 compatibility mode</dt>
               <dd>
-                <p>Is true if the indicated XPath version is 1.0, false otherwise.</p>
+                <p>False</p>
               </dd>
             
               <dt>Statically known namespaces</dt>
@@ -1080,7 +911,7 @@ Model (XDM)</span></a>]. </p>
             
               <dt>In-scope schema definitions</dt>
               <dd>
-                <p>The same as the <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.2.1, “Processor XPath Context”</a>. </p>
+                <p>The same as the <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.1, “Processor XPath Context”</a>. </p>
               </dd>
             
               <dt>In-scope variables</dt>
@@ -1155,13 +986,13 @@ Model (XDM)</span></a>]. </p>
             
               <dt>Implicit timezone</dt>
               <dd>
-                <p><a name="impl-17"></a>The implicit timezone is
+                <p><a name="impl-15"></a>The implicit timezone is
                     <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
               </dd>
             
               <dt>Available documents</dt>
               <dd>
-                <p><a name="impl-18"></a>The set of available documents (those that may be retrieved with a URI)
+                <p><a name="impl-16"></a>The set of available documents (those that may be retrieved with a URI)
                     is <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p>
               </dd>
             
@@ -1179,15 +1010,14 @@ Model (XDM)</span></a>]. </p>
               amendments to the contexts. Those amendments are in addition to any specified by
               XProc.</p></div>
         </div>
-      </div>
     </div>
     <div class="section"><h4><a name="xpath-extension-functions" id="xpath-extension-functions"></a>2.7 XPath Extension Functions</h4>
       
-      <p>The XProc processor <span class="rfc2119">must</span> support the additional functions described
-        in this section in XPath expressions evaluated by the processor.</p>
-      <p>In the following descriptions, the names of types (<tt class="type">string</tt>,
-          <tt class="type">boolean</tt>, etc.) should be taken to mean the corresponding [<a href="#xmlschema-2"><span class="abbrev">W3C XML Schema: Part 2</span></a>] data types for an implementation that uses XPath 2.0 and as the
-        most appropriate XPath 1.0 types for an XPath 1.0 implementation.</p>
+
+<p>The XProc processor <span class="rfc2119">must</span> support the
+additional functions described in this section in XPath expressions
+evaluated by the processor.</p>
+
       <div class="section"><h5><a name="f.system-property" id="f.system-property"></a>2.7.1 System Properties</h5>
         
         <p>XPath expressions within a pipeline document can interrogate the processor for
@@ -1218,7 +1048,7 @@ Model (XDM)</span></a>]. </p>
             <dt><tt class="varname">p:language</tt></dt>
             <dd>
               <p>Returns a string which identifies the current language, for example, for message
-                localization purposes. <a name="impl-19"></a>The exact format of the language string is
+                localization purposes. <a name="impl-17"></a>The exact format of the language string is
                     <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> but <span class="rfc2119">should</span> be
                   consistent with the <tt class="tag-attribute">xml:lang</tt> attribute.</p>
             </dd>
@@ -1264,9 +1094,8 @@ return “2.0”.</p>
             <dd>
               <p>Returns the version(s) of XPath implemented by the processor for evaluating
                 XPath expressions on XProc elements. The result is a space-separated list of versions supported. For
-                example, a processor that only supports XPath 1.0 would return “1.0”; a processor
-                that supports XPath 2.0 and XPath 1.0 backwards compatibility mode could return “1.0
-                2.0”; a processor that supports only XPath 2.0 would return “2.0”.</p>
+                example, a processor that only supports XPath 2.0 would return “2.0”; a processor
+                that supports XPath 2.0 and XPath 3.0 could return “2.0 3.0”; a processor that supports only XPath 2.0 would return “2.0”.</p>
             </dd>
           
             <dt><tt class="varname">p:psvi-supported</tt></dt>
@@ -1382,44 +1211,7 @@ among the ancestors of the element on which the expression involving
 
 </div>
 
-      <div class="section"><h5><a name="f.base-uri" id="f.base-uri"></a>2.7.6 Base URI</h5>
-        
-        <p>Returns the base URI of the specified node, if it has one. This function provides an
-          interoperable way for XPath 1.0 based processors to access the base URI of a node. It is
-          conceptually the same as the XPath 2.0 <tt class="literal">fn:base-uri()</tt> function.</p>
-
-<div class="funcsynopsis"><span class="funcname">p:base-uri</span><span class="funcparen">(</span><span class="funcparen">)</span><span class="typeas"> as </span><span class="type">xs:string</span></div>
-
-<div class="funcsynopsis"><span class="funcname">p:base-uri</span><span class="funcparen">(</span><span class="paramname">$node</span><span class="typeas"> as </span><span class="type">node()</span><span class="funcparen">)</span><span class="typeas"> as </span><span class="type">xs:string</span></div>
-
-        <p>If no argument is specified, the context node is taken to be the argument.</p>
-        <p>This function returns the <tt class="literal">[base-uri]</tt> property of its argument, or
-          the empty string if no base URI is defined for that argument or argument type.</p>
-        <div class="admonition"><div class="admon-title">Note</div><p>This function is defined in our namespace because it would be inappropriate to
-            require XPath 1.0 based processors to support the <tt class="literal">fn:base-uri</tt>
-            function; its semantics are deeply rooted in the XPath 2.0 data model which differs from
-            the XPath 1.0 data model.</p></div>
-      </div>
-
-      <div class="section"><h5><a name="f.resolve-uri" id="f.resolve-uri"></a>2.7.7 Resolve URI</h5>
-        
-        <p>Resolves a relative URI with respect to a particular base URI. This function provides
-          an interoperable way for XPath 1.0 based processors to compose URI references. It is
-          conceptually the same as the XPath 2.0 <tt class="literal">fn:resolve-uri()</tt>
-          function.</p>
-
-<div class="funcsynopsis"><span class="funcname">p:resolve-uri</span><span class="funcparen">(</span><span class="paramname">$relative</span><span class="typeas"> as </span><span class="type">xs:string</span><span class="funcparen">)</span><span class="typeas"> as </span><span class="type">xs:string</span></div>
-
-<div class="funcsynopsis"><span class="funcname">p:resolve-uri</span><span class="funcparen">(</span><span class="paramname">$relative</span><span class="typeas"> as </span><span class="type">xs:string</span><span class="funccomma">, </span><span class="paramname">$base</span><span class="typeas"> as </span><span class="type">xs:string</span><span class="funcparen">)</span><span class="typeas"> as </span><span class="type">xs:string</span></div>
-
-        <p>If no base is specified, the base URI of the context node is used. </p>
-        <div class="admonition"><div class="admon-title">Note</div><p>This function is defined in our namespace because it would be inappropriate to
-            require XPath 1.0 based processors to support the <tt class="literal">fn:resolve-uri</tt>
-            function; its semantics are rooted in the XPath 2.0 data model which differs from the
-            XPath 1.0 data model.</p></div>
-      </div>
-
-<div class="section"><h5><a name="f.version-available" id="f.version-available"></a>2.7.8 Version Available</h5>
+<div class="section"><h5><a name="f.version-available" id="f.version-available"></a>2.7.6 Version Available</h5>
 
 
 <p>Returns true if and only if the processor supports the version
@@ -1432,7 +1224,7 @@ specified.</p>
 
 </div>
 
-<div class="section"><h5><a name="f.xpath-version-available" id="f.xpath-version-available"></a>2.7.9 XPath Version Available</h5>
+<div class="section"><h5><a name="f.xpath-version-available" id="f.xpath-version-available"></a>2.7.7 XPath Version Available</h5>
 
 
 <p>Returns true if and only if the processor supports the XPath version
@@ -1445,9 +1237,9 @@ specified.</p>
 
 </div>
 
-      <div class="section"><h5><a name="other-xpath-extension-functions" id="other-xpath-extension-functions"></a>2.7.10 Other XPath Extension Functions</h5>
+      <div class="section"><h5><a name="other-xpath-extension-functions" id="other-xpath-extension-functions"></a>2.7.8 Other XPath Extension Functions</h5>
         
-        <p><a name="impl-20"></a>It is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> if the processor supports
+        <p><a name="impl-18"></a>It is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> if the processor supports
             any other XPath extension functions. Additional extension functions, if any,
             <span class="rfc2119">must not</span> use any of the XProc namespaces. </p>
       </div>
@@ -1457,9 +1249,9 @@ specified.</p>
       <p>XML documents flow between steps in an XProc pipeline. <a href="#infoset-conformance" title="Infoset Conformance">Section A.3, “Infoset Conformance”</a> identifies the properties of those documents that
           <span class="rfc2119">must</span> be available. Implementations <span class="rfc2119">may</span> also have the
         ability to pass PSVI annotations between steps.</p>
-      <p><a name="impl-21"></a>Whether or not the pipeline processor supports passing PSVI annotations between
+      <p><a name="impl-19"></a>Whether or not the pipeline processor supports passing PSVI annotations between
           steps is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
-        <a name="impl-22"></a>The exact PSVI properties that are preserved when documents are passed between steps
+        <a name="impl-20"></a>The exact PSVI properties that are preserved when documents are passed between steps
           is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
       <p>A pipeline can use the <tt class="varname">p:psvi-supported</tt> system property to determine
         whether or not PSVI properties can be passed between steps.</p>
@@ -1505,7 +1297,7 @@ specified.</p>
         </li><li>
           <p>Except as specified above, or in the descriptions of individual steps,
             implementations <span class="rfc2119">must not</span> include PSVI properties in the outputs of
-            steps defined by this specification. <a name="impl-23"></a>It is
+            steps defined by this specification. <a name="impl-21"></a>It is
                 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> what PSVI properties, if any, are
               produced by extension steps.</p>
           <p>The exceptions in the standard XProc steps are the
@@ -1546,7 +1338,7 @@ specified.</p>
           declaration included a default value, are its <em class="glossterm">specified
           options</em>.]</span>
       </p>
-      <p><a name="impl-24"></a>How outside values are specified for pipeline options on the pipeline initially
+      <p><a name="impl-22"></a>How outside values are specified for pipeline options on the pipeline initially
           invoked by the processor is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>. In other
         words, the command line options, APIs, or other mechanisms available to specify such options
         values are outside the scope of this specification.</p>
@@ -1576,7 +1368,7 @@ specified.</p>
         input port and that port is explicitly marked “<tt class="code">primary='false'</tt>”, or if a step
         has more than one parameter input port and none is explicitly marked as the primary, then
         the primary parameter input port of that step is undefined.</p>
-      <p><a name="impl-25"></a>How outside values are specified for pipeline parameters on the pipeline initially
+      <p><a name="impl-23"></a>How outside values are specified for pipeline parameters on the pipeline initially
           invoked by the processor is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>. In other
         words, the command line options, APIs, or other mechanisms available to specify such
         parameter values are outside the scope of this specification.</p>
@@ -1597,7 +1389,7 @@ specified.</p>
       <p><a name="err.inline.D0021"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0021"><code class="errqname">err:XD0021</code></a>) for a pipeline to
           attempt to access a resource for which it has insufficient privileges or perform a step
           which is forbidden.
-        <a name="impl-26"></a>Which steps are forbidden, what privileges are needed to access resources, and under
+        <a name="impl-24"></a>Which steps are forbidden, what privileges are needed to access resources, and under
           what circumstances these security constraints apply is
             <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.
       </p>
@@ -1759,7 +1551,7 @@ appear on the <tt class="code">messages</tt> port.</p>
         “<em class="glossterm">XML</em>” refers equally to both versions.]</span>
       <span class="termdef" id="dt-Namespaces-in-XML">[Definition: Unless otherwise noted, the term <em class="glossterm">Namespaces
           in XML</em> refers equally to [<a href="#xmlns10"><span class="abbrev">Namespaces 1.0</span></a>] and [<a href="#xmlns11"><span class="abbrev">Namespaces 1.1</span></a>].]</span>
-      <a name="impl-27"></a>Support for pipeline documents written in XML 1.1 and pipeline inputs and outputs that
+      <a name="impl-25"></a>Support for pipeline documents written in XML 1.1 and pipeline inputs and outputs that
         use XML 1.1 is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
     </p>
     <p>Elements in a pipeline document represent the pipeline, the steps it contains, the
@@ -2017,10 +1809,6 @@ variable with the same name.
                 <em class="glossterm"><a href="#dt-default-readable-port">default readable port</a></em> will be assumed. Making the connection
               explicitly empty guarantees that the connection will be to an empty sequence of
               documents.</p>
-            <p id="empty-xpath-context">It is inconsistent with the [<a href="#xpath"><span class="abbrev">XPath 1.0</span></a>] specification to specify an empty connection as the context for
-              evaluating an XPath expression. When an empty connection is specified for an XPath 1.0
-              expression, an empty document node <span class="rfc2119">must</span> be used instead as the
-              context node.</p>
           </dd>
         </dl></div>
       <p>Note that a <a href="#p.input"><tt class="tag-element">p:input</tt></a> or <a href="#p.output"><tt class="tag-element">p:output</tt></a> element may contain more than one
@@ -2046,7 +1834,7 @@ variable with the same name.
     <div class="section"><h4><a name="annotations" id="annotations"></a>3.7 Processor annotations</h4>
       
       <p>Pipeline authors may add annotations to their pipeline documents with the
-          <a href="#p.pipeinfo"><tt class="tag-element">p:pipeinfo</tt></a> element. <a name="impl-28"></a>The semantics of <a href="#p.pipeinfo"><tt class="tag-element">p:pipeinfo</tt></a> elements are
+          <a href="#p.pipeinfo"><tt class="tag-element">p:pipeinfo</tt></a> element. <a name="impl-26"></a>The semantics of <a href="#p.pipeinfo"><tt class="tag-element">p:pipeinfo</tt></a> elements are
             <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>. Processors
           <span class="rfc2119">should</span> specify a way for their annotations to be identified, perhaps
         with <a href="#extension-attributes">extension attributes</a>.</p>
@@ -2116,14 +1904,14 @@ expression:</p>
 
 <div class="itemizedlist"><ul><li>
 <p>The <tt class="literal">p:episode</tt> system property
-<span class="rfc2119">should not</span> be used. <a name="impl-29"></a>The value of
+<span class="rfc2119">should not</span> be used. <a name="impl-27"></a>The value of
 the <tt class="literal">p:episode</tt> system property in a
 <tt class="tag-attribute">use-when</tt> expression is
 <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p>
 </li><li>
 <p>The <a href="#f.step-available"><tt class="function">p:step-available</tt></a> function cannot be used
 to test for the availability of extension steps (because the libraries
-that declare them may not have been imported). <a name="impl-30"></a>The results of testing
+that declare them may not have been imported). <a name="impl-28"></a>The results of testing
 for steps not in the XProc namespace in a
 <tt class="tag-attribute">use-when</tt> expression are
 <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p>
@@ -2205,10 +1993,12 @@ or collections.
             <tt class="type">NMTOKEN</tt>, per [<a href="#xmlschema-2"><span class="abbrev">W3C XML Schema: Part 2</span></a>], including whitespace
             normalization. </p>
         </li><li>
-          <p><tt class="type">XPathExpression</tt>, <tt class="type">XSLTMatchPattern</tt>: As a string per
-              [<a href="#xmlschema-2"><span class="abbrev">W3C XML Schema: Part 2</span></a>], including whitespace normalization, and the
-            further requirement to be a conformant Expression per [<a href="#xpath"><span class="abbrev">XPath 1.0</span></a>] or
-              [<a href="#xpath2"><span class="abbrev">XPath 2.0</span></a>], as appropriate, or Match pattern per [<a href="#xslt10"><span class="abbrev">XSLT 1.0</span></a>] or [<a href="#xslt20"><span class="abbrev">XSLT 2.0</span></a>], as appropriate. </p>
+<p><tt class="type">XPathExpression</tt>, <tt class="type">XSLTMatchPattern</tt>: As
+a string per [<a href="#xmlschema-2"><span class="abbrev">W3C XML Schema: Part 2</span></a>], including whitespace
+normalization, and the further requirement to be a conformant
+Expression per [<a href="#xpath2"><span class="abbrev">XPath 2.0</span></a>] or Match pattern per
+[<a href="#xslt20"><span class="abbrev">XSLT 2.0</span></a>].
+</p>
         </li></ul></div></div>
     <div class="section"><h4><a name="common-errors" id="common-errors"></a>3.11 Common errors</h4>
       
@@ -2252,7 +2042,7 @@ or collections.
               made to dereference a URI where the scheme of the URI reference is not
               supported. Implementations are encouraged to support as many schemes as is
             practical and, in particular, they <span class="rfc2119">should</span> support both the
-              <tt class="literal">file:</tt> and <tt class="literal">http(s):</tt> schemes. <a name="impl-31"></a>The set of URI
+              <tt class="literal">file:</tt> and <tt class="literal">http(s):</tt> schemes. <a name="impl-29"></a>The set of URI
               schemes actually supported is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
           </p>
         </li><li>
@@ -2586,10 +2376,9 @@ The context node is specified as a <em class="glossterm"><a href="#dt-connection
 in the <a href="#p.xpath-context"><tt class="tag-element">p:xpath-context</tt></a>. If no explicit connection is
 provided,
 the <em class="glossterm"><a href="#dt-default-readable-port">default readable port</a></em> is used.
-In an XPath 1.0 implementation, if the context node is connected
+If the context node is connected
 to <a href="#p.empty"><tt class="tag-element">p:empty</tt></a>, or is unconnected and the <em class="glossterm"><a href="#dt-default-readable-port">default
-readable port</a></em> is undefined, an <a href="#empty-xpath-context">empty document node</a> is used
-instead as the context. In an XPath 2.0 implementation, the context
+readable port</a></em> is undefined, the context
 item is undefined.</p>
 
 <p>Each conditional
@@ -2610,11 +2399,13 @@ item is undefined.</p>
           only provides the context node. The namespace bindings, in-scope variables, and other
           aspects of the context come from the element on which the XPath expression
           occurs.</p>
-<p>In an XPath 1.0 implementation, if the context node is connected to
-            <a href="#p.empty"><tt class="tag-element">p:empty</tt></a>, or is unconnected and the <em class="glossterm"><a href="#dt-default-readable-port">default readable
-            port</a></em> is undefined, an <a href="#empty-xpath-context">empty document
-            node</a> is used instead as the context. In an XPath 2.0 implementation, the context
-          item is undefined.</p></div><div class="section"><h5><a name="p.when" id="p.when"></a>4.4.2 p:when</h5><p>A
+
+<p>If the context node is connected to <a href="#p.empty"><tt class="tag-element">p:empty</tt></a>, or is
+unconnected and the <em class="glossterm"><a href="#dt-default-readable-port">default readable port</a></em> is
+undefined, the context item is undefined.</p>
+</div>
+
+<div class="section"><h5><a name="p.when" id="p.when"></a>4.4.2 p:when</h5><p>A
           when specifies one subpipeline guarded by a test expression. </p>
         <p class="element-syntax element-syntax-language-construct"><code>&lt;p:when<br />  <strong>test</strong> = <var>XPathExpression</var>&gt;<br />    (<a href="#p.xpath-context">p:xpath-context</a>?,<br />     (<a href="#p.output">p:output</a> | <br />      <a href="#p.log">p:log</a>)*,<br />     <var>subpipeline</var>)<br />&lt;/p:when&gt;</code></p>
         <p>Each <tt class="tag-element">p:when</tt> branch of the <a href="#p.choose"><tt class="tag-element">p:choose</tt></a> has a <tt class="tag-attribute">test</tt> attribute which <span class="rfc2119">must</span> contain an XPath expression. That
@@ -2879,7 +2670,7 @@ item is undefined.</p>
 <p><a name="err.inline.D0017"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic
             error</a></em> (<a href="#err.D0017"><code class="errqname">err:XD0017</code></a>) if the running pipeline attempts to invoke a step which the processor
           does not know how to perform.</p>
-<p><a name="impl-32"></a>The presence of other <em class="glossterm"><a href="#dt-compound-step">compound steps</a></em> is
+<p><a name="impl-30"></a>The presence of other <em class="glossterm"><a href="#dt-compound-step">compound steps</a></em> is
             <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>; XProc provides no standard mechanism for
           defining them or describing what they can contain.
         <a name="err.inline.S0048"></a>It is a <em class="glossterm"><a href="#dt-static-error">static error</a></em> (<a href="#err.S0048"><code class="errqname">err:XS0048</code></a>) to use a declared step as a
@@ -3297,12 +3088,12 @@ pipeline. These parameters are available on the
         It associates a URI with a specific output port on a step:</p>
       <p class="element-syntax element-syntax-language-construct"><code>&lt;p:log<br />  <strong>port</strong> = <var>NCName</var><br />  href? = <var>anyURI</var> /&gt;</code></p>
       <p>The semantics of <tt class="tag-element">p:log</tt> are that it writes to the specified IRI whatever
-        document or documents appear on the specified port. <a name="impl-33"></a>If the <tt class="tag-attribute">href</tt> attribute is not specified, the location of the log file or files is
+        document or documents appear on the specified port. <a name="impl-31"></a>If the <tt class="tag-attribute">href</tt> attribute is not specified, the location of the log file or files is
             <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
-<p><a name="impl-34"></a>How each
+<p><a name="impl-32"></a>How each
           document or sequence of documents is represented in a <tt class="tag-element">p:log</tt> is
             <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>. Pipelines are not expected to be
-        able to consume their own logging output. <a name="impl-35"></a>The ability of a step to read the
+        able to consume their own logging output. <a name="impl-33"></a>The ability of a step to read the
             <tt class="tag-element">p:log</tt> output of some former step is
             <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>. 
       </p>
@@ -3324,7 +3115,7 @@ pipeline. These parameters are available on the
           <tt class="tag-element">p:serialization</tt>
         <span class="rfc2119">must</span> be ignored. The processor <span class="rfc2119">may</span> reject statically a
         pipeline that requests serialization options that it cannot provide.</p>
-<p><a name="impl-36"></a>The
+<p><a name="impl-34"></a>The
           default value of any serialization options not specified on a particular
             <tt class="tag-element">p:serialization</tt> element is
           <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>. The allowed options are defined by
@@ -3367,19 +3158,21 @@ pipeline. These parameters are available on the
           specified. The content of the <tt class="tag-attribute">select</tt> attribute is an XPath
           expression which will be evaluated to provide the value of the variable.</p>
         <p class="element-syntax element-syntax-language-construct"><code>&lt;p:variable<br />  <strong>name</strong> = <var>QName</var><br />  <strong>select</strong> = <var>XPathExpression</var>&gt;<br />    ((<a href="#p.empty">p:empty</a> | <br />      <a href="#p.pipe">p:pipe</a> | <br />      <a href="#p.document">p:document</a> | <br />      <a href="#p.inline">p:inline</a> | <br />      <a href="#p.data">p:data</a>)? &amp; <br />     <a href="#p.namespaces">p:namespaces</a>*)<br />&lt;/p:variable&gt;</code></p>
-        <p>If a <tt class="tag-attribute">select</tt> expression is given, it is evaluated as an
-          XPath expression using the appropriate context as described in <a href="#xpath-context" title="XPaths in XProc">Section 2.6, “XPaths in XProc”</a>, for the enclosing <em class="glossterm"><a href="#dt-container">container</a></em>, with the
-          addition of bindings for all preceding-sibling <tt class="tag-element">p:variable</tt> and
-            <a href="#p.option"><tt class="tag-element">p:option</tt></a> elements. Regardless of the implicit type of the expression, when
-          XPath 1.0 is being used, the string value of the expression becomes the value of the
-          variable; when XPath 2.0 is being used, the type is treated as an
-            <tt class="type">xs:untypedAtomic</tt>.</p>
-<p>Since all <em class="glossterm"><a href="#dt-in-scope-bindings">in-scope
-            bindings</a></em> are present in the Processor XPath Context as variable bindings,
-            <tt class="tag-attribute">select</tt> expressions may refer to the value of
-            <em class="glossterm"><a href="#dt-in-scope-bindings">in-scope bindings</a></em> by variable reference. If a variable reference
-          uses a QName that is not the name of an <em class="glossterm"><a href="#dt-in-scope-bindings">in-scope
-            binding</a></em>, an XPath evaluation error will occur.</p>
+
+<p>If a <tt class="tag-attribute">select</tt> expression is given, it
+is evaluated as an XPath expression using the appropriate context as
+described in <a href="#xpath-context" title="XPaths in XProc">Section 2.6, “XPaths in XProc”</a>, for the enclosing
+<em class="glossterm"><a href="#dt-container">container</a></em>, with the addition of bindings for
+all preceding-sibling <tt class="tag-element">p:variable</tt> and <a href="#p.option"><tt class="tag-element">p:option</tt></a>
+elements. Regardless of the implicit type of the expression, the type
+is treated as an <tt class="type">xs:untypedAtomic</tt>.</p>
+
+<p>Since all <em class="glossterm"><a href="#dt-in-scope-bindings">in-scope bindings</a></em> are present
+in the Processor XPath Context as variable bindings, <tt class="tag-attribute">select</tt> expressions may refer to the value of
+<em class="glossterm"><a href="#dt-in-scope-bindings">in-scope bindings</a></em> by variable reference. If a
+variable reference uses a QName that is not the name of an <em class="glossterm"><a href="#dt-in-scope-bindings">in-scope binding</a></em>, an XPath
+evaluation error will occur.</p>
+
 <p>If a <tt class="tag-attribute">select</tt> expression is given, the <em class="glossterm"><a href="#dt-readable-ports">readable
             ports</a></em> available for document connections are the <em class="glossterm"><a href="#dt-readable-ports">readable
             ports</a></em> in the environment inherited by the first step in the surrounding
@@ -3399,13 +3192,10 @@ If there is no default
 readable port, the connection is treated as if <a href="#p.empty"><tt class="tag-element">p:empty</tt></a> was
 specified.</p>
 
-<p><a name="err.inline.D0008.2"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0008"><code class="errqname">err:XD0008</code></a>)
-if a sequence of more than one document appears on the connection for a
-<tt class="tag-element">p:variable</tt>. In an XPath 1.0 implementation, if
-<a href="#p.empty"><tt class="tag-element">p:empty</tt></a> is given or implied as the document connection, an
-<a href="#empty-xpath-context">empty document node</a> is used as
-the context node. In an XPath 2.0 implementation, the context item is
-undefined.
+<p><a name="err.inline.D0008.1"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0008"><code class="errqname">err:XD0008</code></a>)
+if a sequence of more than one document appears on the connection for
+a <tt class="tag-element">p:variable</tt>. If <a href="#p.empty"><tt class="tag-element">p:empty</tt></a> is given or
+implied as the document connection, the context item is undefined.
 <a name="err.inline.D0026"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0026"><code class="errqname">err:XD0026</code></a>) if
 the <tt class="tag-attribute">select</tt> expression makes reference to
 the context node, size, or position when the context item is
@@ -3456,8 +3246,7 @@ type being declared. In this case, it is evaluated as described in
 <a href="#p.with-option" title="p:with-option">Section 5.7.3, “p:with-option”</a> except that</p>
 
 <div class="itemizedlist"><ul><li>
-            <p>In an XPath 1.0 implementation, an <a href="#empty-xpath-context">empty
-                document node</a> is used as the context. In an XPath 2.0 implementation, the
+            <p>The
               context item is undefined.</p>
           </li><li>
             <p>the variable bindings consist only of bindings for options whose declaration
@@ -3476,10 +3265,8 @@ default value.</p>
 the <tt class="tag-attribute">select</tt> expression makes reference to
 the context node, size, or position.</p>
 
-<p>Regardless of the implicit type of the expression, when XPath
-1.0 is being used, the string value of the expression becomes the
-value of the option; when XPath 2.0 is being used, the value is an
-<tt class="type">xs:untypedAtomic</tt>.</p>
+<p>Regardless of the implicit type of the expression, the value is
+an <tt class="type">xs:untypedAtomic</tt>.</p>
 </div>
 
 
@@ -3510,10 +3297,8 @@ the value of the variable.</p>
 
 <p class="element-syntax element-syntax-language-construct"><code>&lt;p:with-option<br />  <strong>name</strong> = <var>QName</var><br />  <strong>select</strong> = <var>XPathExpression</var>&gt;<br />    ((<a href="#p.empty">p:empty</a> | <br />      <a href="#p.pipe">p:pipe</a> | <br />      <a href="#p.document">p:document</a> | <br />      <a href="#p.inline">p:inline</a> | <br />      <a href="#p.data">p:data</a>)? &amp; <br />     <a href="#p.namespaces">p:namespaces</a>*)<br />&lt;/p:with-option&gt;</code></p>
 
-<p>Regardless of the implicit type of the expression, when XPath
-1.0 is being used, the string value of the expression becomes the
-value of the option; when XPath 2.0 is being used, the value is an
-<tt class="type">xs:untypedAtomic</tt>.</p>
+<p>Regardless of the implicit type of the expression, the value is
+an <tt class="type">xs:untypedAtomic</tt>.</p>
 
 <p>All <em class="glossterm"><a href="#dt-in-scope-bindings">in-scope bindings</a></em> for the step
 instance itself are present in the Processor XPath Context as variable
@@ -3529,13 +3314,10 @@ no document connection is provided, the implicit connection is to the
 readable port, the connection is treated as if <a href="#p.empty"><tt class="tag-element">p:empty</tt></a> was
 specified.</p>
 
-<p><a name="err.inline.D0008.3"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0008"><code class="errqname">err:XD0008</code></a>)
-if a sequence of more than one document appears on the connection for a
-<tt class="tag-element">p:with-option</tt>.  In an XPath 1.0 implementation, if
-<a href="#p.empty"><tt class="tag-element">p:empty</tt></a> is given or implied as the document connection, an
-<a href="#empty-xpath-context">empty document node</a> is used as
-the context node. In an XPath 2.0 implementation, the context item is
-undefined.
+<p><a name="err.inline.D0008.2"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0008"><code class="errqname">err:XD0008</code></a>)
+if a sequence of more than one document appears on the connection for
+a <tt class="tag-element">p:with-option</tt>.  If <a href="#p.empty"><tt class="tag-element">p:empty</tt></a> is given or
+implied as the document connection, the context item is undefined.
 <a name="err.inline.D0026.2"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0026"><code class="errqname">err:XD0026</code></a>) if
 the <tt class="tag-attribute">select</tt> expression makes reference to
 the context node, size, or position when the context item is
@@ -3575,10 +3357,8 @@ the appropriate context as described in <a href="#xpath-context" title="XPaths i
 of variable bindings for all options declared in the containing step's
 <em class="glossterm"><a href="#dt-signature">signature</a></em>.</p>
 
-<p>Regardless of the implicit type of the expression, when XPath
-1.0 is being used, the string value of the expression becomes the
-value of the parameter; when XPath 2.0 is being used, the value is an
-<tt class="type">xs:untypedAtomic</tt>.</p>
+<p>Regardless of the implicit type of the expression, the value is
+an <tt class="type">xs:untypedAtomic</tt>.</p>
 
 <p>All <em class="glossterm"><a href="#dt-in-scope-bindings">in-scope bindings</a></em> for the step
 instance itself are present in the Processor XPath Context as variable
@@ -3595,13 +3375,11 @@ no document connection is provided, the implicit connection is to the
 readable port, the connection is treated as if <a href="#p.empty"><tt class="tag-element">p:empty</tt></a> was
 specified.</p>
 
-<p><a name="err.inline.D0008.4"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0008"><code class="errqname">err:XD0008</code></a>)
+<p><a name="err.inline.D0008.3"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0008"><code class="errqname">err:XD0008</code></a>)
 if a sequence of more than one document appears on the connection for a
-<tt class="tag-element">p:with-param</tt>.  In an XPath 1.0 implementation, if
-<a href="#p.empty"><tt class="tag-element">p:empty</tt></a> is given or implied as the document connection, an
-<a href="#empty-xpath-context">empty document node</a> is used as
-the context node. In an XPath 2.0 implementation, the context item is
-undefined.
+<tt class="tag-element">p:with-param</tt>.  If
+<a href="#p.empty"><tt class="tag-element">p:empty</tt></a> is given or implied as the document connection,
+the context item is undefined.
 <a name="err.inline.D0026.3"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D0026"><code class="errqname">err:XD0026</code></a>) if
 the <tt class="tag-attribute">select</tt> expression makes reference to
 the context node, size, or position when the context item is
@@ -3633,10 +3411,11 @@ parameter input port.
           to travel with the option.</p>
 <p>The default namespace bindings associated with a
           variable, option or parameter value are computed as follows:</p><div class="orderedlist"><ol style="list-style: decimal;"><li>
-            <p>If the <tt class="tag-attribute">select</tt> attribute was used to specify the value
-              and it consisted of a single <tt class="literal">VariableReference</tt> (per [<a href="#xpath"><span class="abbrev">XPath 1.0</span></a>] or [<a href="#xpath2"><span class="abbrev">XPath 2.0</span></a>], as appropriate), then the
-              namespace bindings from the referenced option or variable are used.</p>
-          </li><li>
+<p>If the <tt class="tag-attribute">select</tt> attribute was used to
+specify the value and it consisted of a single
+<tt class="literal">VariableReference</tt> (per [<a href="#xpath2"><span class="abbrev">XPath 2.0</span></a>]), then the namespace bindings from the referenced
+option or variable are used.</p>
+</li><li>
             <p>If the <tt class="tag-attribute">select</tt> attribute was used to specify the value
               and it evaluated to a node-set, then the in-scope namespaces from the first node in
               the selected node-set (or, if it's not an element, its parent) are used.</p>
@@ -3785,7 +3564,7 @@ parameter input port.
           <a href="#p.variable"><tt class="tag-element">p:variable</tt></a> elements can refer to values declared by their preceding siblings,
         but not by any of their ancestors.</p>
 
-<p><a name="impl-37"></a>When a declared step is evaluated directly by the XProc
+<p><a name="impl-35"></a>When a declared step is evaluated directly by the XProc
 processor (as opposed to occurring as an atomic step in some
 <em class="glossterm"><a href="#dt-container">container</a></em>), how the input and output ports are
 connected to documents is
@@ -3812,7 +3591,7 @@ see <a href="#psvi-support" title="PSVIs in XProc">Section 2.8, “PSVIs in XPr
         <p>When declaring an atomic step, the subpipeline in the declaration
             <span class="rfc2119">must</span> be empty. And, conversely, if the subpipeline in a declaration
           is empty, the declaration <span class="rfc2119">must</span> be for an atomic step.</p>
-        <p><a name="impl-38"></a>Implementations may use <em class="glossterm"><a href="#dt-extension-attribute">extension
+        <p><a name="impl-36"></a>Implementations may use <em class="glossterm"><a href="#dt-extension-attribute">extension
               attributes</a></em> to provide <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>
             information about a declared step. For example, such an attribute might identify
           the code which implements steps of this type.</p>
@@ -3830,7 +3609,7 @@ see <a href="#psvi-support" title="PSVIs in XProc">Section 2.8, “PSVIs in XPr
         <p>When a <a href="#p.declare-step"><tt class="tag-element">p:declare-step</tt></a> declares a pipeline, that pipeline encapsulates the
           behavior of the specified <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em>. Its children declare inputs,
           outputs, and options that the pipeline exposes and identify the steps in its subpipeline. </p>
-        <p><a name="impl-39"></a>The subpipeline may include declarations of additional steps (e.g., other
+        <p><a name="impl-37"></a>The subpipeline may include declarations of additional steps (e.g., other
             pipelines or other step types that are provided by a particular implementation or in
             some <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> way) and import other
             pipelines. If a pipeline has been imported, it may be invoked as a step within
@@ -4111,7 +3890,7 @@ resource. If the resource has a content type associated with it (e.g.,
 if the resource was retrieved with HTTP), then that content type
 <span class="rfc2119">must</span> be used, otherwise, if the user specified a
 <tt class="tag-attribute">content-type</tt> on the <tt class="tag-element">p:data</tt>,
-then that content type should be assumed. <a name="impl-40"></a>If no content type was
+then that content type should be assumed. <a name="impl-38"></a>If no content type was
 specified or is associated with the resource, the inferred content
 type is <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.
 </p>
@@ -4518,7 +4297,7 @@ identify a directory. <a name="err.inline.C0012"></a>It is a
 path are not available to the step due to access restrictions in the
 environment in which the pipeline is run.</p>
 
-<p><a name="impl-41"></a>Conformant processors <span class="rfc2119">must</span> support directory paths whose
+<p><a name="impl-39"></a>Conformant processors <span class="rfc2119">must</span> support directory paths whose
 scheme is <tt class="code">file</tt>. It is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> what other schemes are
 supported by <tt class="tag-element">p:directory-list</tt>, and what the interpretation
@@ -4560,7 +4339,7 @@ determined to be special.</p>
 not determined to be special.</p>
 <p class="element-syntax element-syntax-step-vocabulary"><code>&lt;c:file<br />  <strong>name</strong> = <var>string</var> /&gt;</code></p>
 </li><li>
-<p id="cv.other"><a name="impl-42"></a>Any file or directory determined to be
+<p id="cv.other"><a name="impl-40"></a>Any file or directory determined to be
 special by the <tt class="tag-element">p:directory-list</tt> step may be output using a
 <a href="#cv.other"><tt class="tag-element">c:other</tt></a> element but the criteria for marking a file as
 special are <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
@@ -4578,7 +4357,7 @@ appears within the top-level <a href="#cv.directory"><tt class="tag-element">c:d
 value is a relative IRI reference, giving the (local) file or
 directory name.</p>
 
-<p><a name="impl-43"></a>Any attributes other than <tt class="tag-attribute">name</tt> on
+<p><a name="impl-41"></a>Any attributes other than <tt class="tag-attribute">name</tt> on
 <a href="#cv.file"><tt class="tag-element">c:file</tt></a>, <a href="#cv.directory"><tt class="tag-element">c:directory</tt></a>, or <a href="#cv.other"><tt class="tag-element">c:other</tt></a>
 are <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
 
@@ -4791,7 +4570,7 @@ that authorization fails, the request is not retried.</p>
 are “Basic” or “Digest” but other values are allowed.
 If the authentication method is “Basic” or “Digest”, authentication
 is handled as per [<a href="#rfc2617"><span class="abbrev">RFC 2617</span></a>].
-<a name="impl-44"></a>The
+<a name="impl-42"></a>The
 interpretation of <tt class="code">auth-method</tt> values on
 <tt class="tag-element">c:request</tt> other than “Basic” or “Digest” is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
@@ -4879,7 +4658,7 @@ or text, the content must already be base64-encoded.</p>
 element content for formulating the body. A value of
 <tt class="literal">base64</tt> indicates the element's content is a base64
 encoded string whose byte stream should be sent as the message body.
-<a name="impl-45"></a>An implementation may support encodings other than
+<a name="impl-43"></a>An implementation may support encodings other than
 <tt class="literal">base64</tt> but these encodings and their names are
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
 <a name="err.inline.C0052"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic
@@ -5028,7 +4807,7 @@ if they are returned by the server.
 
 <p>With one exception, in version 1.0 of XProc, the
 <a href="#c.http-request"><tt class="tag-element">p:http-request</tt></a> step does not provide any standard
-mechanisms for managing cookies. <a name="impl-46"></a>Pipeline authors that need to
+mechanisms for managing cookies. <a name="impl-44"></a>Pipeline authors that need to
 preserve cookies across several <a href="#c.http-request"><tt class="tag-element">p:http-request</tt></a> calls in the
 same pipeline or across multiple invocations of the same or different
 pipelines will have to rely on
@@ -5057,7 +4836,7 @@ a <a href="#cv.multipart"><tt class="tag-element">c:multipart</tt></a> element t
 <div class="admonition"><div class="admon-title">Note</div><p>Although it is technically possible for any of the individual
 parts of a multipart message to <em>also</em> be
 multipart, XProc does not provide a standard representation for such
-messages. <a name="impl-47"></a>The interpretation of a multipart message inside
+messages. <a name="impl-45"></a>The interpretation of a multipart message inside
 another multipart message is
 <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p></div>
 
@@ -5347,7 +5126,7 @@ used as the base URI regardless of any contextual base URI value in
 the document. This option value is resolved against the base URI of
 the <a href="#p.option"><tt class="tag-element">p:option</tt></a> element used to set the option.</p>
 
-<p><a name="impl-48"></a>If the IRI reference specified by the <tt class="option">base-uri</tt> option
+<p><a name="impl-46"></a>If the IRI reference specified by the <tt class="option">base-uri</tt> option
 on <tt class="tag-element">p:make-absolute-uris</tt> is
 not valid, or if it is absent and the input document has no base URI,
 the results are <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.
@@ -5502,7 +5281,7 @@ parameter with any given name will appear in the result.
 The resulting <a href="#cv.param"><tt class="tag-element">c:param</tt></a> elements are wrapped in a
 <a href="#cv.param-set"><tt class="tag-element">c:param-set</tt></a> and the parameter set document is written
 to the <tt class="port">result</tt> port.
-<a name="impl-49"></a>The
+<a name="impl-47"></a>The
 order in which <a href="#cv.param"><tt class="tag-element">c:param</tt></a> elements occur in the <a href="#cv.param-set"><tt class="tag-element">c:param-set</tt></a> is
 <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p>
 
@@ -5810,7 +5589,7 @@ type <tt class="literal">application/xml</tt>, and must use a standard XML
 parser for it. <a name="err.inline.C0051"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic
 error</a></em> (<a href="#err.C0051"><code class="errqname">err:XC0051</code></a>) if the content-type specified is not supported by
 the implementation.
-<a name="impl-50"></a>Behavior of
+<a name="impl-48"></a>Behavior of
 <tt class="tag-element">p:unescape-markup</tt> for <tt class="option">content-type</tt>s other
 than <tt class="literal">application/xml</tt> is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
@@ -6086,7 +5865,7 @@ to an XSLT 1.0 step.
 <p>A dynamic error occurs if the XSLT processor signals a fatal
 error. This includes the case where the transformation terminates due
 to a <tt class="tag-element">xsl:message</tt> instruction with a <tt class="tag-attribute">terminate</tt> attribute value of
-“<tt class="literal">yes</tt>”. <a name="impl-51"></a>How XSLT message termination
+“<tt class="literal">yes</tt>”. <a name="impl-49"></a>How XSLT message termination
 errors are reported to the XProc processor is
 <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p>
 
@@ -6113,9 +5892,8 @@ option is specified.</p>
 
 
 <p>The static and initial dynamic contexts of the XSLT processor
-are the contexts defined in <a href="#step-xpath-context-10" title="Step XPath Context">Section 2.6.1.2, “Step XPath Context”</a>
-for an XSLT 1.0 processor and
-<a href="#step-xpath-context-20" title="Step XPath Context">Section 2.6.2.2, “Step XPath Context”</a> for an XSLT 2.0 processor
+are the contexts defined in
+<a href="#step-xpath-context-20" title="Step XPath Context">Section 2.6.2, “Step XPath Context”</a>
 with the following adjustments.</p>
 
 <p>The dynamic context is augmented as follows:</p>
@@ -6195,7 +5973,7 @@ directory is changed to the value of that option before execution
 begins. <a name="err.inline.C0034"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic
 error</a></em> (<a href="#err.C0034"><code class="errqname">err:XC0034</code></a>) if the current working directory cannot be changed
 to the value of the <tt class="option">cwd</tt> option.
-<a name="impl-52"></a>If <tt class="option">cwd</tt> is not
+<a name="impl-50"></a>If <tt class="option">cwd</tt> is not
 specified, the current working directory is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
 
@@ -6276,7 +6054,7 @@ parsed with namespaces enabled and validation turned off, just like
 
 <p>The <tt class="port">exit-status</tt> port always returns a single
 <a href="#cv.result"><tt class="tag-element">c:result</tt></a> element which contains the system exit status that
-the process returned. <a name="impl-53"></a>The specific exit status values returned by
+the process returned. <a name="impl-51"></a>The specific exit status values returned by
 a process invoked with <tt class="tag-element">p:exec</tt> are
 <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.</p>
 
@@ -6315,7 +6093,7 @@ it is 1.</p>
 Implementations <span class="rfc2119">must</span> support
 [<a href="#bib.crc"><span class="abbrev">CRC32</span></a>],
 [<a href="#rfc1321"><span class="abbrev">MD5</span></a>], and [<a href="#bib.sha"><span class="abbrev">SHA1</span></a>]
-hashes. <a name="impl-54"></a>It is
+hashes. <a name="impl-52"></a>It is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> what other algorithms are
 supported.
 The resulting hash <span class="rfc2119">should</span> be returned as a string of
@@ -6367,13 +6145,13 @@ must be an integer.</p>
 <p>If the <tt class="option">version</tt> is specified, that version of
 UUID must be computed. <a name="err.inline.C0060"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic
 error</a></em> (<a href="#err.C0060"><code class="errqname">err:XC0060</code></a>) if the processor does not support the specified
-<tt class="option">version</tt> of the UUID algorithm. <a name="impl-55"></a>If the
+<tt class="option">version</tt> of the UUID algorithm. <a name="impl-53"></a>If the
 <tt class="option">version</tt> is not specified, the version of UUID
 computed is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
 
 <p>Implementations <span class="rfc2119">must</span> support version 4 UUIDs.
-<a name="impl-56"></a>Support for other versions of UUID, and the mechanism by which
+<a name="impl-54"></a>Support for other versions of UUID, and the mechanism by which
 the necessary inputs are made available for computing other versions,
 is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
 </p>
@@ -6437,7 +6215,7 @@ augmented by application of the
 [<a href="#relaxng-dtd-compat"><span class="abbrev">RELAX NG DTD Compatibility</span></a>]. The output of this step
 <span class="rfc2119">may</span> include PSVI annotations.</p>
 
-<p><a name="impl-57"></a>Support for [<a href="#relaxng-dtd-compat"><span class="abbrev">RELAX NG DTD Compatibility</span></a>] is
+<p><a name="impl-55"></a>Support for [<a href="#relaxng-dtd-compat"><span class="abbrev">RELAX NG DTD Compatibility</span></a>] is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation defined</a></em>.</p>
 
 </div>
@@ -6506,7 +6284,7 @@ schema-processor-defined namespace-based strategies, for the
 namespaces covered by the documents available on the schemas port.</p>
 
 <p>If <tt class="code">xs:include</tt> elements occur within the supplied
-schema documents, they are treated like any other <a href="#external-docs">external documents</a>. <a name="impl-58"></a>It is
+schema documents, they are treated like any other <a href="#external-docs">external documents</a>. <a name="impl-56"></a>It is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> if the documents supplied
 on the <tt class="port">schemas</tt> port are considered when resolving
 <tt class="code">xs:include</tt> elements in the schema documents provided.
@@ -6669,7 +6447,7 @@ descendants of this element are considered the query.</p>
 <p class="element-syntax element-syntax-step-vocabulary"><code>&lt;c:query&gt;<br />    <var>string</var><br />&lt;/c:query&gt;</code></p>
 </li><li>
 <p>If the document root element is in the XQueryX namespace, the
-document is treated as an XQueryX-encoded query. <a name="impl-59"></a>Support for
+document is treated as an XQueryX-encoded query. <a name="impl-57"></a>Support for
 XQueryX is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
 </p>
 </li><li>
@@ -6686,7 +6464,7 @@ a text content type or a media type that the implementation recognizes,
 then the text descendants of this element are considered
 the query.</p>
 </li><li>
-<p><a name="impl-60"></a>Otherwise, the interpretation of the query
+<p><a name="impl-58"></a>Otherwise, the interpretation of the query
 is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
 </p>
 </li></ul></div>
@@ -6764,27 +6542,27 @@ values of type <tt class="type">xs:untypedAtomic</tt>.
 
 <dt>Current dateTime</dt>
 <dd>
-<p><a name="impl-61"></a>The point in time returned as the current dateTime is
+<p><a name="impl-59"></a>The point in time returned as the current dateTime is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
 </dd>
 
 <dt>Implicit timezone</dt>
 <dd>
-<p><a name="impl-62"></a>The implicit timezone is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
+<p><a name="impl-60"></a>The implicit timezone is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
 
 </p>
 </dd>
 
 <dt>Available documents</dt>
 <dd>
-<p><a name="impl-63"></a>The set of available documents (those that may be retrieved with a URI)
+<p><a name="impl-61"></a>The set of available documents (those that may be retrieved with a URI)
 is <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.
 </p>
 </dd>
 
 <dt>Available collections</dt>
 <dd>
-<p><a name="impl-64"></a>The set of available collections
+<p><a name="impl-62"></a>The set of available collections
 is <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.
 </p>
 </dd>
@@ -6852,15 +6630,15 @@ value).</p>
 <tt class="option">content-type</tt> option. This option specifies a media
 type as defined by [<a href="#media-types"><span class="abbrev">IANA Media Types</span></a>]. The option may
 include media type parameters as well (e.g.
-"application/someformat; charset=UTF-8"). <a name="impl-65"></a>The use of media type
+"application/someformat; charset=UTF-8"). <a name="impl-63"></a>The use of media type
 parameters on the <tt class="option">content-type</tt> option is
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
 
-<p><a name="impl-66"></a>If the <tt class="option">content-type</tt> option is not specified,
+<p><a name="impl-64"></a>If the <tt class="option">content-type</tt> option is not specified,
 the output type is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>. The default <span class="rfc2119">should</span> be
 PDF.</p>
 
-<p><a name="impl-67"></a>A formatter may take any number of optional rendering
+<p><a name="impl-65"></a>A formatter may take any number of optional rendering
 parameters via the step's parameters; such parameters are defined by
 the XSL implementation used and are
 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
@@ -6911,7 +6689,7 @@ be absolute, and is not resolved.</p>
 
 <dt><tt class="option">encoding</tt></dt>
 <dd>
-<p>A character set name. <a name="impl-68"></a>If no <tt class="option">encoding</tt> is
+<p>A character set name. <a name="impl-66"></a>If no <tt class="option">encoding</tt> is
 specified, the encoding used is <em class="glossterm"><a href="#dt-implementation-defined">implementation
 defined</a></em>. If the <tt class="option">method</tt> is
 “<tt class="literal">xml</tt>” or “<tt class="literal">xhtml</tt>”, the
@@ -6955,7 +6733,7 @@ default varies according to the <tt class="option">method</tt>:</p>
 <dd><p><tt class="literal">text/plain</tt></p></dd>
 </dl></div>
 
-<p><a name="impl-69"></a>For methods other than <tt class="literal">xml</tt>, <tt class="literal">html</tt>,
+<p><a name="impl-67"></a>For methods other than <tt class="literal">xml</tt>, <tt class="literal">html</tt>,
 <tt class="literal">xhtml</tt>, and <tt class="literal">text</tt>; the
 <tt class="option">media-type</tt> is <em class="glossterm"><a href="#dt-implementation-defined">implementation defined</a></em>.
 </p>
@@ -7014,7 +6792,7 @@ method used by this component with standard values of 'html', 'xml',
 supported. The interpretation of the remaining options is as
 specified in [<a href="#xml-serialization"><span class="abbrev">Serialization</span></a>].</p>
 
-<p><a name="impl-70"></a>Implementations may support other method values but their
+<p><a name="impl-68"></a>Implementations may support other method values but their
 results are <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.
 </p>
 
@@ -7073,17 +6851,15 @@ implementation-defined. See <a href="#input-output" title="Inputs and Outputs">S
             mechanisms and how (or if) they provide access to intermediate results by URI is
               implementation-defined. See <a href="#external-docs" title="External Documents">Section 2.2.1, “External Documents”</a>.</li><li>Except for cases which are specifically called out in , the extent to which namespace fixup, and other checks for
             outputs which cannot be serialized, are performed on intermediate outputs is
-              implementation-defined. See <a href="#namespace-fixup" title="Namespace Fixup on Outputs">Section 2.4.1, “Namespace Fixup on Outputs”</a>.</li><li>If no version is specified on
-          the step or among its ancestors, then its XPath version is
-            implementation-defined. See <a href="#xpath-context" title="XPaths in XProc">Section 2.6, “XPaths in XProc”</a>.</li><li>The version of Unicode supported is
+              implementation-defined. See <a href="#namespace-fixup" title="Namespace Fixup on Outputs">Section 2.4.1, “Namespace Fixup on Outputs”</a>.</li><li>The version of Unicode supported is
                       implementation-defined, but it is recommended that the
-                    most recent version of Unicode be used. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.2.1, “Processor XPath Context”</a>.</li><li>The point in time returned as the current dateTime is
-                      implementation-defined. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.2.1, “Processor XPath Context”</a>.</li><li>The implicit timezone is
-                    implementation-defined. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.2.1, “Processor XPath Context”</a>.</li><li>The implicit timezone is
-                    implementation-defined. See <a href="#step-xpath-context-20" title="Step XPath Context">Section 2.6.2.2, “Step XPath Context”</a>.</li><li>The exact format of the language string is
+                    most recent version of Unicode be used. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.1, “Processor XPath Context”</a>.</li><li>The point in time returned as the current dateTime is
+                      implementation-defined. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.1, “Processor XPath Context”</a>.</li><li>The implicit timezone is
+                    implementation-defined. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.1, “Processor XPath Context”</a>.</li><li>The implicit timezone is
+                    implementation-defined. See <a href="#step-xpath-context-20" title="Step XPath Context">Section 2.6.2, “Step XPath Context”</a>.</li><li>The exact format of the language string is
                     implementation-defined but should be
                   consistent with the xml:lang attribute. See <a href="#f.system-property" title="System Properties">Section 2.7.1, “System Properties”</a>.</li><li>It is implementation-defined if the processor supports
-            any other XPath extension functions. See <a href="#other-xpath-extension-functions" title="Other XPath Extension Functions">Section 2.7.10, “Other XPath Extension Functions”</a>.</li><li>Whether or not the pipeline processor supports passing PSVI annotations between
+            any other XPath extension functions. See <a href="#other-xpath-extension-functions" title="Other XPath Extension Functions">Section 2.7.8, “Other XPath Extension Functions”</a>.</li><li>Whether or not the pipeline processor supports passing PSVI annotations between
           steps is implementation-defined. See <a href="#psvi-support" title="PSVIs in XProc">Section 2.8, “PSVIs in XProc”</a>.</li><li>The exact PSVI properties that are preserved when documents are passed between steps
           is implementation-defined. See <a href="#psvi-support" title="PSVIs in XProc">Section 2.8, “PSVIs in XProc”</a>.</li><li>It is
                 implementation-defined what PSVI properties, if any, are
@@ -7167,12 +6943,10 @@ in the PSVI, are preserved between steps. See <a href="#infoset-conformance" tit
             possibly appeal to implementation-dependent mechanisms such as
             catalog files. See <a href="#external-docs" title="External Documents">Section 2.2.1, “External Documents”</a>.</li><li>Whether (and
             when and how) or not the intermediate results that pass between steps are ever written
-            to a filesystem is implementation-dependent. See <a href="#external-docs" title="External Documents">Section 2.2.1, “External Documents”</a>.</li><li>The results of computing the union of namespaces in the presence of
-                    conflicting declarations for a particular prefix are
-                      implementation-dependent. See <a href="#step-xpath-context-10" title="Step XPath Context">Section 2.6.1.2, “Step XPath Context”</a>.</li><li>The set of available documents (those that may be retrieved with a URI)
-                    is implementation-dependent. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.2.1, “Processor XPath Context”</a>.</li><li>The set of available collections is
-                      implementation-dependent. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.2.1, “Processor XPath Context”</a>.</li><li>The set of available documents (those that may be retrieved with a URI)
-                    is implementation-dependent. See <a href="#step-xpath-context-20" title="Step XPath Context">Section 2.6.2.2, “Step XPath Context”</a>.</li><li>Which steps are forbidden, what privileges are needed to access resources, and under
+            to a filesystem is implementation-dependent. See <a href="#external-docs" title="External Documents">Section 2.2.1, “External Documents”</a>.</li><li>The set of available documents (those that may be retrieved with a URI)
+                    is implementation-dependent. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.1, “Processor XPath Context”</a>.</li><li>The set of available collections is
+                      implementation-dependent. See <a href="#xproc-xpath-context-20" title="Processor XPath Context">Section 2.6.1, “Processor XPath Context”</a>.</li><li>The set of available documents (those that may be retrieved with a URI)
+                    is implementation-dependent. See <a href="#step-xpath-context-20" title="Step XPath Context">Section 2.6.2, “Step XPath Context”</a>.</li><li>Which steps are forbidden, what privileges are needed to access resources, and under
           what circumstances these security constraints apply is
             implementation-dependent. See <a href="#security-considerations" title="Security Considerations">Section 2.12, “Security Considerations”</a>.</li><li>The value of
 the p:episode system property in a
@@ -7240,7 +7014,7 @@ processor for the documents that flow through the pipeline.</p>
            <tt class="literal">[prefix]</tt> and
            <tt class="literal">[namespace name]</tt> properties.</p></li></ul></div>
 
-<p><a name="impl-71"></a>It is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> whether
+<p><a name="impl-69"></a>It is <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> whether
 additional information items and properties, particularly those made available
 in the PSVI, are preserved between steps.</p>
 </div>
@@ -7287,11 +7061,6 @@ editors. W3C Recommendation 16 August 2006.</p></div>
 in XML 1.1 (Second Edition)</cite></span></a>. Tim Bray,
 Dave Hollander, Andrew Layman, et. al.,
 editors. W3C Recommendation 16 August 2006.</p></div>
-
-<div class="bibliomixed" id="xpath"><p>[<span class="abbrev">XPath 1.0</span>] 
-<a href="http://www.w3.org/TR/xpath"><span class="citetitle"><cite>XML Path Language (XPath)
-Version 1.0</cite></span></a>. James Clark and Steve DeRose, editors.
-W3C Recommendation. 16 November 1999.</p></div>
 
 <div class="bibliomixed" id="xslt10"><p>[<span class="abbrev">XSLT 1.0</span>] 
 <a href="http://www.w3.org/TR/xslt"><span class="citetitle"><cite>XSL Transformations (XSLT)
@@ -7777,7 +7546,7 @@ are defined:</p>
             error if the step does not produce exactly one document on the declared
           port.</p><p>See: <a href="#err.inline.D0007">p:output</a></p></dd><dt><a name="err.D0008"></a><code class="errqname">err:XD0008</code></dt><dd><p>It is a dynamic
                       error if a document sequence appears where a document to be used
-                    as the context node is expected.</p><p>See: <a href="#err.inline.D0008">Processor XPath Context</a>, <a href="#err.inline.D0008.1">Processor XPath Context</a>, <a href="#err.inline.D0008.2">p:variable</a>, <a href="#err.inline.D0008.3">p:with-option</a>, <a href="#err.inline.D0008.4">p:with-param</a></p></dd><dt><a name="err.D0009"></a><code class="errqname">err:XD0009</code></dt><dd><p>It is a dynamic error if the element attribute on p:namespaces is specified
+                    as the context node is expected.</p><p>See: <a href="#err.inline.D0008">Processor XPath Context</a>, <a href="#err.inline.D0008.1">p:variable</a>, <a href="#err.inline.D0008.2">p:with-option</a>, <a href="#err.inline.D0008.3">p:with-param</a></p></dd><dt><a name="err.D0009"></a><code class="errqname">err:XD0009</code></dt><dd><p>It is a dynamic error if the element attribute on p:namespaces is specified
                 and it does not identify a single element node.</p><p>See: <a href="#err.inline.D0009">Namespaces on variables, options, and
           parameters</a></p></dd><dt><a name="err.D0010"></a><code class="errqname">err:XD0010</code></dt><dd><p>It is a dynamic error if the
             match expression on p:viewport does not match an
@@ -7810,20 +7579,13 @@ nodes (or an empty sequence).</p><p>See: <a href="#err.inline.D0016">Document In
           attempt to access a resource for which it has insufficient privileges or perform a step
           which is forbidden.</p><p>See: <a href="#err.inline.D0021">Security Considerations</a></p></dd><dt><a name="err.D0022"></a><code class="errqname">err:XD0022</code></dt><dd><p>It is a dynamic error if a processor that
               does not support PSVI annotations attempts to invoke a step which asserts that they
-              are required.</p><p>See: <a href="#err.inline.D0022">PSVIs in XProc</a></p></dd><dt><a name="err.D0023"></a><code class="errqname">err:XD0023</code></dt><dd><p>It is a
-            dynamic error if an XPath expression is encountered which cannot
-          be evaluated (because it is syntactically incorrect, contains references to unbound
-          variables or unknown functions, or for any other reason). </p><p>See: <a href="#err.inline.D0023">XPaths in XProc</a></p></dd><dt><a name="err.D0024"></a><code class="errqname">err:XD0024</code></dt><dd><p>It is a dynamic error if a 2.0 processor
-              encounters an XPath 1.0 expression and it does not support XPath 1.0 compatibility
-              mode.</p><p>See: <a href="#err.inline.D0024">XPaths in XProc</a></p></dd><dt><a name="err.D0025"></a><code class="errqname">err:XD0025</code></dt><dd><p>It is a dynamic error if the namespace attribute is specified, the name
+              are required.</p><p>See: <a href="#err.inline.D0022">PSVIs in XProc</a></p></dd><dt><a name="err.D0025"></a><code class="errqname">err:XD0025</code></dt><dd><p>It is a dynamic error if the namespace attribute is specified, the name
               contains a colon, and the specified namespace is not the same as the in-scope
               namespace binding for the specified prefix.</p><p>See: <a href="#err.inline.D0025">The c:param
             element</a></p></dd><dt><a name="err.D0026"></a><code class="errqname">err:XD0026</code></dt><dd><p>It is a dynamic error if
 the select expression makes reference to
 the context node, size, or position when the context item is
-undefined.</p><p>See: <a href="#err.inline.D0026">p:variable</a>, <a href="#err.inline.D0026.1">p:option</a>, <a href="#err.inline.D0026.2">p:with-option</a>, <a href="#err.inline.D0026.3">p:with-param</a></p></dd><dt><a name="err.D0027"></a><code class="errqname">err:XD0027</code></dt><dd><p>It is a dynamic error if the
-              processor encounters an xpath-version that it does not
-              support.</p><p>See: <a href="#err.inline.D0027">XPaths in XProc</a></p></dd><dt><a name="err.D0028"></a><code class="errqname">err:XD0028</code></dt><dd><p>It is a dynamic error if any attribute
+undefined.</p><p>See: <a href="#err.inline.D0026">p:variable</a>, <a href="#err.inline.D0026.1">p:option</a>, <a href="#err.inline.D0026.2">p:with-option</a>, <a href="#err.inline.D0026.3">p:with-param</a></p></dd><dt><a name="err.D0028"></a><code class="errqname">err:XD0028</code></dt><dd><p>It is a dynamic error if any attribute
               value does not satisfy the type required for that attribute.</p><p>See: <a href="#err.inline.D0028">Common errors</a></p></dd><dt><a name="err.D0029"></a><code class="errqname">err:XD0029</code></dt><dd><p>It is a dynamic error
 if the document referenced by a p:data element does not
 exist, cannot be accessed, or cannot be encoded as specified.</p><p>See: <a href="#err.inline.D0029">p:data</a></p></dd><dt><a name="err.D0030"></a><code class="errqname">err:XD0030</code></dt><dd><p>It is a dynamic error if a step is unable

@@ -109,11 +109,8 @@ For updated information, please refer to the latest version of the
    <error code="XD0020">It is a dynamic error if the combination of serialization options specified or defaulted is not allowed.</error>
    <error code="XD0021">It is a dynamic error for a pipeline to attempt to access a resource for which it has insufficient privileges or perform a step which is forbidden.</error>
    <error code="XD0022">It is a dynamic error if a processor that does not support PSVI annotations attempts to invoke a step which asserts that they are required.</error>
-   <error code="XD0023">It is a dynamic error if an XPath expression is encountered which cannot be evaluated (because it is syntactically incorrect, contains references to unbound variables or unknown functions, or for any other reason).</error>
-   <error code="XD0024">It is a dynamic error if a 2.0 processor encounters an XPath 1.0 expression and it does not support XPath 1.0 compatibility mode.</error>
    <error code="XD0025">It is a dynamic error if the namespace attribute is specified, the name contains a colon, and the specified namespace is not the same as the in-scope namespace binding for the specified prefix.</error>
    <error code="XD0026">It is a dynamic error if the select expression makes reference to the context node, size, or position when the context item is undefined.</error>
-   <error code="XD0027">It is a dynamic error if the processor encounters an xpath-version that it does not support.</error>
    <error code="XD0028">It is a dynamic error if any attribute value does not satisfy the type required for that attribute.</error>
    <error code="XD0029">It is a dynamic error if the document referenced by a p:data element does not exist, cannot be accessed, or cannot be encoded as specified.</error>
    <error code="XD0030">It is a dynamic error if a step is unable or incapable of performing its function.</error>
