@@ -414,6 +414,12 @@
   </xsl:for-each>
 </xsl:template>
 
+<xsl:template name="t:syntax-highlight-body">
+  <xsl:if test="$syntax-highlighter != '0'">
+    <script src="prism.js"></script>
+  </xsl:if>
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template match="*" mode="m:root">
