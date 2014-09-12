@@ -1,6 +1,9 @@
-SAXON=saxon
-TIDY=/usr/bin/tidy
-CALABASH=calabash
+empty :=
+space := $(empty) $(empty)
+
+CLASSPATH=$(subst  $(space),:,$(wildcard ../lib/*.jar)):../lib
+SAXON=java -cp $(CLASSPATH) -jar ../lib/saxon9he.jar
+CALABASH=java -cp $(CLASSPATH) com.xmlcalabash.drivers.Main -c ../.calabash
 
 TARGETS=xproc-v2-req.html
 
@@ -11,8 +14,9 @@ all: $(TARGETS)
                     ../style/validate.xpl schema=../schema/dbspec.rng
 
 xproc-v2-req.html: ,xproc-v2-req.xml ../style/dbspec.xsl
-	$(SAXON) $< ../style/dbspec.xsl $@
-	$(TIDY) --doctype loose --output-xhtml true -q -utf8 -mn $@
+	$(CALABASH) -isource=$< -oresult=$@ \
+	            -pschemaext.schema=../../../../../schema/dbspec.rng \
+                    ../style/formatspec.xpl
 
 clean:
 	rm -f $(TARGETS) ,xproc-v2-req.xml
