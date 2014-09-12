@@ -415,28 +415,24 @@ any other output port even though nothing can ever
 appear on it since the step always fails.</para>
 
 <para>For example, given the following invocation:</para>
-<programlisting>
-<![CDATA[<p:error xmlns:my="http://www.example.org/error"
+<programlisting language="xml"><![CDATA[<p:error xmlns:my="http://www.example.org/error"
          name="bad-document" code="my:unk12">
    <p:input port="source">
      <p:inline>
        <message>The document element is unknown.</message>
      </p:inline>
    </p:input>
-</p:error>]]>
-</programlisting>
+</p:error>]]></programlisting>
 
 <para>The error vocabulary element (and document) generated on the
 error output port would be:</para>
-<programlisting>
-<![CDATA[<c:errors xmlns:c="http://www.w3.org/ns/xproc-step"
+<programlisting language="xml"><![CDATA[<c:errors xmlns:c="http://www.w3.org/ns/xproc-step"
           xmlns:p="http://www.w3.org/ns/xproc"
           xmlns:my="http://www.example.org/error">
  <c:error name="bad-document" type="p:error"
           code="my:unk12"><message>The document element is unknown.</message>
 </c:error>
-</c:errors>]]>
-</programlisting>
+</c:errors>]]></programlisting>
 
 <para>The <tag class="attribute">href</tag>,
 <tag class="attribute">line</tag> and <tag class="attribute">column</tag>,
@@ -471,9 +467,9 @@ options control how the output markup is produced before it is escaped.
 </para>
 
 <para>For example, the input:</para>
-<programlisting><xi:include href="examples/serialize.input.ex.txt" parse="text"/></programlisting>
+<programlisting language="xml"><xi:include href="examples/serialize.input.ex.txt" parse="text"/></programlisting>
 <para>produces:</para>
-<programlisting><xi:include href="examples/serialize.output.ex.txt" parse="text"/></programlisting>
+<programlisting language="xml"><xi:include href="examples/serialize.output.ex.txt" parse="text"/></programlisting>
 
 <note>
 <para>The result of this step is an XML document that contains the
@@ -744,8 +740,7 @@ document is controlled by the serialization options on the
 <code>p:http-request</code> step will POST a small XML
 document:</para>
 
-<programlisting>
-<![CDATA[<c:request method="POST" href="http://example.com/someservice">
+<programlisting language="xml"><![CDATA[<c:request method="POST" href="http://example.com/someservice">
 <c:body xmlns:c="http://www.w3.org/ns/xproc-step" content-type="application/xml">
 <doc>
 <title>My document</title>
@@ -755,7 +750,7 @@ document:</para>
 </programlisting>
   <para>The corresponding request should look something like this:</para>
 
-  <programlisting><![CDATA[POST http://example.com/someservice HTTP/1.1
+  <programlisting language="xml"><![CDATA[POST http://example.com/someservice HTTP/1.1
 Host: example.com
 Content-Type: application/xml; charset="utf-8"
 
@@ -933,9 +928,9 @@ using the <tag>p:unescape-markup</tag> step.</para>
 <title>HTTP Request Example</title>
 
 <para>A simple form might be posted as follows:</para>
-<programlisting><xi:include href="examples/form.post.txt" parse="text"/></programlisting>
+<programlisting language="xml"><xi:include href="examples/form.post.txt" parse="text"/></programlisting>
 <para>and if the response was an XHTML document, the result document would be:</para>
-<programlisting><xi:include href="examples/form.response.txt" parse="text"/></programlisting>
+<programlisting language="xml"><xi:include href="examples/form.response.txt" parse="text"/></programlisting>
 </section>
 
 </section>
@@ -1777,11 +1772,11 @@ is ignored, irrespective of where it was specified.</para>
 <para>For example, with the 'namespace' option set to the XHTML
 namespace, the following input:</para>
 
-<programlisting><xi:include href="examples/parse.input.ex.txt" parse="text"/></programlisting>
+<programlisting language="xml"><xi:include href="examples/parse.input.ex.txt" parse="text"/></programlisting>
 
 <para>would produce:</para>
 
-<programlisting><xi:include href="examples/parse.output.ex.txt" parse="text"/></programlisting>
+<programlisting language="xml"><xi:include href="examples/parse.output.ex.txt" parse="text"/></programlisting>
 </section>
 
 <!-- ************************************************************************-->
@@ -2201,11 +2196,11 @@ exactly one character long.</error>
 <para>The following examples of <tag>p:exec</tag> are equivalent. The
 first uses the default <option>arg-separator</option>:</para>
 
-<programlisting><xi:include href="examples/exec-as1.txt" parse="text"/></programlisting>
+<programlisting language="xml"><xi:include href="examples/exec-as1.txt" parse="text"/></programlisting>
 
 <para>The second specifies an alternate separator:</para>
 
-<programlisting><xi:include href="examples/exec-as2.txt" parse="text"/></programlisting>
+<programlisting language="xml"><xi:include href="examples/exec-as2.txt" parse="text"/></programlisting>
 
 <para>If one of the arguments contains a space (e.g., a filename that
 contains a space), then you must specify an alternate separator.</para>
@@ -2735,7 +2730,7 @@ in the result sequence will be treated as documents with the element as their
 document element.</para>
 
 <para>For example:</para>
-<programlisting><![CDATA[
+<programlisting language="xml"><![CDATA[
 <c:query>
 declare namespace atom="http://www.w3.org/2005/Atom";
 /atom:feed/atom:entry
@@ -2855,12 +2850,12 @@ validation before using XQuery:</para>
 
 <example xml:id="ex.c.xquery">
 <title>A Sample Pipeline Document</title>
-<programlisting><xi:include href="examples/xquery.txt" parse="text"/></programlisting>
+<programlisting language="xml"><xi:include href="examples/xquery.txt" parse="text"/></programlisting>
 </example>
 
 <para>Where <filename>countp.xq</filename> might contain:</para>
 
-<programlisting>&lt;count>{count(.//p)}&lt;/count></programlisting>
+<programlisting language="xml">&lt;count>{count(.//p)}&lt;/count></programlisting>
 
 </section>
 </section>

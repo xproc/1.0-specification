@@ -1,5 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://docbook.org/xslt/ns/extension" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:doc="http://nwalsh.com/xmlns/schema-doc/" xmlns:m="http://docbook.org/xslt/ns/mode" xmlns:ml="http://nwalsh.com/ns/ml-macro#" xmlns:n="http://docbook.org/xslt/ns/normalize" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:t="http://docbook.org/xslt/ns/template" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="f h db doc m ml n rng t xlink xs" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://docbook.org/xslt/ns/extension"
+                xmlns:h="http://www.w3.org/1999/xhtml"
+                xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:doc="http://nwalsh.com/xmlns/schema-doc/"
+                xmlns:m="http://docbook.org/xslt/ns/mode"
+                xmlns:ml="http://nwalsh.com/ns/ml-macro#"
+                xmlns:n="http://docbook.org/xslt/ns/normalize"
+                xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                xmlns:t="http://docbook.org/xslt/ns/template"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                exclude-result-prefixes="f h db doc m ml n rng t xlink xs"
+                version="2.0">
 
 <xsl:import href="docbook.xsl"/>
 <xsl:import href="ml-macro.xsl"/>
@@ -17,6 +31,12 @@
 <xsl:param name="travis-user" select="''" as="xs:string"/>
 <xsl:param name="travis-repo" select="''" as="xs:string"/>
 <xsl:param name="auto-diff" select="''" as="xs:string"/>
+
+<xsl:param name="syntax.highlight.map" as="element()*">
+  <map key="xml" value="markup"/>
+  <map key="xslt" value="markup"/>
+  <map key="html" value="markup"/>
+</xsl:param>
 
 <!-- Default macros -->
 <xsl:variable name="ml:defaultMacros" select="document($defaultMacros)"/>
@@ -181,9 +201,9 @@
 </xsl:template>
 
 <xsl:template match="db:literal[@role='infoset-property']">
-  <xsl:call-template name="inline-monoseq">
+  <xsl:call-template name="t:inline-monoseq">
     <xsl:with-param name="content">
-      <xsl:call-template name="simple-xlink">
+      <xsl:call-template name="t:xlink">
 	<xsl:with-param name="content">
 	  <xsl:text>[</xsl:text>
 	  <xsl:apply-templates/>
@@ -195,11 +215,11 @@
 </xsl:template>
   
 <xsl:template match="db:port">
-  <xsl:call-template name="inline-monoseq"/>
+  <xsl:call-template name="t:inline-monoseq"/>
 </xsl:template>
 
 <xsl:template match="db:type">
-  <xsl:call-template name="inline-monoseq"/>
+  <xsl:call-template name="t:inline-monoseq"/>
 </xsl:template>
 
 <xsl:template match="db:tag[@class='attribute']" priority="10">
@@ -302,7 +322,7 @@
 
 <!-- ============================================================ -->
 
-<xsl:template name="css-style">
+<xsl:template name="t:css">
   <xsl:if test="$js-navigation">
     <script type="text/javascript" src="fg-menu/jquery-1.4.1.min.js"></script>
     <script type="text/javascript" src="fg-menu/fg.menu.js"></script>
@@ -354,6 +374,15 @@
 <!-- ============================================================ -->
 
 <xsl:template name="t:head-links">
+  <xsl:param name="node" select="."/>
+
+  <xsl:call-template name="t:css"/>
+
+  <xsl:if test="$link.madeby.uri != ''">
+    <link rev="made"
+          href="{$link.madeby.uri}"/>
+  </xsl:if>
+
   <xsl:variable name="info" select="/db:specification/db:info"/>
 
   <xsl:for-each select="$info/db:bibliorelation[@type='isformatof']">
