@@ -14,3 +14,6 @@ https://xproc.github.io/specification/
 Developments, including proposed errata, for
 [XProc 1.0](http://www.w3.org/TR/xproc/) are in
 the [`xproc10`](../../tree/xproc10) branch.
+
+If you're interested in contributing to the specification, you can
+do so by way of [a pull request](https://help.github.com/articles/creating-a-pull-request).
