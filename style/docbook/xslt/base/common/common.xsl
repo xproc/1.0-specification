@@ -982,10 +982,7 @@ object is recognized as a graphic.</para>
     </xsl:choose>
   </xsl:variable>
 
-  <xsl:message>
-    <xsl:text>ext:cwd </xsl:text>
-    <xsl:value-of select="function-available('ext:cwd')"/>
-  </xsl:message>
+  <!--
   <xsl:message>
     <xsl:text>mediaobject-href: </xsl:text>
     <xsl:value-of select="$filename"/>
@@ -993,6 +990,7 @@ object is recognized as a graphic.</para>
     <xsl:text>against base uri: </xsl:text>
     <xsl:value-of select="$outdir"/>
   </xsl:message>
+  -->
 
   <xsl:choose>
     <xsl:when test="$outdir != ''">
