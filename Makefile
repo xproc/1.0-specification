@@ -17,6 +17,8 @@ build/langspec/Overview.html: langspec/langspec.html
 	cp langspec/ns-err/xproc-error.html build/langspec/ns/
 	cp style/xproc.css build/langspec/
 	cp style/xproc.css build/langspec/ns/
+	cp js/prism.js build/langspec/
+	cp js/prism.js build/langspec/ns/
 	curl -s -o build/langspec/base.css http://www.w3.org/StyleSheets/TR/base.css
 	cp build/langspec/base.css build/langspec/ns/
 	cp langspec/ns-p/xproc.html build/langspec/ns/
