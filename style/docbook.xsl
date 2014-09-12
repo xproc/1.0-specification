@@ -4,18 +4,21 @@
 		xmlns:f="http://docbook.org/xslt/ns/extension"
 		xmlns:h="http://www.w3.org/1999/xhtml"
 		xmlns:db="http://docbook.org/ns/docbook"
+                xmlns:tp="http://docbook.org/xslt/ns/template/private"
                 xmlns:m="http://docbook.org/xslt/ns/mode"
 		xmlns:t="http://docbook.org/xslt/ns/template"
 		xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-		exclude-result-prefixes="f h db m t xlink xs"
+		exclude-result-prefixes="f h db m t xlink xs tp"
                 version="2.0">
 
-<xsl:import href="docbook/base/html/docbook.xsl"/>
+<xsl:import href="docbook/xslt/base/html/final-pass.xsl"/>
 
 <xsl:param name="js-navigation" select="false()"/>
 
 <xsl:param name="w3c-doctype" select="/db:specification/@class"/>
+
+<xsl:param name="toc.section.depth">3</xsl:param>
 
 <xsl:param name="docbook.css">
   <xsl:if test="db:specification/db:info/db:pubdate">
@@ -37,18 +40,6 @@
   <xsl:text>.css</xsl:text>
 </xsl:param>
 
-<xsl:param name="linenumbering" as="element()*">
-<ln path="literallayout" everyNth="0"/>
-<ln path="programlisting" everyNth="0"/>
-<ln path="programlistingco" everyNth="0"/>
-<ln path="screen" everyNth="0"/>
-<ln path="synopsis" everyNth="0"/>
-<ln path="address" everyNth="0"/>
-</xsl:param>
-
-<xsl:param name="toc.section.depth" select="3"/>
-<xsl:param name="section.label.includes.component.label" select="1"/>
-
 <xsl:param name="publication.root.uri"
 	   select="if (/processing-instruction(publication-root))
                    then xs:string(processing-instruction(publication-root))
@@ -58,18 +49,6 @@
 	   select="if (/processing-instruction(latest-version))
                    then xs:string(processing-instruction(latest-version))
 		   else ()"/>
-
-<xsl:template name="user-titlepage-templates">
-  <db:section t:side="recto">
-    <db:title/>
-    <db:subtitle/>
-  </db:section>
-
-  <db:appendix t:side="recto">
-    <db:title/>
-    <db:subtitle/>
-  </db:appendix>
-</xsl:template>
 
 <!-- ============================================================ -->
 
@@ -100,200 +79,6 @@
     <xsl:text>/</xsl:text>
   </xsl:value-of>
 </xsl:variable>
-
-<xsl:template name="user-localization-data">
-  <l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
-	  language="en" english-language-name="English">
-
-    <l:context name="title">
-      <l:template name="specification" text="%t"/>
-    </l:context>
-
-    <l:context name="title-numbered">
-      <l:template name="appendix" text="%n&#160;%t"/>
-      <l:template name="bridgehead" text="%n&#160;%t"/>
-      <l:template name="sect1" text="%n&#160;%t"/>
-      <l:template name="sect2" text="%n&#160;%t"/>
-      <l:template name="sect3" text="%n&#160;%t"/>
-      <l:template name="sect4" text="%n&#160;%t"/>
-      <l:template name="sect5" text="%n&#160;%t"/>
-      <l:template name="section" text="%n&#160;%t"/>
-      <l:template name="simplesect" text="%t"/>
-    </l:context>
-  </l:l10n>
-</xsl:template>
-
-<xsl:param name="root.elements">
-  <db:specification/>
-</xsl:param>
-
-<xsl:param name="autotoc.label.separator" select="'&#160;'"/>
-
-<!-- ============================================================ -->
-
-<xsl:template name="component-toc">
-  <xsl:param name="toc-context" select="."/>
-  <xsl:param name="toc.title" select="true()"/>
-
-  <div id='spectoc'>
-    <xsl:call-template name="make-toc">
-      <xsl:with-param name="toc-context" select="$toc-context"/>
-      <xsl:with-param name="toc.title" select="$toc.title"/>
-      <xsl:with-param name="nodes"
-                      select="db:section|db:sect1
-                              |db:bridgehead[not(@renderas)
-                                             and $bridgehead.in.toc != 0]
-                              |.//db:bridgehead[@renderas='sect1'
-                                                and $bridgehead.in.toc != 0]"/>
-    </xsl:call-template>
-
-    <xsl:if test="db:appendix">
-      <h3><a name="appendices" id="appendices"/>Appendices</h3>
-      <xsl:call-template name="make-toc">
-	<xsl:with-param name="toc-context" select="$toc-context"/>
-	<xsl:with-param name="toc.title" select="false()"/>
-	<xsl:with-param name="nodes"
-			select="db:appendix"/>
-      </xsl:call-template>
-    </xsl:if>
-  </div>
-</xsl:template>
-
-<xsl:template name="make-toc">
-  <xsl:param name="toc-context" select="."/>
-  <xsl:param name="toc.title" select="true()"/>
-  <xsl:param name="nodes" select="()"/>
-
-  <xsl:if test="$nodes">
-    <div class="toc">
-      <xsl:if test="$toc.title">
-	<h2 id="TableOfContents">
-	  <xsl:call-template name="gentext">
-	    <xsl:with-param name="key">TableofContents</xsl:with-param>
-	  </xsl:call-template>
-	</h2>
-      </xsl:if>
-
-      <xsl:element name="{$toc.list.type}">
-	<xsl:attribute name="class" select="'toc'"/>
-	<xsl:apply-templates select="$nodes" mode="m:toc">
-	  <xsl:with-param name="toc-context" select="$toc-context"/>
-	</xsl:apply-templates>
-      </xsl:element>
-    </div>
-  </xsl:if>
-</xsl:template>
-
-<xsl:template name="toc-line">
-  <xsl:param name="toc-context" select="."/>
-  <xsl:param name="depth" select="1"/>
-  <xsl:param name="depth.from.context" select="8"/>
-
-  <span>
-    <xsl:call-template name="class"/>
-
-    <xsl:variable name="label">
-      <xsl:apply-templates select="." mode="m:label-markup"/>
-    </xsl:variable>
-    <xsl:copy-of select="$label"/>
-    <xsl:if test="$label != ''">
-      <xsl:value-of select="$autotoc.label.separator"/>
-    </xsl:if>
-
-    <a href="{f:href(/,.)}">
-      <xsl:apply-templates select="." mode="m:titleabbrev-markup"/>
-    </a>
-  </span>
-</xsl:template>
-
-<xsl:template match="db:section[@role='tocsuppress']" mode="m:toc">
-  <!-- nop -->
-</xsl:template>
-
-<xsl:template match="db:appendix">
-  <xsl:variable name="recto"
-		select="$titlepages/*[node-name(.) = node-name(current())
-			              and @t:side='recto'][1]"/>
-  <xsl:variable name="verso"
-		select="$titlepages/*[node-name(.) = node-name(current())
-			              and @t:side='verso'][1]"/>
-
-  <div class="{local-name(.)}">
-    <xsl:call-template name="titlepage">
-      <xsl:with-param name="content" select="$recto"/>
-    </xsl:call-template>
-
-    <xsl:if test="not(empty($verso))">
-      <xsl:call-template name="titlepage">
-	<xsl:with-param name="content" select="$verso"/>
-      </xsl:call-template>
-    </xsl:if>
-
-    <xsl:apply-templates/>
-
-    <xsl:if test="not(parent::db:article)">
-      <xsl:call-template name="t:process-footnotes"/>
-    </xsl:if>
-  </div>
-</xsl:template>
-
-<xsl:template match="db:section">
-  <xsl:variable name="recto"
-		select="$titlepages/*[node-name(.) = node-name(current())
-			              and @t:side='recto'][1]"/>
-  <xsl:variable name="verso"
-		select="$titlepages/*[node-name(.) = node-name(current())
-			              and @t:side='verso'][1]"/>
-
-  <div class="{local-name(.)}">
-    <xsl:call-template name="titlepage">
-      <xsl:with-param name="content" select="$recto"/>
-    </xsl:call-template>
-
-    <xsl:if test="not(empty($verso))">
-      <xsl:call-template name="titlepage">
-	<xsl:with-param name="content" select="$verso"/>
-      </xsl:call-template>
-    </xsl:if>
-
-    <xsl:apply-templates/>
-  </div>
-</xsl:template>
-
-<xsl:template match="db:appendix/db:info/db:title"
-	      mode="m:titlepage-mode"
-	      priority="100">
-  <h2>
-    <xsl:if test="../../@xml:id">
-      <a name="{../../@xml:id}" id="{../../@xml:id}"/>
-    </xsl:if>
-
-    <xsl:apply-templates select="../.." mode="m:object-title-markup">
-      <xsl:with-param name="allow-anchors" select="1"/>
-    </xsl:apply-templates>
-  </h2>
-</xsl:template>
-
-<xsl:template match="db:section/db:info/db:title"
-	      mode="m:titlepage-mode"
-	      priority="100">
-  <xsl:variable name="depth"
-		select="count(ancestor::db:section)"/>
-
-  <xsl:variable name="hlevel"
-		select="if ($depth &lt; 5) then $depth else 4"/>
-  
-  <xsl:element name="h{$hlevel+2}" namespace="http://www.w3.org/1999/xhtml">
-    <xsl:if test="../../@xml:id">
-      <a name="{../../@xml:id}" id="{../../@xml:id}"/>
-    </xsl:if>
-
-    <xsl:apply-templates select="../.." mode="m:object-title-markup">
-      <xsl:with-param name="allow-anchors" select="1"/>
-    </xsl:apply-templates>
-
-  </xsl:element>
-</xsl:template>
 
 <!-- ============================================================ -->
 
@@ -526,18 +311,7 @@ use</a> rules apply.</p>
   </div>
   <hr/>
 
-  <xsl:variable name="toc.params" as="element()">
-    <tocparam toc="1" title="1"/>
-  </xsl:variable>
-
-  <xsl:call-template name="make-lots">
-    <xsl:with-param name="toc.params" select="$toc.params"/>
-    <xsl:with-param name="toc">
-      <xsl:call-template name="component-toc">
-	<xsl:with-param name="toc.title" select="$toc.params/@title != 0"/>
-      </xsl:call-template>
-    </xsl:with-param>
-  </xsl:call-template>
+  <xsl:apply-templates select="." mode="m:toc"/>
 
   <xsl:apply-templates/>
 
@@ -629,15 +403,119 @@ use</a> rules apply.</p>
   </div>
 </xsl:template>
 
+<xsl:template name="t:user-localization-data">
+  <l:l10n xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+	  language="en" english-language-name="English">
+
+    <l:context name="title">
+      <l:template name="specification" text="%t"/>
+    </l:context>
+
+    <l:context name="title-numbered">
+      <l:template name="appendix" text="%n&#160;%t"/>
+      <l:template name="bridgehead" text="%n&#160;%t"/>
+      <l:template name="sect1" text="%n&#160;%t"/>
+      <l:template name="sect2" text="%n&#160;%t"/>
+      <l:template name="sect3" text="%n&#160;%t"/>
+      <l:template name="sect4" text="%n&#160;%t"/>
+      <l:template name="sect5" text="%n&#160;%t"/>
+      <l:template name="section" text="%n&#160;%t"/>
+      <l:template name="simplesect" text="%t"/>
+    </l:context>
+  </l:l10n>
+</xsl:template>
+
+<!-- ============================================================ -->
+
+<xsl:param name="generate.toc" as="element()*">
+  <tocparam path="specification" toc="1"/>
+  <tocparam path="appendix" toc="1" title="1"/>
+  <tocparam path="section" toc="1" title="1"/>
+</xsl:param>
+
+<xsl:template match="db:specification" mode="m:toc">
+  <xsl:param name="toc.params"
+             select="f:find-toc-params(., $generate.toc)"/>
+
+  <xsl:variable name="toc">
+    <xsl:call-template name="t:make-lots">
+      <xsl:with-param name="toc.params" select="$toc.params"/>
+      <xsl:with-param name="toc">
+        <xsl:call-template name="t:component-toc"/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:apply-templates select="$toc/h:div" mode="fixup-toc"/>
+</xsl:template>
+
+<xsl:template match="db:section[@role='tocsuppress']" mode="m:toc">
+  <!-- nop -->
+</xsl:template>
+
+<xsl:template name="t:format-toc-title">
+  <xsl:param name="toc-context" as="element()"/>
+  <xsl:param name="toc-title" as="node()*"/>
+  <h2 id="TableOfContents">
+    <xsl:sequence select="$toc-title"/>
+  </h2>
+</xsl:template>
+
+<xsl:template name="tp:toc-line">
+  <xsl:param name="toc-context" select="."/>
+  <xsl:param name="depth" select="1"/>
+  <xsl:param name="depth.from.context" select="8"/>
+
+  <span>
+    <xsl:apply-templates select="." mode="m:label-content"/>
+    <xsl:text> </xsl:text>
+    <a href="{f:href(/,.)}">
+      <xsl:apply-templates select="." mode="m:titleabbrev-content"/>
+    </a>
+  </span>
+</xsl:template>
+
+<xsl:template match="h:li" mode="fixup-toc" priority="10">
+  <dt>
+    <xsl:apply-templates select="@*,node()" mode="fixup-toc"/>
+  </dt>
+  <xsl:if test="h:ul">
+    <dd>
+      <dl class="toc">
+        <xsl:apply-templates select="h:ul/node()" mode="fixup-toc"/>
+      </dl>
+    </dd>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="h:ul[parent::h:li]" mode="fixup-toc" priority="15"/>
+
+<xsl:template match="h:ul" mode="fixup-toc" priority="10">
+  <dl class="toc">
+    <xsl:apply-templates mode="fixup-toc"/>
+  </dl>
+</xsl:template>
+
+<xsl:template match="*" mode="fixup-toc">
+  <xsl:copy>
+    <xsl:apply-templates select="@*,node()" mode="fixup-toc"/>
+  </xsl:copy>
+</xsl:template>
+
+<xsl:template match="comment()|text()|attribute()|processing-instruction()"
+              mode="fixup-toc">
+  <xsl:copy/>
+</xsl:template>
+
 <!-- ============================================================ -->
 
 <xsl:template match="db:rfc2119">
   <span class="rfc2119">
-    <xsl:call-template name="id"/>
+    <xsl:sequence select="f:html-attributes(., f:node-id(.))"/>
     <xsl:if test="@lang or @xml:lang">
       <xsl:call-template name="lang-attribute"/>
     </xsl:if>
-    <xsl:call-template name="simple-xlink"/>
+    <xsl:call-template name="t:xlink"/>
   </span>
 </xsl:template>
 

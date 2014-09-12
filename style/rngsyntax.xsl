@@ -1,5 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sa="http://xproc.org/ns/syntax-annotations" xmlns:ss="http://xproc.org/ns/syntax-summary" xmlns="http://www.w3.org/1999/xhtml" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax" exclude-result-prefixes="sa xs e rng ss" version="2.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:f="http://docbook.org/xslt/ns/extension"
+                xmlns:sa="http://xproc.org/ns/syntax-annotations"
+                xmlns:ss="http://xproc.org/ns/syntax-summary"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"
+                exclude-result-prefixes="sa xs e rng ss f"
+                version="2.0">
 
 <xsl:strip-space elements="rng:*"/>
 
@@ -303,6 +312,7 @@
 
 <xsl:template match="ss:element-summary">
   <p>
+    <xsl:sequence select="f:html-attributes(., f:node-id(.))"/>
     <xsl:attribute name="class">
       <xsl:text>element-syntax</xsl:text>
       <xsl:if test="@class">
@@ -310,7 +320,6 @@
 	<xsl:value-of select="@class"/>
       </xsl:if>
     </xsl:attribute>
-   <xsl:call-template name="id"/>
     <code>
       <xsl:text>&lt;</xsl:text>
 

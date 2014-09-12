@@ -6,7 +6,8 @@
 <p:output port="result"/>
 <p:option name="schema" select="''"/>
 
-<p:xinclude name="doc"/>
+<p:xinclude name="doc" xmlns:cx="http://xmlcalabash.com/ns/extensions"
+            cx:trim="true"/>
 
 <p:choose>
   <p:when test="$schema = ''">

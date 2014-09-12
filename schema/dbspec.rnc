@@ -13,6 +13,7 @@ namespace html = "http://www.w3.org/1999/xhtml"
 namespace p = "http://www.w3.org/ns/xproc"
 namespace e ="http://www.w3.org/1999/XSL/Spec/ElementSyntax"
 namespace err = "http://www.w3.org/ns/xproc-error"
+namespace r = "http://nwalsh.com/xmlns/schema-remap/"
 default namespace = "http://docbook.org/ns/docbook"
 
 include "dbw3c.rnc" {
@@ -20,6 +21,10 @@ include "dbw3c.rnc" {
    db._any = element * - (db:* | html:* | p:*) {
       (db._any.attribute | text | db._any)*
    }
+
+   db.revisionflag.attribute =
+      (attribute revisionflag { db.revisionflag.enumeration }
+       & attribute revdate { xsd:date })
 }
 
 db.all.blocks |=
@@ -28,6 +33,10 @@ db.all.blocks |=
  | e.rng-fragment
  | p.declare-step
  | err.error-list
+
+db.all.inlines |=
+   db.el
+ | db.att
 
 e.rng-pattern =
    element e:rng-pattern {
@@ -213,4 +222,21 @@ div {
          empty
       }
 }
+
+# ======================================================================
+
+db.el =
+   [ r:remap [ db:tag [ class="tag" ] ] ]
+   element db:el {
+      db.common.attributes,
+      db._text
+   }
+
+db.att =
+   [ r:remap [ db:tag [ class="attribute" ] ] ]
+   element db:att {
+      db.common.attributes,
+      db._text
+   }
+
 
