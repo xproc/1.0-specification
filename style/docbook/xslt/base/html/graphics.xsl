@@ -453,6 +453,8 @@ valign: <xsl:value-of select="@valign"/></xsl:message>
   <xsl:variable name="href"
                 select="f:mediaobject-href($filename)"/>
 
+  <xsl:message>Image src=<xsl:value-of select="$href"/></xsl:message>
+
   <xsl:variable name="img">
     <xsl:choose>
       <!-- attempt to handle audio data -->
