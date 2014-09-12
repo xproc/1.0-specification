@@ -38,6 +38,9 @@
   <map key="html" value="markup"/>
 </xsl:param>
 
+<xsl:param name="resource.root"
+           select="'https://docbook.github.com/release/2.0.5/base/'"/>
+
 <!-- Default macros -->
 <xsl:variable name="ml:defaultMacros" select="document($defaultMacros)"/>
 <ml:collection xml:id="macros">
