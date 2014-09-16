@@ -34,7 +34,9 @@ changelog.html: changelog.xml
                serialization-options.xml standard-components.xml
 	$(MAKE) -C examples
 	$(CALABASH) -isource=$< -oresult=$@ \
-                    ../style/validate.xpl schema=../schema/dbspec.rng
+                    ../style/validate.xpl \
+                    schema=../schema/dbspec.rng \
+                    schematron=../schema/docbook.sch
 
 error-list.xml: ,langspec.xml
 	$(SAXON) -s:$< -xsl:../style/error-list.xsl -o:$@
