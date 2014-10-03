@@ -2,7 +2,9 @@ STYLES=$(wildcard style/*.xsl)
 
 spec: build/langspec/Overview.html
 
-all: spec build/langreq/Overview.html
+req: build/langreq/Overview.html
+
+all: spec req
 
 build/langspec/Overview.html: langspec/langspec.html
 	cp langspec/*.html build/langspec/
@@ -15,6 +17,8 @@ build/langspec/Overview.html: langspec/langspec.html
 	cp langspec/ns-err/xproc-error.html build/langspec/ns/
 	cp style/xproc.css build/langspec/
 	cp style/xproc.css build/langspec/ns/
+	cp js/prism.js build/langspec/
+	cp js/prism.js build/langspec/ns/
 	curl -s -o build/langspec/base.css http://www.w3.org/StyleSheets/TR/base.css
 	cp build/langspec/base.css build/langspec/ns/
 	cp langspec/ns-p/xproc.html build/langspec/ns/
@@ -28,15 +32,19 @@ build/langspec/Overview.html: langspec/langspec.html
 	cp langspec/schemas/xproc.xsd build/langspec/schemas/
 	cp langspec/schemas/xproc.dtd build/langspec/schemas/
 
+build/langreq/Overview.html: langreq/xproc-v2-req.html
+	cp langreq/*.html build/langreq/
+	mv build/langreq/xproc-v2-req.html $@
+	cp langreq/,xproc-v2-req.xml build/langreq/xproc-v2-req.xml
+	cp style/xproc.css build/langreq/
+	curl -s -o build/langreq/base.css http://www.w3.org/StyleSheets/TR/base.css
+
 langspec/langspec.html: langspec/langspec.xml $(STYLES)
 	mkdir -p build/langspec build/langspec/schemas build/langspec/ns
 	$(MAKE) -C schema
 	$(MAKE) -C langspec
 
-build/langreq/Overview.html: langreq/xproc-v2-req.html
-	cp langreq/xproc-v2-req.html $@
-
-langreq/xproc-v2-req.html: langreq/xproc-v2-req.xml
+langreq/xproc-v2-req.html: langreq/xproc-v2-req.xml $(STYLES)
 	mkdir -p build/langreq
 	$(MAKE) -C schema
 	$(MAKE) -C langreq

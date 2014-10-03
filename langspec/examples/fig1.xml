@@ -22,4 +22,3 @@
     </p:input>
   </p:validate-with-xml-schema>
 </p:declare-step>
-

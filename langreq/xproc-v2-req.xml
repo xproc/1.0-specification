@@ -8,8 +8,9 @@
   <info>
     <title>XProc V2.0 Requirements</title>
     <w3c-shortname>xproc-v2-req</w3c-shortname>
-    <pubdate>2014-02-20</pubdate>
-    <bibliorelation type="isformatof" xlink:href="xproc-v2-req.xml">XML</bibliorelation>
+    <!-- defaults to date formatted <pubdate>2014-02-20</pubdate> -->
+    <bibliorelation type="isformatof"
+                    xlink:href="xproc-v2-req.xml">XML</bibliorelation>
     <authorgroup>
       <author>
         <personname>Alex Milowski</personname>
@@ -244,14 +245,14 @@ options, parameters, and variables (to be used instead of
 <tag class="attribute">select</tag>)
 </para>
 </listitem>
-<listitem revisionflag="added">
+<listitem revisionflag="added" revdate="1970-01-01">
 <para>Allow input ports to appear as shortcut values on steps with
 the semantics that the value provided is a URI and is used to load
 the document (per <tag>p:document</tag>).</para>
 <para>For example, this step:</para>
-<programlisting>&lt;p:xslt source="doc.xml" stylesheet="{$a}.xsl"/></programlisting>
+<programlisting language="xml">&lt;p:xslt source="doc.xml" stylesheet="{$a}.xsl"/></programlisting>
 <para>would be equivalent to this XProc V2.0 pipeline:</para>
-<programlisting><![CDATA[<p:xslt>
+<programlisting language="xml"><![CDATA[<p:xslt>
   <p:input port="source">
     <p:document href="doc.xml"/>
   </p:input>
@@ -262,7 +263,7 @@ the document (per <tag>p:document</tag>).</para>
 <para>Which, in the interest of completeness, would have to be written
 thus in XProc 1.0:</para>
 
-<programlisting><![CDATA[<p:load name="load">
+<programlisting language="xml"><![CDATA[<p:load name="load">
   <p:with-option name="href"
                  select="concat($a, '.xsl')"/>
 </p:load>
@@ -276,15 +277,15 @@ thus in XProc 1.0:</para>
   </p:input>
 </p:xslt>]]></programlisting>
 </listitem>
-<listitem revisionflag="added">
+<listitem revisionflag="added" revdate="1970-01-01">
 <para>Allow output ports to appear as shortcut values on steps with
 the semantics that the value provided is a URI and is used to store
 the document that appears on that result port, per <tag>p:store</tag>.
 </para>
 <para>For example, this step:</para>
-<programlisting>&lt;p:xslt result="out.xml"/></programlisting>
+<programlisting language="xml">&lt;p:xslt result="out.xml"/></programlisting>
 <para>would be equivalent to this pipeline:</para>
-<programlisting><![CDATA[<p:xslt name="style"/>
+<programlisting language="xml"><![CDATA[<p:xslt name="style"/>
 
 <p:store href="out.xml"/>
 
@@ -307,7 +308,7 @@ must document these incompatibilities.
 </para>
 </section>
 
-<section xml:id="errata" revisionflag="added">
+<section xml:id="errata" revisionflag="added" revdate="1970-01-01">
 <title>Resolve specification errors</title>
 
 <para>This section of the requirements document details a number
@@ -494,26 +495,26 @@ limited to:</para>
 <para>File system steps (<tag>p:mkdir</tag>, <tag>p:copy</tag>, ...)?
 </para>
 </listitem>
-<listitem revisionflag="added">
+<listitem revisionflag="added" revdate="1970-01-01">
 <para>Step to turn a map into an XML serialization, function to turn
 an XML serialization into a map.
 </para>
 </listitem>
-<listitem revisionflag="added">
+<listitem revisionflag="added" revdate="1970-01-01">
 <para>Function to return metadata as map; additional syntax/step to
 augment and/or override metadata.
 </para>
 </listitem>
-<listitem revisionflag="added">
+<listitem revisionflag="added" revdate="1970-01-01">
 <para>Consider harmonizing with EXpath for extension functions/steps
 (e.g. <link xlink:href="http://expath.org/spec/binary"/>).
 </para>
 </listitem>
-<listitem revisionflag="added">
+<listitem revisionflag="added" revdate="1970-01-01">
 <para>Step for turning non-XML documents into various XML encoded
 forms.</para>
 </listitem>
-<listitem revisionflag="added">
+<listitem revisionflag="added" revdate="1970-01-01">
 <para>Look at <tag>p:store</tag> and anywhere else serialization happens
 and document which metadata parameters have effect.</para>
 </listitem>
@@ -561,7 +562,7 @@ operating. The transformed document always appears on a port named
 </para>
 </section>
 
-<section xml:id="resource-manager" revisionflag="added">
+<section xml:id="resource-manager" revisionflag="added" revdate="1970-01-01">
 <title>Resource manager</title>
 <para>Consider whether XProc needs to define conceptually a resource
 manager and provide access to it. For example, a standard step like
@@ -582,7 +583,7 @@ base URI of documents produced by other steps. No convenient mechanism exists in
 XProc V1.0 to satisfy these requirements.</para>
 </section>
 
-<section xml:id="xinclude" revisionflag="added">
+<section xml:id="xinclude" revisionflag="added" revdate="1970-01-01">
 <title>Add a secondary input port to <tag>p:xinclude</tag></title>
 
 <para>Add a secondary input port to <tag>p:xinclude</tag> from which
