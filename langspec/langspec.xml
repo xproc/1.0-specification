@@ -1521,41 +1521,63 @@ specified.</para>
           not violate the constraints above.</para>
       </note>
     </section>
-    <section xml:id="variables">
-      <title>Variables</title>
-      <para>Variables are name/value pairs. Pipeline authors can create variables to hold computed
-        values.</para>
-      <para><termdef xml:id="dt-variable">A <firstterm>variable</firstterm> is a name/value pair
-          where the name is an <link xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname"
-            >expanded name</link> and the value <rfc2119>must</rfc2119> be a string or
-            <type>xs:untypedAtomic</type>.</termdef>
-      </para>
-      <para>Variables and options share the same scope and may shadow each other. </para>
-    </section>
-    <section xml:id="options">
-      <title>Options</title>
-      <para>Some steps accept options. Options are name/value pairs, like variables. Unlike
-        variables, the value of an option can be changed by the caller.</para>
-      <para><termdef xml:id="dt-option">An <firstterm>option</firstterm> is a name/value pair where
-          the name is an <link xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
-            name</link> and the value <rfc2119>must</rfc2119> be a string or
-            <type>xs:untypedAtomic</type>.</termdef>
-      </para>
-      <para><termdef xml:id="dt-declared-options">The options declared on a step are its
-            <firstterm>declared options</firstterm>.</termdef> Option names are always expressed as
-        literal values, pipelines cannot construct option names dynamically. </para>
-      <para><termdef xml:id="dt-specified-options">The options on a step which have specified
-          values, either because a <tag>p:with-option</tag> element specifies a value or because the
-          declaration included a default value, are its <firstterm>specified
-          options</firstterm>.</termdef>
-      </para>
-      <para><impl>How outside values are specified for pipeline options on the pipeline initially
-          invoked by the processor is <glossterm>implementation-defined</glossterm>.</impl> In other
-        words, the command line options, APIs, or other mechanisms available to specify such options
-        values are outside the scope of this specification.</para>
-    </section>
+
+<section xml:id="variables">
+<title>Variables</title>
+
+<para>Variables are name/value pairs. Pipeline authors can create
+variables to hold computed values.</para>
+
+<para><termdef xml:id="dt-variable">A <firstterm>variable</firstterm>
+is a name/value pair. The name <rfc2119>must</rfc2119> be an <link
+xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
+name</link>. The value may be any XDM value.</termdef>
+</para>
+
+<para>Variables and options share the same scope and may shadow each
+other.</para>
+</section>
+
+<section xml:id="options">
+<title>Options</title>
+
+<para>Some steps accept options. Options are name/value pairs, like
+variables. Unlike variables, the value of an option can be changed by
+the caller.</para>
+
+<para><termdef xml:id="dt-option">An <firstterm>option</firstterm>
+is a name/value pair. The name <rfc2119>must</rfc2119> be an <link
+xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
+name</link>. The value may be any XDM value.</termdef>
+</para>
+
+<para><termdef xml:id="dt-declared-options">The options declared on a
+step are its <firstterm>declared options</firstterm>.</termdef> Option
+names are always expressed as literal values, pipelines cannot
+construct option names dynamically. </para>
+
+<para><termdef xml:id="dt-specified-options">The options on a step
+which have specified values, either because a <tag>p:with-option</tag>
+element specifies a value or because the declaration included a
+default value, are its <firstterm>specified options</firstterm>.</termdef>
+</para>
+
+<para><impl>How outside values are specified for pipeline options on
+the pipeline initially invoked by the processor is
+<glossterm>implementation-defined</glossterm>.</impl> In other words,
+the command line options, APIs, or other mechanisms available to
+specify such options values are outside the scope of this
+specification.</para>
+</section>
+
     <section xml:id="parameters">
       <title>Parameters</title>
+
+<note><para>This draft makes no attempt to add types to parameters because
+parameters as specified here are going away. Whatever proposal is adopted
+to replace this parameter mechanism should address the types of
+parameters.</para></note>
+
       <para>Some steps accept parameters. Parameters are name/value pairs, like variables and
         options. Unlike variables and options, which have names known in advance to the pipeline,
         parameters are not declared and their names may be unknown to the pipeline author. Pipelines
@@ -3336,26 +3358,43 @@ pipeline. These parameters are available on the
         precedence over any default value specified in the declaration.</para>
       <para>Parameters, unlike options and variables, have names that can be computed at runtime.
         The most common use of parameters is to pass parameter values to XSLT stylesheets.</para>
-      <section xml:id="p.variable"><title>p:variable</title><para>A <tag>p:variable</tag> declares a
-          variable and associates a value with it.</para>
-<para>The name of the variable
-            <rfc2119>must</rfc2119> be a QName. If it does not contain a prefix then it is in no
-          namespace. <error code="S0028">It is a <glossterm>static error</glossterm> to declare an
-            option or variable in the XProc namespace.</error>
-        </para>
-<para>The variable's value is specified with a <tag class="attribute">select</tag>
-          attribute. The <tag class="attribute">select</tag> attribute <rfc2119>must</rfc2119> be
-          specified. The content of the <tag class="attribute">select</tag> attribute is an XPath
-          expression which will be evaluated to provide the value of the variable.</para>
-        <e:rng-pattern name="VariableSelect"/>
+
+<section xml:id="p.variable">
+<title>p:variable</title>
+
+<para>A <tag>p:variable</tag> declares a variable and associates a
+value with it. Variable declarations may optionally specify the type
+of the variable using an XPath Sequence Type.</para>
+
+<para>The name of the variable <rfc2119>must</rfc2119> be a QName. If
+it does not contain a prefix then it is in no namespace. <error
+code="S0028">It is a <glossterm>static error</glossterm> to declare an
+option or variable in the XProc namespace.</error>
+</para>
+
+<para>The variable's value is specified with a <tag
+class="attribute">select</tag> attribute. The <tag
+class="attribute">select</tag> attribute <rfc2119>must</rfc2119> be
+specified. The content of the <tag class="attribute">select</tag>
+attribute is an XPath expression which will be evaluated to provide
+the value of the variable.</para>
+
+<e:rng-pattern name="VariableSelect"/>
 
 <para>If a <tag class="attribute">select</tag> expression is given, it
 is evaluated as an XPath expression using the appropriate context as
 described in <xref linkend="xpath-context"/>, for the enclosing
 <glossterm>container</glossterm>, with the addition of bindings for
 all preceding-sibling <tag>p:variable</tag> and <tag>p:option</tag>
-elements. Regardless of the implicit type of the expression, the type
-is treated as an <type>xs:untypedAtomic</type>.</para>
+elements.</para>
+
+<para>The type of the value may be specified in the <tag
+class="attribute">as</tag> attribute using an XPath Sequence
+Type<superscript>[citation needed]</superscript>. If an atomic type,
+or sequence of atomic types, is specified, the value provided for the
+option will be atomized according to the standard XPath rules. It is
+an error, err:FIXME, if the computed value does not match the
+specified sequence type.</para>
 
 <para>Since all <glossterm>in-scope bindings</glossterm> are present
 in the Processor XPath Context as variable bindings, <tag
@@ -3365,25 +3404,24 @@ variable reference uses a QName that is not the name of an <glossterm
 baseform="in-scope bindings">in-scope binding</glossterm>, an XPath
 evaluation error will occur.</para>
 
-<para>If a <tag
-            class="attribute">select</tag> expression is given, the <glossterm>readable
-            ports</glossterm> available for document connections are the <glossterm>readable
-            ports</glossterm> in the environment inherited by the first step in the surrounding
-            <glossterm>container</glossterm>'s <glossterm>contained steps</glossterm>. However, in
-          order to avoid ordering paradoxes, <error code="S0019">it is a <glossterm>static
-              error</glossterm> for a variable's document connection to refer to the output port of
-            any step in the surrounding <glossterm>container</glossterm>'s <glossterm>contained
-              steps</glossterm></error>.</para>
+<para>If a <tag class="attribute">select</tag> expression is given,
+the <glossterm>readable ports</glossterm> available for document
+connections are the <glossterm>readable ports</glossterm> in the
+environment inherited by the first step in the surrounding
+<glossterm>container</glossterm>'s <glossterm>contained
+steps</glossterm>. However, in order to avoid ordering paradoxes,
+<error code="S0019">it is a <glossterm>static error</glossterm> for a
+variable's document connection to refer to the output port of any step
+in the surrounding <glossterm>container</glossterm>'s
+<glossterm>contained steps</glossterm></error>.</para>
 
 <para>If a <tag class="attribute">select</tag> expression is given but
 no document connection is provided, the implicit connection is to the
 <glossterm>default readable port</glossterm> in the environment
 inherited by the first step in the surrounding
 <glossterm>container</glossterm>'s <glossterm>contained
-steps</glossterm>.
-If there is no default
-readable port, the connection is treated as if <tag>p:empty</tag> was
-specified.</para>
+steps</glossterm>. If there is no default readable port, the
+connection is treated as if <tag>p:empty</tag> was specified.</para>
 
 <para><error code="D0008">It is a <glossterm>dynamic error</glossterm>
 if a sequence of more than one document appears on the connection for
@@ -3394,8 +3432,6 @@ the <tag class="attribute">select</tag> expression makes reference to
 the context node, size, or position when the context item is
 undefined.</error>
 </para>
-
-
 </section>
 
 <!-- ============================================================ -->
@@ -3418,6 +3454,14 @@ to declare two or more options on the same step with the same
 name.</error></para>
 
 <e:rng-pattern name="OptionDeclaration"/>
+
+<para>An option may declare its type. The type is specified in the
+<tag class="attribute">as</tag> attribute using an XPath Sequence
+Type<superscript>[citation needed]</superscript>. If an atomic type,
+or sequence of atomic types, is specified, the value provided for the
+option will be atomized according to the standard XPath rules. It is
+an error, err:FIXME, if the computed value does not match the
+specified sequence type</para>
 
 <para>An option may be declared as <tag
 class="attribute">required</tag>. <error code="S0018">If an option is
@@ -3499,8 +3543,13 @@ the value of the variable.</para>
 
 <e:rng-pattern name="WithOptionSelect"/>
 
-<para>Regardless of the implicit type of the expression, the value is
-an <type>xs:untypedAtomic</type>.</para>
+<para>The type of the value may be specified in the <tag
+class="attribute">as</tag> attribute using an XPath Sequence
+Type<superscript>[citation needed]</superscript>. If an atomic type,
+or sequence of atomic types, is specified, the value provided for the
+option will be atomized according to the standard XPath rules. It is
+an error, err:FIXME, if the computed value does not match the
+specified sequence type</para>
 
 <para>All <glossterm>in-scope bindings</glossterm> for the step
 instance itself are present in the Processor XPath Context as variable
@@ -3534,6 +3583,11 @@ undefined.</error>
 
 <section xml:id="p.with-param">
 <title>p:with-param</title>
+
+<note><para>This draft makes no attempt to add types to parameters because
+parameters as specified here are going away. Whatever proposal is adopted
+to replace this parameter mechanism should address the types of
+parameters.</para></note>
 
 <para>The <tag>p:with-param</tag> element is used to establish the
 value of a parameter. The parameter <rfc2119>must</rfc2119> be given a

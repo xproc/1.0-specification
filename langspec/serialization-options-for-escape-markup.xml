@@ -6,18 +6,18 @@
        parameters
   -->
 
-  <p:option name="cdata-section-elements" select="''" e:type="ListOfQNames"/>
-  <p:option name="doctype-public" e:type="xsd:string"/>
-  <p:option name="doctype-system" e:type="xsd:anyURI"/>
-  <p:option name="escape-uri-attributes" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="include-content-type" select="'true'" e:type="xsd:boolean"/>
-  <p:option name="indent" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="media-type" e:type="xsd:string"/>
-  <p:option name="method" select="'xml'" e:type="xsd:QName"/>
-  <p:option name="omit-xml-declaration" select="'true'" e:type="xsd:boolean"/>
-  <p:option name="standalone" select="'omit'" e:type="true|false|omit"/>
-  <p:option name="undeclare-prefixes" e:type="xsd:boolean"/>
-  <p:option name="version" select="'1.0'" e:type="xsd:string"/>
+  <p:option name="cdata-section-elements" select="''" as="xs:string" e:type="ListOfQNames"/>
+  <p:option name="doctype-public" as="xs:string"/>
+  <p:option name="doctype-system" as="xs:anyURI"/>
+  <p:option name="escape-uri-attributes" select="'false'" as="xs:boolean"/>
+  <p:option name="include-content-type" select="'true'" as="xs:boolean"/>
+  <p:option name="indent" select="'false'" as="xs:boolean"/>
+  <p:option name="media-type" as="xs:string"/>
+  <p:option name="method" select="'xml'" as="xs:QName"/>
+  <p:option name="omit-xml-declaration" select="'true'" as="xs:boolean"/>
+  <p:option name="standalone" select="'omit'" as="xs:token" e:type="true|false|omit"/>
+  <p:option name="undeclare-prefixes" as="xs:boolean"/>
+  <p:option name="version" select="'1.0'" as="xs:string"/>
 
   <p:identity/>
 
