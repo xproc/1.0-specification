@@ -8,7 +8,7 @@ dl.toc dt          { font-weight: normal;
 dl.errs dt         { font-weight: normal;
                    }
 
-div.figure-wrapper { text-align: center;
+.figure-wrapper { text-align: center;
                      margin-left: 0.25in;
                      margin-right: 0.25in;
                    }
@@ -17,12 +17,12 @@ div.figure         { border: solid 1pt #808080;
 		     padding-bottom: 1em;
                    }
 
-div.figure-wrapper
+.figure-wrapper
 div.title          { margin-top: 0.5em;
                      font-weight: bold;
                    }
 
-div.informalfigure-wrapper { text-align: center;
+.informalfigure-wrapper { text-align: center;
                      margin-left: 0.25in;
                      margin-right: 0.25in;
                    }
@@ -53,7 +53,8 @@ div.admonition     { margin-left: 40px;
 		     padding: 1ex;
 		   }
 
-div.admon-title    { background-color: #DDDDDD;
+div.admonition h3  { background-color: #DDDDDD;
+                     color: black;
                      margin: 0px;
 		     padding-top: 0px;
 		     padding-bottom: 0px;

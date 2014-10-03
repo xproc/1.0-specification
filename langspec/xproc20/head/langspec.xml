@@ -149,7 +149,7 @@ Claim(s)</link> must disclose the information in accordance with <link xlink:hre
     <para>The pipeline document for this pipeline is shown in <xref linkend="ex1"/>.</para>
     <example xml:id="ex1">
       <title>A simple, linear XInclude/Validate pipeline</title>
-      <programlisting>&lt;p:declare-step xmlns:p="http://www.w3.org/ns/xproc"
+      <programlisting language="xml">&lt;p:declare-step xmlns:p="http://www.w3.org/ns/xproc"
 		name="xinclude-and-validate"
 		version="1.0"&gt;
   &lt;p:input port="source" primary="true"/&gt;
@@ -172,9 +172,7 @@ Claim(s)</link> must disclose the information in accordance with <link xlink:hre
       &lt;p:pipe step="xinclude-and-validate" port="schemas"/&gt;
     &lt;/p:input&gt;
   &lt;/p:validate-with-xml-schema&gt;
-&lt;/p:declare-step&gt;
-
-</programlisting>
+&lt;/p:declare-step&gt;</programlisting>
     </example>
     <para>The example in <xref linkend="ex1"/> is very verbose. It makes all of the connections seen
       in the figure explicit. In practice, pipelines do not have to be this verbose. XProc supports
@@ -193,7 +191,7 @@ Claim(s)</link> must disclose the information in accordance with <link xlink:hre
     <para>The same pipeline, using XProc defaults, is shown in <xref linkend="ex1-abbr"/>.</para>
     <example xml:id="ex1-abbr">
       <title>A simple, linear XInclude/Validate pipeline (simplified)</title>
-      <programlisting>&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc"
+      <programlisting language="xml">&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc"
 	    name="xinclude-and-validate"
 	    version="1.0"&gt;
   &lt;p:input port="schemas" sequence="true"/&gt;
@@ -205,8 +203,7 @@ Claim(s)</link> must disclose the information in accordance with <link xlink:hre
       &lt;p:pipe step="xinclude-and-validate" port="schemas"/&gt;
     &lt;/p:input&gt;
   &lt;/p:validate-with-xml-schema&gt;
-&lt;/p:pipeline&gt;
-</programlisting>
+&lt;/p:pipeline&gt;</programlisting>
     </example>
     <para><xref linkend="fig-style-proc"/> is a more complex example: it performs schema validation
       with an appropriate schema and then styles the validated document.</para>
@@ -224,7 +221,7 @@ Claim(s)</link> must disclose the information in accordance with <link xlink:hre
       is run. In this example, each branch consists of a single validate step.</para>
     <example xml:id="ex2">
       <title>A validate and transform pipeline</title>
-      <programlisting>&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
+      <programlisting language="xml">&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
 
   &lt;p:choose&gt;
     &lt;p:when test="/*[@version &amp;lt; 2.0]"&gt;
@@ -249,8 +246,7 @@ Claim(s)</link> must disclose the information in accordance with <link xlink:hre
       &lt;p:document href="stylesheet.xsl"/&gt;
     &lt;/p:input&gt;
   &lt;/p:xslt&gt;
-&lt;/p:pipeline&gt;
-</programlisting>
+&lt;/p:pipeline&gt;</programlisting>
     </example>
     <para>This example, like the preceding, relies on XProc defaults for simplicity. It is always
       valid to write the fully explicit form if you prefer.</para>
@@ -629,7 +625,7 @@ pipeline is
           Implementors may provide extension methods to allow the <tag>p:store</tag> step to save
           the binary data. For example, an implementation might provide a <code>ext:binary</code>
           serialization method that decoded base64 encoded data before saving it:</para>
-        <programlisting>&lt;p:store method="ext:binary" href="my.png"&gt;
+        <programlisting language="xml">&lt;p:store method="ext:binary" href="my.png"&gt;
   &lt;p:input port="source"&gt;
     &lt;p:inline&gt;
       &lt;c:data content-type="image/png"&gt;BASE64ENCODEDDATA&lt;/c:data&gt;
@@ -822,7 +818,7 @@ pipeline is
       <para>XPath expressions are also passed to some steps. These expressions are evaluated by the
         implementations of the individual steps.</para>
       <para>This distinction can be seen in the following example:</para>
-      <programlisting>&lt;p:variable name="home" select="'http://example.com/docs'"/&gt;
+      <programlisting language="xml">&lt;p:variable name="home" select="'http://example.com/docs'"/&gt;
 
 &lt;p:load name="read-from-home"&gt;
   &lt;p:with-option name="href" select="concat($home,'/document.xml')"/&gt;
@@ -830,8 +826,7 @@ pipeline is
 
 &lt;p:split-sequence name="select-chapters" test="@role='chapter'"&gt;
   &lt;p:input port="source" select="//section"/&gt;
-&lt;/p:split-sequence&gt;
-</programlisting>
+&lt;/p:split-sequence&gt;</programlisting>
       <para>The select expression on the variable “<varname>home</varname>” is evaluated by the
         XProc processor. The value of the variable is “<uri>http://example.com/docs</uri>”.</para>
       <para>The <option>href</option> option of the <tag>p:load</tag> step is evaluated by the XProc
@@ -1368,7 +1363,7 @@ the single argument form.</para>
 
 <para>Consider the following example:</para>
 
-<programlisting>&lt;p:declare-step type="ex:dir-list"&gt;
+<programlisting language="xml">&lt;p:declare-step type="ex:dir-list"&gt;
   &lt;p:output port="result"/&gt;
   &lt;p:option name="path"/&gt;
 
@@ -1382,8 +1377,7 @@ the single argument form.</para>
       &lt;p:directory-list path="."/&gt;
     &lt;/p:otherwise&gt;
   &lt;/p:choose&gt;
-&lt;/p:declare-step&gt;
-</programlisting>
+&lt;/p:declare-step&gt;</programlisting>
 
 <para>If the <option>path</option> option is specified in the call to
 <code>ex:dir-list</code>, then the first <tag>p:when</tag> clause will
@@ -1749,7 +1743,7 @@ in some sense be limited to ancillary inputs and outputs and they
 <para>In forwards-compatible mode, it is not a static error to
 encounter the following step:</para>
 
-<programlisting>&lt;p:string-replace match="div/@class" replace="newclass"&gt;
+<programlisting language="xml">&lt;p:string-replace match="div/@class" replace="newclass"&gt;
   &lt;p:input port="ancillary"&gt;
     &lt;p:document href="doc.xml"/&gt;
   &lt;/p:input&gt;
@@ -1761,7 +1755,7 @@ encounter the following step:</para>
           <para>Suppose that XProc version 2.0 changes the definition of the <tag>p:xslt</tag> step
             so that it has an additional output port, <code>messages</code>. Then consider the
             following pipeline: </para>
-          <programlisting>&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc"
+          <programlisting language="xml">&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc"
             version="2.0"&gt;
 
   &lt;p:xslt name="style"&gt;
@@ -2005,14 +1999,13 @@ variable with the same name.
               to documents by URI.</para>
             <para>In this example, the input to the <tag>p:identity</tag> step named
                 “<literal>otherstep</literal>” comes from “<uri>http://example.com/input.xml</uri>”. </para>
-            <programlisting>&lt;p:output port="result"/&gt;
+            <programlisting language="xml">&lt;p:output port="result"/&gt;
 
 &lt;p:identity name="otherstep"&gt;
   &lt;p:input port="source"&gt;
     &lt;p:document href="http://example.com/input.xml"/&gt;
   &lt;/p:input&gt;
-&lt;/p:identity&gt;
-</programlisting>
+&lt;/p:identity&gt;</programlisting>
           </listitem>
         </varlistentry>
         <varlistentry>
@@ -2026,12 +2019,11 @@ variable with the same name.
                 <tag>p:xinclude</tag> step named “<literal>expand</literal>” comes from the
                 “<literal>result</literal>” port of the step named
               “<literal>otherstep</literal>”.</para>
-            <programlisting>&lt;p:xinclude name="expand"&gt;
+            <programlisting language="xml">&lt;p:xinclude name="expand"&gt;
   &lt;p:input port="source"&gt;
     &lt;p:pipe step="otherstep" port="result"/&gt;
   &lt;/p:input&gt;
-&lt;/p:xinclude&gt;
-</programlisting>
+&lt;/p:xinclude&gt;</programlisting>
             <para>See the description of <tag>p:pipe</tag> for a complete description of the ports
               that can be connected.</para>
           </listitem>
@@ -2045,7 +2037,7 @@ variable with the same name.
             <para>In this example, the “<literal>stylesheet</literal>” input to the XSLT step named
                 “<literal>xform</literal>” comes from the content of the <tag>p:input</tag> element
               itself.</para>
-            <programlisting>&lt;p:xslt name="xform"&gt;
+            <programlisting language="xml">&lt;p:xslt name="xform"&gt;
   &lt;p:input port="stylesheet"&gt;
     &lt;p:inline&gt;
       &lt;xsl:stylesheet version="1.0"&gt;
@@ -2053,8 +2045,7 @@ variable with the same name.
       &lt;/xsl:stylesheet&gt;
     &lt;/p:inline&gt;
   &lt;/p:input&gt;
-&lt;/p:xslt&gt;
-</programlisting>
+&lt;/p:xslt&gt;</programlisting>
             <para>Inline documents are considered “quoted”. The pipeline processor passes them
               literally to the port, even if they contain elements from the XProc namespace or other
               namespaces that would have other semantics outside of the <tag>p:inline</tag>.</para>
@@ -2068,7 +2059,7 @@ variable with the same name.
             </para>
             <para>In this example, the “<literal>source</literal>” input to the XSLT 2.0 step named
                 “<literal>generate</literal>” is explicitly empty:</para>
-            <programlisting>&lt;p:xslt name="generate" version="2.0"&gt;
+            <programlisting language="xml">&lt;p:xslt name="generate" version="2.0"&gt;
   &lt;p:input port="source"&gt;
     &lt;p:empty/&gt;
   &lt;/p:input&gt;
@@ -2080,8 +2071,7 @@ variable with the same name.
     &lt;/p:inline&gt;
   &lt;/p:input&gt;
   &lt;p:with-option name="template-name" select="'someName'"/&gt;
-&lt;/p:xslt&gt;
-</programlisting>
+&lt;/p:xslt&gt;</programlisting>
             <para>If you omit the connection on a primary input port, a connection to the
                 <glossterm>default readable port</glossterm> will be assumed. Making the connection
               explicitly empty guarantees that the connection will be to an empty sequence of
@@ -2450,11 +2440,11 @@ then that pipeline cannot be invoked as a step.</para>
 
 <para>The <tag>p:pipeline</tag> element is
         just a simplified form of step declaration. A document that
-        reads:</para><programlisting>&lt;p:pipeline <replaceable>some-attributes</replaceable>&gt;
+        reads:</para><programlisting language="xml">&lt;p:pipeline <replaceable>some-attributes</replaceable>&gt;
   <replaceable>some-content</replaceable>
 &lt;/p:pipeline&gt;</programlisting><para>can
         be interpreted as if it
-        read:</para><programlisting>&lt;p:declare-step <replaceable>some-attributes</replaceable>&gt;
+        read:</para><programlisting language="xml">&lt;p:declare-step <replaceable>some-attributes</replaceable>&gt;
   &lt;p:input port='source' primary='true'/&gt;
   &lt;p:input port='parameters' kind='parameter' primary='true'/&gt;
   &lt;p:output port='result' primary='true'/&gt;
@@ -2466,7 +2456,7 @@ then that pipeline cannot be invoked as a step.</para>
           transformation; and produce the transformed document as its output.</para>
         <example xml:id="ex.p.pipeline">
           <title>A Sample Pipeline Document</title>
-          <programlisting>&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
+          <programlisting language="xml">&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
 
 &lt;p:xinclude/&gt;
 
@@ -2482,8 +2472,7 @@ then that pipeline cannot be invoked as a step.</para>
   &lt;/p:input&gt;
 &lt;/p:xslt&gt;
 
-&lt;/p:pipeline&gt;
-</programlisting>
+&lt;/p:pipeline&gt;</programlisting>
         </example>
       </section></section>
     <section xml:id="p.for-each"><title>p:for-each</title><para>A for-each is specified by the
@@ -2566,7 +2555,7 @@ with the <link linkend="dt-standard-modifications">standard modifications</link>
           sequence of formatted chapters as its output.</para>
         <example xml:id="ex.p.for-each">
           <title>A Sample For-Each</title>
-          <programlisting>&lt;p:for-each name="chapters"&gt;
+          <programlisting language="xml">&lt;p:for-each name="chapters"&gt;
   &lt;p:iteration-source select="//chapter"/&gt;
   &lt;p:output port="html-results"&gt;
     &lt;p:pipe step="make-html" port="result"/&gt;
@@ -2589,8 +2578,7 @@ with the <link linkend="dt-standard-modifications">standard modifications</link>
       &lt;p:document href="http://example.com/xsl/fo.xsl"/&gt;
     &lt;/p:input&gt;
   &lt;/p:xslt&gt;
-&lt;/p:for-each&gt;
-</programlisting>
+&lt;/p:for-each&gt;</programlisting>
         </example>
         <para>The <code>//chapter</code> elements of the document are selected. Each chapter is
           transformed into HTML and XSL Formatting Objects using an XSLT step. The resulting HTML
@@ -2682,7 +2670,7 @@ with the <link linkend="dt-standard-modifications">standard modifications</link>
           except for that change.</para>
         <example xml:id="ex.p.viewport">
           <title>A Sample Viewport</title>
-          <programlisting>&lt;p:viewport match="h:div[@class='chapter']"
+          <programlisting language="xml">&lt;p:viewport match="h:div[@class='chapter']"
             xmlns:h="http://www.w3.org/1999/xhtml"&gt;
   &lt;p:insert position="first-child"&gt;
     &lt;p:input port="insertion"&gt;
@@ -2691,8 +2679,7 @@ with the <link linkend="dt-standard-modifications">standard modifications</link>
       &lt;/p:inline&gt;
     &lt;/p:input&gt;
   &lt;/p:insert&gt;
-&lt;/p:viewport&gt;
-</programlisting>
+&lt;/p:viewport&gt;</programlisting>
         </example>
         <para>The nodes which match <code>h:div[@class='chapter']</code> in the input document are
           selected. An <code>hr</code> is inserted as the first child of each <code>h:div</code> and
@@ -2793,7 +2780,7 @@ undefined, the context item is undefined.</para>
           validate with an appropriate schema.</para>
         <example xml:id="ex.p.choose">
           <title>A Sample Choose</title>
-          <programlisting>&lt;p:choose name="version"&gt;
+          <programlisting language="xml">&lt;p:choose name="version"&gt;
   &lt;p:when test="/*[@version = 2]"&gt;
     &lt;p:validate-with-xml-schema&gt;
       &lt;p:input port="schema"&gt;
@@ -2823,8 +2810,7 @@ undefined, the context item is undefined.</para>
       &lt;/p:input&gt;
     &lt;/p:error&gt;
   &lt;/p:otherwise&gt;
-&lt;/p:choose&gt;
-</programlisting>
+&lt;/p:choose&gt;</programlisting>
         </example>
       </section></section>
     <section xml:id="p.group"><title>p:group</title><para>A group is specified by the
@@ -2836,7 +2822,7 @@ undefined, the context item is undefined.</para>
         <title>Example</title>
         <example xml:id="ex.p.group">
           <title>An Example Group</title>
-          <programlisting>&lt;p:group&gt;
+          <programlisting language="xml">&lt;p:group&gt;
   &lt;p:variable name="db-key"
 	      select="'some-long-string-of-nearly-random-characters'"/&gt;
 
@@ -2866,8 +2852,7 @@ undefined, the context item is undefined.</para>
       &lt;/p:xslt&gt;
     &lt;/p:otherwise&gt;
   &lt;/p:choose&gt;
-&lt;/p:group&gt;
-</programlisting>
+&lt;/p:group&gt;</programlisting>
         </example>
       </section></section>
     <section xml:id="p.try"><title>p:try</title><para>A try/catch is specified by the
@@ -2970,7 +2955,7 @@ its containing <tag>p:try</tag>.</para>
         <section xml:id="error-example">
           <title>Error Example</title>
           <para>Consider the following XSLT stylesheet:</para>
-          <programlisting>&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          <programlisting language="xml">&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0"&gt;
 
 &lt;xsl:template match="/"&gt;
@@ -2984,7 +2969,7 @@ its containing <tag>p:try</tag>.</para>
 &lt;/xsl:stylesheet&gt;</programlisting>
           <para>If it was used in a step named “xform” in a <tag>p:try</tag>, the following error
             document might be produced:</para>
-          <programlisting>&lt;c:errors xmlns:c="http://www.w3.org/ns/xproc-step"&gt;
+          <programlisting language="xml">&lt;c:errors xmlns:c="http://www.w3.org/ns/xproc-step"&gt;
   &lt;c:error name="xform" type="p:xslt"
              href="style.xsl" line="6"&gt;This stylesheet is &lt;emph&gt;pointless&lt;/emph&gt;.&lt;/c:error&gt;
 &lt;/c:errors&gt;</programlisting>
@@ -3000,7 +2985,7 @@ its containing <tag>p:try</tag>.</para>
           pipeline.</para>
         <example xml:id="ex.p.trycatch">
           <title>An Example Try/Catch</title>
-          <programlisting>&lt;p:try&gt;
+          <programlisting language="xml">&lt;p:try&gt;
   &lt;p:group&gt;
     &lt;p:http-request&gt;
       &lt;p:input port="source"&gt;
@@ -3021,8 +3006,7 @@ its containing <tag>p:try</tag>.</para>
       &lt;/p:input&gt;
     &lt;/p:identity&gt;
   &lt;/p:catch&gt;
-&lt;/p:try&gt;
-</programlisting>
+&lt;/p:try&gt;</programlisting>
         </example>
       </section></section>
     <section xml:id="p.atomic"><title>Atomic Steps</title><para>In addition to the six step types
@@ -3066,11 +3050,11 @@ its containing <tag>p:try</tag>.</para>
           specifying the value of an option. In other words, the following two steps are
           equivalent:</para>
         <para>The first step uses the standard <tag>p:with-option</tag> syntax:</para>
-        <programlisting>&lt;ex:stepType&gt;
+        <programlisting language="xml">&lt;ex:stepType&gt;
   &lt;p:with-option name="option-name" select="'some value'"/&gt;
 &lt;/ex:stepType&gt;</programlisting>
         <para>The second step uses the syntactic shortcut:</para>
-        <programlisting>&lt;ex:stepType option-name="some value"/&gt;</programlisting>
+        <programlisting language="xml">&lt;ex:stepType option-name="some value"/&gt;</programlisting>
         <para>Note that there are significant limitations to this shortcut syntax:</para>
         <orderedlist>
           <listitem>
@@ -3152,25 +3136,22 @@ its containing <tag>p:try</tag>.</para>
           applies the specified XPath select expression to the document(s) that are read. Each
           selected node is wrapped in a document (unless it is a document) and provided to the input
           port. In other
-          words,</para><programlisting>&lt;p:input port="source"&gt;
+          words,</para><programlisting language="xml">&lt;p:input port="source"&gt;
   &lt;p:document href="http://example.org/input.html"/&gt;
-&lt;/p:input&gt;
-</programlisting><para>provides
+&lt;/p:input&gt;</programlisting><para>provides
           a single document,
-          but</para><programlisting>&lt;p:input port="source" select="//html:div" xmlns:html="http://www.w3.org/1999/xhtml"&gt;
+          but</para><programlisting language="xml">&lt;p:input port="source" select="//html:div" xmlns:html="http://www.w3.org/1999/xhtml"&gt;
   &lt;p:document href="http://example.org/input.html"/&gt;
-&lt;/p:input&gt;
-</programlisting><para>provides
+&lt;/p:input&gt;</programlisting><para>provides
           a sequence of zero or more documents, one for each <code>html:div</code> in
             <uri>http://example.org/input.html</uri>. (Note that in the case of nested
             <code>html:div</code> elements, this may result in the same content being returned in
           several documents.)</para>
 <para>A select expression can equally be applied to input read
           from another step. This
-          input:</para><programlisting>&lt;p:input port="source" select="//html:div" xmlns:html="http://www.w3.org/1999/xhtml"&gt;
+          input:</para><programlisting language="xml">&lt;p:input port="source" select="//html:div" xmlns:html="http://www.w3.org/1999/xhtml"&gt;
   &lt;p:pipe step="origin" port="result"/&gt;
-&lt;/p:input&gt;
-</programlisting><para>provides
+&lt;/p:input&gt;</programlisting><para>provides
           a sequence of zero or more documents, one for each <code>html:div</code> in the document
           (or each of the documents) that is read from the <literal>result</literal> port of the
           step named <literal>origin</literal>.</para>
@@ -3261,7 +3242,7 @@ the connection requirement.</para>
 
 <para>This is an error:</para>
 
-<programlisting>&lt;p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
+<programlisting language="xml">&lt;p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
 &lt;p:input port="source"/&gt;
 &lt;p:output port="result"/&gt;
 
@@ -3271,9 +3252,7 @@ the connection requirement.</para>
   &lt;/p:input&gt;
 &lt;/p:xslt&gt;
 
-&lt;/p:declare-step&gt;
-
-</programlisting>
+&lt;/p:declare-step&gt;</programlisting>
 
 <para>The parameter input port on the <tag>p:xslt</tag> step has no
 connection and the pipeline that contains the step has no primary parameter
@@ -3281,7 +3260,7 @@ input port.</para>
 
 <para>This is not an error:</para>
 
-<programlisting>&lt;p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
+<programlisting language="xml">&lt;p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
 &lt;p:input port="source"/&gt;
 &lt;p:output port="result"/&gt;
 
@@ -3292,9 +3271,7 @@ input port.</para>
   &lt;p:with-param name="mode" select="'debug'"/&gt;
 &lt;/p:xslt&gt;
 
-&lt;/p:declare-step&gt;
-
-</programlisting>
+&lt;/p:declare-step&gt;</programlisting>
 
 <para>Explicitly setting the “<literal>mode</literal>” parameter 
 satisfies the binding requirement. No other parameters can be passed
@@ -3302,7 +3279,7 @@ to the <tag>p:xslt</tag> step.</para>
 
 <para>This, also, is not an error:</para>
 
-<programlisting>&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
+<programlisting language="xml">&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
 
 &lt;p:xslt&gt;
   &lt;p:input port="stylesheet"&gt;
@@ -3311,9 +3288,7 @@ to the <tag>p:xslt</tag> step.</para>
   &lt;p:with-param name="mode" select="'debug'"/&gt;
 &lt;/p:xslt&gt;
 
-&lt;/p:pipeline&gt;
-
-</programlisting>
+&lt;/p:pipeline&gt;</programlisting>
 
 <para>The parameter input port on the <tag>p:xslt</tag> step is bound
 to the primary parameter input port of the pipeline. The <tag>p:xslt</tag>
@@ -3355,7 +3330,7 @@ documents.</para>
 <para>Consider the
 example in <xref linkend="ex.parameter"/>.</para><example xml:id="ex.parameter">
 <title>A Parameter Example</title>
-<programlisting>&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc"
+<programlisting language="xml">&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc"
 	    version="1.0"
 	    name="main"&gt;
 
@@ -3372,8 +3347,7 @@ example in <xref linkend="ex.parameter"/>.</para><example xml:id="ex.parameter">
   &lt;/p:input&gt;
 &lt;/p:xslt&gt;
 
-&lt;/p:pipeline&gt;
-</programlisting>
+&lt;/p:pipeline&gt;</programlisting>
 </example>
 
 <para>This <tag>p:pipeline</tag> declares that it accepts parameters.
@@ -3803,11 +3777,10 @@ parameter input port.</error>
           parameters</title><para>Variable, option and parameter values carry with them not only
           their literal or computed string value but also a set of namespaces. To see why this is
           necessary, consider the following
-          step:</para><programlisting>&lt;p:delete xmlns:p="http://www.w3.org/ns/xproc"&gt;
+          step:</para><programlisting language="xml">&lt;p:delete xmlns:p="http://www.w3.org/ns/xproc"&gt;
   &lt;p:with-option name="match" select="'html:div'"
 	         xmlns:html="http://www.w3.org/1999/xhtml"/&gt;
-&lt;/p:delete&gt;
-</programlisting><para>The
+&lt;/p:delete&gt;</programlisting><para>The
             <tag>p:delete</tag> step will delete elements that match the expression
             “<literal>html:div</literal>”, but that expression can only be correctly interpreted if
           there's a namespace binding for the prefix “<literal>html</literal>” so that binding has
@@ -3838,7 +3811,7 @@ option or variable are used.</para>
 <para>Unfortunately, in more complex situations, there may be no
           single variable, option or parameter that can reliably be expected to have the correct set
           of namespace bindings. Consider this
-          pipeline:</para><programlisting>&lt;p:pipeline type="ex:delete-in-div"
+          pipeline:</para><programlisting language="xml">&lt;p:pipeline type="ex:delete-in-div"
 	    version="1.0"
 	    xmlns:p="http://www.w3.org/ns/xproc"
 	    xmlns:ex="http://example.org/ns/ex"
@@ -3849,15 +3822,13 @@ option or variable are used.</para>
   &lt;p:with-option name="match" select="concat('h:div/',$divchild)"/&gt;
 &lt;/p:delete&gt;
 
-&lt;/p:pipeline&gt;
-</programlisting><para>It
+&lt;/p:pipeline&gt;</programlisting><para>It
           defines an atomic step (“<literal>ex:delete-in-div</literal>”) that deletes elements that
           occur inside of XHTML div elements. It might be used as
-          follows:</para><programlisting>&lt;ex:delete-in-div xmlns:p="http://www.w3.org/ns/xproc"
+          follows:</para><programlisting language="xml">&lt;ex:delete-in-div xmlns:p="http://www.w3.org/ns/xproc"
                   xmlns:ex="http://example.org/ns/ex"
 		  xmlns:html="http://www.w3.org/1999/xhtml"
-    divchild="html:p[@class='delete']"/&gt;
-</programlisting><para>In
+    divchild="html:p[@class='delete']"/&gt;</programlisting><para>In
           this case, the <varname>match</varname> option passed to the <tag>p:delete</tag> step
           needs <emphasis>both</emphasis> the namespace binding of “<literal>h</literal>” specified
           in the <tag>ex:delete-in-div</tag> pipeline definition <emphasis>and</emphasis> the
@@ -3915,7 +3886,7 @@ option or variable are used.</para>
             inconsistent; that is, if the same prefix is bound to two different namespace
             names.</error></para>
 <para>For example, this would allow the preceding example to
-          work:</para><programlisting>&lt;p:pipeline type="ex:delete-in-div"
+          work:</para><programlisting language="xml">&lt;p:pipeline type="ex:delete-in-div"
 	    version="1.0"
 	    xmlns:p="http://www.w3.org/ns/xproc"
 	    xmlns:ex="http://example.org/ns/ex"
@@ -3928,8 +3899,7 @@ option or variable are used.</para>
   &lt;/p:with-option&gt;
 &lt;/p:delete&gt;
 
-&lt;/p:pipeline&gt;
-</programlisting><para>The
+&lt;/p:pipeline&gt;</programlisting><para>The
             <tag>p:namespaces</tag> element provides namespace bindings for both of the prefixes
           necessary to correctly interpret the expression ultimately passed to the
             <tag>p:delete</tag> step (the binding for <literal>html:</literal> is explicitly
@@ -3940,7 +3910,7 @@ option or variable are used.</para>
             make the example parallel to the one which follows.</para>
         </note><para>The preceding solution has the weakness that it depends on knowing the bindings
           that will be used by the caller. A more flexible solution would use the <tag class="attribute">binding</tag> attribute to copy the bindings from the caller's option
-          value.</para><programlisting>&lt;p:pipeline type="ex:delete-in-div"
+          value.</para><programlisting language="xml">&lt;p:pipeline type="ex:delete-in-div"
 	    version="1.0"
             xmlns:p="http://www.w3.org/ns/xproc"
             xmlns:ex="http://example.org/ns/ex"
@@ -3954,8 +3924,7 @@ option or variable are used.</para>
   &lt;/p:with-option&gt;
 &lt;/p:delete&gt;
 
-&lt;/p:pipeline&gt;
-</programlisting><para>This
+&lt;/p:pipeline&gt;</programlisting><para>This
           example will succeed as long as the caller-specified option does not bind the
             “<literal>h</literal>” prefix to something other than the XHTML namespace.
         </para></section>
@@ -4183,7 +4152,7 @@ generate a new prefix.</para>
 
 <para>Consider this example:</para>
 
-<programlisting>&lt;p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
+<programlisting language="xml">&lt;p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
   &lt;p:output port="result"/&gt;
   &lt;p:serialization port="result" indent="true"/&gt;
 
@@ -4199,12 +4168,11 @@ generate a new prefix.</para>
     &lt;/p:input&gt;
   &lt;/p:identity&gt;
 
-&lt;/p:declare-step&gt;
-</programlisting>
+&lt;/p:declare-step&gt;</programlisting>
 
 <para>which might produce a result like this:</para>
 
-<programlisting>&lt;doc xmlns:c="http://example.com/c"&gt;
+<programlisting language="xml">&lt;doc xmlns:c="http://example.com/c"&gt;
    &lt;b:part xmlns:b="http://example.com/b"/&gt;
  &lt;/doc&gt;</programlisting>
 
@@ -4284,7 +4252,7 @@ explicitly specified).</error></para>
 <para>In other words, these two <tag>p:data</tag> elements produce
 equivalent wrappers:</para>
 
-<programlisting>&lt;p:data href="..."
+<programlisting language="xml">&lt;p:data href="..."
         xmlns:x="http://example.com/ns/"
         wrapper="x:wrap"/&gt;
 &lt;p:data href="..."
@@ -4293,7 +4261,7 @@ equivalent wrappers:</para>
 
 <para>but this <tag>p:data</tag> element will raise an error:</para>
 
-<programlisting>&lt;p:data href="..."
+<programlisting language="xml">&lt;p:data href="..."
         xmlns:x="http://example.com/ns/"
         wrapper="x:wrap" wrapper-prefix="x"
         wrapper-namespace="http://example.com/ns/"/&gt;</programlisting>
@@ -4369,16 +4337,15 @@ namespace.</para>
 
 <para>For example, this <tag>p:identity</tag> step:</para>
 
-<programlisting>&lt;p:identity name="readcsv"&gt;
+<programlisting language="xml">&lt;p:identity name="readcsv"&gt;
   &lt;p:input port="source"&gt;
     &lt;p:data href="stateabbr.csv"/&gt;
   &lt;/p:input&gt;
-&lt;/p:identity&gt;
-</programlisting>
+&lt;/p:identity&gt;</programlisting>
 
 <para>might produce output like this:</para>
 
-<programlisting>&lt;c:data xmlns:c="http://www.w3.org/2007/03/xproc-step"
+<programlisting language="xml">&lt;c:data xmlns:c="http://www.w3.org/2007/03/xproc-step"
         content-type="text/plain"&gt;
 AL,Alabama
 AK,Alaska
@@ -4388,7 +4355,7 @@ AZ,Arizona
 
 <para>Whereas this pipeline fragment:</para>
 
-<programlisting>&lt;p:identity name="readpng"&gt;
+<programlisting language="xml">&lt;p:identity name="readpng"&gt;
   &lt;p:input port="source"&gt;
     &lt;p:data href="icon.png" content-type="image/png"/&gt;
   &lt;/p:input&gt;
@@ -4400,13 +4367,12 @@ AZ,Arizona
 		 select="concat('data:image/png;base64,',/*/node())"&gt;
     &lt;p:pipe step="readpng" port="result"/&gt;
   &lt;/p:with-option&gt;
-&lt;/p:add-attribute&gt;
-</programlisting>
+&lt;/p:add-attribute&gt;</programlisting>
 
 <para>produces a single <tag>img</tag> element with an inline graphic
 (represented using a <literal>data:</literal> URI):</para>
 
-<programlisting>&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
+<programlisting language="xml">&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
 WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH1QsEDycHOWjhgQAAAB10RVh0Q29tbWVudABDcmVhdGVk
 IHdpdGggVGhlIEdJTVDvZCVuAAABjklEQVQ4y42Tv0tbcRTFz3t5kuQFwUVFEYIGU6q4mU0RlCDR
 qYO2g4gdghUyKSFDwD/AwS2IoIMSHOLgpOLg4CIOWdy76GBoqQUJLlr66aCW6LuoF+7wvefcc3/w
@@ -4871,28 +4837,24 @@ any other output port even though nothing can ever
 appear on it since the step always fails.</para>
 
 <para>For example, given the following invocation:</para>
-<programlisting>
-&lt;p:error xmlns:my="http://www.example.org/error"
+<programlisting language="xml">&lt;p:error xmlns:my="http://www.example.org/error"
          name="bad-document" code="my:unk12"&gt;
    &lt;p:input port="source"&gt;
      &lt;p:inline&gt;
        &lt;message&gt;The document element is unknown.&lt;/message&gt;
      &lt;/p:inline&gt;
    &lt;/p:input&gt;
-&lt;/p:error&gt;
-</programlisting>
+&lt;/p:error&gt;</programlisting>
 
 <para>The error vocabulary element (and document) generated on the
 error output port would be:</para>
-<programlisting>
-&lt;c:errors xmlns:c="http://www.w3.org/ns/xproc-step"
+<programlisting language="xml">&lt;c:errors xmlns:c="http://www.w3.org/ns/xproc-step"
           xmlns:p="http://www.w3.org/ns/xproc"
           xmlns:my="http://www.example.org/error"&gt;
  &lt;c:error name="bad-document" type="p:error"
           code="my:unk12"&gt;&lt;message&gt;The document element is unknown.&lt;/message&gt;
 &lt;/c:error&gt;
-&lt;/c:errors&gt;
-</programlisting>
+&lt;/c:errors&gt;</programlisting>
 
 <para>The <tag class="attribute">href</tag>,
 <tag class="attribute">line</tag> and <tag class="attribute">column</tag>,
@@ -4924,19 +4886,17 @@ options control how the output markup is produced before it is escaped.
 </para>
 
 <para>For example, the input:</para>
-<programlisting>&lt;description&gt;
+<programlisting language="xml">&lt;description&gt;
 &lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
 &lt;p&gt;This is a chunk of XHTML.&lt;/p&gt;
 &lt;/div&gt;
-&lt;/description&gt;
-</programlisting>
+&lt;/description&gt;</programlisting>
 <para>produces:</para>
-<programlisting>&lt;description&gt;
+<programlisting language="xml">&lt;description&gt;
 &amp;lt;div xmlns="http://www.w3.org/1999/xhtml"&amp;gt;
 &amp;lt;p&gt;This is a chunk of XHTML.&amp;lt;/p&amp;gt;
 &amp;lt;/div&amp;gt;
-&lt;/description&gt;
-</programlisting>
+&lt;/description&gt;</programlisting>
 
 <note>
 <para>The result of this step is an XML document that contains the
@@ -5201,8 +5161,7 @@ document is controlled by the serialization options on the
 <code>p:http-request</code> step will POST a small XML
 document:</para>
 
-<programlisting>
-&lt;c:request method="POST" href="http://example.com/someservice"&gt;
+<programlisting language="xml">&lt;c:request method="POST" href="http://example.com/someservice"&gt;
 &lt;c:body xmlns:c="http://www.w3.org/ns/xproc-step" content-type="application/xml"&gt;
 &lt;doc&gt;
 &lt;title&gt;My document&lt;/title&gt;
@@ -5212,7 +5171,7 @@ document:</para>
 </programlisting>
   <para>The corresponding request should look something like this:</para>
 
-  <programlisting>POST http://example.com/someservice HTTP/1.1
+  <programlisting language="xml">POST http://example.com/someservice HTTP/1.1
 Host: example.com
 Content-Type: application/xml; charset="utf-8"
 
@@ -5387,14 +5346,13 @@ using the <tag>p:unescape-markup</tag> step.</para>
 <title>HTTP Request Example</title>
 
 <para>A simple form might be posted as follows:</para>
-<programlisting>&lt;c:request method="POST" href="http://www.example.com/form-action" xmlns:c="http://www.w3.org/ns/xproc-step"&gt;
+<programlisting language="xml">&lt;c:request method="POST" href="http://www.example.com/form-action" xmlns:c="http://www.w3.org/ns/xproc-step"&gt;
 &lt;c:body content-type="application/x-www-form-urlencoded"&gt;
 name=W3C&amp;amp;spec=XProc
 &lt;/c:body&gt;
-&lt;/c:request&gt;
-</programlisting>
+&lt;/c:request&gt;</programlisting>
 <para>and if the response was an XHTML document, the result document would be:</para>
-<programlisting>&lt;c:response status="200" xmlns:c="http://www.w3.org/ns/xproc-step"&gt;
+<programlisting language="xml">&lt;c:response status="200" xmlns:c="http://www.w3.org/ns/xproc-step"&gt;
 &lt;c:header name="Date" value=" Wed, 09 May 2007 23:12:24 GMT"/&gt;
 &lt;c:header name="Server" value="Apache/1.3.37 (Unix) PHP/4.4.5"/&gt;
 &lt;c:header name="Vary" value="negotiate,accept"/&gt;
@@ -5413,8 +5371,7 @@ name=W3C&amp;amp;spec=XProc
 &lt;body&gt;&lt;p&gt;OK!&lt;/p&gt;&lt;/body&gt;
 &lt;/html&gt;
 &lt;/c:body&gt;
-&lt;/c:response&gt;
-</programlisting>
+&lt;/c:response&gt;</programlisting>
 </section>
 
 </section>
@@ -6247,19 +6204,17 @@ is ignored, irrespective of where it was specified.</para>
 <para>For example, with the 'namespace' option set to the XHTML
 namespace, the following input:</para>
 
-<programlisting>&lt;description&gt;
+<programlisting language="xml">&lt;description&gt;
 &amp;lt;p&gt;This is a chunk.&amp;lt;/p&gt;
 &amp;lt;p&gt;This is a another chunk.&amp;lt;/p&gt;
-&lt;/description&gt;
-</programlisting>
+&lt;/description&gt;</programlisting>
 
 <para>would produce:</para>
 
-<programlisting>&lt;description&gt;
+<programlisting language="xml">&lt;description&gt;
 &lt;p xmlns="http://www.w3.org/1999/xhtml"&gt;This is a chunk.&lt;/p&gt;
 &lt;p xmlns="http://www.w3.org/1999/xhtml"&gt;This is a another chunk.&lt;/p&gt;
-&lt;/description&gt;
-</programlisting>
+&lt;/description&gt;</programlisting>
 </section>
 
 <!-- ************************************************************************-->
@@ -6676,14 +6631,12 @@ exactly one character long.</error>
 <para>The following examples of <tag>p:exec</tag> are equivalent. The
 first uses the default <option>arg-separator</option>:</para>
 
-<programlisting>&lt;p:exec command="someCommand" args="arg1 arg2 arg3"/&gt;
-</programlisting>
+<programlisting language="xml">&lt;p:exec command="someCommand" args="arg1 arg2 arg3"/&gt;</programlisting>
 
 <para>The second specifies an alternate separator:</para>
 
-<programlisting>&lt;p:exec command="someCommand" args="arg1,arg2,arg3"
-	arg-separator=","/&gt;
-</programlisting>
+<programlisting language="xml">&lt;p:exec command="someCommand" args="arg1,arg2,arg3"
+	arg-separator=","/&gt;</programlisting>
 
 <para>If one of the arguments contains a space (e.g., a filename that
 contains a space), then you must specify an alternate separator.</para>
@@ -7210,7 +7163,7 @@ in the result sequence will be treated as documents with the element as their
 document element.</para>
 
 <para>For example:</para>
-<programlisting>
+<programlisting language="xml">
 &lt;c:query&gt;
 declare namespace atom="http://www.w3.org/2005/Atom";
 /atom:feed/atom:entry
@@ -7330,7 +7283,7 @@ validation before using XQuery:</para>
 
 <example xml:id="ex.c.xquery">
 <title>A Sample Pipeline Document</title>
-<programlisting>&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
+<programlisting language="xml">&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc" version="1.0"&gt;
 
 &lt;p:xinclude/&gt;
 
@@ -7346,13 +7299,12 @@ validation before using XQuery:</para>
    &lt;/p:input&gt;
 &lt;/p:xquery&gt;
 
-&lt;/p:pipeline&gt;
-</programlisting>
+&lt;/p:pipeline&gt;</programlisting>
 </example>
 
 <para>Where <filename>countp.xq</filename> might contain:</para>
 
-<programlisting>&lt;count&gt;{count(.//p)}&lt;/count&gt;</programlisting>
+<programlisting language="xml">&lt;count&gt;{count(.//p)}&lt;/count&gt;</programlisting>
 
 </section>
 </section>
@@ -8378,8 +8330,7 @@ the following pipeline:</para>
       &lt;p:document href="gen-style.xsl"/&gt;
     &lt;/p:input&gt;
   &lt;/p:xslt&gt;
-&lt;/p:pipeline&gt;
-</programlisting>
+&lt;/p:pipeline&gt;</programlisting>
 
 <para>There's no guarantee that “style” step will execute after the
 “save-xslt” step. In this case, the solution is straightforward. Even
@@ -8409,8 +8360,7 @@ pipeline:</para>
       &lt;p:pipe step="generate-stylesheet" port="result"/&gt;
     &lt;/p:input&gt;
   &lt;/p:xslt&gt;
-&lt;/p:pipeline&gt;
-</programlisting>
+&lt;/p:pipeline&gt;</programlisting>
 
 <para>Now the result is independent of the implementation strategy.</para>
 
