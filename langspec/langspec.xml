@@ -3983,6 +3983,31 @@ binding must be present. In this example, the original
 prefix has been preserved, but it would be equally correct if a different
 prefix had been used.</para>
 
+<para>Optionally, foreign element(s) scoped outside of XProc own namespaces maybe provided wherever a <tag>p:inline</tag> element can exist.
+Each foreign element would be interpreted as if wrapped with an implicit <tag>p:inline</tag>.</para>
+
+<para>The following example demonstrates this implied syntactic behaviour.</para>
+<programlisting language="xml"><![CDATA[<p:identity name="identity" code="my:defaultinline2">
+    <p:input port="source">
+        <message xmlns="http://example.org/ns">My inline content.</message>
+        <message xmlns="http://example.org/ns">More inline content.</message>
+    </p:input>
+</p:identity>]]></programlisting>
+
+<para>Would be interpreted as the following code listing.</para>
+<programlisting language="xml"><![CDATA[<p:identity name="identity" code="my:defaultinline1">
+    <p:input port="source">
+        <p:inline>
+            <message xmlns="http://example.org/ns">My inline content.</message>
+        </p:inline>
+        <p:inline>
+            <message xmlns="http://example.org/ns">More inline content.</message>
+        </p:inline>
+    </p:input>
+</p:identity>]]></programlisting>
+        
+<para>An explicit <tag>p:inline</tag> is still required if the author wants to include top level text or processing instruction nodes, elements from XProc own namespaces or define <tag>exclude-inline-prefixes</tag>.</para>
+
 </section>
 <section xml:id="p.document">
 <title>p:document</title>
