@@ -3983,7 +3983,7 @@ binding must be present. In this example, the original
 prefix has been preserved, but it would be equally correct if a different
 prefix had been used.</para>
 
-<para>Optionally, foreign element(s) scoped outside of XProc own vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri></term>) and error (<uri type="xmlnamespace">http://www.w3.org/ns/xproc-error</uri></term>) namespaces maybe provided wherever a <tag>p:inline</tag> element can exist.
+<para>Optionally, foreign element(s) scoped outside of XProc own vocabulary (<term></test><uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri></term>) and error (<term></term><uri type="xmlnamespace">http://www.w3.org/ns/xproc-error</uri></term>) namespaces maybe provided wherever a <tag>p:inline</tag> element can exist.
 Each foreign element would be interpreted as if wrapped with an implicit <tag>p:inline</tag>.</para>
 
 <para>The following example demonstrates this implied syntactic behaviour.</para>
