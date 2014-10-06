@@ -113,7 +113,6 @@ href="mailto:public-xml-processing-model-comments@w3.org"
     <dt class="plusmarge">Section
 <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.choose">4.4 p:choose</a>
     </dt>
-    </dt>
     <dd><p>To address bug
 <a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=21006">21006</a>,
 make the following changes.</p>
@@ -241,6 +240,72 @@ forbids an implementor from satisfying it.</p>
 
 <hr align="left" width="50%" />
 <h2 id="editorial">Editorial errata</h2>
+
+<div class="erratum" id="e-12">
+  <h3>E15, 6 October 2014</h3>
+  <dl>
+    <dt class="plusmarge">Section
+<a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.declare-step">5.8 p:declare-step</a></dt>
+    <dd><p>To address bug
+<a href="https://www.w3.org/Bugs/Public/show_bug.cgi?id=21007">21007</a>,
+make the following changes to the paragraph below the first syntax box:</p>
+<div class="quote">
+<p>The value of the type can be from any namespace provided that the
+expanded-QName of the value has a non-null namespace URI<span class="diff-del">. It is a
+static error (err:XS0025) if the expanded-QName value of the type
+attribute is in no namespace or in the XProc namespace</span>
+<span class="diff-add">that
+is not the XProc namespace.</span>. Except as
+described in Section 2.13, “Versioning Considerations”, the XProc
+namespace must not be used in the type of steps. Neither users nor
+implementers may define additional steps in the XProc namespace.
+</p>
+</div>
+    </dd>
+  </dl>
+</div>
+
+<div class="erratum" id="e-12">
+  <h3>E14, 6 October 2014</h3>
+  <dl>
+    <dt class="plusmarge">Section
+<a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#xproc-xpath-context-10">2.6.1.1 Processor XPath Context</a></dt>
+    <dd><p>To address 
+<a href="http://www.w3.org/XML/XProc/2013/04/24-minutes#action06">action A-230-05</a>,
+make the following changes to the note under “variable bindings”:</p>
+<div class="quote">
+<p>An option that has neither a specified value nor a default value
+will not appear as an in-scope <span class="diff-add">XPath </span>variable.
+Consequently, an attempt to refer to <span class="diff-del">that variable</span>
+<span class="diff-add">an XPath variable whose name is the name of such
+an option</span> will raise an error.</p>
+</div>
+    </dd>
+  </dl>
+</div>
+
+<div class="erratum" id="e-12">
+  <h3>E13, 6 October 2014</h3>
+  <dl>
+    <dt class="plusmarge">Section
+<a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#scoping">3.2 Scoping of Names</a></dt>
+    <dd><p>To address 
+<a href="http://lists.w3.org/Archives/Public/public-xml-processing-model-wg/2014Oct/0003.html">action A-227-01</a>,
+make the following changes to the penultimate paragraph of the section:</p>
+<div class="quote">
+<p>The scope of option and variable names is determined by where they
+are declared. When an option is declared with p:option (or a variable
+with p:variable), unless otherwise specified, its scope consists of
+the sibling elements that follow its declaration and the descendants
+of those siblings. It is a static error (err:XS0004) if an option or
+variable declaration duplicates the name of any other option or
+variable <span class="diff-del">in the same environment. That is, no option or variable may
+lexically shadow another option or variable with the same name</span>
+<span class="diff-add">among its preceding siblings</span>.</p>
+</div>
+    </dd>
+  </dl>
+</div>
 
 <div class="erratum" id="e-12">
   <h3>E12, 12 March 2014</h3>
