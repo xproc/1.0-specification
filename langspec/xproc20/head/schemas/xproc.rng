@@ -8,6 +8,9 @@
   <define name="XSLTMatchPattern" sa:model="XSLTMatchPattern">
     <text/>
   </define>
+  <define name="XPathSequenceType" sa:model="XPathSequenceType">
+    <text/>
+  </define>
   <define name="name.ncname.attr">
     <attribute name="name">
       <data type="NCName"/>
@@ -16,6 +19,11 @@
   <define name="name.qname.attr">
     <attribute name="name">
       <data type="QName"/>
+    </attribute>
+  </define>
+  <define name="as.attr">
+    <attribute name="as">
+      <ref name="XPathSequenceType"/>
     </attribute>
   </define>
   <define name="port.attr">
@@ -621,6 +629,9 @@
     <element name="option">
       <ref name="name.qname.attr"/>
       <optional>
+        <ref name="as.attr"/>
+      </optional>
+      <optional>
         <ref name="required.attr"/>
       </optional>
       <ref name="common.attributes"/>
@@ -638,6 +649,9 @@
   <define name="OptionSelect" sa:class="language-construct">
     <element name="option">
       <ref name="name.qname.attr"/>
+      <optional>
+        <ref name="as.attr"/>
+      </optional>
       <optional>
         <ref name="required.attr"/>
       </optional>
@@ -664,6 +678,9 @@
   <define name="WithOptionSelect" sa:class="language-construct">
     <element name="with-option">
       <ref name="name.qname.attr"/>
+      <optional>
+        <ref name="as.attr"/>
+      </optional>
       <ref name="select.attr"/>
       <ref name="common.attributes"/>
       <optional>
@@ -696,6 +713,9 @@
   <define name="VariableSelect" sa:class="language-construct">
     <element name="variable">
       <ref name="name.qname.attr"/>
+      <optional>
+        <ref name="as.attr"/>
+      </optional>
       <ref name="select.attr"/>
       <ref name="common.attributes"/>
       <optional>

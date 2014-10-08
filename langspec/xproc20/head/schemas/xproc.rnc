@@ -19,8 +19,14 @@ XPathExpression = text
 ]
 XSLTMatchPattern = text
 
+[
+   sa:model = "XPathSequenceType"
+]
+XPathSequenceType = text
+
 name.ncname.attr = attribute name { xsd:NCName }
 name.qname.attr = attribute name { xsd:QName }
+as.attr = attribute as { XPathSequenceType }
 port.attr = attribute port { xsd:NCName }
 required.attr = attribute required { xsd:boolean }
 sequence.attr = attribute sequence { xsd:boolean }
@@ -323,6 +329,7 @@ Serialization =
 OptionDeclaration =
    element option {
       name.qname.attr,
+      as.attr?,
       required.attr?,
       common.attributes,
       use-when.attr?,
@@ -335,6 +342,7 @@ OptionDeclaration =
 OptionSelect =
    element option {
       name.qname.attr,
+      as.attr?,
       required.attr?,
       select.attr,
       common.attributes,
@@ -355,6 +363,7 @@ Option = OptionDeclaration | OptionSelect
 WithOptionSelect =
    element with-option {
       name.qname.attr,
+      as.attr?,
       select.attr,
       common.attributes,
       use-when.attr?,
@@ -374,6 +383,7 @@ WithOption = WithOptionSelect
 VariableSelect =
    element variable {
       name.qname.attr,
+      as.attr?,
       select.attr,
       common.attributes,
       use-when.attr?,

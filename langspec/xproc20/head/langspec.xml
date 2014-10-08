@@ -1549,40 +1549,61 @@ specified.</para>
           not violate the constraints above.</para>
       </note>
     </section>
-    <section xml:id="variables">
-      <title>Variables</title>
-      <para>Variables are name/value pairs. Pipeline authors can create variables to hold computed
-        values.</para>
-      <para><termdef xml:id="dt-variable">A <firstterm>variable</firstterm> is a name/value pair
-          where the name is an <link xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded name</link> and the value <rfc2119>must</rfc2119> be a string or
-            <type>xs:untypedAtomic</type>.</termdef>
-      </para>
-      <para>Variables and options share the same scope and may shadow each other. </para>
-    </section>
-    <section xml:id="options">
-      <title>Options</title>
-      <para>Some steps accept options. Options are name/value pairs, like variables. Unlike
-        variables, the value of an option can be changed by the caller.</para>
-      <para><termdef xml:id="dt-option">An <firstterm>option</firstterm> is a name/value pair where
-          the name is an <link xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
-            name</link> and the value <rfc2119>must</rfc2119> be a string or
-            <type>xs:untypedAtomic</type>.</termdef>
-      </para>
-      <para><termdef xml:id="dt-declared-options">The options declared on a step are its
-            <firstterm>declared options</firstterm>.</termdef> Option names are always expressed as
-        literal values, pipelines cannot construct option names dynamically. </para>
-      <para><termdef xml:id="dt-specified-options">The options on a step which have specified
-          values, either because a <tag>p:with-option</tag> element specifies a value or because the
-          declaration included a default value, are its <firstterm>specified
-          options</firstterm>.</termdef>
-      </para>
-      <para><impl>How outside values are specified for pipeline options on the pipeline initially
-          invoked by the processor is <glossterm>implementation-defined</glossterm>.</impl> In other
-        words, the command line options, APIs, or other mechanisms available to specify such options
-        values are outside the scope of this specification.</para>
-    </section>
+
+<section xml:id="variables">
+<title>Variables</title>
+
+<para>Variables are name/value pairs. Pipeline authors can create
+variables to hold computed values.</para>
+
+<para><termdef xml:id="dt-variable">A <firstterm>variable</firstterm>
+is a name/value pair. The name <rfc2119>must</rfc2119> be an <link xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
+name</link>. The value may be any XDM value.</termdef>
+</para>
+
+<para>Variables and options share the same scope and may shadow each
+other.</para>
+</section>
+
+<section xml:id="options">
+<title>Options</title>
+
+<para>Some steps accept options. Options are name/value pairs, like
+variables. Unlike variables, the value of an option can be changed by
+the caller.</para>
+
+<para><termdef xml:id="dt-option">An <firstterm>option</firstterm>
+is a name/value pair. The name <rfc2119>must</rfc2119> be an <link xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
+name</link>. The value may be any XDM value.</termdef>
+</para>
+
+<para><termdef xml:id="dt-declared-options">The options declared on a
+step are its <firstterm>declared options</firstterm>.</termdef> Option
+names are always expressed as literal values, pipelines cannot
+construct option names dynamically. </para>
+
+<para><termdef xml:id="dt-specified-options">The options on a step
+which have specified values, either because a <tag>p:with-option</tag>
+element specifies a value or because the declaration included a
+default value, are its <firstterm>specified options</firstterm>.</termdef>
+</para>
+
+<para><impl>How outside values are specified for pipeline options on
+the pipeline initially invoked by the processor is
+<glossterm>implementation-defined</glossterm>.</impl> In other words,
+the command line options, APIs, or other mechanisms available to
+specify such options values are outside the scope of this
+specification.</para>
+</section>
+
     <section xml:id="parameters">
       <title>Parameters</title>
+
+<note><para>This draft makes no attempt to add types to parameters because
+parameters as specified here are going away. Whatever proposal is adopted
+to replace this parameter mechanism should address the types of
+parameters.</para></note>
+
       <para>Some steps accept parameters. Parameters are name/value pairs, like variables and
         options. Unlike variables and options, which have names known in advance to the pipeline,
         parameters are not declared and their names may be unknown to the pipeline author. Pipelines
@@ -3519,26 +3540,39 @@ pipeline. These parameters are available on the
         precedence over any default value specified in the declaration.</para>
       <para>Parameters, unlike options and variables, have names that can be computed at runtime.
         The most common use of parameters is to pass parameter values to XSLT stylesheets.</para>
-      <section xml:id="p.variable"><title>p:variable</title><para>A <tag>p:variable</tag> declares a
-          variable and associates a value with it.</para>
-<para>The name of the variable
-            <rfc2119>must</rfc2119> be a QName. If it does not contain a prefix then it is in no
-          namespace. <error code="S0028">It is a <glossterm>static error</glossterm> to declare an
-            option or variable in the XProc namespace.</error>
-        </para>
-<para>The variable's value is specified with a <tag class="attribute">select</tag>
-          attribute. The <tag class="attribute">select</tag> attribute <rfc2119>must</rfc2119> be
-          specified. The content of the <tag class="attribute">select</tag> attribute is an XPath
-          expression which will be evaluated to provide the value of the variable.</para>
-        <e:rng-pattern name="VariableSelect"/>
+
+<section xml:id="p.variable">
+<title>p:variable</title>
+
+<para>A <tag>p:variable</tag> declares a variable and associates a
+value with it. Variable declarations may optionally specify the type
+of the variable using an XPath Sequence Type.</para>
+
+<para>The name of the variable <rfc2119>must</rfc2119> be a QName. If
+it does not contain a prefix then it is in no namespace. <error code="S0028">It is a <glossterm>static error</glossterm> to declare an
+option or variable in the XProc namespace.</error>
+</para>
+
+<para>The variable's value is specified with a <tag class="attribute">select</tag> attribute. The <tag class="attribute">select</tag> attribute <rfc2119>must</rfc2119> be
+specified. The content of the <tag class="attribute">select</tag>
+attribute is an XPath expression which will be evaluated to provide
+the value of the variable.</para>
+
+<e:rng-pattern name="VariableSelect"/>
 
 <para>If a <tag class="attribute">select</tag> expression is given, it
 is evaluated as an XPath expression using the appropriate context as
 described in <xref linkend="xpath-context"/>, for the enclosing
 <glossterm>container</glossterm>, with the addition of bindings for
 all preceding-sibling <tag>p:variable</tag> and <tag>p:option</tag>
-elements. Regardless of the implicit type of the expression, the type
-is treated as an <type>xs:untypedAtomic</type>.</para>
+elements.</para>
+
+<para>The type of the value may be specified in the <tag class="attribute">as</tag> attribute using an XPath Sequence
+Type<superscript>[citation needed]</superscript>. If an atomic type,
+or sequence of atomic types, is specified, the value provided for the
+option will be atomized according to the standard XPath rules. It is
+an error, err:FIXME, if the computed value does not match the
+specified sequence type.</para>
 
 <para>Since all <glossterm>in-scope bindings</glossterm> are present
 in the Processor XPath Context as variable bindings, <tag class="attribute">select</tag> expressions may refer to the value of
@@ -3546,24 +3580,24 @@ in the Processor XPath Context as variable bindings, <tag class="attribute">sele
 variable reference uses a QName that is not the name of an <glossterm baseform="in-scope bindings">in-scope binding</glossterm>, an XPath
 evaluation error will occur.</para>
 
-<para>If a <tag class="attribute">select</tag> expression is given, the <glossterm>readable
-            ports</glossterm> available for document connections are the <glossterm>readable
-            ports</glossterm> in the environment inherited by the first step in the surrounding
-            <glossterm>container</glossterm>'s <glossterm>contained steps</glossterm>. However, in
-          order to avoid ordering paradoxes, <error code="S0019">it is a <glossterm>static
-              error</glossterm> for a variable's document connection to refer to the output port of
-            any step in the surrounding <glossterm>container</glossterm>'s <glossterm>contained
-              steps</glossterm></error>.</para>
+<para>If a <tag class="attribute">select</tag> expression is given,
+the <glossterm>readable ports</glossterm> available for document
+connections are the <glossterm>readable ports</glossterm> in the
+environment inherited by the first step in the surrounding
+<glossterm>container</glossterm>'s <glossterm>contained
+steps</glossterm>. However, in order to avoid ordering paradoxes,
+<error code="S0019">it is a <glossterm>static error</glossterm> for a
+variable's document connection to refer to the output port of any step
+in the surrounding <glossterm>container</glossterm>'s
+<glossterm>contained steps</glossterm></error>.</para>
 
 <para>If a <tag class="attribute">select</tag> expression is given but
 no document connection is provided, the implicit connection is to the
 <glossterm>default readable port</glossterm> in the environment
 inherited by the first step in the surrounding
 <glossterm>container</glossterm>'s <glossterm>contained
-steps</glossterm>.
-If there is no default
-readable port, the connection is treated as if <tag>p:empty</tag> was
-specified.</para>
+steps</glossterm>. If there is no default readable port, the
+connection is treated as if <tag>p:empty</tag> was specified.</para>
 
 <para><error code="D0008">It is a <glossterm>dynamic error</glossterm>
 if a sequence of more than one document appears on the connection for
@@ -3574,8 +3608,6 @@ the <tag class="attribute">select</tag> expression makes reference to
 the context node, size, or position when the context item is
 undefined.</error>
 </para>
-
-
 </section>
 
 <!-- ============================================================ -->
@@ -3597,6 +3629,14 @@ to declare two or more options on the same step with the same
 name.</error></para>
 
 <e:rng-pattern name="OptionDeclaration"/>
+
+<para>An option may declare its type. The type is specified in the
+<tag class="attribute">as</tag> attribute using an XPath Sequence
+Type<superscript>[citation needed]</superscript>. If an atomic type,
+or sequence of atomic types, is specified, the value provided for the
+option will be atomized according to the standard XPath rules. It is
+an error, err:FIXME, if the computed value does not match the
+specified sequence type</para>
 
 <para>An option may be declared as <tag class="attribute">required</tag>. <error code="S0018">If an option is
 required, it is a <glossterm>static error</glossterm> to invoke the
@@ -3674,8 +3714,12 @@ the value of the variable.</para>
 
 <e:rng-pattern name="WithOptionSelect"/>
 
-<para>Regardless of the implicit type of the expression, the value is
-an <type>xs:untypedAtomic</type>.</para>
+<para>The type of the value may be specified in the <tag class="attribute">as</tag> attribute using an XPath Sequence
+Type<superscript>[citation needed]</superscript>. If an atomic type,
+or sequence of atomic types, is specified, the value provided for the
+option will be atomized according to the standard XPath rules. It is
+an error, err:FIXME, if the computed value does not match the
+specified sequence type</para>
 
 <para>All <glossterm>in-scope bindings</glossterm> for the step
 instance itself are present in the Processor XPath Context as variable
@@ -3708,6 +3752,11 @@ undefined.</error>
 
 <section xml:id="p.with-param">
 <title>p:with-param</title>
+
+<note><para>This draft makes no attempt to add types to parameters because
+parameters as specified here are going away. Whatever proposal is adopted
+to replace this parameter mechanism should address the types of
+parameters.</para></note>
 
 <para>The <tag>p:with-param</tag> element is used to establish the
 value of a parameter. The parameter <rfc2119>must</rfc2119> be given a
@@ -4497,11 +4546,11 @@ with the specified value.
 <p:declare-step type="p:add-attribute">
   <p:input port="source"/>
   <p:output port="result"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="attribute-name" required="true" e:type="xsd:QName"/>
-  <p:option name="attribute-prefix" e:type="xsd:NCName"/>
-  <p:option name="attribute-namespace" e:type="xsd:anyURI"/>
-  <p:option name="attribute-value" required="true" e:type="xsd:string"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="attribute-name" required="true" as="xs:QName"/>
+  <p:option name="attribute-prefix" as="xs:NCName"/>
+  <p:option name="attribute-namespace" as="xs:anyURI"/>
+  <p:option name="attribute-value" required="true" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option
@@ -4566,8 +4615,8 @@ by the options on this step.</para>
 <p:declare-step type="p:add-xml-base">
    <p:input port="source"/>
    <p:output port="result"/>
-   <p:option name="all" select="'false'" e:type="xsd:boolean"/>
-   <p:option name="relative" select="'true'" e:type="xsd:boolean"/>
+   <p:option name="all" select="'false'" as="xs:boolean"/>
+   <p:option name="relative" select="'true'" as="xs:boolean"/>
 </p:declare-step>
 
  <para>The value of the <option>all</option> option
@@ -4623,8 +4672,8 @@ equality.</para>
 <p:declare-step type="p:compare">
    <p:input port="source" primary="true"/>
    <p:input port="alternate"/>
-   <p:output port="result" primary="false" e:type="xsd:boolean"/>
-   <p:option name="fail-if-not-equal" select="'false'" e:type="xsd:boolean"/>
+   <p:output port="result" primary="false" as="xs:boolean"/>
+   <p:option name="fail-if-not-equal" select="'false'" as="xs:boolean"/>
 </p:declare-step>
 
  <para>The value of the <option>fail-if-not-equal</option> option <rfc2119>must</rfc2119> be a boolean.</para>
@@ -4657,7 +4706,7 @@ sequence.</para>
 <p:declare-step type="p:count">
    <p:input port="source" sequence="true"/>
    <p:output port="result"/>
-   <p:option name="limit" select="0" e:type="xsd:integer"/>
+   <p:option name="limit" select="0" as="xs:integer"/>
 </p:declare-step>
 
 <para>If the <tag class="attribute">limit</tag> option is specified
@@ -4681,7 +4730,7 @@ with the deleted items removed, on the <port>result</port> port.</para>
 <p:declare-step type="p:delete">
    <p:input port="source"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -4709,9 +4758,9 @@ directory.</para>
 
 <p:declare-step type="p:directory-list">
   <p:output port="result"/>
-  <p:option name="path" required="true" e:type="xsd:anyURI"/>
-  <p:option name="include-filter" e:type="RegularExpression"/>
-  <p:option name="exclude-filter" e:type="RegularExpression"/>
+  <p:option name="path" required="true" as="xs:anyURI"/>
+  <p:option name="include-filter" as="xs:string" e:type="RegularExpression"/>
+  <p:option name="exclude-filter" as="xs:string" e:type="RegularExpression"/>
 </p:declare-step>
 
 <para>The value of the <option>path</option> option
@@ -4809,9 +4858,9 @@ to the step.</para>
 <p:declare-step type="p:error">
   <p:input port="source" primary="false"/>
   <p:output port="result" sequence="true"/>
-  <p:option name="code" required="true" e:type="xsd:QName"/>
-  <p:option name="code-prefix" e:type="xsd:NCName"/>
-  <p:option name="code-namespace" e:type="xsd:anyURI"/>
+  <p:option name="code" required="true" as="xs:QName"/>
+  <p:option name="code-prefix" as="xs:NCName"/>
+  <p:option name="code-namespace" as="xs:anyURI"/>
 </p:declare-step>
 
 <para>The value of the <option>code</option> option
@@ -4878,7 +4927,7 @@ serialized.</para>
 <p:declare-step type="p:escape-markup">
   <p:input port="source"/>
   <p:output port="result"/>
-  <p:option name="cdata-section-elements" select="''" e:type="ListOfQNames"/><p:option name="doctype-public" e:type="xsd:string"/><p:option name="doctype-system" e:type="xsd:anyURI"/><p:option name="escape-uri-attributes" select="'false'" e:type="xsd:boolean"/><p:option name="include-content-type" select="'true'" e:type="xsd:boolean"/><p:option name="indent" select="'false'" e:type="xsd:boolean"/><p:option name="media-type" e:type="xsd:string"/><p:option name="method" select="'xml'" e:type="xsd:QName"/><p:option name="omit-xml-declaration" select="'true'" e:type="xsd:boolean"/><p:option name="standalone" select="'omit'" e:type="true|false|omit"/><p:option name="undeclare-prefixes" e:type="xsd:boolean"/><p:option name="version" select="'1.0'" e:type="xsd:string"/>
+  <p:option name="cdata-section-elements" select="''" as="xs:string" e:type="ListOfQNames"/><p:option name="doctype-public" as="xs:string"/><p:option name="doctype-system" as="xs:anyURI"/><p:option name="escape-uri-attributes" select="'false'" as="xs:boolean"/><p:option name="include-content-type" select="'true'" as="xs:boolean"/><p:option name="indent" select="'false'" as="xs:boolean"/><p:option name="media-type" as="xs:string"/><p:option name="method" select="'xml'" as="xs:QName"/><p:option name="omit-xml-declaration" select="'true'" as="xs:boolean"/><p:option name="standalone" select="'omit'" as="xs:token" e:type="true|false|omit"/><p:option name="undeclare-prefixes" as="xs:boolean"/><p:option name="version" select="'1.0'" as="xs:string"/>
 </p:declare-step>
 
 <para>This step supports the standard serialization options as specified in <link linkend="serialization-options"/>.  These
@@ -4924,7 +4973,7 @@ based on a (possibly dynamically constructed) XPath select expression.</para>
 <p:declare-step type="p:filter">
   <p:input port="source"/>
   <p:output port="result" sequence="true"/>
-  <p:option name="select" required="true" e:type="XPathExpression"/>
+  <p:option name="select" required="true" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
 <para>This step behaves just like an <tag>p:input</tag> with
@@ -4949,7 +4998,7 @@ including an entity body (content) for the request.</para>
 <p:declare-step type="p:http-request">
   <p:input port="source"/>
   <p:output port="result"/>
-  <p:option name="byte-order-mark" e:type="xsd:boolean"/><p:option name="cdata-section-elements" select="''" e:type="ListOfQNames"/><p:option name="doctype-public" e:type="xsd:string"/><p:option name="doctype-system" e:type="xsd:anyURI"/><p:option name="encoding" e:type="xsd:string"/><p:option name="escape-uri-attributes" select="'false'" e:type="xsd:boolean"/><p:option name="include-content-type" select="'true'" e:type="xsd:boolean"/><p:option name="indent" select="'false'" e:type="xsd:boolean"/><p:option name="media-type" e:type="xsd:string"/><p:option name="method" select="'xml'" e:type="xsd:QName"/><p:option name="normalization-form" select="'none'" e:type="NormalizationForm"/><p:option name="omit-xml-declaration" select="'true'" e:type="xsd:boolean"/><p:option name="standalone" select="'omit'" e:type="true|false|omit"/><p:option name="undeclare-prefixes" e:type="xsd:boolean"/><p:option name="version" select="'1.0'" e:type="xsd:string"/>
+  <p:option name="byte-order-mark" as="xs:boolean"/><p:option name="cdata-section-elements" select="''" as="xs:string" e:type="ListOfQNames"/><p:option name="doctype-public" as="xs:string"/><p:option name="doctype-system" as="xs:anyURI"/><p:option name="encoding" as="xs:string"/><p:option name="escape-uri-attributes" select="'false'" as="xs:boolean"/><p:option name="include-content-type" select="'true'" as="xs:boolean"/><p:option name="indent" select="'false'" as="xs:boolean"/><p:option name="media-type" as="xs:string"/><p:option name="method" select="'xml'" as="xs:QName"/><p:option name="normalization-form" select="'none'" as="xs:token" e:type="NormalizationForm"/><p:option name="omit-xml-declaration" select="'true'" as="xs:boolean"/><p:option name="standalone" select="'omit'" as="xs:token" e:type="true|false|omit"/><p:option name="undeclare-prefixes" as="xs:boolean"/><p:option name="version" select="'1.0'" as="xs:string"/>
 </p:declare-step>
 
 <para>The standard serialization options are provided to control the
@@ -5409,8 +5458,8 @@ port's document relative to the matching elements in the
    <p:input port="source" primary="true"/>
    <p:input port="insertion" sequence="true"/>
    <p:output port="result"/>
-   <p:option name="match" select="'/*'" e:type="XSLTMatchPattern"/>
-   <p:option name="position" required="true" e:type="first-child|last-child|before|after"/>
+   <p:option name="match" select="'/*'" as="xs:string" e:type="XSLTMatchPattern"/>
+   <p:option name="position" required="true" as="xs:token" e:type="first-child|last-child|before|after"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option
@@ -5465,12 +5514,12 @@ element and stores that label in the specified attribute.</para>
 <p:declare-step type="p:label-elements">
   <p:input port="source"/>
   <p:output port="result"/>
-  <p:option name="attribute" select="'xml:id'" e:type="xsd:QName"/>
-  <p:option name="attribute-prefix" e:type="xsd:NCName"/>
-  <p:option name="attribute-namespace" e:type="xsd:anyURI"/>
-  <p:option name="label" select="'concat(&#34;_&#34;,$p:index)'" e:type="XPathExpression"/>
-  <p:option name="match" select="'*'" e:type="XSLTMatchPattern"/>
-  <p:option name="replace" select="'true'" e:type="xsd:boolean"/>
+  <p:option name="attribute" select="'xml:id'" as="xs:QName"/>
+  <p:option name="attribute-prefix" as="xs:NCName"/>
+  <p:option name="attribute-namespace" as="xs:anyURI"/>
+  <p:option name="label" select="'concat(&#34;_&#34;,$p:index)'" as="xs:string" e:type="XPathExpression"/>
+  <p:option name="match" select="'*'" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="replace" select="'true'" as="xs:boolean"/>
 </p:declare-step>
 
 <para>The value of the <option>attribute</option> option
@@ -5533,8 +5582,8 @@ result an XML resource specified by an IRI.</para>
 
 <p:declare-step type="p:load">
   <p:output port="result"/>
-  <p:option name="href" required="true" e:type="xsd:anyURI"/>
-  <p:option name="dtd-validate" select="'false'" e:type="xsd:boolean"/>
+  <p:option name="href" required="true" as="xs:anyURI"/>
+  <p:option name="dtd-validate" select="'false'" as="xs:boolean"/>
 </p:declare-step>
 
 <para>The value of the <option>href</option> option
@@ -5589,8 +5638,8 @@ result document.</para>
 <p:declare-step type="p:make-absolute-uris">
   <p:input port="source"/>
   <p:output port="result"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="base-uri" e:type="xsd:anyURI"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="base-uri" as="xs:anyURI"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -5639,9 +5688,9 @@ use of a namespace in a document to a new IRI value.</para>
  <p:declare-step type="p:namespace-rename">
    <p:input port="source"/>
    <p:output port="result"/>
-   <p:option name="from" e:type="xsd:anyURI"/>
-   <p:option name="to" e:type="xsd:anyURI"/>
-   <p:option name="apply-to" select="'all'" e:type="all|elements|attributes"/>
+   <p:option name="from" as="xs:anyURI"/>
+   <p:option name="to" as="xs:anyURI"/>
+   <p:option name="apply-to" select="'all'" as="xs:token" e:type="all|elements|attributes"/>
 </p:declare-step>
 
 <para>The value of the <option>from</option> option
@@ -5754,9 +5803,9 @@ fashion.</para>
    <p:input port="source" sequence="true" primary="true"/>
    <p:input port="alternate" sequence="true"/>
    <p:output port="result" sequence="true"/>
-   <p:option name="wrapper" required="true" e:type="xsd:QName"/>
-   <p:option name="wrapper-prefix" e:type="xsd:NCName"/>
-   <p:option name="wrapper-namespace" e:type="xsd:anyURI"/>
+   <p:option name="wrapper" required="true" as="xs:QName"/>
+   <p:option name="wrapper-prefix" as="xs:NCName"/>
+   <p:option name="wrapper-namespace" as="xs:anyURI"/>
 </p:declare-step>
 
 <para>The value of the <option>wrapper</option> option
@@ -5840,10 +5889,10 @@ processing-instruction targets in a document.</para>
 <p:declare-step type="p:rename">
   <p:input port="source"/>
   <p:output port="result"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="new-name" required="true" e:type="xsd:QName"/>
-  <p:option name="new-prefix" e:type="xsd:NCName"/>
-  <p:option name="new-namespace" e:type="xsd:anyURI"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="new-name" required="true" as="xs:QName"/>
+  <p:option name="new-prefix" as="xs:NCName"/>
+  <p:option name="new-namespace" as="xs:anyURI"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option must be an
@@ -5902,7 +5951,7 @@ its primary input with the document element of the
    <p:input port="source" primary="true"/>
    <p:input port="replacement"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option
@@ -5932,7 +5981,7 @@ matching elements.</para>
    <p:input port="source" primary="true"/>
    <p:input port="attributes"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
  <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -5992,8 +6041,8 @@ documents and divides it into two sequences.</para>
   <p:input port="source" sequence="true"/>
   <p:output port="matched" sequence="true" primary="true"/>
   <p:output port="not-matched" sequence="true"/>
-  <p:option name="initial-only" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="test" required="true" e:type="XPathExpression"/>
+  <p:option name="initial-only" select="'false'" as="xs:boolean"/>
+  <p:option name="test" required="true" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
  <para>The value of the <option>test</option> option <rfc2119>must</rfc2119> be an XPathExpression.</para>
@@ -6047,8 +6096,8 @@ stored document.</para>
 <p:declare-step type="p:store">
   <p:input port="source"/>
   <p:output port="result" primary="false"/>
-  <p:option name="href" required="true" e:type="xsd:anyURI"/>
-  <p:option name="byte-order-mark" e:type="xsd:boolean"/><p:option name="cdata-section-elements" select="''" e:type="ListOfQNames"/><p:option name="doctype-public" e:type="xsd:string"/><p:option name="doctype-system" e:type="xsd:anyURI"/><p:option name="encoding" e:type="xsd:string"/><p:option name="escape-uri-attributes" select="'false'" e:type="xsd:boolean"/><p:option name="include-content-type" select="'true'" e:type="xsd:boolean"/><p:option name="indent" select="'false'" e:type="xsd:boolean"/><p:option name="media-type" e:type="xsd:string"/><p:option name="method" select="'xml'" e:type="xsd:QName"/><p:option name="normalization-form" select="'none'" e:type="NormalizationForm"/><p:option name="omit-xml-declaration" select="'true'" e:type="xsd:boolean"/><p:option name="standalone" select="'omit'" e:type="true|false|omit"/><p:option name="undeclare-prefixes" e:type="xsd:boolean"/><p:option name="version" select="'1.0'" e:type="xsd:string"/>
+  <p:option name="href" required="true" as="xs:anyURI"/>
+  <p:option name="byte-order-mark" as="xs:boolean"/><p:option name="cdata-section-elements" select="''" as="xs:string" e:type="ListOfQNames"/><p:option name="doctype-public" as="xs:string"/><p:option name="doctype-system" as="xs:anyURI"/><p:option name="encoding" as="xs:string"/><p:option name="escape-uri-attributes" select="'false'" as="xs:boolean"/><p:option name="include-content-type" select="'true'" as="xs:boolean"/><p:option name="indent" select="'false'" as="xs:boolean"/><p:option name="media-type" as="xs:string"/><p:option name="method" select="'xml'" as="xs:QName"/><p:option name="normalization-form" select="'none'" as="xs:token" e:type="NormalizationForm"/><p:option name="omit-xml-declaration" select="'true'" as="xs:boolean"/><p:option name="standalone" select="'omit'" as="xs:token" e:type="true|false|omit"/><p:option name="undeclare-prefixes" as="xs:boolean"/><p:option name="version" select="'1.0'" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>href</option> option
@@ -6084,8 +6133,8 @@ with the string result of evaluating an XPath expression.</para>
 <p:declare-step type="p:string-replace">
    <p:input port="source"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-   <p:option name="replace" required="true" e:type="XPathExpression"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+   <p:option name="replace" required="true" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -6128,10 +6177,10 @@ is the reverse of the <tag>p:escape-markup</tag> step.</para>
 <p:declare-step type="p:unescape-markup">
   <p:input port="source"/>
   <p:output port="result"/>
-  <p:option name="namespace" e:type="xsd:anyURI"/>
-  <p:option name="content-type" select="'application/xml'" e:type="xsd:string"/>
-  <p:option name="encoding" e:type="xsd:string"/>
-  <p:option name="charset" e:type="xsd:string"/>
+  <p:option name="namespace" as="xs:anyURI"/>
+  <p:option name="content-type" select="'application/xml'" as="xs:string"/>
+  <p:option name="encoding" as="xs:string"/>
+  <p:option name="charset" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>namespace</option> option
@@ -6228,7 +6277,7 @@ children.</para>
 <p:declare-step type="p:unwrap">
    <p:input port="source"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
  <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -6263,11 +6312,11 @@ unwrapped, the result might not be well-formed XML.</para>
 <p:declare-step type="p:wrap">
    <p:input port="source"/>
    <p:output port="result"/>
-   <p:option name="wrapper" required="true" e:type="xsd:QName"/>
-   <p:option name="wrapper-prefix" e:type="xsd:NCName"/>
-   <p:option name="wrapper-namespace" e:type="xsd:anyURI"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-   <p:option name="group-adjacent" e:type="XPathExpression"/>
+   <p:option name="wrapper" required="true" as="xs:QName"/>
+   <p:option name="wrapper-prefix" as="xs:NCName"/>
+   <p:option name="wrapper-namespace" as="xs:anyURI"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+   <p:option name="group-adjacent" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
 <para>The value of the <option>wrapper</option> option
@@ -6332,10 +6381,10 @@ documents.</para>
 <p:declare-step type="p:wrap-sequence">
    <p:input port="source" sequence="true"/>
    <p:output port="result" sequence="true"/>
-   <p:option name="wrapper" required="true" e:type="xsd:QName"/>
-   <p:option name="wrapper-prefix" e:type="xsd:NCName"/>
-   <p:option name="wrapper-namespace" e:type="xsd:anyURI"/>
-   <p:option name="group-adjacent" e:type="XPathExpression"/>
+   <p:option name="wrapper" required="true" as="xs:QName"/>
+   <p:option name="wrapper-prefix" as="xs:NCName"/>
+   <p:option name="wrapper-namespace" as="xs:anyURI"/>
+   <p:option name="group-adjacent" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
 <para>The value of the <option>wrapper</option> option
@@ -6385,8 +6434,8 @@ element.
 <p:declare-step type="p:xinclude">
   <p:input port="source"/>
   <p:output port="result"/>
-  <p:option name="fixup-xml-base" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="fixup-xml-lang" select="'false'" e:type="xsd:boolean"/>
+  <p:option name="fixup-xml-base" select="'false'" as="xs:boolean"/>
+  <p:option name="fixup-xml-lang" select="'false'" as="xs:boolean"/>
 </p:declare-step>
 
 <para>The value of the <option>fixup-xml-base</option> option <rfc2119>must</rfc2119> be a
@@ -6419,10 +6468,10 @@ if an XInclude error occurs during processing.</error> </para>
   <p:input port="parameters" kind="parameter"/>
   <p:output port="result" primary="true"/>
   <p:output port="secondary" sequence="true"/>
-  <p:option name="initial-mode" e:type="xsd:QName"/>
-  <p:option name="template-name" e:type="xsd:QName"/>
-  <p:option name="output-base-uri" e:type="xsd:anyURI"/>
-  <p:option name="version" e:type="xsd:string"/>
+  <p:option name="initial-mode" as="xs:QName"/>
+  <p:option name="template-name" as="xs:QName"/>
+  <p:option name="output-base-uri" as="xs:anyURI"/>
+  <p:option name="version" as="xs:string"/>
 </p:declare-step>
 
 <para>If present, the value of the <option>initial-mode</option>
@@ -6565,20 +6614,20 @@ from standard error.</para>
   <p:output port="result" primary="true"/>
   <p:output port="errors"/>
   <p:output port="exit-status"/>
-  <p:option name="command" required="true" e:type="xsd:string"/>
-  <p:option name="args" select="''" e:type="xsd:string"/>
-  <p:option name="cwd" e:type="xsd:string"/>
-  <p:option name="source-is-xml" select="'true'" e:type="xsd:boolean"/>
-  <p:option name="result-is-xml" select="'true'" e:type="xsd:boolean"/>
-  <p:option name="wrap-result-lines" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="errors-is-xml" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="wrap-error-lines" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="path-separator" e:type="xsd:string"/>
-  <p:option name="failure-threshold" e:type="xsd:integer"/>
-  <p:option name="arg-separator" select="' '" e:type="xsd:string"/>
+  <p:option name="command" required="true" as="xs:string"/>
+  <p:option name="args" select="''" as="xs:string"/>
+  <p:option name="cwd" as="xs:string"/>
+  <p:option name="source-is-xml" select="'true'" as="xs:boolean"/>
+  <p:option name="result-is-xml" select="'true'" as="xs:boolean"/>
+  <p:option name="wrap-result-lines" select="'false'" as="xs:boolean"/>
+  <p:option name="errors-is-xml" select="'false'" as="xs:boolean"/>
+  <p:option name="wrap-error-lines" select="'false'" as="xs:boolean"/>
+  <p:option name="path-separator" as="xs:string"/>
+  <p:option name="failure-threshold" as="xs:integer"/>
+  <p:option name="arg-separator" select="' '" as="xs:string"/>
 
   <!-- plus the serialization options -->
-  <p:option name="byte-order-mark" e:type="xsd:boolean"/><p:option name="cdata-section-elements" select="''" e:type="ListOfQNames"/><p:option name="doctype-public" e:type="xsd:string"/><p:option name="doctype-system" e:type="xsd:anyURI"/><p:option name="encoding" e:type="xsd:string"/><p:option name="escape-uri-attributes" select="'false'" e:type="xsd:boolean"/><p:option name="include-content-type" select="'true'" e:type="xsd:boolean"/><p:option name="indent" select="'false'" e:type="xsd:boolean"/><p:option name="media-type" e:type="xsd:string"/><p:option name="method" select="'xml'" e:type="xsd:QName"/><p:option name="normalization-form" select="'none'" e:type="NormalizationForm"/><p:option name="omit-xml-declaration" select="'true'" e:type="xsd:boolean"/><p:option name="standalone" select="'omit'" e:type="true|false|omit"/><p:option name="undeclare-prefixes" e:type="xsd:boolean"/><p:option name="version" select="'1.0'" e:type="xsd:string"/>
+  <p:option name="byte-order-mark" as="xs:boolean"/><p:option name="cdata-section-elements" select="''" as="xs:string" e:type="ListOfQNames"/><p:option name="doctype-public" as="xs:string"/><p:option name="doctype-system" as="xs:anyURI"/><p:option name="encoding" as="xs:string"/><p:option name="escape-uri-attributes" select="'false'" as="xs:boolean"/><p:option name="include-content-type" select="'true'" as="xs:boolean"/><p:option name="indent" select="'false'" as="xs:boolean"/><p:option name="media-type" as="xs:string"/><p:option name="method" select="'xml'" as="xs:QName"/><p:option name="normalization-form" select="'none'" as="xs:token" e:type="NormalizationForm"/><p:option name="omit-xml-declaration" select="'true'" as="xs:boolean"/><p:option name="standalone" select="'omit'" as="xs:token" e:type="true|false|omit"/><p:option name="undeclare-prefixes" as="xs:boolean"/><p:option name="version" select="'1.0'" as="xs:string"/>
 </p:declare-step>
 
 <para>The values of the <option>command</option>, <option>args</option>,
@@ -6710,10 +6759,10 @@ for some value and injects it into the <port>source</port> document.</para>
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
   <p:input port="parameters" kind="parameter"/>
-  <p:option name="value" required="true" e:type="xsd:string"/>
-  <p:option name="algorithm" required="true" e:type="xsd:QName"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="version" e:type="xsd:string"/>
+  <p:option name="value" required="true" as="xs:string"/>
+  <p:option name="algorithm" required="true" as="xs:QName"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="version" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>algorithm</option> option must be a QName.
@@ -6776,8 +6825,8 @@ the <port>source</port> document.</para>
 <p:declare-step type="p:uuid">
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="version" e:type="xsd:integer"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="version" as="xs:integer"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option must be an
@@ -6827,9 +6876,9 @@ validation to the <port>source</port> document.</para>
   <p:input port="source" primary="true"/>
   <p:input port="schema"/>
   <p:output port="result"/>
-  <p:option name="dtd-attribute-values" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="dtd-id-idref-warnings" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="assert-valid" select="'true'" e:type="xsd:boolean"/>
+  <p:option name="dtd-attribute-values" select="'false'" as="xs:boolean"/>
+  <p:option name="dtd-id-idref-warnings" select="'false'" as="xs:boolean"/>
+  <p:option name="assert-valid" select="'true'" as="xs:boolean"/>
 </p:declare-step>
 
 <para>The values of the <option>dtd-attribute-values</option> and
@@ -6883,8 +6932,8 @@ processing to the <port>source</port> document.</para>
   <p:input port="schema"/>
   <p:output port="result" primary="true"/>
   <p:output port="report" sequence="true"/>
-  <p:option name="phase" select="'#ALL'" e:type="xsd:string"/>
-  <p:option name="assert-valid" select="'true'" e:type="xsd:boolean"/>
+  <p:option name="phase" select="'#ALL'" as="xs:string"/>
+  <p:option name="assert-valid" select="'true'" as="xs:boolean"/>
 </p:declare-step>
 
 <para><error code="C0054">It is a <glossterm>dynamic error</glossterm>
@@ -6922,10 +6971,10 @@ validity assessment to the <port>source</port> input.</para>
   <p:input port="source" primary="true"/>
   <p:input port="schema" sequence="true"/>
   <p:output port="result"/>
-  <p:option name="use-location-hints" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="try-namespaces" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="assert-valid" select="'true'" e:type="xsd:boolean"/>
-  <p:option name="mode" select="'strict'" e:type="strict|lax"/>
+  <p:option name="use-location-hints" select="'false'" as="xs:boolean"/>
+  <p:option name="try-namespaces" select="'false'" as="xs:boolean"/>
+  <p:option name="assert-valid" select="'true'" as="xs:boolean"/>
+  <p:option name="mode" select="'strict'" as="xs:token" e:type="strict|lax"/>
 </p:declare-step>
 
 <para>The values of the <option>use-location-hints</option>,
@@ -7017,7 +7066,7 @@ by the XML Schema recommendation.</para>
 
 <p:declare-step type="p:www-form-urldecode">
   <p:output port="result"/>
-  <p:option name="value" required="true" e:type="xsd:string"/>
+  <p:option name="value" required="true" as="xs:string"/>
 </p:declare-step>
 
 <para>The <option>value</option> option is interpreted as a string of
@@ -7063,7 +7112,7 @@ injects it into the <port>source</port> document.</para>
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
   <p:input port="parameters" kind="parameter"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option must be an
@@ -7323,8 +7372,8 @@ port.</para>
   <p:input port="source"/>
   <p:input port="parameters" kind="parameter"/>
   <p:output port="result" primary="false"/>
-  <p:option name="href" required="true" e:type="xsd:anyURI"/>
-  <p:option name="content-type" e:type="xsd:string"/>
+  <p:option name="href" required="true" as="xs:anyURI"/>
+  <p:option name="content-type" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>href</option> option
