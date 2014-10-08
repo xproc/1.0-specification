@@ -1429,6 +1429,26 @@ specified.</para>
 
 </section>
 
+<section xml:id="f.make-map">
+<title>Make Map</title>
+
+<para>XProc uses maps to represent pass parameters to steps. Sometimes
+it is convenient to represent these maps as XML documents. This function
+reads such an XML document and produces a map.</para>
+
+<methodsynopsis>
+<type>map(xs:QName,item())</type>
+<methodname>p:make-map</methodname>
+<methodparam><type>item()</type><parameter>param-set</parameter></methodparam>
+</methodsynopsis>
+
+<para>The <parameter>param-set</parameter> parameter
+<rfc2119>should</rfc2119> be a <tag>c:param-set</tag> element or
+document. Markup errors in the <parameter>param-set</parameter> or its
+decendants are ignored.</para>
+
+</section>
+
       <section xml:id="other-xpath-extension-functions">
         <title>Other XPath Extension Functions</title>
         <para><impl>It is <glossterm>implementation-defined</glossterm> if the processor supports
