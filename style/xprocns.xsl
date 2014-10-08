@@ -105,12 +105,13 @@
 	</xsl:call-template>
       </code>
 
-      <xsl:variable name="type" as="xs:string+">
+      <xsl:variable name="type" as="xs:string*">
 	<xsl:choose xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax">
-	  <xsl:when test="not(@e:type)">
+	  <xsl:when test="not(@as) and not(@e:type)">
 	    <xsl:message>Warning: no e:type!!!</xsl:message>
 	    <xsl:value-of select="'string'"/>
 	  </xsl:when>
+          <xsl:when test="not(@e:type)"/>
 	  <xsl:when test="contains(@e:type,'|')">
 	    <xsl:for-each select="tokenize(@e:type,'\|')">
 	      <xsl:if test="position()&gt;1">|</xsl:if>
@@ -134,11 +135,13 @@
 	<xsl:value-of select="$type" separator=" "/>
       </xsl:variable>
 
-      <code class="comment">&lt;!--&#160;</code>
-      <span class="opt-type">
-	<xsl:value-of select="$typestr"/>
-      </span>
-      <code class="comment">&#160;--&gt;</code>
+      <xsl:if test="exists($type)">
+        <code class="comment">&lt;!--&#160;</code>
+        <span class="opt-type">
+	  <xsl:value-of select="$typestr"/>
+        </span>
+        <code class="comment">&#160;--&gt;</code>
+      </xsl:if>
     </xsl:if>
   </span>
 </xsl:template>

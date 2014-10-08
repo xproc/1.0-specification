@@ -12,7 +12,8 @@ OBJS=${SRCS:.rnc=.rng}
 all: $(OBJS)
 
 .rnc.rng:
-	$(TRANG) $< $@
+	@echo Convert RNC to RNG
+	@$(TRANG) $< $@
 
 clean:
 	rm -f *.rng
