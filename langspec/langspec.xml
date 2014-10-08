@@ -2230,7 +2230,7 @@ or collections.</error>
               linkend="xmlschema-2"/> and according to the following definition: In the context of
             XProc, a <type>QName</type> is almost always a QName in the <glossterm>Namespaces in
               XML</glossterm> sense. Note, however, that <tag>p:option</tag> and
-              <tag>p:with-param</tag> values can get their namespace declarations in a non-standard
+              values can get their namespace declarations in a non-standard
             way (with <tag>p:namespaces</tag>) and QNames that have no prefix are always in
             no-namespace, irrespective of the default namespace. </para>
         </listitem>
@@ -3389,7 +3389,7 @@ option or variable are used.</para>
             <varname>divchild</varname> option on the call of that pipeline. It's not sufficient to
           provide just one of the sets of bindings.</para><para xml:id="p.namespaces">The
             <tag>p:namespaces</tag> element can be used as a child of <tag>p:variable</tag>,
-            <tag>p:with-option</tag> or <tag>p:with-param</tag> to provide explicit bindings.</para>
+            <tag>p:with-option</tag> to provide explicit bindings.</para>
         <e:rng-pattern name="Namespaces"/>
         <para>The namespace bindings specified by a <tag>p:namespaces</tag> element are determined
           as follows:</para><orderedlist>
@@ -3407,7 +3407,7 @@ option or variable are used.</para>
             <para>If the <tag class="attribute">element</tag> attribute is specified, it
                 <rfc2119>must</rfc2119> contain an XPath expression which identifies a single
               element node (the input connection for this expression is the same as the connection
-              for the <tag>p:option</tag> or <tag>p:with-param</tag> which contains it). The
+              for the <tag>p:option</tag> which contains it). The
               in-scope namespaces of that node are used.</para>
             <para>The expression is evaluated in the appropriate context, See <xref
                 linkend="xpath-context"/>.</para>
@@ -3436,10 +3436,10 @@ option or variable are used.</para>
               <tag class="attribute">binding</tag> and <tag class="attribute">element</tag> on the
             same <tag>p:namespaces</tag> element.</error>
         </para>
-<para>If a <tag>p:variable</tag>, <tag>p:with-option</tag> or <tag>p:with-param</tag>
+<para>If a <tag>p:variable</tag>, <tag>p:with-option</tag>
           includes one or more <tag>p:namespaces</tag> elements, then the union of all the
-          namespaces specified on those elements are used as the bindings for the variable or option value. In this case, the in-scope namespaces on the <tag>p:variable</tag>,
-            <tag>p:with-option</tag> or <tag>p:with-param</tag> are ignored. <error code="D0013">It
+          namespaces specified on those elements are used as the bindings for the variable or option value. In this case, the in-scope namespaces on the <tag>p:variable</tag> and
+            <tag>p:with-option</tag> are ignored. <error code="D0013">It
             is a <glossterm>dynamic error</glossterm> if the specified namespace bindings are
             inconsistent; that is, if the same prefix is bound to two different namespace
             names.</error></para>
