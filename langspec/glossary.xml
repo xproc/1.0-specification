@@ -53,8 +53,6 @@
               <firstterm>namespace fixup</firstterm>.</para></glossdef></glossentry><glossentry><glossterm>option</glossterm><glossdef><para>An <firstterm>option</firstterm> is a name/value pair where
           the name is an <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
             name</link> and the value <rfc2119>must</rfc2119> be a string or
-            <type>xs:untypedAtomic</type>.</para></glossdef></glossentry><glossentry><glossterm>parameter</glossterm><glossdef><para>A <firstterm>parameter</firstterm> is a name/value pair
-          where the name is an <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded name</link> and the value <rfc2119>must</rfc2119> be a string or
             <type>xs:untypedAtomic</type>.</para></glossdef></glossentry>
 <glossentry><glossterm>pipeline</glossterm><glossdef><para>A <firstterm>pipeline</firstterm> is a set of connected
         steps, with outputs of one step flowing into inputs of another.</para></glossdef></glossentry>
