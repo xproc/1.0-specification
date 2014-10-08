@@ -2983,7 +2983,6 @@ nodes (or an empty sequence).</error></para>
           the processor. In that case, the processor <rfc2119>must</rfc2119> use the default
           connection if no external connection is provided for the port.</para></section>
 
-    </section>
     <section xml:id="p.iteration-source"><title>p:iteration-source</title><para>A
           <tag>p:iteration-source</tag> identifies input to a <tag>p:for-each</tag>.</para>
       <e:rng-pattern name="IterationSource"/>
@@ -3889,7 +3888,7 @@ was encoded.</para>
       <e:rng-pattern name="PipeInfo"/>
       <para>There are no constraints on the content of the <tag>p:pipeinfo</tag> element, see <link
           linkend="annotations"/>.</para></section>
-
+    </section>
   <section xml:id="errors">
     <title>Errors</title>
     <para>Errors in a pipeline can be divided into two classes: static errors and dynamic
