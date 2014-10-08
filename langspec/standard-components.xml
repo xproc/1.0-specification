@@ -1353,47 +1353,6 @@ this step does not attempt to distinguish which one.</para>
 
 <!-- ************************************************************************-->
 
-<section xml:id="c.parameters">
-<title>p:parameters</title>
-
-<para>The <code>p:parameters</code> step exposes a set of parameters
-as a <tag>c:param-set</tag> document.</para>
-
-<p:declare-step type="p:parameters">
-   <p:input port="parameters" kind="parameter" primary="false"/>
-   <p:output port="result" primary="false"/>
-</p:declare-step>
-
-<para>Each parameter passed to the step is converted into a
-<tag>c:param</tag> element. The step resolves duplicate parameters in
-the normal way (see <link linkend="parameter-inputs"/>) so at most one
-parameter with any given name will appear in the result.
-The resulting <tag>c:param</tag> elements are wrapped in a
-<tag>c:param-set</tag> and the parameter set document is written
-to the <port>result</port> port.
-<impl>The
-order in which <tag>c:param</tag> elements occur in the <tag>c:param-set</tag> is
-<glossterm>implementation-dependent</glossterm>.</impl></para>
-
-<para>For consistency and user convenience, if any of the parameters
-have names that are in a namespace, the
-<tag class="attribute">namespace</tag> attribute on the
-<tag>c:param</tag> element <rfc2119>must</rfc2119> be used. Each
-<tag class="attribute">name</tag> <rfc2119>must</rfc2119> be an NCName.</para>
-
-<para>The base URI of the output document is the URI of the pipeline document
-that contains the step.</para>
-
-<note>
-<para>Since the <port>parameters</port> port is <emphasis>not</emphasis>
-primary, any explicit <tag>p:with-param</tag> settings <rfc2119>must</rfc2119> include a
-<tag class="attribute">port</tag> attribute, per the last paragraph of <xref linkend="p.with-param"/>.</para>
-</note>
-
-</section>
-
-<!-- ************************************************************************-->
-
 <section xml:id="c.rename">
 <title>p:rename</title>
 
@@ -2011,7 +1970,7 @@ examining the version of the stylesheet.</para>
 
 <para>The XSLT stylesheet provided on the <port>stylesheet</port> port
 is applied to the document on the <port>source</port> port. Any
-parameters passed on the <port>parameters</port> port are used to
+parameters passed in the <option>parameters</option> option are used to
 define top-level stylesheet parameters. The primary result document of
 the transformation appears on the <port>result</port> port. All other
 result documents appear on the <port>secondary</port> port. If XSLT
@@ -2079,7 +2038,7 @@ with the following adjustments.</para>
 <term>Variable values</term>
 <listitem>
 <para>Any parameters
-passed on the <port>parameters</port> port are available as variable bindings
+passed in the <option>parameters</option> option are available as variable bindings
 to the XSLT processor.</para>
 </listitem>
 </varlistentry>
@@ -2459,7 +2418,7 @@ and any Schematron assertions fail.</error></para>
 <para>The value of the <option>phase</option> option identifies the
 Schematron validation phase with which validation begins.</para>
 
-<para>The <port>parameters</port> port provides name/value pairs which
+<para>The <option>parameters</option> option provides name/value pairs which
 correspond to Schematron external variables.</para>
 
 <para>The <port>result</port> output from this step is a copy of the
@@ -2580,7 +2539,7 @@ by the XML Schema recommendation.</para>
 <title>p:www-form-urldecode</title>
 
 <para>The <tag>p:www-form-urldecode</tag> step decodes a
-<literal>x-www-form-urlencoded</literal> string into a set of parameters.</para>
+<literal>x-www-form-urlencoded</literal> string into an XML representation.</para>
 
 <p:declare-step type="p:www-form-urldecode">
   <p:output port="result"/>
@@ -2589,8 +2548,9 @@ by the XML Schema recommendation.</para>
 
 <para>The <option>value</option> option is interpreted as a string of
 parameter values encoded using the
-<literal>x-www-form-urlencoded</literal> algorithm. It turns each such
-encoded name/value pair into a parameter. The entire set of parameters
+<literal>x-www-form-urlencoded</literal> algorithm. Each name/value
+pair is written in a <tag>c:param</tag> element.
+The entire set of parameters
 is written (as a <tag>c:param-set</tag>) on the <port>result</port>
 output port.</para>
 
@@ -2610,10 +2570,13 @@ as the order of the encoded parameters, reading from left to right.</para>
 
 <para>If any parameter name occurs more than once in the encoded string,
 the resulting parameter set will contain a <tag>c:param</tag> for
-each instance. However, only one of these will actually be used if the
-parameter set is passed to another step on its <glossterm>parameter
-input port</glossterm>.</para>
+each instance.</para>
 
+<para>FIXME: the c:param-set/c:param vocabulary needs to be described
+here because it's been removed elsewhere.</para>
+
+<para>FIXME: we need a function that takes an XML encoded c:param-set
+and returns a map.</para>
 
 </section>
 
@@ -2643,9 +2606,8 @@ When parameters are encoded into name/value pairs,
 The namespace name is ignored and no prefix or colon appears in the name.
 </para>
 
-<para>The parameters are encoded in document order. That is, the first
-parameter appears first in the resulting string, the second parameter
-second, etc. reading from left to right.</para>
+<para><impl>The order of the parameters is
+is <glossterm>implementation-dependent</glossterm>.</impl></para>
 
 <para>The matched nodes are specified with the match pattern in the
 <option>match</option> option. For each matching node, the encoded
@@ -2789,10 +2751,9 @@ way:</para>
 <varlistentry>
 <term>Variable values</term>
 <listitem>
-<para>Any parameters passed on the <port>parameters</port> port
+<para>Any parameters passed in the <option>parameters</option> option
 augment any implementation-defined variable bindings known to the XQuery
-processor. The parameter values are passed to the XQuery processor as
-values of type <type>xs:untypedAtomic</type>.
+processor.
 </para>
 </listitem>
 </varlistentry>
@@ -2898,8 +2859,8 @@ the output type is <glossterm>implementation-defined</glossterm>.</impl> The def
 PDF.</para>
 
 <para><impl>A formatter may take any number of optional rendering
-parameters via the step's parameters; such parameters are defined by
-the XSL implementation used and are
+parameters via the step's <option>parameters</option>; such parameters
+are defined by the XSL implementation used and are
 <glossterm>implementation-defined</glossterm>.</impl></para>
 
 <para>The output of this step is a document containing a single
