@@ -88,7 +88,7 @@ changes in semantics.
 <term>First attempt at removing XPath 1.0</term>
 <listitem>
 <para>Removes references to XPath 1.0. Removes the
-<function>p:base-uri</function> and <function>p:resolve-uri</function>
+<literal>p:base-uri</literal> and <literal>p:resolve-uri</literal>
 functions. They existed only for interoperability with XPath 1.0
 implementations. The standard XPath 2.0 functions can be used
 instead.</para>
