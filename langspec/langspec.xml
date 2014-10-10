@@ -2249,7 +2249,7 @@ or collections.</error>
           <para><type>QName</type>: With whitespace normalization as per <biblioref
               linkend="xmlschema-2"/> and according to the following definition: In the context of
             XProc, a <type>QName</type> is almost always a QName in the <glossterm>Namespaces in
-              XML</glossterm> sense. Note, however, that <tag>p:option</tag> and
+              XML</glossterm> sense. Note, however, that <tag>p:option</tag>
               values can get their namespace declarations in a non-standard
             way (with <tag>p:namespaces</tag>) and QNames that have no prefix are always in
             no-namespace, irrespective of the default namespace. </para>

@@ -2030,7 +2030,7 @@ if an XInclude error occurs during processing.</error> </para>
 <p:declare-step type="p:xslt">
   <p:input port="source" sequence="true" primary="true"/>
   <p:input port="stylesheet"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" primary="true"/>
   <p:output port="secondary" sequence="true"/>
   <p:option name="initial-mode" as="xs:QName"/>
@@ -2325,7 +2325,7 @@ for some value and injects it into the <port>source</port> document.</para>
 <p:declare-step type="p:hash">
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:option name="value" required="true" as="xs:string"/>
   <p:option name="algorithm" required="true" as="xs:QName"/>
   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
@@ -2495,9 +2495,9 @@ augmented by application of the
 processing to the <port>source</port> document.</para>
 
 <p:declare-step type="p:validate-with-schematron">
-  <p:input port="parameters" kind="parameter"/>
   <p:input port="source" primary="true"/>
   <p:input port="schema"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" primary="true"/>
   <p:output port="report" sequence="true"/>
   <p:option name="phase" select="'#ALL'" as="xs:string"/>
@@ -2679,7 +2679,7 @@ injects it into the <port>source</port> document.</para>
 <p:declare-step type="p:www-form-urlencode">
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
@@ -2721,7 +2721,7 @@ provided on the <port>source</port> port.</para>
 <p:declare-step type="p:xquery">
   <p:input port="source" sequence="true" primary="true"/>
   <p:input port="query"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" sequence="true"/>
 </p:declare-step>
 
@@ -2920,8 +2920,8 @@ port.</para>
 
 <p:declare-step type="p:xsl-formatter">
   <p:input port="source"/>
-  <p:input port="parameters" kind="parameter"/>
   <p:output port="result" primary="false"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:option name="href" required="true" as="xs:anyURI"/>
   <p:option name="content-type" as="xs:string"/>
 </p:declare-step>
