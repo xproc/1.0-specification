@@ -41,7 +41,7 @@
                           /c:result/c:env[@name='TRAVIS_REPO_SLUG']/@value,
                           '/')"/>
   <p:with-param name="auto-diff"
-                select="string(/c:result/c:env[@name='DELTA_BASE']/@value)"/>
+                select="string((/c:result/c:env[@name='DELTA_BASE' or @name='DELTA_LOCAL'])[1]/@value)"/>
 </dbp:docbook>
 
 </p:declare-step>
