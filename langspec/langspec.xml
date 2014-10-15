@@ -1432,7 +1432,7 @@ specified.</para>
 <section xml:id="f.make-map">
 <title>Make Map</title>
 
-<para>XProc uses maps to represent pass parameters to steps. Sometimes
+<para>XProc uses maps to pass parameters to steps. Sometimes
 it is convenient to represent these maps as XML documents. This function
 reads such an XML document and produces a map.</para>
 
@@ -1442,11 +1442,29 @@ reads such an XML document and produces a map.</para>
 <methodparam><type>item()</type><parameter>param-set</parameter></methodparam>
 </methodsynopsis>
 
-<para>The <parameter>param-set</parameter> parameter
-<rfc2119>should</rfc2119> be a <tag>c:param-set</tag> element or
-document. Markup errors in the <parameter>param-set</parameter> or its
-decendants are ignored.</para>
+<para>The map returned contains (exclusively) the parameters that are
+represented by the <parameter>param-set</parameter> item.</para>
 
+<para>The <parameter>param-set</parameter> provided
+<rfc2119>must</rfc2119> be a <tag>c:param-set</tag> element or a
+document. If it is a document, <tag>c:param-set</tag>
+<rfc2119>must</rfc2119> be the document element.
+<error code="D1000">It is a <glossterm>dynamic error</glossterm>
+if the element (or document element) passed to
+<function>p:make-map</function> is not a <tag>c:param-set</tag>
+element.</error></para>
+
+<para>Only <tag>c:param</tag> children of the <tag>c:param-set</tag>
+element are considered, all other nodes are ignored. The parameters
+represented by those <tag>c:param</tag> children
+are added to the map that is returned.
+<error code="D1002">It is a <glossterm>dynamic error</glossterm>
+if any of the <tag>c:param</tag> elements are invalid.</error>
+</para>
+
+<note role="editorial">
+<para>Must tie down what “valid” means wrt the c:param element.</para>
+</note>
 </section>
 
       <section xml:id="other-xpath-extension-functions">
@@ -3167,9 +3185,10 @@ elements.</para>
 class="attribute">as</tag> attribute using an XPath Sequence
 Type<superscript>[citation needed]</superscript>. If an atomic type,
 or sequence of atomic types, is specified, the value provided for the
-option will be atomized according to the standard XPath rules. It is
-an error, err:FIXME, if the computed value does not match the
-specified sequence type.</para>
+option will be atomized according to the standard XPath rules.
+<error code="D1001">It is a <glossterm>dynamic error</glossterm> if
+the computed value does not match the specified sequence
+type.</error></para>
 
 <para>Since all <glossterm>in-scope bindings</glossterm> are present
 in the Processor XPath Context as variable bindings, <tag
@@ -3234,9 +3253,10 @@ name.</error></para>
 <tag class="attribute">as</tag> attribute using an XPath Sequence
 Type<superscript>[citation needed]</superscript>. If an atomic type,
 or sequence of atomic types, is specified, the value provided for the
-option will be atomized according to the standard XPath rules. It is
-an error, err:FIXME, if the computed value does not match the
-specified sequence type</para>
+option will be atomized according to the standard XPath rules.
+<error code="D1001">It is a <glossterm>dynamic error</glossterm> if
+the computed value does not match the specified sequence
+type.</error></para>
 
 <para>An option may be declared as <tag
 class="attribute">required</tag>. <error code="S0018">If an option is
@@ -3322,9 +3342,10 @@ the value of the variable.</para>
 class="attribute">as</tag> attribute using an XPath Sequence
 Type<superscript>[citation needed]</superscript>. If an atomic type,
 or sequence of atomic types, is specified, the value provided for the
-option will be atomized according to the standard XPath rules. It is
-an error, err:FIXME, if the computed value does not match the
-specified sequence type</para>
+option will be atomized according to the standard XPath rules.
+<error code="D1001">It is a <glossterm>dynamic error</glossterm> if
+the computed value does not match the specified sequence
+type.</error></para>
 
 <para>All <glossterm>in-scope bindings</glossterm> for the step
 instance itself are present in the Processor XPath Context as variable
