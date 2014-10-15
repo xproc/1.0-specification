@@ -1360,14 +1360,12 @@ this step does not attempt to distinguish which one.</para>
 as a <tag>c:param-set</tag> document.</para>
 
 <p:declare-step type="p:parameters">
-   <p:input port="parameters" kind="parameter" primary="false"/>
    <p:output port="result" primary="false"/>
+   <p:option name="parameters" as="map(xs:QName,item())"/>
 </p:declare-step>
 
-<para>Each parameter passed to the step is converted into a
-<tag>c:param</tag> element. The step resolves duplicate parameters in
-the normal way (see <link linkend="parameter-inputs"/>) so at most one
-parameter with any given name will appear in the result.
+<para>Each parameter in the <option>parameters</option> map is converted into a
+<tag>c:param</tag> element.
 The resulting <tag>c:param</tag> elements are wrapped in a
 <tag>c:param-set</tag> and the parameter set document is written
 to the <port>result</port> port.
@@ -1384,11 +1382,65 @@ have names that are in a namespace, the
 <para>The base URI of the output document is the URI of the pipeline document
 that contains the step.</para>
 
-<note>
-<para>Since the <port>parameters</port> port is <emphasis>not</emphasis>
-primary, any explicit <tag>p:with-param</tag> settings <rfc2119>must</rfc2119> include a
-<tag class="attribute">port</tag> attribute, per the last paragraph of <xref linkend="p.with-param"/>.</para>
-</note>
+<section xml:id="cv.param">
+<title>The c:param element</title>
+
+<para>A <tag>c:param</tag> represents a parameter on a parameter
+input.</para>
+
+<e:rng-pattern name="VocabParam"/>
+
+<para>The <tag class="attribute">name</tag> attribute of the
+<tag>c:param</tag> must have the lexical form of a QName.</para>
+
+<para>If the <tag class="attribute">namespace</tag> attribute is
+specified, then the expanded name of the parameter is constructed from
+the specified namespace and the <tag class="attribute">name</tag>
+value. <error code="D0025" >It is a <glossterm>dynamic
+error</glossterm> if the <tag class="attribute" >namespace</tag>
+attribute is specified, the <tag class="attribute">name</tag> contains
+a colon, and the specified namespace is not the same as the in-scope
+namespace binding for the specified prefix.</error>
+</para>
+
+<para>If the <tag class="attribute">namespace</tag> attribute is not
+specified, and the <tag class="attribute">name</tag> contains a colon,
+then the expanded name of the parameter is constructed using the <tag
+class="attribute">name</tag> value and the namespace declarations
+in-scope on the <tag>c:param</tag> element.</para>
+
+<para>If the <tag class="attribute">namespace</tag> attribute is not
+specified, and the <tag class="attribute">name</tag> does not contain
+a colon, then the expanded name of the parameter is in no
+namespace.</para>
+
+<para>Any namespace-qualified attribute names that appear on the
+<tag>c:param</tag> element are ignored. <error code="D0014">It is a
+<glossterm>dynamic error</glossterm> for any unqualified attribute
+names other than “<literal>name</literal>”,
+“<literal>namespace</literal>”, or “<literal>value</literal>” to
+appear on a <tag>c:param</tag> element.</error></para>
+</section>
+
+<section xml:id="cv.param-set">
+<title>The c:param-set element</title>
+
+<para>A <tag>c:param-set</tag> represents a set of parameters on a
+parameter input.</para>
+
+<e:rng-pattern name="VocabParamSet"/>
+
+<para>The <tag>c:param-set</tag> contains zero or more
+<tag>c:param</tag> elements. <error code="D0018">It is a
+<glossterm>dynamic error</glossterm> if the parameter list contains
+any elements other than <tag>c:param</tag>.</error></para>
+
+<para>Any namespace-qualified attribute names that appear on the
+<tag>c:param-set</tag> element are ignored. <error code="D0014">It is
+a <glossterm>dynamic error</glossterm> for any unqualified attribute
+names to appear on a <tag>c:param-set</tag>
+element.</error></para>
+</section>
 
 </section>
 
@@ -1978,7 +2030,7 @@ if an XInclude error occurs during processing.</error> </para>
 <p:declare-step type="p:xslt">
   <p:input port="source" sequence="true" primary="true"/>
   <p:input port="stylesheet"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" primary="true"/>
   <p:output port="secondary" sequence="true"/>
   <p:option name="initial-mode" as="xs:QName"/>
@@ -2011,7 +2063,7 @@ examining the version of the stylesheet.</para>
 
 <para>The XSLT stylesheet provided on the <port>stylesheet</port> port
 is applied to the document on the <port>source</port> port. Any
-parameters passed on the <port>parameters</port> port are used to
+parameters passed in the <option>parameters</option> option are used to
 define top-level stylesheet parameters. The primary result document of
 the transformation appears on the <port>result</port> port. All other
 result documents appear on the <port>secondary</port> port. If XSLT
@@ -2079,7 +2131,7 @@ with the following adjustments.</para>
 <term>Variable values</term>
 <listitem>
 <para>Any parameters
-passed on the <port>parameters</port> port are available as variable bindings
+passed in the <option>parameters</option> option are available as variable bindings
 to the XSLT processor.</para>
 </listitem>
 </varlistentry>
@@ -2273,7 +2325,7 @@ for some value and injects it into the <port>source</port> document.</para>
 <p:declare-step type="p:hash">
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:option name="value" required="true" as="xs:string"/>
   <p:option name="algorithm" required="true" as="xs:QName"/>
   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
@@ -2443,9 +2495,9 @@ augmented by application of the
 processing to the <port>source</port> document.</para>
 
 <p:declare-step type="p:validate-with-schematron">
-  <p:input port="parameters" kind="parameter"/>
   <p:input port="source" primary="true"/>
   <p:input port="schema"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" primary="true"/>
   <p:output port="report" sequence="true"/>
   <p:option name="phase" select="'#ALL'" as="xs:string"/>
@@ -2459,7 +2511,7 @@ and any Schematron assertions fail.</error></para>
 <para>The value of the <option>phase</option> option identifies the
 Schematron validation phase with which validation begins.</para>
 
-<para>The <port>parameters</port> port provides name/value pairs which
+<para>The <option>parameters</option> option provides name/value pairs which
 correspond to Schematron external variables.</para>
 
 <para>The <port>result</port> output from this step is a copy of the
@@ -2580,7 +2632,7 @@ by the XML Schema recommendation.</para>
 <title>p:www-form-urldecode</title>
 
 <para>The <tag>p:www-form-urldecode</tag> step decodes a
-<literal>x-www-form-urlencoded</literal> string into a set of parameters.</para>
+<literal>x-www-form-urlencoded</literal> string into an XML representation.</para>
 
 <p:declare-step type="p:www-form-urldecode">
   <p:output port="result"/>
@@ -2589,8 +2641,9 @@ by the XML Schema recommendation.</para>
 
 <para>The <option>value</option> option is interpreted as a string of
 parameter values encoded using the
-<literal>x-www-form-urlencoded</literal> algorithm. It turns each such
-encoded name/value pair into a parameter. The entire set of parameters
+<literal>x-www-form-urlencoded</literal> algorithm. Each name/value
+pair is written in a <tag>c:param</tag> element.
+The entire set of parameters
 is written (as a <tag>c:param-set</tag>) on the <port>result</port>
 output port.</para>
 
@@ -2610,10 +2663,7 @@ as the order of the encoded parameters, reading from left to right.</para>
 
 <para>If any parameter name occurs more than once in the encoded string,
 the resulting parameter set will contain a <tag>c:param</tag> for
-each instance. However, only one of these will actually be used if the
-parameter set is passed to another step on its <glossterm>parameter
-input port</glossterm>.</para>
-
+each instance.</para>
 
 </section>
 
@@ -2629,7 +2679,7 @@ injects it into the <port>source</port> document.</para>
 <p:declare-step type="p:www-form-urlencode">
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
@@ -2643,9 +2693,8 @@ When parameters are encoded into name/value pairs,
 The namespace name is ignored and no prefix or colon appears in the name.
 </para>
 
-<para>The parameters are encoded in document order. That is, the first
-parameter appears first in the resulting string, the second parameter
-second, etc. reading from left to right.</para>
+<para><impl>The order of the parameters is
+is <glossterm>implementation-dependent</glossterm>.</impl></para>
 
 <para>The matched nodes are specified with the match pattern in the
 <option>match</option> option. For each matching node, the encoded
@@ -2672,7 +2721,7 @@ provided on the <port>source</port> port.</para>
 <p:declare-step type="p:xquery">
   <p:input port="source" sequence="true" primary="true"/>
   <p:input port="query"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" sequence="true"/>
 </p:declare-step>
 
@@ -2789,10 +2838,9 @@ way:</para>
 <varlistentry>
 <term>Variable values</term>
 <listitem>
-<para>Any parameters passed on the <port>parameters</port> port
+<para>Any parameters passed in the <option>parameters</option> option
 augment any implementation-defined variable bindings known to the XQuery
-processor. The parameter values are passed to the XQuery processor as
-values of type <type>xs:untypedAtomic</type>.
+processor.
 </para>
 </listitem>
 </varlistentry>
@@ -2872,8 +2920,8 @@ port.</para>
 
 <p:declare-step type="p:xsl-formatter">
   <p:input port="source"/>
-  <p:input port="parameters" kind="parameter"/>
   <p:output port="result" primary="false"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:option name="href" required="true" as="xs:anyURI"/>
   <p:option name="content-type" as="xs:string"/>
 </p:declare-step>
@@ -2898,8 +2946,8 @@ the output type is <glossterm>implementation-defined</glossterm>.</impl> The def
 PDF.</para>
 
 <para><impl>A formatter may take any number of optional rendering
-parameters via the step's parameters; such parameters are defined by
-the XSL implementation used and are
+parameters via the step's <option>parameters</option>; such parameters
+are defined by the XSL implementation used and are
 <glossterm>implementation-defined</glossterm>.</impl></para>
 
 <para>The output of this step is a document containing a single
