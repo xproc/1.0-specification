@@ -56,6 +56,23 @@
 	      select="(xs:date(db:specification/db:info/db:pubdate),
                        current-date())[1]"/>
 
+<xsl:variable name="dtz"
+              select="adjust-dateTime-to-timezone(current-dateTime(),
+                                                  xs:dayTimeDuration('PT0H'))"/>
+
+<xsl:variable name="pubdt" as="xs:string">
+  <xsl:choose>
+    <xsl:when test="db:specification/db:info/db:pubdate">
+      <!-- If this isn't a valid date, we'll already have errored out -->
+      <xsl:value-of select="db:specification/db:info/db:pubdate"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <!-- get rid of fractional seconds -->
+      <xsl:value-of select="replace(string($dtz), '\.[0-9]+', '')"/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:variable>
+
 <xsl:variable name="thisuri" as="xs:string">
   <xsl:value-of>
     <xsl:value-of select="$publication.root.uri"/>
@@ -149,22 +166,21 @@
       </xsl:if>
 
       <xsl:text> </xsl:text>
-      <xsl:value-of select="format-date($pubdate, '[D1] [MNn] [Y0001]')"/>
-      <xsl:if test="not(db:specification/db:info/db:pubdate)">
-        <xsl:text> at </xsl:text>
-        <xsl:variable name="dtz"
-                      select="adjust-dateTime-to-timezone(current-dateTime(),
-                                 xs:dayTimeDuration('PT0H'))"/>
-        <xsl:value-of select="format-dateTime($dtz, '[H01]:[m01]&#160;UTC')"/>
-        <xsl:if test="$travis-build-number != ''">
-          <xsl:text> (</xsl:text>
-          <a href="https://github.com/{$travis-user}//{$travis-repo}/commit/{$travis-commit}">
-            <xsl:text>build </xsl:text>
-            <xsl:value-of select="$travis-build-number"/>
-          </a>
-          <xsl:text>)</xsl:text>
+      <time datetime="{$pubdt}">
+        <xsl:value-of select="format-date($pubdate, '[D1] [MNn] [Y0001]')"/>
+        <xsl:if test="not(db:specification/db:info/db:pubdate)">
+          <xsl:text> at </xsl:text>
+          <xsl:value-of select="format-dateTime($dtz, '[H01]:[m01]&#160;UTC')"/>
+          <xsl:if test="$travis-build-number != ''">
+            <xsl:text> (</xsl:text>
+            <a href="https://github.com/{$travis-user}//{$travis-repo}/commit/{$travis-commit}">
+              <xsl:text>build </xsl:text>
+              <xsl:value-of select="$travis-build-number"/>
+            </a>
+            <xsl:text>)</xsl:text>
+          </xsl:if>
         </xsl:if>
-      </xsl:if>
+      </time>
     </h2>
 
     <dl>
