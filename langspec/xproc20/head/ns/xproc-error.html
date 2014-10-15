@@ -94,9 +94,11 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XD0028</code></dt><dd><p>It is a dynamic error if any attribute value does not satisfy the type required for that attribute.</p></dd>
    <dt><code>err:XD0029</code></dt><dd><p>It is a dynamic error if the document referenced by a p:data element does not exist, cannot be accessed, or cannot be encoded as specified.</p></dd>
    <dt><code>err:XD0030</code></dt><dd><p>It is a dynamic error if a step is unable or incapable of performing its function.</p></dd>
-   <dt><code>err:XD0031</code></dt><dd><p>It is a dynamic error to use the XProc namespace in the name of a parameter.</p></dd>
    <dt><code>err:XD0033</code></dt><dd><p>It is a dynamic error if the name specified is not the name of an in-scope option or variable.</p></dd>
    <dt><code>err:XD0034</code></dt><dd><p>It is a dynamic error to specify a new namespace or prefix if the lexical value of the specified name contains a colon (or if no wrapper is explicitly specified).</p></dd>
+   <dt><code>err:XD1000</code></dt><dd><p>It is a dynamic error if the element (or document element) passed to p:make-map is not a c:param-set element.</p></dd>
+   <dt><code>err:XD1001</code></dt><dd><p>It is a dynamic error if the computed value does not match the specified sequence type.</p></dd>
+   <dt><code>err:XD1002</code></dt><dd><p>It is a dynamic error if any of the c:param elements are invalid.</p></dd>
    <dt><code>err:XS0001</code></dt><dd><p>It is a static error if there are any loops in the connections between steps: no step can be connected to itself nor can there be any sequence of connections through other steps that leads back to itself.</p></dd>
    <dt><code>err:XS0002</code></dt><dd><p>All steps in the same scope must have unique names: it is a static error if two steps with the same name appear in the same scope.</p></dd>
    <dt><code>err:XS0003</code></dt><dd><p>It is a static error if any declared input is not connected.</p></dd>
@@ -124,14 +126,10 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XS0030</code></dt><dd><p>It is a static error to specify that more than one input port is the primary.</p></dd>
    <dt><code>err:XS0031</code></dt><dd><p>It is a static error to use an option on an atomic step that is not declared on steps of that type.</p></dd>
    <dt><code>err:XS0032</code></dt><dd><p>It is a static error if no connection is provided and the default readable port is undefined.</p></dd>
-   <dt><code>err:XS0033</code></dt><dd><p>It is a static error to specify any kind of input other than “document” or “parameter”.</p></dd>
-   <dt><code>err:XS0034</code></dt><dd><p>It is a static error if the specified port is not a parameter input port or if no port is specified and the step does not have a primary parameter input port.</p></dd>
-   <dt><code>err:XS0035</code></dt><dd><p>It is a static error if the declaration of a parameter input port contains a connection; parameter input port declarations must be empty.</p></dd>
    <dt><code>err:XS0036</code></dt><dd><p>All the step types in a pipeline or library must have unique names: it is a static error if any step type name is built-in and/or declared or defined more than once in the same scope.</p></dd>
    <dt><code>err:XS0037</code></dt><dd><p>It is a static error if any step directly contains text nodes that do not consist entirely of whitespace.</p></dd>
    <dt><code>err:XS0038</code></dt><dd><p>It is a static error if any required attribute is not provided.</p></dd>
    <dt><code>err:XS0039</code></dt><dd><p>It is a static error if the port specified on the p:serialization is not the name of an output port on the pipeline in which it appears or if more than one p:serialization element is applied to the same port.</p></dd>
-   <dt><code>err:XS0040</code></dt><dd><p>It is a static error to specify any value other than true.</p></dd>
    <dt><code>err:XS0041</code></dt><dd><p>It is a static error to specify both binding and element on the same p:namespaces element.</p></dd>
    <dt><code>err:XS0042</code></dt><dd><p>It is a static error to attempt to provide a connection for an input port on the declaration of an atomic step.</p></dd>
    <dt><code>err:XS0044</code></dt><dd><p>It is a static error if any element in the XProc namespace or any step has element children other than those specified for it by this specification. In particular, the presence of atomic steps for which there is no visible declaration may raise this error.</p></dd>
@@ -139,7 +137,6 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XS0051</code></dt><dd><p>It is a static error if the except-prefixes attribute on p:namespaces does not contain a list of tokens or if any of those tokens is not a prefix bound to a namespace in the in-scope namespaces of the p:namespaces element.</p></dd>
    <dt><code>err:XS0052</code></dt><dd><p>It is a static error if the URI of a p:import cannot be retrieved or if, once retrieved, it does not point to a p:library, p:declare-step, or p:pipeline.</p></dd>
    <dt><code>err:XS0053</code></dt><dd><p>It is a static error to import a single pipeline if that pipeline does not have a type.</p></dd>
-   <dt><code>err:XS0055</code></dt><dd><p>It is a static error if a primary parameter input port is unconnected and the pipeline that contains the step has no primary parameter input port unless at least one explicit p:with-param is provided for that port.</p></dd>
    <dt><code>err:XS0057</code></dt><dd><p>It is a static error if the exclude-inline-prefixes attribute does not contain a list of tokens or if any of those tokens (except #all or #default) is not a prefix bound to a namespace in the in-scope namespaces of the element on which it occurs.</p></dd>
    <dt><code>err:XS0058</code></dt><dd><p>It is a static error if the value #default is used within the exclude-inline-prefixes attribute and there is no default namespace in scope.</p></dd>
    <dt><code>err:XS0059</code></dt><dd><p>It is a static error if the pipeline element is not p:pipeline, p:declare-step, or p:library.</p></dd>

@@ -114,9 +114,11 @@ For updated information, please refer to the latest version of the
    <error code="XD0028">It is a dynamic error if any attribute value does not satisfy the type required for that attribute.</error>
    <error code="XD0029">It is a dynamic error if the document referenced by a p:data element does not exist, cannot be accessed, or cannot be encoded as specified.</error>
    <error code="XD0030">It is a dynamic error if a step is unable or incapable of performing its function.</error>
-   <error code="XD0031">It is a dynamic error to use the XProc namespace in the name of a parameter.</error>
    <error code="XD0033">It is a dynamic error if the name specified is not the name of an in-scope option or variable.</error>
    <error code="XD0034">It is a dynamic error to specify a new namespace or prefix if the lexical value of the specified name contains a colon (or if no wrapper is explicitly specified).</error>
+   <error code="XD1000">It is a dynamic error if the element (or document element) passed to p:make-map is not a c:param-set element.</error>
+   <error code="XD1001">It is a dynamic error if the computed value does not match the specified sequence type.</error>
+   <error code="XD1002">It is a dynamic error if any of the c:param elements are invalid.</error>
    <error code="XS0001">It is a static error if there are any loops in the connections between steps: no step can be connected to itself nor can there be any sequence of connections through other steps that leads back to itself.</error>
    <error code="XS0002">All steps in the same scope must have unique names: it is a static error if two steps with the same name appear in the same scope.</error>
    <error code="XS0003">It is a static error if any declared input is not connected.</error>
@@ -144,14 +146,10 @@ For updated information, please refer to the latest version of the
    <error code="XS0030">It is a static error to specify that more than one input port is the primary.</error>
    <error code="XS0031">It is a static error to use an option on an atomic step that is not declared on steps of that type.</error>
    <error code="XS0032">It is a static error if no connection is provided and the default readable port is undefined.</error>
-   <error code="XS0033">It is a static error to specify any kind of input other than “document” or “parameter”.</error>
-   <error code="XS0034">It is a static error if the specified port is not a parameter input port or if no port is specified and the step does not have a primary parameter input port.</error>
-   <error code="XS0035">It is a static error if the declaration of a parameter input port contains a connection; parameter input port declarations must be empty.</error>
    <error code="XS0036">All the step types in a pipeline or library must have unique names: it is a static error if any step type name is built-in and/or declared or defined more than once in the same scope.</error>
    <error code="XS0037">It is a static error if any step directly contains text nodes that do not consist entirely of whitespace.</error>
    <error code="XS0038">It is a static error if any required attribute is not provided.</error>
    <error code="XS0039">It is a static error if the port specified on the p:serialization is not the name of an output port on the pipeline in which it appears or if more than one p:serialization element is applied to the same port.</error>
-   <error code="XS0040">It is a static error to specify any value other than true.</error>
    <error code="XS0041">It is a static error to specify both binding and element on the same p:namespaces element.</error>
    <error code="XS0042">It is a static error to attempt to provide a connection for an input port on the declaration of an atomic step.</error>
    <error code="XS0044">It is a static error if any element in the XProc namespace or any step has element children other than those specified for it by this specification. In particular, the presence of atomic steps for which there is no visible declaration may raise this error.</error>
@@ -159,7 +157,6 @@ For updated information, please refer to the latest version of the
    <error code="XS0051">It is a static error if the except-prefixes attribute on p:namespaces does not contain a list of tokens or if any of those tokens is not a prefix bound to a namespace in the in-scope namespaces of the p:namespaces element.</error>
    <error code="XS0052">It is a static error if the URI of a p:import cannot be retrieved or if, once retrieved, it does not point to a p:library, p:declare-step, or p:pipeline.</error>
    <error code="XS0053">It is a static error to import a single pipeline if that pipeline does not have a type.</error>
-   <error code="XS0055">It is a static error if a primary parameter input port is unconnected and the pipeline that contains the step has no primary parameter input port unless at least one explicit p:with-param is provided for that port.</error>
    <error code="XS0057">It is a static error if the exclude-inline-prefixes attribute does not contain a list of tokens or if any of those tokens (except #all or #default) is not a prefix bound to a namespace in the in-scope namespaces of the element on which it occurs.</error>
    <error code="XS0058">It is a static error if the value #default is used within the exclude-inline-prefixes attribute and there is no default namespace in scope.</error>
    <error code="XS0059">It is a static error if the pipeline element is not p:pipeline, p:declare-step, or p:library.</error>

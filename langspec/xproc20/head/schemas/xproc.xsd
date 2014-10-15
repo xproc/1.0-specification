@@ -1002,7 +1002,17 @@
          </complexContent>
       </complexType>
    </element>
-   <element name="parameters" substitutionGroup="p:vanillaStep"/>
+   <element name="parameters" substitutionGroup="p:atomicStep">
+      <complexType>
+         <complexContent>
+            <restriction base="p:atomicStepType">
+               <group ref="p:atomicStepModel"/>
+               <attribute name="parameters" type="string"/>
+               <anyAttribute namespace="##other" processContents="lax"/>
+            </restriction>
+         </complexContent>
+      </complexType>
+   </element>
    <element name="rename" substitutionGroup="p:atomicStep">
       <complexType>
          <complexContent>
@@ -1173,6 +1183,7 @@
          <complexContent>
             <restriction base="p:atomicStepType">
                <group ref="p:atomicStepModel"/>
+               <attribute name="parameters" type="string"/>
                <attribute name="initial-mode" type="QName"/>
                <attribute name="template-name" type="QName"/>
                <attribute name="output-base-uri" type="anyURI"/>
@@ -1235,6 +1246,7 @@
          <complexContent>
             <restriction base="p:atomicStepType">
                <group ref="p:atomicStepModel"/>
+               <attribute name="parameters" type="string"/>
                <attribute name="value" type="string"/>
                <attribute name="algorithm" type="QName"/>
                <attribute name="match" type="p:XSLTMatchPattern"/>
@@ -1274,6 +1286,7 @@
          <complexContent>
             <restriction base="p:atomicStepType">
                <group ref="p:atomicStepModel"/>
+               <attribute name="parameters" type="string"/>
                <attribute name="phase" type="string"/>
                <attribute name="assert-valid" type="boolean"/>
                <anyAttribute namespace="##other" processContents="lax"/>
@@ -1318,18 +1331,30 @@
          <complexContent>
             <restriction base="p:atomicStepType">
                <group ref="p:atomicStepModel"/>
+               <attribute name="parameters" type="string"/>
                <attribute name="match" type="p:XSLTMatchPattern"/>
                <anyAttribute namespace="##other" processContents="lax"/>
             </restriction>
          </complexContent>
       </complexType>
    </element>
-   <element name="xquery" substitutionGroup="p:vanillaStep"/>
+   <element name="xquery" substitutionGroup="p:atomicStep">
+      <complexType>
+         <complexContent>
+            <restriction base="p:atomicStepType">
+               <group ref="p:atomicStepModel"/>
+               <attribute name="parameters" type="string"/>
+               <anyAttribute namespace="##other" processContents="lax"/>
+            </restriction>
+         </complexContent>
+      </complexType>
+   </element>
    <element name="xsl-formatter" substitutionGroup="p:atomicStep">
       <complexType>
          <complexContent>
             <restriction base="p:atomicStepType">
                <group ref="p:atomicStepModel"/>
+               <attribute name="parameters" type="string"/>
                <attribute name="href" type="anyURI"/>
                <attribute name="content-type" type="string"/>
                <anyAttribute namespace="##other" processContents="lax"/>
