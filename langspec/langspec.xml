@@ -358,28 +358,57 @@ free.</para>
         </note>
       </section>
     </section>
-    <section xml:id="input-output">
-      <title>Inputs and Outputs</title>
-      <para>Although some steps can read and write non-XML resources, what flows
-          <emphasis>between</emphasis> steps through input ports and output ports are exclusively
-        XML documents or sequences of XML documents.</para>
-      <para>For the purposes of this specification, an XML document is an <biblioref
-          linkend="xml-infoset-rec"/>. Implementations are free to transmit Infosets as sequences of
-        characters, sequences of events, object models, or any other representation that preserves
-        the necessary Infoset properties (see <xref linkend="infoset-conformance"/>).</para>
-      <para>Most steps in this specification manipulate XML documents, or portions of XML documents.
-        In these cases, we speak of changing elements, attributes, or nodes without prejudice to the
-        actual representation used by an implementation.</para>
-      <para>An implementation <rfc2119>may</rfc2119> make it possible for a step to produce non-XML
-        output (through channels other than a named output port)—for example, writing a PDF document
-        to a URI—but that output cannot flow through the pipeline. Similarly, one can imagine a step
-        that takes no pipeline inputs, reads a non-XML file from a URI, and produces an XML output.
-        But the non-XML data cannot arrive on an input port to a step.</para>
-      <para><error code="D0001">It is a <glossterm>dynamic error</glossterm> if a non-XML resource
-          is produced on a step output or arrives on a step input.</error></para>
-      <para>The common case is that each step has one or more inputs and one or more outputs. <xref
-          linkend="fig-atomic-step"/> illustrates symbolically an <glossterm>atomic step</glossterm>
-        with two inputs and one output.</para>
+
+<section xml:id="documents">
+<title>Documents</title>
+
+<para>An XProc pipeline processes documents.
+<termdef xml:id="dt-document">A <firstterm>document</firstterm> is a
+<glossterm>representation</glossterm> and its
+<biblioref linkend="rfc6838"/>.</termdef>.
+<termdef xml:id="dt-representation">A <firstterm>representation</firstterm>
+is a data structure used by an XProc processor to refer to the actual
+document content.</termdef>
+</para>
+
+<para>Documents have associated with them a set of properties. The properties
+are key/value pairs. <termdef xml:id="dt-document-properties">The
+<firstterm>document properties</firstterm> are exposed to the XProc
+pipeline as a map (<code>map(xs:string, xs:string)</code>).</termdef>
+The document properties must always include a “<code>media-type</code>”
+key which identifies the <biblioref linkend="rfc6838"/> of the
+representation. Other properties may also be present, including user
+defined properties.</para>
+
+<section xml:id="xml-documents">
+<title>XML Documents</title>
+
+<para><impl>Representations of XML documents are instances of
+the <biblioref linkend="xpath-datamodel"/>; representations of other
+media types are <glossterm>implementation-dependent</glossterm>.</impl>
+</para>
+
+<para>In order to be consistent with the XPath data model, all general
+and external parsed entities <rfc2119>must</rfc2119> be fully expanded
+in XML documents; they <rfc2119>must not</rfc2119> contain any representation of
+<biblioref linkend="xml-infoset-rec"/>
+<literal role="infoset-property">unexpanded entity reference
+information items</literal>.</para>
+
+<para><impl>The level of support for typed values in XDM instances
+in an XProc pipeline is <glossterm>implementation-defined</glossterm>.</impl>
+</para>
+</section>
+</section>
+
+<section xml:id="input-output">
+<title>Inputs and Outputs</title>
+
+<para>Most steps have one or more inputs and one
+or more outputs. <xref linkend="fig-atomic-step"/> illustrates
+symbolically an <glossterm>atomic step</glossterm> with two inputs and
+one output.</para>
+
       <figure xml:id="fig-atomic-step">
         <title>An atomic step</title>
         <mediaobject>
@@ -389,11 +418,14 @@ free.</para>
           </imageobject>
         </mediaobject>
       </figure>
-      <para>All atomic steps are defined by a <tag>p:declare-step</tag>. The declaration of an
-        atomic step type defines the input ports, output ports, and options of all steps of that
-        type. For example, every <tag>p:validate-with-xml-schema</tag> step has two inputs, named
-          “<literal>source</literal>” and “<literal>schema</literal>”, one output named
-          “<literal>result</literal>”, and the same set of options. </para>
+
+<para>All atomic steps are defined by a <tag>p:declare-step</tag>. The
+declaration of an atomic step type defines the input ports, output
+ports, and options of all steps of that type. For example, every
+<tag>p:validate-with-xml-schema</tag> step has two inputs, named
+“<literal>source</literal>” and “<literal>schema</literal>”, one
+output named “<literal>result</literal>”, and the same set of options.
+</para>
       <para>Like atomic steps, top level, user-defined pipelines also have declarations. The
         situation is slightly more complicated for the other compound steps because they don't have
         separate declarations; each instance of the compound step serves as its own declaration. On
@@ -508,18 +540,20 @@ free.</para>
           <tag>p:catch</tag>. <impl>Outside of a <link linkend="p.try">try/catch</link>, the
           disposition of error messages is <glossterm>implementation-dependent</glossterm></impl>. </para>
 
-<para><impl>How inputs are connected to XML documents outside the
-pipeline is <glossterm>implementation-defined</glossterm>.</impl>
-In order to be consistent with the XPath data model, all general and external parsed
-entities in such documents <rfc2119>must</rfc2119> be fully expanded; they
-<rfc2119>must not</rfc2119> contain any representation of
-<biblioref linkend="xml-infoset-rec"/>
-<literal role="infoset-property">unexpanded entity reference information
-items</literal>.</para>
+<para><impl>How inputs are connected to documents outside the pipeline
+is <glossterm>implementation-defined</glossterm>.</impl></para>
 
-<para><impl>How pipeline outputs are connected to XML documents outside the
-pipeline is
+<para><impl>How pipeline outputs are connected to documents outside
+the pipeline is
 <glossterm>implementation-defined</glossterm>.</impl></para>
+
+<para>Input ports <rfc2119>may</rfc2119> specify a media type, or list of
+media types, that they accept.
+<error code="D1003">If an input port provides a set of acceptable media
+types, it is a <glossterm>dynamic error</glossterm>
+if an input document that arrives on the port has a media type not in
+that set.</error>
+</para>
 
 <section xml:id="external-docs">
         <title>External Documents</title>
@@ -539,11 +573,11 @@ pipeline is
           intermediate results produced by steps in the pipeline have base URIs. <impl>Whether (and
             when and how) or not the intermediate results that pass between steps are ever written
             to a filesystem is <glossterm>implementation-dependent</glossterm>.</impl></para>
-        <para><impl>In Version 1.0 of XProc, how (or if) implementers provide local resolution
+        <para><impl>In Version 2.0 of XProc, how (or if) implementers provide local resolution
             mechanisms and how (or if) they provide access to intermediate results by URI is
               <glossterm>implementation-defined</glossterm>.</impl>
         </para>
-        <para>Version 1.0 of XProc does not require implementations to guarantee that multiple
+        <para>Version 2.0 of XProc does not require implementations to guarantee that multiple
           attempts to dereference the same URI always produce consistent results.</para>
         <note>
           <para>On the one hand, this is a somewhat unsatisfying state of affairs because it leaves
@@ -554,47 +588,6 @@ pipeline is
             mechanisms become widespread, a standard mechanism could be added in some future version
             of the language.</para>
         </note>
-      </section>
-      <section xml:id="binary">
-        <title>Non-XML Documents</title>
-        <para>XProc is designed to allow pipeline authors to specify how an XML document, or
-          sequence of XML documents, flows through a series of steps. For the most part, non-XML
-          documents are considered out-of-scope.</para>
-        <para>However, to be useful, XProc pipelines must interact with the real world where non-XML
-          documents (HTML documents, raster images, non-XML encodings of data, etc.) are a fact of
-          life.</para>
-        <para>Accordingly, some pipelines may need to access non-XML documents and some non-XML
-          documents may “leak” into pipelines. XProc provides a limited set of tools for processing
-          these documents. In particular, XProc offers the ability to turn some “almost-XML”
-          documents into XML and to allow some non-XML documents to flow quietly through the
-          pipeline.</para>
-        <para>It <emphasis>is not</emphasis> a goal of XProc that it should be a general-purpose
-          pipeline language for manipulating arbitrary, non-XML resources.</para>
-        <para>There are two standard ways that a non-XML document may enter a pipeline: directly
-          through <tag>p:data</tag> or as the result of performing an <tag>p:http-request</tag>
-          step. Loading non-XML data with a computed URI requires the <tag>p:http-request</tag>
-          step. Implementors are encouraged to support the <literal>file:</literal> URI scheme so
-          that users can load local data from computed URIs.</para>
-        <para>In either case, non-XML documents are converted into text or are base64-encoded,
-          depending on their content type and character encoding. The result is an XML document that
-          consists of a document element containing either escaped text or base64-encoded text. This
-          document can be processed like any other XML document.</para>
-        <para>The <tag>p:unescape-markup</tag> step can be used to (attempt to) convert a non-XML
-          document into XML. Well-formed XML that just happens to be represented with escaped markup
-          can always be recovered. For other media types, the ability to construct XML and the
-          precise mechanisms used to make the markup well-formed are <glossterm role="unwrapped"
-            >implementation-defined</glossterm>.</para>
-        <para>XProc provides no standard means to save encoded data in its unencoded binary form.
-          Implementors may provide extension methods to allow the <tag>p:store</tag> step to save
-          the binary data. For example, an implementation might provide a <code>ext:binary</code>
-          serialization method that decoded base64 encoded data before saving it:</para>
-        <programlisting language="xml"><![CDATA[<p:store method="ext:binary" href="my.png">
-  <p:input port="source">
-    <p:inline>
-      <c:data content-type="image/png">BASE64ENCODEDDATA</c:data>
-    </p:inline>
-  </p:input>
-</p:store>]]></programlisting>
       </section>
     </section>
     <section xml:id="primary-input-output">
@@ -2946,14 +2939,17 @@ its containing <tag>p:try</tag>.</para>
     <title>Other pipeline elements</title>
     <section xml:id="p.input">
       <title>p:input</title>
-      <para>A <tag>p:input</tag> identifies an input port for a step. In some contexts,
-          <tag>p:input</tag> declares that a port with the specified name exists and identifies the
-        properties of that port. In other contexts, it provides a connection for a port declared
-        elsewhere. And in some contexts, it does both.</para>
+
+<para>A <tag>p:input</tag> identifies an input port for a step. In
+some contexts, <tag>p:input</tag> declares that a port with the
+specified name exists and identifies the properties of that port. In
+other contexts, it provides a connection for a port declared
+elsewhere. And in some contexts, it does both.</para>
 
 <para>The declaration of an input identifies the name of the
 port, whether or not the port accepts a sequence, whether or not the
-port is a <glossterm>primary input port</glossterm>, and may provide a
+port is a <glossterm>primary input port</glossterm>, what media types it
+accepts, and may provide a
 default connection for the port.</para>
 
 <para>An input
