@@ -64,13 +64,13 @@
 <abstract>
 <para>This specification describes the syntax and semantics of
 <citetitle>XProc 2.0: An XML Pipeline Language</citetitle>, a language for
-describing operations to be performed on XML documents.</para>
+describing operations to be performed on documents.</para>
 
 <para>An XML Pipeline specifies a sequence of operations to be
-performed on zero or more XML documents. Pipelines generally accept
-zero or more XML documents as input and produce zero or more XML
+performed on zero or more documents. Pipelines generally accept
+zero or more documents as input and produce zero or more
 documents as output. Pipelines are made up of simple steps which
-perform atomic operations on XML documents and constructs similar to
+perform atomic operations on documents and constructs similar to
 conditionals, iteration, and exception handlers which control which
 steps are executed.</para>
 </abstract>
@@ -127,10 +127,10 @@ xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure"
 <section xml:id="introduction">
     <title>Introduction</title>
     <para>An XML Pipeline specifies a sequence of operations to be performed on a collection of XML
-      input documents. Pipelines take zero or more XML documents as their input and produce zero or
-      more XML documents as their output.</para>
+      input documents. Pipelines take zero or more documents as their input and produce zero or
+      more documents as their output.</para>
     <para>A <glossterm>pipeline</glossterm> consists of steps. Like pipelines, steps take zero or
-      more XML documents as their inputs and produce zero or more XML documents as their outputs.
+      more documents as their inputs and produce zero or more documents as their outputs.
       The inputs of a step come from the web, from the pipeline document, from the inputs to the
       pipeline itself, or from the outputs of other steps in the pipeline. The outputs from a step
       are consumed by other steps, are outputs of the pipeline as a whole, or are discarded.</para>
@@ -237,7 +237,7 @@ free.</para>
       <title>Steps</title>
       <para><termdef xml:id="dt-step">A <firstterm>step</firstterm> is the basic computational unit
           of a pipeline.</termdef> A typical step has zero or more inputs, from which it receives
-        XML documents to process, zero or more outputs, to which it sends XML document results, and
+        documents to process, zero or more outputs, to which it sends document results, and
         can have options.</para>
       <para>There are three kinds of steps: <glossterm baseform="atomic step">atomic</glossterm>,
           <glossterm baseform="compound step">compound</glossterm>, and <glossterm
@@ -365,7 +365,7 @@ free.</para>
 <para>An XProc pipeline processes documents.
 <termdef xml:id="dt-document">A <firstterm>document</firstterm> is a
 <glossterm>representation</glossterm> and its
-<biblioref linkend="rfc6838"/>.</termdef>.
+<biblioref linkend="rfc2046"/>.</termdef>.
 <termdef xml:id="dt-representation">A <firstterm>representation</firstterm>
 is a data structure used by an XProc processor to refer to the actual
 document content.</termdef>
@@ -376,7 +376,7 @@ are key/value pairs. <termdef xml:id="dt-document-properties">The
 <firstterm>document properties</firstterm> are exposed to the XProc
 pipeline as a map (<code>map(xs:string, xs:string)</code>).</termdef>
 The document properties must always include a “<code>media-type</code>”
-key which identifies the <biblioref linkend="rfc6838"/> of the
+key which identifies the <biblioref linkend="rfc2046"/> of the
 representation. Other properties may also be present, including user
 defined properties.</para>
 
@@ -940,14 +940,21 @@ with the following static context:</para>
             <varlistentry>
               <term>context item</term>
               <listitem>
-                <para>The document node of a document. The document is either specified with a
-                    <glossterm>connection</glossterm> or is taken from the <glossterm>default
-                    readable port</glossterm>. <error code="D0008">It is a <glossterm>dynamic
-                      error</glossterm> if a document sequence appears where a document to be used
-                    as the context node is expected.</error>
-                </para>
-                <para>If there is no explicit connection and there is no default readable port then
-                  the context node is undefined.</para>
+<para>A document. The document is either specified with a
+<glossterm>connection</glossterm> or is taken from the
+<glossterm>default readable port</glossterm>. <error code="D0008">It
+is a <glossterm>dynamic error</glossterm> if a document sequence
+appears where a document to be used as the context node is
+expected.</error>
+</para>
+
+<para><impl>The result of evaluating an expression when the context
+node has a non-XML media type is
+<glossterm>implementation-defined</glossterm>.</impl>
+</para>
+
+<para>If there is no explicit connection and there is no default
+readable port then the context node is undefined.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
@@ -1458,6 +1465,22 @@ if any of the <tag>c:param</tag> elements are invalid.</error>
 <note role="editorial">
 <para>Must tie down what “valid” means wrt the c:param element.</para>
 </note>
+</section>
+
+<section xml:id="f.document-properties">
+<title>Document properties</title>
+
+<para>This function retreives the <glossterm>document properties</glossterm>
+of a document as a map.</para>
+
+<methodsynopsis>
+<type>map(xs:string,xs:string)</type>
+<methodname>p:document-properties</methodname>
+<methodparam><type>document-node()</type><parameter>doc</parameter></methodparam>
+</methodsynopsis>
+
+<para>The map returned contains (exclusively) the document properties
+associated with the <parameter>doc</parameter> specified.</para>
 </section>
 
       <section xml:id="other-xpath-extension-functions">
@@ -1977,14 +2000,15 @@ variable with the same name.
         mechanisms is allowed on the <tag>p:input</tag>, <tag>p:output</tag>,
           <tag>p:xpath-context</tag>, <tag>p:iteration-source</tag>, and
           <tag>p:viewport-source</tag> elements.</para>
-      <variablelist>
-        <varlistentry>
-          <term>Specified by URI</term>
-          <listitem>
-            <para><termdef xml:id="dt-by-URI">A document is specified <firstterm>by URI</firstterm>
-                if it is referenced with a URI.</termdef> The <tag class="attribute">href</tag>
-              attribute on the <tag>p:document</tag> or <tag>p:data</tag> element is used to refer
-              to documents by URI.</para>
+<variablelist>
+<varlistentry>
+<term>Specified by URI</term>
+<listitem>
+<para><termdef xml:id="dt-by-URI">A document is specified
+<firstterm>by URI</firstterm> if it is referenced with a
+URI.</termdef> The <tag class="attribute">href</tag> attribute on the
+<tag>p:document</tag> element is used to refer to
+documents by URI.</para>
             <para>In this example, the input to the <tag>p:identity</tag> step named
                 “<literal>otherstep</literal>” comes from “<uri>http://example.com/input.xml</uri>”. </para>
             <programlisting language="xml"><xi:include href="examples/identity.txt" parse="text"/></programlisting>
@@ -2038,7 +2062,7 @@ variable with the same name.
         </varlistentry>
       </variablelist>
       <para>Note that a <tag>p:input</tag> or <tag>p:output</tag> element may contain more than one
-          <tag>p:pipe</tag>, <tag>p:document</tag>, <tag>p:data</tag>, or <tag>p:inline</tag>
+          <tag>p:pipe</tag>, <tag>p:document</tag>, or <tag>p:inline</tag>
         element. If more than one <glossterm>connection</glossterm> is provided, then the specified
         sequence of documents is made available on that port in the same order as the
         connections.</para>
@@ -2952,39 +2976,78 @@ port is a <glossterm>primary input port</glossterm>, what media types it
 accepts, and may provide a
 default connection for the port.</para>
 
-<para>An input
-            <emphasis>declaration</emphasis> has the following form:</para>
-        <e:rng-pattern name="InputDeclaration"/>
-        <para>The <tag class="attribute">port</tag> attribute defines the name of the port. <error
-            code="S0011">It is a <glossterm>static error</glossterm> to identify two ports with the
-            same name on the same step.</error></para>
-<para>The <tag class="attribute"
-            >sequence</tag> attribute determines whether or not a sequence of documents is allowed
-          on the port. <error code="D0006">If <tag class="attribute">sequence</tag> is not
-            specified, or has the value false, then it is a <glossterm>dynamic error</glossterm>
-            unless exactly one document appears on the declared port.</error></para>
-<para>The <tag
-            class="attribute">primary</tag> attribute is used to identify the <glossterm>primary
-            input port</glossterm>. An input port is a <glossterm>primary input port</glossterm> if
-            <tag class="attribute">primary</tag> is specified with the value <literal>true</literal>
-          or if the step has only a single input port and <tag class="attribute">primary</tag> is
-          not specified. <error code="S0030">It is a <glossterm>static error</glossterm> to specify
-            that more than one input port is the primary.</error></para>
+<para>An input <emphasis>declaration</emphasis> has the following
+form:</para>
 
-<para>If a connection is
-          provided in the declaration, then <tag class="attribute">select</tag> may be used to
-          select a portion of the input identified by the <tag>p:empty</tag>, <tag>p:document</tag>,
-            <tag>p:data</tag>, or <tag>p:inline</tag> elements in the <tag>p:input</tag>. This
-          select expression applies <emphasis>only</emphasis> if the default connection is used. If
-          an explicit connection is provided by the caller, then the default select expression is
-          ignored.</para><note>
-          <para>The <tag>p:pipe</tag> element is explicitly excluded from a declaration because it
-            would make the default value of an input dependent on the execution of some part of the
-            pipeline. Default values are designed so that they can be computed statically.</para>
-        </note><para>On a <tag>p:declare-step</tag> for an atomic step, the <tag>p:input</tag>
-          simply declares the input port. <error code="S0042">It is a <glossterm>static
-              error</glossterm> to attempt to provide a connection for an input port on the
-            declaration of an atomic step.</error></para>
+<e:rng-pattern name="InputDeclaration"/>
+
+<para>The <tag class="attribute">port</tag> attribute defines the name
+of the port. <error code="S0011">It is a <glossterm>static
+error</glossterm> to identify two ports with the same name on the same
+step.</error></para>
+
+<para>The <tag class="attribute" >sequence</tag> attribute determines
+whether or not a sequence of documents is allowed on the port. <error
+code="D0006">If <tag class="attribute">sequence</tag> is not
+specified, or has the value false, then it is a <glossterm>dynamic
+error</glossterm> unless exactly one document appears on the declared
+port.</error></para>
+
+<para>The <tag class="attribute">primary</tag> attribute is used to
+identify the <glossterm>primary input port</glossterm>. An input port
+is a <glossterm>primary input port</glossterm> if <tag
+class="attribute">primary</tag> is specified with the value
+<literal>true</literal> or if the step has only a single input port
+and <tag class="attribute">primary</tag> is not specified. <error
+code="S0030">It is a <glossterm>static error</glossterm> to specify
+that more than one input port is the primary.</error></para>
+
+<para>The <tag class="attribute">media-types</tag> attribute lists one
+or more (space separated) media types that this input port will
+accept. A media type must be of the form
+“<literal><replaceable>type</replaceable>/<replaceable>subtype</replaceable>+<replaceable>ext</replaceable></literal>”
+where any of <replaceable>type</replaceable>,
+<replaceable>subtype</replaceable>, and <replaceable>ext</replaceable>
+can be specified as “<literal>*</literal>” meaning “any”. The
+“<literal>+<replaceable>ext</replaceable></literal>” is optional. Here
+are some examples of media types for matching:</para>
+
+<itemizedlist>
+<listitem><simpara><literal>text/plain</literal>, plain text
+documents</simpara>
+</listitem>
+<listitem><simpara><literal>text/*</literal>, any kind of text
+document.</simpara>
+</listitem>
+<listitem><simpara><literal>*/*+xml</literal>, any XML media type.
+</simpara>
+</listitem>
+<listitem><simpara><literal>*/*</literal>, any media type.
+</simpara>
+</listitem>
+</itemizedlist>
+
+<para>If a connection is provided in the declaration, then <tag
+class="attribute">select</tag> may be used to select a portion of the
+input identified by the <tag>p:empty</tag>, <tag>p:document</tag>,
+or <tag>p:inline</tag> elements in the
+<tag>p:input</tag>. This select expression applies
+<emphasis>only</emphasis> if the default connection is used. If an
+explicit connection is provided by the caller, then the default select
+expression is ignored.</para>
+
+<note>
+  <para>The <tag>p:pipe</tag> element is explicitly excluded from a
+  declaration because it would make the default value of an input
+  dependent on the execution of some part of the pipeline. Default
+  values are designed so that they can be computed statically.</para>
+</note>
+
+<para>On a <tag>p:declare-step</tag> for an atomic step, the
+<tag>p:input</tag> simply declares the input port. <error
+code="S0042">It is a <glossterm>static error</glossterm> to attempt to
+provide a connection for an input port on the declaration of an atomic
+step.</error></para>
 <para>An input
             <emphasis>connection</emphasis> has the following form:</para>
         <e:rng-pattern name="InputConnection"/>
@@ -3759,28 +3822,55 @@ prefix had been used.</para>
 <section xml:id="p.document">
 <title>p:document</title>
 
-<para>A <tag>p:document</tag> reads an XML
-        document from a URI.</para>
-      <e:rng-pattern name="Document"/>
-      <para>The document identified by the URI in the <tag class="attribute">href</tag> attribute is
-        loaded and returned. If the URI protocol supports redirection, then redirects
-          <rfc2119>must</rfc2119> be followed.</para>
-<para><error code="D0011">It is a
-            <glossterm>dynamic error</glossterm> if the resource referenced by a
-            <tag>p:document</tag> element does not exist, cannot be accessed, or is not a
-          well-formed XML document.</error>
+<para>A <tag>p:document</tag> reads a document from a URI.</para>
+
+<e:rng-pattern name="Document"/>
+
+<para>The document identified by the URI in the
+<tag class="attribute">href</tag> attribute is loaded and returned. If the
+URI protocol supports redirection, then redirects
+<rfc2119>must</rfc2119> be followed.</para>
+
+<para>Exactly how the data is encoded depends on the media type of the
+resource. If the resource has a content type associated with it (e.g.,
+if the resource was retrieved with HTTP), then that content type
+<rfc2119>must</rfc2119> be used, otherwise, if the user specified a
+<tag class="attribute">content-type</tag> on the <tag>p:document</tag>,
+then that content type <rfc2119>must</rfc2119> be assumed.
+<impl>If no content type was
+specified or is associated with the resource, the inferred content
+type is <glossterm>implementation-dependent</glossterm>.</impl>
 </para>
 
+<para>If the document identified has an XML media type, it must
+be parsed as XML:</para>
+
+<itemizedlist>
+<listitem>
 <para>The parser which the <tag>p:document</tag> element employs
 <rfc2119>must</rfc2119> process the external subset; all general and
-external parsed entities <rfc2119>must</rfc2119> be fully expanded. It
+external parsed entities <rfc2119>must</rfc2119> be fully expanded.</para>
+</listitem>
+<listitem>
+<para>It
 <rfc2119>may</rfc2119> perform <tag class="attribute">xml:id</tag>
 processing, but it <rfc2119>must not</rfc2119> perform any other
-processing, such as expanding XIncludes. The parser
+processing, such as expanding XIncludes.</para>
+</listitem>
+<listitem>
+<para>The parser
 <rfc2119>must</rfc2119> be conformant to <citetitle>Namespaces in
 XML</citetitle>. Loading the document <rfc2119>must not</rfc2119>
-fail due to validation
-errors.</para>
+fail due to validation errors.
+</para>
+</listitem>
+</itemizedlist>
+
+<para><error code="D0011">It is a <glossterm>dynamic error</glossterm>
+if the resource referenced by a <tag>p:document</tag> element does not
+exist, cannot be accessed, or has an XML media type and is not a well-formed XML
+document.</error>
+</para>
 
 <para>Use the <tag>p:load</tag> step if you need to perform DTD-based
 validation.
@@ -3795,164 +3885,8 @@ validation.
             an output</emphasis> on that port. </para>
         <para>Use <tag>p:store</tag> to store the results that appear on a
           <tag>p:output</tag>.</para>
-      </note></section>
-
-<section xml:id="p.data">
-<title>p:data</title>
-
-<para>A <tag>p:data</tag> reads an arbitrary resource from a
-URI.</para>
-
-<e:rng-pattern name="Data"/>
-
-<para>The resource identified by the URI in the <tag
-class="attribute">href</tag> attribute is loaded, encoded, wrapped in
-the wrapper element, and returned as a document. If the URI protocol
-supports redirection, then redirects <rfc2119>must</rfc2119> be
-followed.</para>
-
-<para>The value of the <tag class="attribute">wrapper</tag> attribute
-<rfc2119>must</rfc2119> be a <type>QName</type>. If the lexical value
-does not contain a colon, then the <tag class="attribute">wrapper-namespace</tag>
-may be used to specify the namespace of the wrapper. In that case, the
-<tag class="attribute">wrapper-prefix</tag> may be specified to suggest a
-prefix for the wrapper element.
-<error code="D0034">It is a <glossterm>dynamic error</glossterm>
-to specify a new namespace or prefix if the lexical value of the specified
-name contains a colon (or if no <tag class="attribute">wrapper</tag> is
-explicitly specified).</error></para>
-
-<para>In other words, these two <tag>p:data</tag> elements produce
-equivalent wrappers:</para>
-
-<programlisting language="xml"><![CDATA[<p:data href="..."
-        xmlns:x="http://example.com/ns/"
-        wrapper="x:wrap"/>
-<p:data href="..."
-        wrapper="wrap" wrapper-prefix="x"
-        wrapper-namespace="http://example.com/ns/"/>]]></programlisting>
-
-<para>but this <tag>p:data</tag> element will raise an error:</para>
-
-<programlisting language="xml"><![CDATA[<p:data href="..."
-        xmlns:x="http://example.com/ns/"
-        wrapper="x:wrap" wrapper-prefix="x"
-        wrapper-namespace="http://example.com/ns/"/>]]></programlisting>
-
-<para>If no wrapper element is specified, the default is
-<tag>c:data</tag>:</para>
-
-<e:rng-pattern name="VocabData"/>
-
-<para><error code="D0029">It is a <glossterm>dynamic error</glossterm>
-if the document referenced by a <tag>p:data</tag> element does not
-exist, cannot be accessed, or cannot be encoded as specified.</error>
-</para>
-
-<para>Exactly how the data is encoded depends on the media type of the
-resource. If the resource has a content type associated with it (e.g.,
-if the resource was retrieved with HTTP), then that content type
-<rfc2119>must</rfc2119> be used, otherwise, if the user specified a
-<tag class="attribute">content-type</tag> on the <tag>p:data</tag>,
-then that content type should be assumed. <impl>If no content type was
-specified or is associated with the resource, the inferred content
-type is <glossterm>implementation-dependent</glossterm>.</impl>
-</para>
-
-<itemizedlist>
-  <listitem>
-    <para>If the media type of the response is an XML media type or
-    text type with a <literal>charset</literal> parameter that is a
-    Unicode character encoding (per <biblioref
-    linkend="unicodetr17"/>) or is recognized as a non-XML media type
-    whose contents are encoded as a sequence of Unicode characters
-    (e.g. it has a <literal>charset</literal> parameter or the
-    definition of the media type is such that it requires Unicode),
-    the data <rfc2119>must</rfc2119> be encoded as Unicode character
-    sequence.</para>
-  </listitem>
-  <listitem>
-    <para>If the media type is not an appropriate text type, or if the
-    processor does not recognize the media type, the content is
-    base64-encoded.</para>
-  </listitem>
-  </itemizedlist>
-
-<para>The resulting data is wrapped in an element with the name
-specified in the <tag class="attribute">wrapper</tag> attribute (or
-<tag>c:data</tag> if no <tag class="attribute">wrapper</tag> is
-specified).</para>
-
-<para>Implementations <rfc2119>should</rfc2119> add a
-<tag class="attribute">content-type</tag> attribute to
-the wrapper element which indicates the
-specified or inferred media type of the resource (including any
-parameters). If the content was base64-encoded, the wrapper
-<rfc2119>must</rfc2119> have an <tag class="attribute" >encoding</tag>
-attribute which specifies “<literal>base64</literal>”.</para>
-
-<para>If an <tag class="attribute">encoding</tag> is specified, a <tag
-class="attribute">charset</tag> may also be specified. The character
-set may be specified as a parameter on the
-<tag class="attribute">content-type</tag> or via the
-separate <tag class="attribute">charset</tag> option.
-If it is specified in both places, the values <rfc2119>must</rfc2119>
-be consistent.</para>
-
-<para>If <tag class="attribute">content-type</tag>,
-<tag class="attribute">encoding</tag>, or <tag class="attribute">charset</tag>
-attributes are specified on a
-<tag>c:data</tag> wrapper, they <rfc2119>must not</rfc2119> be in a
-namespace; if the user-specified wrapper is not <tag>c:data</tag>,
-then the attributes <rfc2119>must</rfc2119> be in the
-<uri type="xmlnamespace" >http://www.w3.org/ns/xproc-step</uri>
-namespace.</para>
-
-<para>Implementations may record additional details in <link
-linkend="extension-attributes">extension attributes</link>.</para>
-
-<para>For example, this <tag>p:identity</tag> step:</para>
-
-<programlisting language="xml"><xi:include href="examples/file.txt" parse="text"/></programlisting>
-
-<para>might produce output like this:</para>
-
-<programlisting language="xml">&lt;c:data xmlns:c="http://www.w3.org/2007/03/xproc-step"
-        content-type="text/plain"&gt;
-AL,Alabama
-AK,Alaska
-AZ,Arizona
-…
-&lt;/c:data&gt;</programlisting>
-
-<para>Whereas this pipeline fragment:</para>
-
-<programlisting language="xml"><xi:include href="examples/filebin.txt" parse="text"/></programlisting>
-
-<para>produces a single <tag>img</tag> element with an inline graphic
-(represented using a <literal>data:</literal> URI):</para>
-
-<programlisting language="xml">&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBI
-WXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH1QsEDycHOWjhgQAAAB10RVh0Q29tbWVudABDcmVhdGVk
-IHdpdGggVGhlIEdJTVDvZCVuAAABjklEQVQ4y42Tv0tbcRTFz3t5kuQFwUVFEYIGU6q4mU0RlCDR
-qYO2g4gdghUyKSFDwD/AwS2IoIMSHOLgpOLg4CIOWdy76GBoqQUJLlr66aCW6LuoF+7wvefcc3/w
-vZLgpbe0wOoqn/Ro5TKRVIpLi6tkkpoFpFJUj48JSVI2y4LnBTm+D1paYqa5OQiGw5DN8nV7m1hv
-L99f4o4Dk5Mc6Pwcd2yMXauL/n5+FAqsWdXjca5LJbokSXt7fOzu5toSaWsLxpqaIJcjr0ZbXGQh
-HDaWZPjQEGc7O3jPBC4u8EZHOXkruaODPxsbDMuylRWSra3cviYwO0upMcdtfNRqGq/X5esVu7nR
-BxMol4knEtTfGsH3+bu8zLdnydUqXjrN/nsWKEEiwdXmJp3/BYpFctFokOi6EIsF444DU1McSZLW
-1+nq6eGnVWlkhNrcHBXXNUe5z+f5rEyGA8cxD+pufp7BYtH+yhL09fFbkYjd4vQ0W08jFgp8se7l
-wY3gwAC/KhXanwROTwlNTHBocf8BTQe7F9dc2bMAAAAASUVORK5CYII="/&gt;</programlisting>
-
-<para>Some steps, such as <tag>p:xquery</tag> and
-<tag>p:validate-with-relax-ng</tag>, are designed to process non-XML
-inputs. If a base64-encoded input occurs in such a context, it
-<rfc2119>should</rfc2119> be decoded before processing. In this way,
-for example, an XQuery document can be read with <tag>p:data</tag> and
-passed to the <tag>p:xquery</tag> step without regard to how the data
-was encoded.</para>
-
+      </note>
 </section>
-
 
     <section xml:id="p.empty"><title>p:empty</title><para>A <tag>p:empty</tag> connects to an
           <glossterm>empty sequence</glossterm> of documents.</para>

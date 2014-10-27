@@ -222,11 +222,11 @@ Internationalized Resource Identifiers (IRIs)</citetitle>.
 M. Duerst and M. Suignard, editors.
 Internet Engineering Task Force. January, 2005.</bibliomixed>
 
-<bibliomixed xml:id="rfc6838"><abbrev>Media Type</abbrev>
-<citetitle xlink:href="http://www.ietf.org/rfc/rfc6838.txt">RFC 6838:
-Media Type Specifications and Registration Procedures</citetitle>.
-N. Freed, et. al.. Interent Engineering Task Force, IETF,
-January 2013.</bibliomixed>
+<bibliomixed xml:id="rfc2046"><abbrev>Media Types</abbrev>
+<citetitle xlink:href="http://www.ietf.org/rfc/rfc2046.txt">RFC 2046:
+Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types</citetitle>.
+N. Freed, et. al.. Network Working Group, IETF,
+November, 1996.</bibliomixed>
 
 <bibliomixed xml:id="unicodetr17"><abbrev>Unicode TR#17</abbrev>
 <citetitle xlink:href="http://unicode.org/reports/tr17/">Unicode Technical
