@@ -123,7 +123,7 @@ Pipeline =
       common.attributes,
       use-when.attr?,
       decl.attributes,
-      (Input|ParameterInput|Output|Option|Log
+      (Input|Output|Option|Log
        |Serialization|Documentation|PipeInfo)*,
       (DeclareStep|Pipeline|Import|Documentation|PipeInfo)*,
       Subpipeline
@@ -144,7 +144,6 @@ InputDeclaration =
       port.attr,
       sequence.attr?,
       primary.attr?,
-      attribute kind { "document" }?,
       select.attr?,
       common.attributes,
       use-when.attr?,
@@ -167,29 +166,6 @@ InputConnection =
    sa:element = "input"
 ]
 Input = InputDeclaration | InputConnection
-
-# ============================================================
-
-[
-   sa:class = "language-construct"
-   sa:ignore = "yes"
-]
-ParameterInputDeclaration =
-   element input {
-      port.attr,
-      attribute sequence { xsd:boolean }?,
-      primary.attr?,
-      attribute kind { "parameter" },
-      common.attributes,
-      use-when.attr?,
-      ((\Empty|(Document|Inline)+)? & (Documentation|PipeInfo)*)
-   }
-
-[
-   sa:element = "input"
-   sa:ignore = "yes"
-]
-ParameterInput = ParameterInputDeclaration
 
 # ============================================================
 
@@ -407,26 +383,7 @@ Namespaces =
       attribute except-prefixes { PrefixList }?,
       (Documentation|PipeInfo)*
    }
-      
-# ============================================================
 
-[
-   sa:class = "language-construct"
-]
-WithParamSelect =
-   element with-param {
-      name.qname.attr,
-      select.attr,
-      port.attr?,
-      common.attributes,
-      use-when.attr?,
-      ((\Empty|Pipe|Document|Inline|Data)? & (Namespaces|Documentation|PipeInfo)*)
-   }
-
-[
-   sa:element = "with-param"
-]
-WithParam = WithParamSelect
 
 # ============================================================
 
@@ -440,7 +397,7 @@ DeclareStep =
       decl.attributes,
       common.attributes,
       use-when.attr?,
-      (Input|ParameterInput|Output|Option|Log
+      (Input|Output|Option|Log
        |Serialization|Documentation|PipeInfo)*,
       ((DeclareStep|Pipeline|Import|Documentation|PipeInfo)*,Subpipeline)?
    }
@@ -603,7 +560,7 @@ OtherAtomicStep =
       option.attr*,
       common.attributes,
       p_use-when.attr?,
-      (InputConnection|WithOption|WithParam|Log|Documentation|PipeInfo)*
+      (InputConnection|WithOption|Log|Documentation|PipeInfo)*
    }
 
 [
