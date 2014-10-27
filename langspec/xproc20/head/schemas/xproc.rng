@@ -202,7 +202,6 @@
       <zeroOrMore>
         <choice>
           <ref name="Input"/>
-          <ref name="ParameterInput"/>
           <ref name="Output"/>
           <ref name="Option"/>
           <ref name="Log"/>
@@ -249,11 +248,6 @@
       </optional>
       <optional>
         <ref name="primary.attr"/>
-      </optional>
-      <optional>
-        <attribute name="kind">
-          <value>document</value>
-        </attribute>
       </optional>
       <optional>
         <ref name="select.attr"/>
@@ -322,49 +316,6 @@
       <ref name="InputDeclaration"/>
       <ref name="InputConnection"/>
     </choice>
-  </define>
-  <!-- ============================================================ -->
-  <define name="ParameterInputDeclaration" sa:class="language-construct" sa:ignore="yes">
-    <element name="input">
-      <ref name="port.attr"/>
-      <optional>
-        <attribute name="sequence">
-          <data type="boolean"/>
-        </attribute>
-      </optional>
-      <optional>
-        <ref name="primary.attr"/>
-      </optional>
-      <attribute name="kind">
-        <value>parameter</value>
-      </attribute>
-      <ref name="common.attributes"/>
-      <optional>
-        <ref name="use-when.attr"/>
-      </optional>
-      <interleave>
-        <optional>
-          <choice>
-            <ref name="Empty"/>
-            <oneOrMore>
-              <choice>
-                <ref name="Document"/>
-                <ref name="Inline"/>
-              </choice>
-            </oneOrMore>
-          </choice>
-        </optional>
-        <zeroOrMore>
-          <choice>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
-          </choice>
-        </zeroOrMore>
-      </interleave>
-    </element>
-  </define>
-  <define name="ParameterInput" sa:element="input" sa:ignore="yes">
-    <ref name="ParameterInputDeclaration"/>
   </define>
   <!-- ============================================================ -->
   <define name="OutputDeclaration" sa:class="language-construct">
@@ -771,41 +722,6 @@
     </element>
   </define>
   <!-- ============================================================ -->
-  <define name="WithParamSelect" sa:class="language-construct">
-    <element name="with-param">
-      <ref name="name.qname.attr"/>
-      <ref name="select.attr"/>
-      <optional>
-        <ref name="port.attr"/>
-      </optional>
-      <ref name="common.attributes"/>
-      <optional>
-        <ref name="use-when.attr"/>
-      </optional>
-      <interleave>
-        <optional>
-          <choice>
-            <ref name="Empty"/>
-            <ref name="Pipe"/>
-            <ref name="Document"/>
-            <ref name="Inline"/>
-            <ref name="Data"/>
-          </choice>
-        </optional>
-        <zeroOrMore>
-          <choice>
-            <ref name="Namespaces"/>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
-          </choice>
-        </zeroOrMore>
-      </interleave>
-    </element>
-  </define>
-  <define name="WithParam" sa:element="with-param">
-    <ref name="WithParamSelect"/>
-  </define>
-  <!-- ============================================================ -->
   <define name="DeclareStep" sa:class="language-construct">
     <element name="declare-step">
       <optional>
@@ -824,7 +740,6 @@
       <zeroOrMore>
         <choice>
           <ref name="Input"/>
-          <ref name="ParameterInput"/>
           <ref name="Output"/>
           <ref name="Option"/>
           <ref name="Log"/>
@@ -1194,7 +1109,6 @@
         <choice>
           <ref name="InputConnection"/>
           <ref name="WithOption"/>
-          <ref name="WithParam"/>
           <ref name="Log"/>
           <ref name="Documentation"/>
           <ref name="PipeInfo"/>
