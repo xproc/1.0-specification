@@ -222,7 +222,7 @@ a valid media type of the form
 property</glossterm>.
 </para>
 </listitem>
-<listitem>
+<listitem xml:id="c.data">
 <para>Casting from a non-XML media type to an XML media type produces an
 XML document with a <tag>c:data</tag> document element. The original
 media type will be preserved in the
