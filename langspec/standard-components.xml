@@ -14,11 +14,22 @@ description of these steps may be found in
 <link xlink:href="http://www.w3.org/2008/xproc-1.0.xpl">xproc-1.0.xpl</link>.
 </para>
 
+<para>Some aspects of documents are generally unchanged by steps:</para>
+
+<itemizedlist>
+<listitem>
 <para>When a step in this library produces an output document,
 the base URI of the output is the base URI of the step's primary
 input document unless the step's process explicitly sets an
 <tag class="attribute">xml:base</tag> attribute or the step's
 description explicitly states how the base URI is constructed.</para>
+</listitem>
+<listitem>
+<para>Unless otherwise specified, steps in this library do not
+modify the <glossterm>document properties</glossterm> of the documents
+that flow through them.</para>
+</listitem>
+</itemizedlist>
 
 <para xml:id="cv.result">Also, in this section, several steps use this
 element for result information:</para>
