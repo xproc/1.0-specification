@@ -229,6 +229,7 @@ Document =
 Inline =
    element inline {
       exclude-inline-prefixes.attr?,
+      attribute expand-text { xsd:boolean }?,
       common.attributes,
       use-when.attr?,
       Any

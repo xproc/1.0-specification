@@ -1558,6 +1558,28 @@ if any of the <tag>c:param</tag> elements are invalid.</error>
       </note>
     </section>
 
+<section xml:id="value-templates">
+<title>Value Templates</title>
+
+<section xml:id="attribute-value-templates">
+<title>Attribute Value Templates</title>
+
+<para><termdef xml:id="dt-attribute-value-template">An
+<firstterm>attribute value template</firstterm> is FIXME: the obvious
+concept from XSLT.</termdef>
+</para>
+</section>
+
+<section xml:id="text-value-templates">
+<title>Attribute Value Templates</title>
+
+<para><termdef xml:id="dt-text-value-template">A
+<firstterm>text value template</firstterm> is the obvious concept from
+XSLT 3.0.</termdef>
+</para>
+</section>
+</section>
+
 <section xml:id="variables">
 <title>Variables</title>
 
@@ -2906,41 +2928,61 @@ its containing <tag>p:try</tag>.</para>
             <glossterm>implementation-defined</glossterm>; XProc provides no standard mechanism for
           defining them or describing what they can contain.</impl>
         <error code="S0048">It is a <glossterm>static error</glossterm> to use a declared step as a
-            <glossterm>compound step</glossterm>.</error></para><section xml:id="option-shortcut">
-        <title>Syntactic Shortcut for Option Values</title>
-        <para>Namespace qualified attributes on a step are <glossterm baseform="extension attribute"
-            >extension attributes</glossterm>. Attributes, other than <tag class="attribute"
-            >name</tag>, that are not namespace qualified are treated as a syntactic shortcut for
-          specifying the value of an option. In other words, the following two steps are
-          equivalent:</para>
-        <para>The first step uses the standard <tag>p:with-option</tag> syntax:</para>
-        <programlisting language="xml"><![CDATA[<ex:stepType>
+            <glossterm>compound step</glossterm>.</error></para>
+
+<section xml:id="option-shortcut">
+<title>Syntactic Shortcut for Option Values</title>
+
+<para>Namespace qualified attributes on a step are <glossterm
+baseform="extension attribute" >extension attributes</glossterm>.
+Attributes, other than <tag class="attribute" >name</tag>, that are
+not namespace qualified are treated as a syntactic shortcut for
+specifying the value of an option. In other words, the following two
+steps are equivalent:</para>
+
+<para>The first step uses the standard <tag>p:with-option</tag>
+syntax:</para>
+
+<programlisting language="xml"><![CDATA[<ex:stepType>
   <p:with-option name="option-name" select="'some value'"/>
 </ex:stepType>]]></programlisting>
-        <para>The second step uses the syntactic shortcut:</para>
-        <programlisting language="xml"><![CDATA[<ex:stepType option-name="some value"/>]]></programlisting>
-        <para>Note that there are significant limitations to this shortcut syntax:</para>
-        <orderedlist>
-          <listitem>
-            <para>It only applies to option names that are not in a namespace.</para>
-          </listitem>
-          <listitem>
-            <para>It only applies to option names that are not otherwise used on the step, such as
-                “<literal>name</literal>”.</para>
-          </listitem>
-          <listitem>
-            <para>It can only be used to specify a constant value. Options that are computed at
-              runtime must be written using the longer form.</para>
-          </listitem>
-        </orderedlist>
-        <para><error code="S0027">It is a <glossterm>static error</glossterm> if an option is
-            specified with both the shortcut form and the long form.</error>
-          <error code="S0031">It is a <glossterm>static error</glossterm> to use an option on an
-              <glossterm>atomic step</glossterm> that is not declared on steps of that type.</error>
-        </para>
-        <para>The syntactic shortcuts apply equally to standard atomic steps and extension atomic
-          steps.</para>
-      </section></section>
+
+<para>The second step uses the syntactic shortcut:</para>
+
+<programlisting language="xml"><![CDATA[<ex:stepType option-name="some value"/>]]></programlisting>
+
+<para>There are some limitations to this shortcut
+syntax:</para>
+
+<orderedlist>
+<listitem>
+<para>It only applies to option names that are not in a
+namespace.</para>
+</listitem>
+<listitem>
+<para>It only applies to option names that are not otherwise used on
+the step, such as “<literal>name</literal>”.</para>
+</listitem>
+</orderedlist>
+
+<para>If the option value includes curly braces, it is treated as
+an <glossterm>attribute value template</glossterm>. The context node for
+attribute value templates in an option shortcut value comes from the
+default readable port for the step on which they occur. If there is no
+such port, the context node is undefined.</para>
+
+<para><error code="S0027">It is a <glossterm>static error</glossterm> if an
+option is specified with both the shortcut form and the long
+form.</error>
+<error code="S0031">It is a <glossterm>static error</glossterm> to use
+an option on an <glossterm>atomic step</glossterm> that is not
+declared on steps of that type.</error>
+</para>
+
+<para>The syntactic shortcuts apply equally to standard atomic steps
+and extension atomic steps.</para>
+</section>
+</section>
   </section>
   <section xml:id="other-elements">
     <title>Other pipeline elements</title>
@@ -3710,30 +3752,43 @@ See also <xref linkend="handling-imports"
             effect of several <tag class="attribute">exclude-inline-prefixes</tag> attributes among
             the ancestors of <tag>p:inline</tag> is cumulative.)</para>
         </listitem>
-      </itemizedlist><para>The value of each <tag class="attribute">exclude-inline-prefixes</tag>
-        attribute is interpreted as follows:</para>
-<para>The value of the attribute is either
-          <literal>#all</literal>, or a whitespace-separated list of tokens, each of which is either
-        a namespace prefix or <literal>#default</literal>. The namespace bound to each of the
-        prefixes is designated as an excluded namespace. <error code="S0057">It is a
-            <glossterm>static error</glossterm> if the <tag class="attribute"
-            >exclude-inline-prefixes</tag> attribute does not contain a list of tokens or if any of
-          those tokens (except <literal>#all</literal> or <literal>#default</literal>) is not a
-          prefix bound to a namespace in the in-scope namespaces of the element on which it
-          occurs.</error></para>
-<para>The default namespace of the element on which <tag
-          class="attribute">exclude-inline-prefixes</tag> occurs may be designated as an excluded
-        namespace by including <literal>#default</literal> in the list of namespace prefixes. <error
-          code="S0058">It is a <glossterm>static error</glossterm> if the value
-            <literal>#default</literal> is used within the <tag class="attribute"
-            >exclude-inline-prefixes</tag> attribute and there is no default namespace in
-          scope.</error>
-      </para>
+</itemizedlist>
 
+<para>The value of each prefix in the <tag
+class="attribute">exclude-inline-prefixes</tag> attribute is
+interpreted as follows:</para>
+
+<itemizedlist>
+<listitem>
+<para>The value of the attribute is either <literal>#all</literal>, or
+a whitespace-separated list of tokens, each of which is either a
+namespace prefix or <literal>#default</literal>. The namespace bound
+to each of the prefixes is designated as an excluded namespace. <error
+code="S0057">It is a <glossterm>static error</glossterm> if the <tag
+class="attribute" >exclude-inline-prefixes</tag> attribute does not
+contain a list of tokens or if any of those tokens (except
+<literal>#all</literal> or <literal>#default</literal>) is not a
+prefix bound to a namespace in the in-scope namespaces of the element
+on which it occurs.</error></para>
+</listitem>
+<listitem>
+<para>The default namespace of the element on which <tag
+class="attribute">exclude-inline-prefixes</tag> occurs may be
+designated as an excluded namespace by including
+<literal>#default</literal> in the list of namespace prefixes. <error
+code="S0058">It is a <glossterm>static error</glossterm> if the value
+<literal>#default</literal> is used within the <tag class="attribute"
+>exclude-inline-prefixes</tag> attribute and there is no default
+namespace in scope.</error>
+</para>
+</listitem>
+<listitem>
 <para>The value <literal>#all</literal> indicates that all namespaces
 that are in scope for the element on which <tag
 class="attribute">exclude-inline-prefixes</tag> occurs are designated
 as excluded namespaces.</para>
+</listitem>
+</itemizedlist>
 
 <para>The XProc processor <rfc2119>must</rfc2119> include all in-scope
 prefixes that are not explicitly excluded. If the namespace associated with
@@ -3759,6 +3814,10 @@ binding must be present. In this example, the original
 prefix has been preserved, but it would be equally correct if a different
 prefix had been used.</para>
 
+<para>If the <tag class="attribute">expand-text</tag> attribute is
+true, then each text node within the <tag>p:inline</tag> is evaluated as
+a <glossterm>text value template</glossterm>. The context node for
+these expressions is undefined.</para>
 </section>
 <section xml:id="p.document">
 <title>p:document</title>
