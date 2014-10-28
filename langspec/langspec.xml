@@ -1571,10 +1571,10 @@ concept from XSLT.</termdef>
 </section>
 
 <section xml:id="text-value-templates">
-<title>Attribute Value Templates</title>
+<title>Text Value Templates</title>
 
 <para><termdef xml:id="dt-text-value-template">A
-<firstterm>text value template</firstterm> is the obvious concept from
+<firstterm>text value template</firstterm> is FIXME: the obvious concept from
 XSLT 3.0.</termdef>
 </para>
 </section>
