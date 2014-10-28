@@ -806,13 +806,19 @@ free.</para>
                   <termdef xml:id="dt-initial-environment">An <firstterm>initial
                      environment</firstterm> is a <glossterm>connection</glossterm> for each of the
                      <glossterm>readable ports</glossterm> and a set of option bindings used to
-                  construct the <glossterm>in-scope bindings</glossterm>.</termdef>  This
-               environment is used in place of the <glossterm>empty environment</glossterm> that
-               might have otherwise been provided.</para>
-            <para>An implementation is free to provide any set of mechanisms to construct
-               connections for the input ports of the invoked step.  These mechanisms are not
-               limited to the variety of mechnisms described within this specification.  Any
-               extensions are implementation defined.</para>
+                  construct the <glossterm>in-scope bindings</glossterm>.</termdef> This environment
+               is used in place of the <glossterm>empty environment</glossterm> that might have
+               otherwise been provided.</para>
+            <para>An invoked pipeline's <glossterm>initial environment</glossterm> is different from
+               the environment constructed for the sub-pipeline of a declared step.  The initial
+               environment is constructed for the initial invocation of the pipeline by the
+               processor by the outside application.  Steps that are subsequently invoked construct
+               an environment as specified in <xref linkend="declare-pipelines"/>.</para>
+            <para>When constructing an <glossterm>initial environment</glossterm>, an implementation
+               is free to provide any set of mechanisms to construct connections for the input ports
+               of the invoked step. These mechanisms are not limited to the variety of mechnisms
+               described within this specification. Any extensions are implementation
+               defined.</para>
             <para>The set of <glossterm>in-scope bindings</glossterm> are constructed from a set of
                option name/value pairs.  Each option value can be a simple string value, a specific
                data type instance (e.g. xs:dateTime), or a more complex value like a map item.  How
