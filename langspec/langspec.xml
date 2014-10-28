@@ -375,7 +375,7 @@ document content.</termdef>
 are key/value pairs. <termdef xml:id="dt-document-properties">The
 <firstterm>document properties</firstterm> are exposed to the XProc
 pipeline as a map (<code>map(xs:string, xs:string)</code>).</termdef>
-The document properties must always include a “<code>media-type</code>”
+The document properties must always include a “<code>content-type</code>”
 key which identifies the <biblioref linkend="rfc2046"/> of the
 representation. Other properties may also be present, including user
 defined properties.</para>
@@ -547,11 +547,11 @@ is <glossterm>implementation-defined</glossterm>.</impl></para>
 the pipeline is
 <glossterm>implementation-defined</glossterm>.</impl></para>
 
-<para>Input ports <rfc2119>may</rfc2119> specify a media type, or list of
-media types, that they accept.
-<error code="D1003">If an input port provides a set of acceptable media
+<para>Input ports <rfc2119>may</rfc2119> specify a cointent type, or list of
+content types, that they accept.
+<error code="D1003">If an input port provides a set of acceptable content
 types, it is a <glossterm>dynamic error</glossterm>
-if an input document that arrives on the port has a media type not in
+if an input document that arrives on the port has a content type not in
 that set.</error>
 </para>
 
@@ -949,7 +949,7 @@ expected.</error>
 </para>
 
 <para><impl>The result of evaluating an expression when the context
-node has a non-XML media type is
+node has a non-XML content type is
 <glossterm>implementation-defined</glossterm>.</impl>
 </para>
 
@@ -2972,7 +2972,7 @@ elsewhere. And in some contexts, it does both.</para>
 
 <para>The declaration of an input identifies the name of the
 port, whether or not the port accepts a sequence, whether or not the
-port is a <glossterm>primary input port</glossterm>, what media types it
+port is a <glossterm>primary input port</glossterm>, what content types it
 accepts, and may provide a
 default connection for the port.</para>
 
@@ -3002,15 +3002,15 @@ and <tag class="attribute">primary</tag> is not specified. <error
 code="S0030">It is a <glossterm>static error</glossterm> to specify
 that more than one input port is the primary.</error></para>
 
-<para>The <tag class="attribute">media-types</tag> attribute lists one
-or more (space separated) media types that this input port will
-accept. A media type must be of the form
+<para>The <tag class="attribute">content-types</tag> attribute lists one
+or more (space separated) content types that this input port will
+accept. A content type must be of the form
 “<literal><replaceable>type</replaceable>/<replaceable>subtype</replaceable>+<replaceable>ext</replaceable></literal>”
 where any of <replaceable>type</replaceable>,
 <replaceable>subtype</replaceable>, and <replaceable>ext</replaceable>
 can be specified as “<literal>*</literal>” meaning “any”. The
 “<literal>+<replaceable>ext</replaceable></literal>” is optional. Here
-are some examples of media types for matching:</para>
+are some examples of content types for matching:</para>
 
 <itemizedlist>
 <listitem><simpara><literal>text/plain</literal>, plain text
@@ -3019,10 +3019,10 @@ documents</simpara>
 <listitem><simpara><literal>text/*</literal>, any kind of text
 document.</simpara>
 </listitem>
-<listitem><simpara><literal>*/*+xml</literal>, any XML media type.
+<listitem><simpara><literal>*/*+xml</literal>, any XML content type.
 </simpara>
 </listitem>
-<listitem><simpara><literal>*/*</literal>, any media type.
+<listitem><simpara><literal>*/*</literal>, any content type.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -3831,7 +3831,7 @@ prefix had been used.</para>
 URI protocol supports redirection, then redirects
 <rfc2119>must</rfc2119> be followed.</para>
 
-<para>Exactly how the data is encoded depends on the media type of the
+<para>Exactly how the data is encoded depends on the content type of the
 resource. If the resource has a content type associated with it (e.g.,
 if the resource was retrieved with HTTP), then that content type
 <rfc2119>must</rfc2119> be used, otherwise, if the user specified a
@@ -3842,7 +3842,7 @@ specified or is associated with the resource, the inferred content
 type is <glossterm>implementation-dependent</glossterm>.</impl>
 </para>
 
-<para>If the document identified has an XML media type, it must
+<para>If the document identified has an XML content type, it must
 be parsed as XML:</para>
 
 <itemizedlist>
@@ -3868,7 +3868,7 @@ fail due to validation errors.
 
 <para><error code="D0011">It is a <glossterm>dynamic error</glossterm>
 if the resource referenced by a <tag>p:document</tag> element does not
-exist, cannot be accessed, or has an XML media type and is not a well-formed XML
+exist, cannot be accessed, or has an XML content type and is not a well-formed XML
 document.</error>
 </para>
 

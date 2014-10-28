@@ -72,7 +72,7 @@ with the specified value.
 </para>
 
 <p:declare-step type="p:add-attribute">
-  <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
   <p:option name="attribute-name" required="true" as="xs:QName"/>
@@ -145,7 +145,7 @@ with <code>xml:base</code> attributes added to or corrected on each element as s
 by the options on this step.</para>
 
 <p:declare-step type="p:add-xml-base">
-   <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
    <p:option name="all" select="'false'" as="xs:boolean"/>
    <p:option name="relative" select="'true'" as="xs:boolean"/>
@@ -197,28 +197,28 @@ element's [base URI].</para>
 
 <!-- ************************************************************************-->
 
-<section xml:id="c.cast-media-type">
-<title>p:cast-media-type</title>
+<section xml:id="c.cast-content-type">
+<title>p:cast-content-type</title>
 
-<para>The <tag>p:cast-media-type</tag> step changes the media type
+<para>The <tag>p:cast-content-type</tag> step changes the media type
 of its input.</para>
 
-<p:declare-step type="p:cast-media-type">
-   <p:input port="source" media-types="*/*"/>
+<p:declare-step type="p:cast-content-type">
+   <p:input port="source" content-types="*/*"/>
    <p:output port="result"/>
-   <p:option name="media-type" as="xs:string"/>
+   <p:option name="content-type" as="xs:string"/>
 </p:declare-step>
 
 <para>The input document is transformed from one media type to another.
 <error code="C1002">It is a <glossterm>dynamic
-error</glossterm> if the supplied <option>media-type</option> is not
+error</glossterm> if the supplied <option>content-type</option> is not
 a valid media type of the form
 “<literal><replaceable>type</replaceable>/<replaceable>subtype</replaceable>+<replaceable>ext</replaceable></literal>”.</error></para>
 
 <itemizedlist>
 <listitem>
 <para>Casting from one XML media type to another simply changes the
-“<literal>media-type</literal>” <glossterm baseform="document properties">document
+“<literal>content-type</literal>” <glossterm baseform="document properties">document
 property</glossterm>.
 </para>
 </listitem>
@@ -248,7 +248,7 @@ a valid base64 string.</error></para>
 error</glossterm> if the <tag>c:data</tag> element does not have
 a <tag class="attribute">content-type</tag> attribute.</error></para>
 <para><error code="C1006">It is a <glossterm>dynamic
-error</glossterm> if the <option>media-type</option> is supplied and is
+error</glossterm> if the <option>content-type</option> is supplied and is
 not the same as the <tag class="attribute">content-type</tag> specified on
 the <tag>c:data</tag> element.</error>
 </para>
@@ -260,14 +260,14 @@ the input document is not a <tag>c:data</tag> document is
 <para><impl>What happens when one non-XML media type is cast to another
 non-XML media type is <glossterm>implementation-defined</glossterm>.</impl>
 <error code="C1003">It is a <glossterm>dynamic
-error</glossterm> if the <tag>p:cast-media-type</tag> step
+error</glossterm> if the <tag>p:cast-content-type</tag> step
 cannot perform the requested cast.</error></para>
 </listitem>
 </itemizedlist>
 
 <para><error code="C1007">In all cases except when the input document
 is a <tag>c:data</tag> element, it is a <glossterm>dynamic
-error</glossterm> if the <option>media-type</option> is not supplied.</error>
+error</glossterm> if the <option>content-type</option> is not supplied.</error>
 </para>
 </section>
 
@@ -314,7 +314,7 @@ string representation of the number of documents in the
 sequence.</para>
 
 <p:declare-step type="p:count">
-   <p:input port="source" media-types="*/*" sequence="true"/>
+   <p:input port="source" content-types="*/*" sequence="true"/>
    <p:output port="result"/>
    <p:option name="limit" select="0" as="xs:integer"/>
 </p:declare-step>
@@ -338,7 +338,7 @@ pattern from the
 with the deleted items removed, on the <port>result</port> port.</para>
 
 <p:declare-step type="p:delete">
-   <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
    <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
@@ -541,7 +541,7 @@ represents the "escaped" syntax of the children as they were
 serialized.</para>
 
 <p:declare-step type="p:escape-markup">
-  <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
   <xi:include href="serialization-options-for-escape-markup.xml"
               xpointer="xmlns(p=http://www.w3.org/ns/xproc)
@@ -582,7 +582,7 @@ XML declaration in the escaped result.</para>
 based on a (possibly dynamically constructed) XPath select expression.</para>
 
 <p:declare-step type="p:filter">
-  <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result" sequence="true"/>
   <p:option name="select" required="true" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
@@ -607,7 +607,7 @@ the method, resource, and other request properties as well as possibly
 including an entity body (content) for the request.</para>
 
 <p:declare-step type="p:http-request">
-  <p:input port="source" media-types="*/*"/>
+  <p:input port="source" content-types="*/*"/>
   <p:output port="result"/>
   <xi:include href="serialization-options.xml"
               xpointer="xmlns(p=http://www.w3.org/ns/xproc)
@@ -1031,7 +1031,7 @@ using the <tag>p:unescape-markup</tag> step.</para>
 available on its output.</para>
 
 <p:declare-step type="p:identity">
-  <p:input port="source" media-types="*/*" sequence="true"/>
+  <p:input port="source" content-types="*/*" sequence="true"/>
   <p:output port="result" sequence="true"/>
 </p:declare-step>
 
@@ -1109,7 +1109,7 @@ as the source.</para>
 element and stores that label in the specified attribute.</para>
 
 <p:declare-step type="p:label-elements">
-  <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
   <p:option name="attribute" select="'xml:id'" as="xs:QName"/>
   <p:option name="attribute-prefix" as="xs:NCName"/>
@@ -1237,7 +1237,7 @@ attribute's value in the source document an absolute IRI value in the
 result document.</para>
 
 <p:declare-step type="p:make-absolute-uris">
-  <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
   <p:option name="base-uri" as="xs:anyURI"/>
@@ -1287,7 +1287,7 @@ the results are <glossterm>implementation-dependent</glossterm>.</impl>
 use of a namespace in a document to a new IRI value.</para>
 
  <p:declare-step type="p:namespace-rename">
-   <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
    <p:option name="from" as="xs:anyURI"/>
    <p:option name="to" as="xs:anyURI"/>
@@ -1401,7 +1401,7 @@ XPath expressions, may end up with no appropriate namespace binding.</para></not
 fashion.</para>
 
 <p:declare-step type="p:pack">
-   <p:input port="source" media-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
    <p:input port="alternate" sequence="true"/>
    <p:output port="result" sequence="true"/>
    <p:option name="wrapper" required="true" as="xs:QName"/>
@@ -1540,7 +1540,7 @@ element.</error></para>
 processing-instruction targets in a document.</para>
 
 <p:declare-step type="p:rename">
-  <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
   <p:option name="new-name" required="true" as="xs:QName"/>
@@ -1679,7 +1679,7 @@ of the element <rfc2119>must</rfc2119> also be amended accordingly.</para>
 properties</glossterm> on the source document.</para>
 
 <p:declare-step type="p:set-properties">
-   <p:input port="source" media-types="*/*"/>
+   <p:input port="source" content-types="*/*"/>
    <p:output port="result"/>
    <p:option name="properties" required="true" as="map(xs:string,xs:string)"/>
 </p:declare-step>
@@ -1692,7 +1692,7 @@ adjusted property values.</para>
 
 <para><error code="C1001">It is a <glossterm>dynamic
 error</glossterm> if the <option>properties</option> map contains
-a key equal to the string “<literal>media-type</literal>”.</error>
+a key equal to the string “<literal>content-type</literal>”.</error>
 </para>
 
 </section>
@@ -1706,7 +1706,7 @@ a key equal to the string “<literal>media-type</literal>”.</error>
 discards them. It has no output.</para>
 
 <p:declare-step type="p:sink">
-   <p:input port="source" media-types="*/*" sequence="true"/>
+   <p:input port="source" content-types="*/*" sequence="true"/>
 </p:declare-step>
 
 </section>
@@ -1720,7 +1720,7 @@ discards them. It has no output.</para>
 documents and divides it into two sequences.</para>
 
 <p:declare-step type="p:split-sequence">
-  <p:input port="source" media-types="application/xml text/xml */*+xml" sequence="true"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true"/>
   <p:output port="matched" sequence="true" primary="true"/>
   <p:output port="not-matched" sequence="true"/>
   <p:option name="initial-only" select="'false'" as="xs:boolean"/>
@@ -1776,7 +1776,7 @@ input to a URI. This step outputs a reference to the location of the
 stored document.</para>
 
 <p:declare-step type="p:store">
-  <p:input port="source" media-types="*/*"/>
+  <p:input port="source" content-types="*/*"/>
   <p:output port="result" primary="false"/>
   <p:option name="href" required='true' as="xs:anyURI"/>
   <xi:include href="serialization-options.xml"
@@ -1816,7 +1816,7 @@ document provided on the <port>source</port> port and replaces them
 with the string result of evaluating an XPath expression.</para>
 
 <p:declare-step type="p:string-replace">
-   <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
    <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
    <p:option name="replace" required="true" as="xs:string" e:type="XPathExpression"/>
@@ -1860,7 +1860,7 @@ same document element with children that result from the parse. This
 is the reverse of the <tag>p:escape-markup</tag> step.</para>
 
 <p:declare-step type="p:unescape-markup">
-  <p:input port="source" media-types="application/xml text/xml */*+xml text/*"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml text/*"/>
   <p:output port="result"/>
   <p:option name="namespace" as="xs:anyURI"/>
   <p:option name="content-type" select="'application/xml'" as="xs:string"/>
@@ -1954,7 +1954,7 @@ namespace, the following input:</para>
 children.</para>
 
 <p:declare-step type="p:unwrap">
-   <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
    <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
@@ -1989,7 +1989,7 @@ unwrapped, the result might not be well-formed XML.</para>
 <port>source</port> document with a new parent element.</para>
 
 <p:declare-step type="p:wrap">
-   <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
    <p:option name="wrapper" required="true" as="xs:QName"/>
    <p:option name="wrapper-prefix" as="xs:NCName"/>
@@ -2058,7 +2058,7 @@ documents and produces either a single document or a new sequence of
 documents.</para>
 
 <p:declare-step type="p:wrap-sequence">
-   <p:input port="source" media-types="application/xml text/xml */*+xml" sequence="true"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true"/>
    <p:output port="result" sequence="true"/>
    <p:option name="wrapper" required="true" as="xs:QName"/>
    <p:option name="wrapper-prefix" as="xs:NCName"/>
@@ -2111,7 +2111,7 @@ element.
 <para>The <tag>p:xinclude</tag> step applies <biblioref linkend="xinclude"/> processing to the <port>source</port> document.</para>
 
 <p:declare-step type="p:xinclude">
-  <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
   <p:option name="fixup-xml-base" select="'false'" as="xs:boolean"/>
   <p:option name="fixup-xml-lang" select="'false'" as="xs:boolean"/>
@@ -2142,7 +2142,7 @@ if an XInclude error occurs during processing.</error> </para>
 <biblioref linkend="xslt20"/> stylesheet to a document.</para>
 
 <p:declare-step type="p:xslt">
-  <p:input port="source" media-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
   <p:input port="stylesheet"/>
   <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" primary="true"/>
@@ -2556,7 +2556,7 @@ validation to the <port>source</port> document.</para>
 
 <p:declare-step type="p:validate-with-relax-ng">
   <p:input port="source" primary="true"/>
-  <p:input port="schema" media-types="application/xml */*+xml text/*"/>
+  <p:input port="schema" content-types="application/xml */*+xml text/*"/>
   <p:output port="result"/>
   <p:option name="dtd-attribute-values" select="'false'" as="xs:boolean"/>
   <p:option name="dtd-id-idref-warnings" select="'false'" as="xs:boolean"/>
@@ -2832,8 +2832,8 @@ the encoded string.</para>
 provided on the <port>source</port> port.</para>
 
 <p:declare-step type="p:xquery">
-  <p:input port="source" media-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
-  <p:input port="query" media-types="application/xml */*+xml text/*"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
+  <p:input port="query" content-types="application/xml */*+xml text/*"/>
   <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" sequence="true"/>
 </p:declare-step>
@@ -3023,7 +3023,7 @@ option. A reference to that result is produced on the output
 port.</para>
 
 <p:declare-step type="p:xsl-formatter">
-  <p:input port="source" media-types="application/xml text/xml */*+xml"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result" primary="false"/>
   <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:option name="href" required="true" as="xs:anyURI"/>
