@@ -383,9 +383,8 @@ defined properties.</para>
 <section xml:id="xml-documents">
 <title>XML Documents</title>
 
-<para><impl>Representations of XML documents are instances of
-the <biblioref linkend="xpath-datamodel"/>; representations of other
-media types are <glossterm>implementation-dependent</glossterm>.</impl>
+<para>Representations of XML documents are instances of
+the <biblioref linkend="xpath-datamodel"/>.
 </para>
 
 <para>In order to be consistent with the XPath data model, all general
@@ -398,6 +397,17 @@ information items</literal>.</para>
 <para><impl>The level of support for typed values in XDM instances
 in an XProc pipeline is <glossterm>implementation-defined</glossterm>.</impl>
 </para>
+</section>
+
+<section xml:id="non-xml-documents">
+<title>Non-XML Documents</title>
+
+<para><impl>Representations of non-XML documents are
+are <glossterm>implementation-dependent</glossterm>.</impl>
+</para>
+
+<para>FIXME: implementors are free to optimize, etc.</para>
+
 </section>
 </section>
 
