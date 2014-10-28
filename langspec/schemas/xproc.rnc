@@ -92,7 +92,7 @@ decl.attributes = psvi-required.attr?,
 start = Pipeline | Library | DeclareStep
  | VocabParam | VocabParamSet | VocabResult | VocabHttpRequest
  | VocabHeader | VocabMultipart | VocabBody | VocabHttpResponse | VocabQuery
- | VocabLine | VocabDirectory | Errors | StandardStep
+ | VocabLine | VocabData | VocabDirectory | Errors | StandardStep
 
 # ============================================================
 
@@ -738,6 +738,17 @@ VocabQuery =
 ]
 VocabLine =
    element c:line {
+      text
+   }
+
+[
+   sa:class = "step-vocabulary"
+]
+VocabData =
+   element c:data {
+      attribute content-type { text }?,
+      attribute charset { text }?,
+      attribute encoding { text }?,
       text
    }
 
