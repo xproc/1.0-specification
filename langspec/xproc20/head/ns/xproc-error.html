@@ -49,7 +49,7 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XC0035</code></dt><dd><p>It is a dynamic error to specify both result-is-xml and wrap-result-lines.</p></dd>
    <dt><code>err:XC0036</code></dt><dd><p>It is a dynamic error if the requested hash algorithm is not one that the processor understands or if the value or parameters are not appropriate for that algorithm.</p></dd>
    <dt><code>err:XC0037</code></dt><dd><p>It is a dynamic error if the value provided is not a properly x-www-form-urlencoded value.</p></dd>
-   <dt><code>err:XC0038</code></dt><dd><p>It is a dynamic error if the specified version of XSLT is not available.</p></dd>
+   <dt><code>err:XC0038</code></dt><dd><p>It is a dynamic error if the specified version is not available.</p></dd>
    <dt><code>err:XC0039</code></dt><dd><p>It is a dynamic error if a sequence of documents (including an empty sequence) is provided to an XSLT 1.0 step.</p></dd>
    <dt><code>err:XC0040</code></dt><dd><p>It is a dynamic error if the document element of the document that arrives on the source port is not c:request.</p></dd>
    <dt><code>err:XC0050</code></dt><dd><p>It is a dynamic error if the URI scheme is not supported or the step cannot store to the specified location.</p></dd>
@@ -68,7 +68,13 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XC0063</code></dt><dd><p>It is a dynamic error if the path-separator option is specified and is not exactly one character long.</p></dd>
    <dt><code>err:XC0064</code></dt><dd><p>It is a dynamic error if the exit code from the command is greater than the specified failure-threshold value.</p></dd>
    <dt><code>err:XC0066</code></dt><dd><p>It is a dynamic error if the arg-separator option is specified and is not exactly one character long.</p></dd>
-   <dt><code>err:XD0001</code></dt><dd><p>It is a dynamic error if a non-XML resource is produced on a step output or arrives on a step input.</p></dd>
+   <dt><code>err:XC1001</code></dt><dd><p>It is a dynamic error if the properties map contains a key equal to the string “content-type”.</p></dd>
+   <dt><code>err:XC1002</code></dt><dd><p>It is a dynamic error if the supplied content-type is not a valid media type of the form “type/subtype+ext”.</p></dd>
+   <dt><code>err:XC1003</code></dt><dd><p>It is a dynamic error if the p:cast-content-type step cannot perform the requested cast.</p></dd>
+   <dt><code>err:XC1004</code></dt><dd><p>It is a dynamic error if the c:data contains content is not a valid base64 string.</p></dd>
+   <dt><code>err:XC1005</code></dt><dd><p>It is a dynamic error if the c:data element does not have a content-type attribute.</p></dd>
+   <dt><code>err:XC1006</code></dt><dd><p>It is a dynamic error if the content-type is supplied and is not the same as the content-type specified on the c:data element.</p></dd>
+   <dt><code>err:XC1007</code></dt><dd><p>In all cases except when the input document is a c:data element, it is a dynamic error if the content-type is not supplied.</p></dd>
    <dt><code>err:XD0003</code></dt><dd><p>It is a dynamic error if the viewport source does not provide exactly one document.</p></dd>
    <dt><code>err:XD0004</code></dt><dd><p>It is a dynamic error if no subpipeline is selected by the p:choose and no default is provided.</p></dd>
    <dt><code>err:XD0005</code></dt><dd><p>It is a dynamic error if more than one document appears on the connection for the xpath-context.</p></dd>
@@ -77,7 +83,7 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XD0008</code></dt><dd><p>It is a dynamic error if a document sequence appears where a document to be used as the context node is expected.</p></dd>
    <dt><code>err:XD0009</code></dt><dd><p>It is a dynamic error if the element attribute on p:namespaces is specified and it does not identify a single element node.</p></dd>
    <dt><code>err:XD0010</code></dt><dd><p>It is a dynamic error if the match expression on p:viewport does not match an element or document.</p></dd>
-   <dt><code>err:XD0011</code></dt><dd><p>It is a dynamic error if the resource referenced by a p:document element does not exist, cannot be accessed, or is not a well-formed XML document.</p></dd>
+   <dt><code>err:XD0011</code></dt><dd><p>It is a dynamic error if the resource referenced by a p:document element does not exist, cannot be accessed, or has an XML content type and is not a well-formed XML document.</p></dd>
    <dt><code>err:XD0012</code></dt><dd><p>It is a dynamic error if any attempt is made to dereference a URI where the scheme of the URI reference is not supported.</p></dd>
    <dt><code>err:XD0013</code></dt><dd><p>It is a dynamic error if the specified namespace bindings are inconsistent; that is, if the same prefix is bound to two different namespace names.</p></dd>
    <dt><code>err:XD0014</code></dt><dd><p>It is a dynamic error for any unqualified attribute names other than “name”, “namespace”, or “value” to appear on a c:param element.</p></dd>
@@ -92,13 +98,13 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XD0025</code></dt><dd><p>It is a dynamic error if the namespace attribute is specified, the name contains a colon, and the specified namespace is not the same as the in-scope namespace binding for the specified prefix.</p></dd>
    <dt><code>err:XD0026</code></dt><dd><p>It is a dynamic error if the select expression makes reference to the context node, size, or position when the context item is undefined.</p></dd>
    <dt><code>err:XD0028</code></dt><dd><p>It is a dynamic error if any attribute value does not satisfy the type required for that attribute.</p></dd>
-   <dt><code>err:XD0029</code></dt><dd><p>It is a dynamic error if the document referenced by a p:data element does not exist, cannot be accessed, or cannot be encoded as specified.</p></dd>
    <dt><code>err:XD0030</code></dt><dd><p>It is a dynamic error if a step is unable or incapable of performing its function.</p></dd>
    <dt><code>err:XD0033</code></dt><dd><p>It is a dynamic error if the name specified is not the name of an in-scope option or variable.</p></dd>
-   <dt><code>err:XD0034</code></dt><dd><p>It is a dynamic error to specify a new namespace or prefix if the lexical value of the specified name contains a colon (or if no wrapper is explicitly specified).</p></dd>
+   <dt><code>err:XD0034</code></dt><dd><p>It is a dynamic error to specify a new namespace or prefix if the lexical value of the specified name contains a colon.</p></dd>
    <dt><code>err:XD1000</code></dt><dd><p>It is a dynamic error if the element (or document element) passed to p:make-map is not a c:param-set element.</p></dd>
    <dt><code>err:XD1001</code></dt><dd><p>It is a dynamic error if the computed value does not match the specified sequence type.</p></dd>
    <dt><code>err:XD1002</code></dt><dd><p>It is a dynamic error if any of the c:param elements are invalid.</p></dd>
+   <dt><code>err:XD1003</code></dt><dd><p>If an input port provides a set of acceptable content types, it is a dynamic error if an input document that arrives on the port has a content type not in that set.</p></dd>
    <dt><code>err:XS0001</code></dt><dd><p>It is a static error if there are any loops in the connections between steps: no step can be connected to itself nor can there be any sequence of connections through other steps that leads back to itself.</p></dd>
    <dt><code>err:XS0002</code></dt><dd><p>All steps in the same scope must have unique names: it is a static error if two steps with the same name appear in the same scope.</p></dd>
    <dt><code>err:XS0003</code></dt><dd><p>It is a static error if any declared input is not connected.</p></dd>

@@ -765,6 +765,17 @@
          </complexContent>
       </complexType>
    </element>
+   <element name="cast-content-type" substitutionGroup="p:atomicStep">
+      <complexType>
+         <complexContent>
+            <restriction base="p:atomicStepType">
+               <group ref="p:atomicStepModel"/>
+               <attribute name="content-type" type="string"/>
+               <anyAttribute namespace="##other" processContents="lax"/>
+            </restriction>
+         </complexContent>
+      </complexType>
+   </element>
    <element name="compare" substitutionGroup="p:atomicStep">
       <complexType>
          <complexContent>
@@ -1049,6 +1060,17 @@
          </complexContent>
       </complexType>
    </element>
+   <element name="set-properties" substitutionGroup="p:atomicStep">
+      <complexType>
+         <complexContent>
+            <restriction base="p:atomicStepType">
+               <group ref="p:atomicStepModel"/>
+               <attribute name="properties" type="string"/>
+               <anyAttribute namespace="##other" processContents="lax"/>
+            </restriction>
+         </complexContent>
+      </complexType>
+   </element>
    <element name="sink" substitutionGroup="p:vanillaStep"/>
    <element name="split-sequence" substitutionGroup="p:atomicStep">
       <complexType>
@@ -1310,6 +1332,7 @@
                      </restriction>
                   </simpleType>
                </attribute>
+               <attribute name="version" type="string"/>
                <anyAttribute namespace="##other" processContents="lax"/>
             </restriction>
          </complexContent>
@@ -1344,6 +1367,7 @@
             <restriction base="p:atomicStepType">
                <group ref="p:atomicStepModel"/>
                <attribute name="parameters" type="string"/>
+               <attribute name="version" type="string"/>
                <anyAttribute namespace="##other" processContents="lax"/>
             </restriction>
          </complexContent>

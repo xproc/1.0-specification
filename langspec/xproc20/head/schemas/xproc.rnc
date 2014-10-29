@@ -24,6 +24,11 @@ XSLTMatchPattern = text
 ]
 XPathSequenceType = text
 
+[
+   sa:model = "MediaTypes"
+]
+MediaTypes = text
+
 name.ncname.attr = attribute name { xsd:NCName }
 name.qname.attr = attribute name { xsd:QName }
 as.attr = attribute as { XPathSequenceType }
@@ -87,7 +92,7 @@ decl.attributes = psvi-required.attr?,
 start = Pipeline | Library | DeclareStep
  | VocabParam | VocabParamSet | VocabResult | VocabHttpRequest
  | VocabHeader | VocabMultipart | VocabBody | VocabHttpResponse | VocabQuery
- | VocabLine | VocabDirectory | Errors | StandardStep
+ | VocabLine | VocabData | VocabDirectory | Errors | StandardStep
 
 # ============================================================
 
@@ -144,10 +149,11 @@ InputDeclaration =
       port.attr,
       sequence.attr?,
       primary.attr?,
+      attribute media-types { MediaTypes }?,
       select.attr?,
       common.attributes,
       use-when.attr?,
-      ((\Empty|(Document|Inline|Data)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|(Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 [
@@ -159,7 +165,7 @@ InputConnection =
       select.attr?,
       common.attributes,
       use-when.attr?,
-      ((\Empty|(Pipe|Document|Inline|Data)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 [
@@ -192,7 +198,7 @@ OutputConnection =
       primary.attr?,
       common.attributes,
       use-when.attr?,
-      ((\Empty|(Pipe|Document|Inline|Data)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 [
@@ -218,6 +224,7 @@ Pipe =
 Document =
    element document {
       href.attr,
+      attribute content-type { text }?,
       common.attributes,
       use-when.attr?,
       (Documentation|PipeInfo)*
@@ -229,6 +236,7 @@ Document =
 Inline =
    element inline {
       exclude-inline-prefixes.attr?,
+      attribute expand-text { xsd:boolean }?,
       common.attributes,
       use-when.attr?,
       Any
@@ -241,23 +249,6 @@ Inline =
    element empty {
       (Documentation|PipeInfo)*
    }
-
-
-[
-   sa:class = "language-construct"
-]
-Data =
-   element data {
-      href.attr,
-      attribute wrapper { xsd:QName }?,
-      attribute wrapper-prefix { text }?,
-      attribute wrapper-namespace { text }?,
-      attribute content-type { text }?,
-      common.attributes,
-      use-when.attr?,
-      (Documentation|PipeInfo)*
-   }
-
 
 [
    sa:class = "language-construct"
@@ -343,7 +334,7 @@ WithOptionSelect =
       select.attr,
       common.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Inline|Data)? & (Namespaces|Documentation|PipeInfo)*)
+      ((\Empty|Pipe|Document|Inline)? & (Namespaces|Documentation|PipeInfo)*)
    }
 
 [
@@ -363,7 +354,7 @@ VariableSelect =
       select.attr,
       common.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Inline|Data)? & (Namespaces|Documentation|PipeInfo)*)
+      ((\Empty|Pipe|Document|Inline)? & (Namespaces|Documentation|PipeInfo)*)
    }
 
 [
@@ -423,7 +414,7 @@ IterationSource =
       select.attr?,
       common.attributes,
       use-when.attr?,
-      ((\Empty|(Pipe|Document|Inline|Data)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 # ============================================================
@@ -447,7 +438,7 @@ ViewportSource =
    element viewport-source {
       common.attributes,
       use-when.attr?,
-      ((Pipe|Document|Inline|Data)? & (Documentation|PipeInfo)*)
+      ((Pipe|Document|Inline)? & (Documentation|PipeInfo)*)
    }
 
 # ============================================================
@@ -475,7 +466,7 @@ XPathContext =
    element xpath-context {
       common.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Inline|Data) & (Documentation|PipeInfo)*)
+      ((\Empty|Pipe|Document|Inline) & (Documentation|PipeInfo)*)
    }
 
 [

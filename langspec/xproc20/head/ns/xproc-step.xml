@@ -51,12 +51,7 @@ and pipeline authors may amend this namespace.
    </listitem>
    <listitem>
       <simpara>
-         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.validate-with-relax-ng">c:content-type</link>
-      </simpara>
-   </listitem>
-   <listitem>
-      <simpara>
-         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.data">c:data</link>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.cast-content-type">c:data</link>
       </simpara>
    </listitem>
    <listitem>

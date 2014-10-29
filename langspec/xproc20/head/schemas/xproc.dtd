@@ -68,6 +68,7 @@
 
 <!ENTITY % add-attribute "%p;add-attribute">
 <!ENTITY % add-xml-base "%p;add-xml-base">
+<!ENTITY % cast-content-type "%p;cast-content-type">
 <!ENTITY % compare "%p;compare">
 <!ENTITY % count "%p;count">
 <!ENTITY % delete "%p;delete">
@@ -87,6 +88,7 @@
 <!ENTITY % rename "%p;rename">
 <!ENTITY % replace "%p;replace">
 <!ENTITY % set-attributes "%p;set-attributes">
+<!ENTITY % set-properties "%p;set-properties">
 <!ENTITY % sink "%p;sink">
 <!ENTITY % split-sequence "%p;split-sequence">
 <!ENTITY % store "%p;store">
@@ -108,17 +110,17 @@
 <!ENTITY % xquery "%p;xquery">
 <!ENTITY % xsl-formatter "%p;xsl-formatter">
 
-<!ENTITY % step "(%add-attribute;|%add-xml-base;|%compare;|
-                  %count;|%delete;|%directory-list;|%error;|
-                  %escape-markup;|%filter;|%http-request;|%identity;|
-                  %insert;|%label-elements;|%load;|%make-absolute-uris;|
-                  %namespace-rename;|%pack;|%parameters;|%rename;|
-                  %replace;|%set-attributes;|%sink;|%split-sequence;|
-                  %store;|%string-replace;|%unescape-markup;|%unwrap;|
-                  %wrap;|%wrap-sequence;|%xinclude;|%xslt;|
-                  %exec;|%hash;|%uuid;|%validate-with-relax-ng;|
-                  %validate-with-schematron;|%validate-with-xml-schema;|%www-form-urldecode;|%www-form-urlencode;|
-                  %xquery;|%xsl-formatter; %user-steps;)">
+<!ENTITY % step "(%add-attribute;|%add-xml-base;|%cast-content-type;|
+                  %compare;|%count;|%delete;|%directory-list;|
+                  %error;|%escape-markup;|%filter;|%http-request;|
+                  %identity;|%insert;|%label-elements;|%load;|
+                  %make-absolute-uris;|%namespace-rename;|%pack;|%parameters;|
+                  %rename;|%replace;|%set-attributes;|%set-properties;|
+                  %sink;|%split-sequence;|%store;|%string-replace;|
+                  %unescape-markup;|%unwrap;|%wrap;|%wrap-sequence;|
+                  %xinclude;|%xslt;|%exec;|%hash;|
+                  %uuid;|%validate-with-relax-ng;|%validate-with-schematron;|%validate-with-xml-schema;|
+                  %www-form-urldecode;|%www-form-urlencode;|%xquery;|%xsl-formatter; %user-steps;)">
 <!ENTITY % annotation "%documentation;|%pipeinfo;">
 <!ENTITY % component
  "(%for-each;|%viewport;|%choose;|%group;|%try;|%step;)">
@@ -481,6 +483,9 @@
 <!ATTLIST %add-xml-base; %step-attrs;
  all %boolean; #IMPLIED
  relative %boolean; #IMPLIED>
+<!ELEMENT %cast-content-type; %step-model;>
+<!ATTLIST %cast-content-type; %step-attrs;
+ content-type CDATA #IMPLIED>
 <!ELEMENT %compare; %step-model;>
 <!ATTLIST %compare; %step-attrs;
  fail-if-not-equal %boolean; #IMPLIED>
@@ -581,6 +586,9 @@
 <!ELEMENT %set-attributes; %step-model;>
 <!ATTLIST %set-attributes; %step-attrs;
  match %XSLT_match_pattern; #IMPLIED>
+<!ELEMENT %set-properties; %step-model;>
+<!ATTLIST %set-properties; %step-attrs;
+ properties CDATA #IMPLIED>
 <!ELEMENT %sink; %step-model;>
 <!ATTLIST %sink; %step-attrs;>
 <!ELEMENT %split-sequence; %step-model;>
@@ -696,7 +704,8 @@
  use-location-hints %boolean; #IMPLIED
  try-namespaces %boolean; #IMPLIED
  assert-valid %boolean; #IMPLIED
- mode (strict|lax) #IMPLIED>
+ mode (strict|lax) #IMPLIED
+ version CDATA #IMPLIED>
 <!ELEMENT %www-form-urldecode; %step-model;>
 <!ATTLIST %www-form-urldecode; %step-attrs;
  value CDATA #IMPLIED>
@@ -706,7 +715,8 @@
  match %XSLT_match_pattern; #IMPLIED>
 <!ELEMENT %xquery; %step-model;>
 <!ATTLIST %xquery; %step-attrs;
- parameters CDATA #IMPLIED>
+ parameters CDATA #IMPLIED
+ version CDATA #IMPLIED>
 <!ELEMENT %xsl-formatter; %step-model;>
 <!ATTLIST %xsl-formatter; %step-attrs;
  parameters CDATA #IMPLIED

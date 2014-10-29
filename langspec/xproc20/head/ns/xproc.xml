@@ -57,6 +57,11 @@ For updated information, please refer to the latest version of the
    </listitem>
    <listitem>
       <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.cast-content-type">p:cast-content-type</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
          <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.choose">p:choose</link>
       </simpara>
    </listitem>
@@ -68,11 +73,6 @@ For updated information, please refer to the latest version of the
    <listitem>
       <simpara>
          <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.count">p:count</link>
-      </simpara>
-   </listitem>
-   <listitem>
-      <simpara>
-         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.data">p:data</link>
       </simpara>
    </listitem>
    <listitem>
@@ -93,6 +93,11 @@ For updated information, please refer to the latest version of the
    <listitem>
       <simpara>
          <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.document">p:document</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.document-properties">p:document-properties</link>
       </simpara>
    </listitem>
    <listitem>
@@ -278,6 +283,11 @@ For updated information, please refer to the latest version of the
    <listitem>
       <simpara>
          <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.set-attributes">p:set-attributes</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.set-properties">p:set-properties</link>
       </simpara>
    </listitem>
    <listitem>
