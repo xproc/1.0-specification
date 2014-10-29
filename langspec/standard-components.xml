@@ -2145,7 +2145,7 @@ if an XInclude error occurs during processing.</error> </para>
   <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
   <p:input port="stylesheet"/>
   <p:option name="parameters" as="map(xs:QName,item())"/>
-  <p:output port="result" primary="true"/>
+  <p:output port="result" primary="true" sequence="true"/>
   <p:output port="secondary" sequence="true"/>
   <p:option name="initial-mode" as="xs:QName"/>
   <p:option name="template-name" as="xs:QName"/>
@@ -2180,7 +2180,11 @@ is applied to the document on the <port>source</port> port. Any
 parameters passed in the <option>parameters</option> option are used to
 define top-level stylesheet parameters. The primary result document of
 the transformation appears on the <port>result</port> port. All other
-result documents appear on the <port>secondary</port> port. If XSLT
+result documents appear on the <port>secondary</port> port.
+<impl>The order in which result documents appear on the
+<port>secondary</port> port is
+<glossterm>implementation-dependent</glossterm>.</impl>
+If XSLT
 1.0 is used, an empty sequence of documents <rfc2119>must</rfc2119>
 appear on the <port>secondary</port> port.</para>
 
