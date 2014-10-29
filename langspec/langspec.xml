@@ -458,72 +458,35 @@ output named “<literal>result</literal>”, and the same set of options.
         <termdef xml:id="dt-declared-outputs">The output ports declared on a step are its
             <firstterm>declared outputs</firstterm>.</termdef> When a step is used in a pipeline, it
         is connected to other steps through its inputs and outputs. </para>
-      <para>When a step is used, all of the <glossterm>declared inputs</glossterm> of the step
-          <rfc2119>must</rfc2119> be connected. Each input can be connected to:</para>
-      <itemizedlist>
-        <listitem>
-          <para>The output port of some other step.</para>
-        </listitem>
-        <listitem>
-          <para>A fixed, inline document or sequence of documents.</para>
-        </listitem>
-        <listitem>
-          <para>A document read from a URI.</para>
-        </listitem>
-        <listitem>
-          <para>One of the inputs declared on one of its <glossterm>ancestors</glossterm>.</para>
-        </listitem>
-        <listitem>
-          <para>A special port provided by an ancestor compound step, for example,
-              “<port>current</port>” in a <tag>p:for-each</tag> or <tag>p:viewport</tag>. </para>
-        </listitem>
-      </itemizedlist>
-      <para>When an input accepts a sequence of documents, the documents can come from any
-        combination of these locations.</para>
-      <para><error code="S0003">It is a <glossterm>static error</glossterm> if any declared input is
-          not connected.</error></para>
-      <para>The <glossterm>declared outputs</glossterm> of a step may be connected to:</para>
-      <itemizedlist>
-        <listitem>
-          <para>The input port of some other step (including <tag>p:iteration-source</tag> or
-              <tag>p:viewport-source</tag>).</para>
-        </listitem>
-        <listitem>
-          <para>The <tag>p:xpath-context</tag> of a <tag>p:choose</tag> or <tag>p:when</tag>.</para>
-        </listitem>
-        <listitem>
-          <para>An option assigned with <tag>p:with-option</tag>.</para>
-        </listitem>
-        <listitem>
-          <para>One of the outputs declared on its container. </para>
-        </listitem>
-      </itemizedlist>
-      <para>The <glossterm>primary output port</glossterm> of a step <rfc2119>must</rfc2119> be
-        connected. <error code="S0005">It is a <glossterm>static error</glossterm> if the primary
-          output port of any step is not connected.</error> Other outputs can remain unconnected.
-        Any documents produced on an unconnected output port are discarded.</para>
-      <para>Primary input and primary output ports may be implicitly connected if no explicit
-        connection is given, see <xref linkend="primary-input-output"/>.</para>
-      <para>Output ports on compound steps have a dual nature: from the perspective of the compound
-        step's siblings, its outputs are just ordinary outputs and must be connected as described
-        above. From the perspective of the subpipeline inside the compound step, they are inputs
-        into which something may be connected.</para>
-      <para>Within a compound step, the <glossterm>declared outputs</glossterm> of the step can be
-        connected to:</para>
-      <itemizedlist>
-        <listitem>
-          <para>The output port of some <glossterm baseform="contained steps">contained
-              step</glossterm>.</para>
-        </listitem>
-        <listitem>
-          <para>A fixed, inline document or sequence of documents.</para>
-        </listitem>
-        <listitem>
-          <para>A document read from a URI.</para>
-        </listitem>
-      </itemizedlist>
-      <para>If a (non-primary) output port of a compound step is left unconnected, it produces an
-        empty sequence of documents from the perspective of its siblings.</para>
+
+         <para>When a step is used, all of the <glossterm>declared inputs</glossterm> of the step
+               <rfc2119>must</rfc2119> be connected. Each connection binds the input to a data
+            source that may be from a variety of sources (see <xref linkend="connections"/>). <error
+               code="S0003">It is a <glossterm>static error</glossterm> if any declared input is not
+               connected.</error></para>
+         <para>The <glossterm>declared outputs</glossterm> of a step are only connected when they
+            are used by another step or expression.  Usually, this connection is made in reverse
+            where the use of the output describes the connection (see <xref linkend="connections"
+            />).</para>
+         <para>The <glossterm>primary output port</glossterm> of a step <rfc2119>must</rfc2119> be
+            connected to some consumer. <error code="S0005">It is a <glossterm>static
+                  error</glossterm> if the primary output port of any step is not connected.</error>
+            Other outputs can remain unconnected. Any documents produced on an unconnected output
+            port are discarded.</para>
+         <para>Primary input and primary output ports may be implicitly connected if no explicit
+            connection is given, see <xref linkend="primary-input-output"/>.</para>
+         <para>Output ports on compound steps have a dual nature: from the perspective of the
+            compound step's siblings, its outputs are just ordinary outputs and can be connected the
+            sames other <glossterm>declared outputs</glossterm>. From the perspective of the
+            subpipeline inside the compound step, they are inputs into which something may be
+            connected to produce the output of the compound step.</para>
+         <para>Within a compound step, the <glossterm>declared outputs</glossterm> of the step can
+            be connected to any of the various available outputs of <glossterm
+               baseform="contained steps">contained steps</glossterm> in combination with other
+            inputs (see <xref linkend="connections"/>).  If a (non-primary) output port of a
+            compound step is left unconnected, it produces an empty sequence of documents from the
+            perspective of its siblings.</para>
+
       <para>Each input and output on a step is declared to accept or produce either a single
         document or a sequence of documents. It <emphasis>is not</emphasis> an error to connect a
         port that is declared to produce a sequence of documents to a port that is declared to
@@ -638,6 +601,63 @@ that set.</error>
           >It is a <glossterm>static error</glossterm> if there are any loops in the connections
           between steps: no step can be connected to itself nor can there be any sequence of
           connections through other steps that leads back to itself.</error></para>
+
+         <para><termdef xml:id="dt-connection">A <firstterm>connection</firstterm> associates an
+               input or output port with some data source.</termdef>  Such a connection represents a
+            binding between the port's name and the data source as described by various locations,
+            inline expressions, or readable ports.</para>
+         <para>An input port can be connected to:</para>
+         <itemizedlist>
+            <listitem>
+               <para>The output port of some other step.</para>
+            </listitem>
+            <listitem>
+               <para>A fixed, inline document or sequence of documents.</para>
+            </listitem>
+            <listitem>
+               <para>A document read from a URI.</para>
+            </listitem>
+            <listitem>
+               <para>One of the inputs declared on one of its
+                  <glossterm>ancestors</glossterm>.</para>
+            </listitem>
+            <listitem>
+               <para>A special port provided by an ancestor compound step, for example,
+                     “<port>current</port>” in a <tag>p:for-each</tag> or <tag>p:viewport</tag>.
+               </para>
+            </listitem>
+         </itemizedlist>
+         <para>When an input accepts a sequence of documents, the documents can come from any
+            combination of these locations.</para>
+         <para>In contrast, output ports are connected when they are referenced by another input
+            port, <glossterm baseform="declared outputs">declared output</glossterm> or other
+            expression and may be connected to:</para>
+         <itemizedlist>
+            <listitem>
+               <para>The input port of some other step (including <tag>p:iteration-source</tag> or
+                     <tag>p:viewport-source</tag>).</para>
+            </listitem>
+            <listitem>
+               <para>The <tag>p:xpath-context</tag> of a <tag>p:choose</tag> or
+                  <tag>p:when</tag>.</para>
+            </listitem>
+            <listitem>
+               <para>An option assigned with <tag>p:with-option</tag>.</para>
+            </listitem>
+            <listitem>
+               <para>One of the outputs declared on its container. </para>
+            </listitem>
+         </itemizedlist>
+         <para>As with an input, the output can be a sequence of documents constructed from any
+            combination of the above.</para>
+         <para>An output port may have multiple consumers and this results in multiple connections.
+            A subset of these connections are the input port connections for various sibling or
+            contained steps.</para>
+         <para>Within the context of a <glossterm>compound step</glossterm>, the <glossterm>declared
+               outputs</glossterm> of the compound step must describe their connections.  The set of
+            possibilities for this connection is exactly the same set as for any other input port
+            within the current <glossterm>environment</glossterm>.</para>
+
       <section xml:id="namespace-fixup">
         <title>Namespace Fixup on Outputs</title>
         <para>XProc processors are expected, and sometimes required, to perform <glossterm>namespace
@@ -786,6 +806,32 @@ that set.</error>
         </listitem>
       </orderedlist>
       <para>A step with no parent inherits the <glossterm>empty environment</glossterm>. </para>
+
+         <section xml:id="initial-environment">
+            <title>Initial Environment</title>
+            <para>When a pipeline is invoked by a processor, an initial environment is constructed.
+                  <termdef xml:id="dt-initial-environment">An <firstterm>initial
+                     environment</firstterm> is a <glossterm>connection</glossterm> for each of the
+                     <glossterm>readable ports</glossterm> and a set of option bindings used to
+                  construct the <glossterm>in-scope bindings</glossterm>.</termdef> This environment
+               is used in place of the <glossterm>empty environment</glossterm> that might have
+               otherwise been provided.</para>
+            <para>An invoked pipeline's <glossterm>initial environment</glossterm> is different from
+               the environment constructed for the sub-pipeline of a declared step.  The initial
+               environment is constructed for the initial invocation of the pipeline by the
+               processor by the outside application.  Steps that are subsequently invoked construct
+               an environment as specified in <xref linkend="declare-pipelines"/>.</para>
+            <para>When constructing an <glossterm>initial environment</glossterm>, an implementation
+               is free to provide any set of mechanisms to construct connections for the input ports
+               of the invoked step. These mechanisms are not limited to the variety of mechnisms
+               described within this specification. Any extensions are implementation
+               defined.</para>
+            <para>The set of <glossterm>in-scope bindings</glossterm> are constructed from a set of
+               option name/value pairs.  Each option value can be a simple string value, a specific
+               data type instance (e.g. xs:dateTime), or a more complex value like a map item.  How
+               these values are specified is implementation defined.</para>
+         </section>
+
     </section>
     <section xml:id="xpath-context">
       <title>XPaths in XProc</title>
@@ -2030,14 +2076,12 @@ variable with the same name.
     </section>
     <section xml:id="syntax-docs-ports">
       <title>Associating Documents with Ports</title>
-      <para><termdef xml:id="dt-connection">A <firstterm>connection</firstterm> associates an input
-          or output port with some data source.</termdef> A document or a sequence of documents can
-        be connected to a port in four ways: <glossterm>by source</glossterm>, <glossterm>by
-          URI</glossterm>, by providing an <glossterm>inline document</glossterm>, or by making it
-          <glossterm baseform="empty-sequence">explicitly empty</glossterm>. Each of these
-        mechanisms is allowed on the <tag>p:input</tag>, <tag>p:output</tag>,
-          <tag>p:xpath-context</tag>, <tag>p:iteration-source</tag>, and
-          <tag>p:viewport-source</tag> elements.</para>
+      <para> A document or a sequence of documents can be connected to a port in four ways:
+               <glossterm>by source</glossterm>, <glossterm>by URI</glossterm>, by providing an
+               <glossterm>inline document</glossterm>, or by making it <glossterm
+               baseform="empty-sequence">explicitly empty</glossterm>. Each of these mechanisms is
+            allowed on the <tag>p:input</tag>, <tag>p:output</tag>, <tag>p:xpath-context</tag>,
+               <tag>p:iteration-source</tag>, and <tag>p:viewport-source</tag> elements.</para>
 <variablelist>
 <varlistentry>
 <term>Specified by URI</term>
