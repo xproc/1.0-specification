@@ -2169,7 +2169,7 @@ value).</para>
 <para>If the step specifies a <option>version</option>, then that version
 of XSLT <rfc2119>must</rfc2119> be used to process the transformation.
 <error code="C0038">It is a
-<glossterm>dynamic error</glossterm> if the specified version of XSLT
+<glossterm>dynamic error</glossterm> if the specified version
 is not available.</error> If the step does not specify a version, the
 implementation may use any version it has available and may use any means
 to determine what version to use, including, but not limited to,
@@ -2656,6 +2656,7 @@ validity assessment to the <port>source</port> input.</para>
   <p:option name="try-namespaces" select="'false'" as="xs:boolean"/>
   <p:option name="assert-valid" select="'true'" as="xs:boolean"/>
   <p:option name="mode" select="'strict'" as="xs:token" e:type="strict|lax"/>
+  <p:option name="version" as="xs:string"/>
 </p:declare-step>
 
 <para>The values of the <option>use-location-hints</option>,
@@ -2713,6 +2714,15 @@ schema-valid, otherwise it will be treated as invalid. The
 “<literal>lax</literal>” mode means that the
 absence of a declaration for the document element does not itself
 count as an unsuccessful outcome of validation.</para>
+
+<para>If the step specifies a <option>version</option>, then that version
+of XML Schema <rfc2119>must</rfc2119> be used to process the validation.
+<error code="C0038">It is a
+<glossterm>dynamic error</glossterm> if the specified version
+is not available.</error> If the step does not specify a version, the
+implementation may use any version it has available and may use any means
+to determine what version to use, including, but not limited to,
+examining the version of the schema(s).</para>
 
 <para><error code="C0053">It is a <glossterm>dynamic error</glossterm>
 if the <option>assert-valid</option> option is <literal>true</literal>
@@ -2834,8 +2844,9 @@ provided on the <port>source</port> port.</para>
 <p:declare-step type="p:xquery">
   <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
   <p:input port="query" content-types="application/xml */*+xml text/*"/>
-  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" sequence="true"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
+  <p:option name="version" as="xs:string"/>
 </p:declare-step>
 
 <para>If a sequence of documents is provided on the
@@ -2874,6 +2885,15 @@ is <glossterm>implementation-defined</glossterm>.</impl>
 </para>
 </listitem>
 </itemizedlist>
+
+<para>If the step specifies a <option>version</option>, then that version
+of XQuery <rfc2119>must</rfc2119> be used to process the transformation.
+<error code="C0038">It is a
+<glossterm>dynamic error</glossterm> if the specified version
+is not available.</error> If the step does not specify a version, the
+implementation may use any version it has available and may use any means
+to determine what version to use, including, but not limited to,
+examining the version of the query.</para>
 
 <para>The result of the <tag>p:xquery</tag> step must be a sequence of
 documents. <error code="C0057">It is a <glossterm>dynamic
