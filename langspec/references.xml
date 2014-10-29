@@ -222,6 +222,12 @@ Internationalized Resource Identifiers (IRIs)</citetitle>.
 M. Duerst and M. Suignard, editors.
 Internet Engineering Task Force. January, 2005.</bibliomixed>
 
+<bibliomixed xml:id="rfc2046"><abbrev>Media Types</abbrev>
+<citetitle xlink:href="http://www.ietf.org/rfc/rfc2046.txt">RFC 2046:
+Multipurpose Internet Mail Extensions (MIME) Part Two: Media Types</citetitle>.
+N. Freed, et. al.. Network Working Group, IETF,
+November, 1996.</bibliomixed>
+
 <bibliomixed xml:id="unicodetr17"><abbrev>Unicode TR#17</abbrev>
 <citetitle xlink:href="http://unicode.org/reports/tr17/">Unicode Technical
 Report #17: Character Encoding Model</citetitle>.
