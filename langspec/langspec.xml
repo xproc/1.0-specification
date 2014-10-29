@@ -1652,7 +1652,13 @@ the pipeline initially invoked by the processor is
 the command line options, APIs, or other mechanisms available to
 specify such options values are outside the scope of this
 specification.</para>
-
+         <para>Some steps require a set of name/value pairs for the operations they perform. For
+            example, an author may specify parameters to an XSLT transformation or external
+            variables to an XQuery. Such values are passed to the step via an option that requires a
+            map item value <biblioref linkend="lastcall-xslt30"/> . The map item contains the
+            mapping of between the names and the values whose interpretation is specific to the
+            step.</para>
+   
     </section>
     <section xml:id="security-considerations">
       <title>Security Considerations</title>
