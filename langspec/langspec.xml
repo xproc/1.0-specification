@@ -3920,7 +3920,7 @@ See also <xref linkend="handling-imports"
               prefix has been preserved, but it would be equally correct if a different
               prefix had been used.</para>
           
-          <para>Optionally, foreign element(s) scoped outside of XProc vocabulary and error namespaces maybe provided wherever a <tag>p:inline</tag> element can exist.
+          <para>Optionally, foreign element(s) scoped outside of XProc vocabulary (<term><uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri></term>) and error (<term><uri type="xmlnamespace">http://www.w3.org/ns/xproc-error</uri></term>) namespaces maybe provided wherever a <tag>p:inline</tag> element can exist.
               Each foreign element would be interpreted as if wrapped with an implicit <tag>p:inline</tag>.</para>
           
           <para>The following example demonstrates this implied syntactic behaviour.</para>
@@ -3943,7 +3943,8 @@ See also <xref linkend="handling-imports"
     </p:input>
 </p:identity>]]></programlisting>
           
-          <para>An explicit <tag>p:inline</tag> is still required if the author wants to include top level comment or processing instruction nodes, elements from XProc own namespaces or define <tag>exclude-inline-prefixes</tag>.</para>
+          <para>An explicit <tag>p:inline</tag> is still required if the author wants to include top level comment or processing instruction nodes, elements from XProc vocabulary (<term><uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri></term>
+              ) or error (<term><uri type="xmlnamespace">http://www.w3.org/ns/xproc-error</uri></term>) namespaces or define <tag>exclude-inline-prefixes</tag>.</para>
           
       </section>
 <section xml:id="p.document">
