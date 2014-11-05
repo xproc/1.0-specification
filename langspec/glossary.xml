@@ -53,17 +53,10 @@
               <firstterm>namespace fixup</firstterm>.</para></glossdef></glossentry><glossentry><glossterm>option</glossterm><glossdef><para>An <firstterm>option</firstterm> is a name/value pair where
           the name is an <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
             name</link> and the value <rfc2119>must</rfc2119> be a string or
-            <type>xs:untypedAtomic</type>.</para></glossdef></glossentry><glossentry><glossterm>parameter</glossterm><glossdef><para>A <firstterm>parameter</firstterm> is a name/value pair
-          where the name is an <link xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded name</link> and the value <rfc2119>must</rfc2119> be a string or
-            <type>xs:untypedAtomic</type>.</para></glossdef></glossentry><glossentry><glossterm>parameter input port</glossterm><glossdef><para>A <firstterm>parameter input port</firstterm>
-          is a distinguished kind of input port which accepts (only) dynamically constructed
-          parameter name/value pairs.</para></glossdef></glossentry><glossentry><glossterm>pipeline</glossterm><glossdef><para>A <firstterm>pipeline</firstterm> is a set of connected
-        steps, with outputs of one step flowing into inputs of another.</para></glossdef></glossentry><glossentry><glossterm>primary
-            parameter input port</glossterm><glossdef><para>If a step has a parameter input port
-          which is explicitly marked “<code>primary='true'</code>”, or if it has exactly one
-          parameter input port and that port is <emphasis>not</emphasis> explicitly marked
-            “<code>primary='false'</code>”, then that parameter input port is the <firstterm>primary
-            parameter input port</firstterm> of the step.</para></glossdef></glossentry><glossentry><glossterm>primary input
+            <type>xs:untypedAtomic</type>.</para></glossdef></glossentry>
+<glossentry><glossterm>pipeline</glossterm><glossdef><para>A <firstterm>pipeline</firstterm> is a set of connected
+        steps, with outputs of one step flowing into inputs of another.</para></glossdef></glossentry>
+<glossentry><glossterm>primary input
             port</glossterm><glossdef><para>If a step has a document input port which is
           explicitly marked “<code>primary='true'</code>”, or if it has exactly one document input
           port and that port is <emphasis>not</emphasis> explicitly marked

@@ -612,21 +612,21 @@ editors. W3C Recommedation 11 May 2010.
 >XQuery and XPath Data Model (XDM) 3.0</citetitle>,
 Norman Walsh, John Snelson, Editors.
 World Wide Web Consortium,
-08 January 2013.</bibliomixed>
+08 April 2014.</bibliomixed>
 
 <bibliomixed xml:id="XQuery"><abbrev>XQuery 3.0</abbrev>
 <citetitle xlink:href="http://www.w3.org/TR/xquery-30/"
 >XQuery 3.0: An XML Query Language</citetitle>,
 Jonathan Robie, Don Chamberlin, Michael Dyck, John Snelson, Editors.
 World Wide Web Consortium,
-08 January 2013.</bibliomixed>
+08 April 2014.</bibliomixed>
 
 <bibliomixed xml:id="XSLT30"><abbrev>XSLT 3.0</abbrev>
 <citetitle xlink:href="http://www.w3.org/TR/xslt-30/"
 >XSL Transformations (XSLT) Version 3.0</citetitle>,
 Michael Kay, Editor.
 World Wide Web Consortium,
-10 July 2012.</bibliomixed>
+2 October 2014.</bibliomixed>
 </bibliolist>
 </appendix>
 

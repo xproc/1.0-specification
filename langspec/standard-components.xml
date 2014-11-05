@@ -14,11 +14,22 @@ description of these steps may be found in
 <link xlink:href="http://www.w3.org/2008/xproc-1.0.xpl">xproc-1.0.xpl</link>.
 </para>
 
+<para>Some aspects of documents are generally unchanged by steps:</para>
+
+<itemizedlist>
+<listitem>
 <para>When a step in this library produces an output document,
 the base URI of the output is the base URI of the step's primary
 input document unless the step's process explicitly sets an
 <tag class="attribute">xml:base</tag> attribute or the step's
 description explicitly states how the base URI is constructed.</para>
+</listitem>
+<listitem>
+<para>Unless otherwise specified, steps in this library do not
+modify the <glossterm>document properties</glossterm> of the documents
+that flow through them.</para>
+</listitem>
+</itemizedlist>
 
 <para xml:id="cv.result">Also, in this section, several steps use this
 element for result information:</para>
@@ -61,13 +72,13 @@ with the specified value.
 </para>
 
 <p:declare-step type="p:add-attribute">
-  <p:input port="source"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="attribute-name" required="true" e:type="xsd:QName"/>
-  <p:option name="attribute-prefix" e:type="xsd:NCName"/>
-  <p:option name="attribute-namespace" e:type="xsd:anyURI"/>
-  <p:option name="attribute-value" required="true" e:type="xsd:string"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="attribute-name" required="true" as="xs:QName"/>
+  <p:option name="attribute-prefix" as="xs:NCName"/>
+  <p:option name="attribute-namespace" as="xs:anyURI"/>
+  <p:option name="attribute-value" required="true" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option
@@ -134,10 +145,10 @@ with <code>xml:base</code> attributes added to or corrected on each element as s
 by the options on this step.</para>
 
 <p:declare-step type="p:add-xml-base">
-   <p:input port="source"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
-   <p:option name="all" select="'false'" e:type="xsd:boolean"/>
-   <p:option name="relative" select="'true'" e:type="xsd:boolean"/>
+   <p:option name="all" select="'false'" as="xs:boolean"/>
+   <p:option name="relative" select="'true'" as="xs:boolean"/>
 </p:declare-step>
 
  <para>The value of the <option>all</option> option
@@ -186,6 +197,82 @@ element's [base URI].</para>
 
 <!-- ************************************************************************-->
 
+<section xml:id="c.cast-content-type">
+<title>p:cast-content-type</title>
+
+<para>The <tag>p:cast-content-type</tag> step changes the media type
+of its input.</para>
+
+<p:declare-step type="p:cast-content-type">
+   <p:input port="source" content-types="*/*"/>
+   <p:output port="result"/>
+   <p:option name="content-type" as="xs:string"/>
+</p:declare-step>
+
+<para>The input document is transformed from one media type to another.
+<error code="C1002">It is a <glossterm>dynamic
+error</glossterm> if the supplied <option>content-type</option> is not
+a valid media type of the form
+“<literal><replaceable>type</replaceable>/<replaceable>subtype</replaceable>+<replaceable>ext</replaceable></literal>”.</error></para>
+
+<itemizedlist>
+<listitem>
+<para>Casting from one XML media type to another simply changes the
+“<literal>content-type</literal>” <glossterm baseform="document properties">document
+property</glossterm>.
+</para>
+</listitem>
+<listitem xml:id="c.data">
+<para>Casting from a non-XML media type to an XML media type produces an
+XML document with a <tag>c:data</tag> document element. The original
+media type will be preserved in the
+<tag class="attribute">content-type</tag> attribute on the
+<tag>c:data</tag> element.</para>
+
+<e:rng-pattern name="VocabData"/>
+
+<para>The content of the <tag>c:data</tag> element is the base64 encoded
+representation of the non-XML content.</para>
+</listitem>
+<listitem>
+<para>Casting from an XML media type to a non-XML media type
+<rfc2119>must</rfc2119> support the case where the input document is
+a <tag>c:data</tag> document. The resulting document will
+have the specified media type and a <glossterm>representation</glossterm> that
+is the content of the <tag>c:data</tag> element after decoding the base64
+encoded content.</para>
+<para><error code="C1004">It is a <glossterm>dynamic
+error</glossterm> if the <tag>c:data</tag> contains content is not
+a valid base64 string.</error></para>
+<para><error code="C1005">It is a <glossterm>dynamic
+error</glossterm> if the <tag>c:data</tag> element does not have
+a <tag class="attribute">content-type</tag> attribute.</error></para>
+<para><error code="C1006">It is a <glossterm>dynamic
+error</glossterm> if the <option>content-type</option> is supplied and is
+not the same as the <tag class="attribute">content-type</tag> specified on
+the <tag>c:data</tag> element.</error>
+</para>
+<para><impl>Casting from an XML media type to a non-XML media type when
+the input document is not a <tag>c:data</tag> document is
+<glossterm>implementation-defined</glossterm>.</impl></para>
+</listitem>
+<listitem>
+<para><impl>What happens when one non-XML media type is cast to another
+non-XML media type is <glossterm>implementation-defined</glossterm>.</impl>
+<error code="C1003">It is a <glossterm>dynamic
+error</glossterm> if the <tag>p:cast-content-type</tag> step
+cannot perform the requested cast.</error></para>
+</listitem>
+</itemizedlist>
+
+<para><error code="C1007">In all cases except when the input document
+is a <tag>c:data</tag> element, it is a <glossterm>dynamic
+error</glossterm> if the <option>content-type</option> is not supplied.</error>
+</para>
+</section>
+
+<!-- ************************************************************************-->
+
 <section xml:id="c.compare">
 <title>p:compare</title>
 
@@ -195,8 +282,8 @@ equality.</para>
 <p:declare-step type="p:compare">
    <p:input port="source" primary="true"/>
    <p:input port="alternate"/>
-   <p:output port="result" primary="false" e:type="xsd:boolean"/>
-   <p:option name="fail-if-not-equal" select="'false'" e:type="xsd:boolean"/>
+   <p:output port="result" primary="false" as="xs:boolean"/>
+   <p:option name="fail-if-not-equal" select="'false'" as="xs:boolean"/>
 </p:declare-step>
 
  <para>The value of the <option>fail-if-not-equal</option> option <rfc2119>must</rfc2119> be a boolean.</para>
@@ -227,9 +314,9 @@ string representation of the number of documents in the
 sequence.</para>
 
 <p:declare-step type="p:count">
-   <p:input port="source" sequence="true"/>
+   <p:input port="source" content-types="*/*" sequence="true"/>
    <p:output port="result"/>
-   <p:option name="limit" select="0" e:type="xsd:integer"/>
+   <p:option name="limit" select="0" as="xs:integer"/>
 </p:declare-step>
 
 <para>If the <tag class="attribute">limit</tag> option is specified
@@ -251,9 +338,9 @@ pattern from the
 with the deleted items removed, on the <port>result</port> port.</para>
 
 <p:declare-step type="p:delete">
-   <p:input port="source"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -282,9 +369,9 @@ directory.</para>
 
 <p:declare-step type="p:directory-list">
   <p:output port="result"/>
-  <p:option name="path" required="true" e:type="xsd:anyURI"/>
-  <p:option name="include-filter" e:type="RegularExpression"/>
-  <p:option name="exclude-filter" e:type="RegularExpression"/>
+  <p:option name="path" required="true" as="xs:anyURI"/>
+  <p:option name="include-filter" as="xs:string" e:type="RegularExpression"/>
+  <p:option name="exclude-filter" as="xs:string" e:type="RegularExpression"/>
 </p:declare-step>
 
 <para>The value of the <option>path</option> option
@@ -384,9 +471,9 @@ to the step.</para>
 <p:declare-step type="p:error">
   <p:input port="source" primary="false"/>
   <p:output port="result" sequence="true"/>
-  <p:option name="code" required="true" e:type="xsd:QName"/>
-  <p:option name="code-prefix" e:type="xsd:NCName"/>
-  <p:option name="code-namespace" e:type="xsd:anyURI"/>
+  <p:option name="code" required="true" as="xs:QName"/>
+  <p:option name="code-prefix" as="xs:NCName"/>
+  <p:option name="code-namespace" as="xs:anyURI"/>
 </p:declare-step>
 
 <para>The value of the <option>code</option> option
@@ -454,7 +541,7 @@ represents the "escaped" syntax of the children as they were
 serialized.</para>
 
 <p:declare-step type="p:escape-markup">
-  <p:input port="source"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
   <xi:include href="serialization-options-for-escape-markup.xml"
               xpointer="xmlns(p=http://www.w3.org/ns/xproc)
@@ -495,9 +582,9 @@ XML declaration in the escaped result.</para>
 based on a (possibly dynamically constructed) XPath select expression.</para>
 
 <p:declare-step type="p:filter">
-  <p:input port="source"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result" sequence="true"/>
-  <p:option name="select" required="true" e:type="XPathExpression"/>
+  <p:option name="select" required="true" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
 <para>This step behaves just like an <tag>p:input</tag> with
@@ -520,7 +607,7 @@ the method, resource, and other request properties as well as possibly
 including an entity body (content) for the request.</para>
 
 <p:declare-step type="p:http-request">
-  <p:input port="source"/>
+  <p:input port="source" content-types="*/*"/>
   <p:output port="result"/>
   <xi:include href="serialization-options.xml"
               xpointer="xmlns(p=http://www.w3.org/ns/xproc)
@@ -944,7 +1031,7 @@ using the <tag>p:unescape-markup</tag> step.</para>
 available on its output.</para>
 
 <p:declare-step type="p:identity">
-  <p:input port="source" sequence="true"/>
+  <p:input port="source" content-types="*/*" sequence="true"/>
   <p:output port="result" sequence="true"/>
 </p:declare-step>
 
@@ -968,8 +1055,8 @@ port's document relative to the matching elements in the
    <p:input port="source" primary="true"/>
    <p:input port="insertion" sequence="true"/>
    <p:output port="result"/>
-   <p:option name="match" select="'/*'" e:type="XSLTMatchPattern"/>
-   <p:option name="position" required="true" e:type="first-child|last-child|before|after"/>
+   <p:option name="match" select="'/*'" as="xs:string" e:type="XSLTMatchPattern"/>
+   <p:option name="position" required="true" as="xs:token" e:type="first-child|last-child|before|after"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option
@@ -1022,14 +1109,14 @@ as the source.</para>
 element and stores that label in the specified attribute.</para>
 
 <p:declare-step type="p:label-elements">
-  <p:input port="source"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
-  <p:option name="attribute" select="'xml:id'" e:type="xsd:QName"/>
-  <p:option name="attribute-prefix" e:type="xsd:NCName"/>
-  <p:option name="attribute-namespace" e:type="xsd:anyURI"/>
-  <p:option name="label" select="'concat(&quot;_&quot;,$p:index)'" e:type="XPathExpression"/>
-  <p:option name="match" select="'*'" e:type="XSLTMatchPattern"/>
-  <p:option name="replace" select="'true'" e:type="xsd:boolean"/>
+  <p:option name="attribute" select="'xml:id'" as="xs:QName"/>
+  <p:option name="attribute-prefix" as="xs:NCName"/>
+  <p:option name="attribute-namespace" as="xs:anyURI"/>
+  <p:option name="label" select="'concat(&quot;_&quot;,$p:index)'" as="xs:string" e:type="XPathExpression"/>
+  <p:option name="match" select="'*'" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="replace" select="'true'" as="xs:boolean"/>
 </p:declare-step>
 
 <para>The value of the <option>attribute</option> option
@@ -1094,8 +1181,8 @@ result an XML resource specified by an IRI.</para>
 
 <p:declare-step type="p:load">
   <p:output port="result"/>
-  <p:option name="href" required="true" e:type="xsd:anyURI"/>
-  <p:option name="dtd-validate" select="'false'" e:type="xsd:boolean"/>
+  <p:option name="href" required="true" as="xs:anyURI"/>
+  <p:option name="dtd-validate" select="'false'" as="xs:boolean"/>
 </p:declare-step>
 
 <para>The value of the <option>href</option> option
@@ -1150,10 +1237,10 @@ attribute's value in the source document an absolute IRI value in the
 result document.</para>
 
 <p:declare-step type="p:make-absolute-uris">
-  <p:input port="source"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="base-uri" e:type="xsd:anyURI"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="base-uri" as="xs:anyURI"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -1200,11 +1287,11 @@ the results are <glossterm>implementation-dependent</glossterm>.</impl>
 use of a namespace in a document to a new IRI value.</para>
 
  <p:declare-step type="p:namespace-rename">
-   <p:input port="source"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
-   <p:option name="from" e:type="xsd:anyURI"/>
-   <p:option name="to" e:type="xsd:anyURI"/>
-   <p:option name="apply-to" select="'all'" e:type="all|elements|attributes"/>
+   <p:option name="from" as="xs:anyURI"/>
+   <p:option name="to" as="xs:anyURI"/>
+   <p:option name="apply-to" select="'all'" as="xs:token" e:type="all|elements|attributes"/>
 </p:declare-step>
 
 <para>The value of the <option>from</option> option
@@ -1314,12 +1401,12 @@ XPath expressions, may end up with no appropriate namespace binding.</para></not
 fashion.</para>
 
 <p:declare-step type="p:pack">
-   <p:input port="source" sequence="true" primary="true"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
    <p:input port="alternate" sequence="true"/>
    <p:output port="result" sequence="true"/>
-   <p:option name="wrapper" required="true" e:type="xsd:QName"/>
-   <p:option name="wrapper-prefix" e:type="xsd:NCName"/>
-   <p:option name="wrapper-namespace" e:type="xsd:anyURI"/>
+   <p:option name="wrapper" required="true" as="xs:QName"/>
+   <p:option name="wrapper-prefix" as="xs:NCName"/>
+   <p:option name="wrapper-namespace" as="xs:anyURI"/>
 </p:declare-step>
 
 <para>The value of the <option>wrapper</option> option
@@ -1360,14 +1447,12 @@ this step does not attempt to distinguish which one.</para>
 as a <tag>c:param-set</tag> document.</para>
 
 <p:declare-step type="p:parameters">
-   <p:input port="parameters" kind="parameter" primary="false"/>
    <p:output port="result" primary="false"/>
+   <p:option name="parameters" as="map(xs:QName,item())"/>
 </p:declare-step>
 
-<para>Each parameter passed to the step is converted into a
-<tag>c:param</tag> element. The step resolves duplicate parameters in
-the normal way (see <link linkend="parameter-inputs"/>) so at most one
-parameter with any given name will appear in the result.
+<para>Each parameter in the <option>parameters</option> map is converted into a
+<tag>c:param</tag> element.
 The resulting <tag>c:param</tag> elements are wrapped in a
 <tag>c:param-set</tag> and the parameter set document is written
 to the <port>result</port> port.
@@ -1384,11 +1469,65 @@ have names that are in a namespace, the
 <para>The base URI of the output document is the URI of the pipeline document
 that contains the step.</para>
 
-<note>
-<para>Since the <port>parameters</port> port is <emphasis>not</emphasis>
-primary, any explicit <tag>p:with-param</tag> settings <rfc2119>must</rfc2119> include a
-<tag class="attribute">port</tag> attribute, per the last paragraph of <xref linkend="p.with-param"/>.</para>
-</note>
+<section xml:id="cv.param">
+<title>The c:param element</title>
+
+<para>A <tag>c:param</tag> represents a parameter on a parameter
+input.</para>
+
+<e:rng-pattern name="VocabParam"/>
+
+<para>The <tag class="attribute">name</tag> attribute of the
+<tag>c:param</tag> must have the lexical form of a QName.</para>
+
+<para>If the <tag class="attribute">namespace</tag> attribute is
+specified, then the expanded name of the parameter is constructed from
+the specified namespace and the <tag class="attribute">name</tag>
+value. <error code="D0025" >It is a <glossterm>dynamic
+error</glossterm> if the <tag class="attribute" >namespace</tag>
+attribute is specified, the <tag class="attribute">name</tag> contains
+a colon, and the specified namespace is not the same as the in-scope
+namespace binding for the specified prefix.</error>
+</para>
+
+<para>If the <tag class="attribute">namespace</tag> attribute is not
+specified, and the <tag class="attribute">name</tag> contains a colon,
+then the expanded name of the parameter is constructed using the <tag
+class="attribute">name</tag> value and the namespace declarations
+in-scope on the <tag>c:param</tag> element.</para>
+
+<para>If the <tag class="attribute">namespace</tag> attribute is not
+specified, and the <tag class="attribute">name</tag> does not contain
+a colon, then the expanded name of the parameter is in no
+namespace.</para>
+
+<para>Any namespace-qualified attribute names that appear on the
+<tag>c:param</tag> element are ignored. <error code="D0014">It is a
+<glossterm>dynamic error</glossterm> for any unqualified attribute
+names other than “<literal>name</literal>”,
+“<literal>namespace</literal>”, or “<literal>value</literal>” to
+appear on a <tag>c:param</tag> element.</error></para>
+</section>
+
+<section xml:id="cv.param-set">
+<title>The c:param-set element</title>
+
+<para>A <tag>c:param-set</tag> represents a set of parameters on a
+parameter input.</para>
+
+<e:rng-pattern name="VocabParamSet"/>
+
+<para>The <tag>c:param-set</tag> contains zero or more
+<tag>c:param</tag> elements. <error code="D0018">It is a
+<glossterm>dynamic error</glossterm> if the parameter list contains
+any elements other than <tag>c:param</tag>.</error></para>
+
+<para>Any namespace-qualified attribute names that appear on the
+<tag>c:param-set</tag> element are ignored. <error code="D0014">It is
+a <glossterm>dynamic error</glossterm> for any unqualified attribute
+names to appear on a <tag>c:param-set</tag>
+element.</error></para>
+</section>
 
 </section>
 
@@ -1401,12 +1540,12 @@ primary, any explicit <tag>p:with-param</tag> settings <rfc2119>must</rfc2119> i
 processing-instruction targets in a document.</para>
 
 <p:declare-step type="p:rename">
-  <p:input port="source"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="new-name" required="true" e:type="xsd:QName"/>
-  <p:option name="new-prefix" e:type="xsd:NCName"/>
-  <p:option name="new-namespace" e:type="xsd:anyURI"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="new-name" required="true" as="xs:QName"/>
+  <p:option name="new-prefix" as="xs:NCName"/>
+  <p:option name="new-namespace" as="xs:anyURI"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option must be an
@@ -1467,7 +1606,7 @@ its primary input with the document element of the
    <p:input port="source" primary="true"/>
    <p:input port="replacement"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option
@@ -1497,7 +1636,7 @@ matching elements.</para>
    <p:input port="source" primary="true"/>
    <p:input port="attributes"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
  <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -1533,6 +1672,33 @@ of the element <rfc2119>must</rfc2119> also be amended accordingly.</para>
 
 <!-- ************************************************************************-->
 
+<section xml:id="c.set-properties">
+<title>p:set-properties</title>
+
+<para>The <tag>p:set-properties</tag> step sets <glossterm>document
+properties</glossterm> on the source document.</para>
+
+<p:declare-step type="p:set-properties">
+   <p:input port="source" content-types="*/*"/>
+   <p:output port="result"/>
+   <p:option name="properties" required="true" as="map(xs:string,xs:string)"/>
+</p:declare-step>
+
+ <para>The <glossterm>document properties</glossterm> of the document
+on the <port>source</port> port are augmented with the values specified
+in the <option>properties</option> option. The document produced on
+the <port>result</port> port has the same representation but the
+adjusted property values.</para>
+
+<para><error code="C1001">It is a <glossterm>dynamic
+error</glossterm> if the <option>properties</option> map contains
+a key equal to the string “<literal>content-type</literal>”.</error>
+</para>
+
+</section>
+
+<!-- ************************************************************************-->
+
 <section xml:id="c.sink">
 <title>p:sink</title>
 
@@ -1540,7 +1706,7 @@ of the element <rfc2119>must</rfc2119> also be amended accordingly.</para>
 discards them. It has no output.</para>
 
 <p:declare-step type="p:sink">
-   <p:input port="source" sequence="true"/>
+   <p:input port="source" content-types="*/*" sequence="true"/>
 </p:declare-step>
 
 </section>
@@ -1554,11 +1720,11 @@ discards them. It has no output.</para>
 documents and divides it into two sequences.</para>
 
 <p:declare-step type="p:split-sequence">
-  <p:input port="source" sequence="true"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true"/>
   <p:output port="matched" sequence="true" primary="true"/>
   <p:output port="not-matched" sequence="true"/>
-  <p:option name="initial-only" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="test" required="true" e:type="XPathExpression"/>
+  <p:option name="initial-only" select="'false'" as="xs:boolean"/>
+  <p:option name="test" required="true" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
  <para>The value of the <option>test</option> option <rfc2119>must</rfc2119> be an XPathExpression.</para>
@@ -1610,9 +1776,9 @@ input to a URI. This step outputs a reference to the location of the
 stored document.</para>
 
 <p:declare-step type="p:store">
-  <p:input port="source"/>
+  <p:input port="source" content-types="*/*"/>
   <p:output port="result" primary="false"/>
-  <p:option name="href" required='true' e:type="xsd:anyURI"/>
+  <p:option name="href" required='true' as="xs:anyURI"/>
   <xi:include href="serialization-options.xml"
               xpointer="xmlns(p=http://www.w3.org/ns/xproc)
                         xpath(/p:pipeline/p:option)"
@@ -1650,10 +1816,10 @@ document provided on the <port>source</port> port and replaces them
 with the string result of evaluating an XPath expression.</para>
 
 <p:declare-step type="p:string-replace">
-   <p:input port="source"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-   <p:option name="replace" required="true" e:type="XPathExpression"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+   <p:option name="replace" required="true" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -1694,12 +1860,12 @@ same document element with children that result from the parse. This
 is the reverse of the <tag>p:escape-markup</tag> step.</para>
 
 <p:declare-step type="p:unescape-markup">
-  <p:input port="source"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml text/*"/>
   <p:output port="result"/>
-  <p:option name="namespace" e:type="xsd:anyURI"/>
-  <p:option name="content-type" select="'application/xml'" e:type="xsd:string"/>
-  <p:option name="encoding" e:type="xsd:string"/>
-  <p:option name="charset" e:type="xsd:string"/>
+  <p:option name="namespace" as="xs:anyURI"/>
+  <p:option name="content-type" select="'application/xml'" as="xs:string"/>
+  <p:option name="encoding" as="xs:string"/>
+  <p:option name="charset" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>namespace</option> option
@@ -1788,9 +1954,9 @@ namespace, the following input:</para>
 children.</para>
 
 <p:declare-step type="p:unwrap">
-   <p:input port="source"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
  <para>The value of the <option>match</option> option <rfc2119>must</rfc2119> be an
@@ -1823,13 +1989,13 @@ unwrapped, the result might not be well-formed XML.</para>
 <port>source</port> document with a new parent element.</para>
 
 <p:declare-step type="p:wrap">
-   <p:input port="source"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
    <p:output port="result"/>
-   <p:option name="wrapper" required="true" e:type="xsd:QName"/>
-   <p:option name="wrapper-prefix" e:type="xsd:NCName"/>
-   <p:option name="wrapper-namespace" e:type="xsd:anyURI"/>
-   <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-   <p:option name="group-adjacent" e:type="XPathExpression"/>
+   <p:option name="wrapper" required="true" as="xs:QName"/>
+   <p:option name="wrapper-prefix" as="xs:NCName"/>
+   <p:option name="wrapper-namespace" as="xs:anyURI"/>
+   <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+   <p:option name="group-adjacent" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
 <para>The value of the <option>wrapper</option> option
@@ -1892,12 +2058,12 @@ documents and produces either a single document or a new sequence of
 documents.</para>
 
 <p:declare-step type="p:wrap-sequence">
-   <p:input port="source" sequence="true"/>
+   <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true"/>
    <p:output port="result" sequence="true"/>
-   <p:option name="wrapper" required="true" e:type="xsd:QName"/>
-   <p:option name="wrapper-prefix" e:type="xsd:NCName"/>
-   <p:option name="wrapper-namespace" e:type="xsd:anyURI"/>
-   <p:option name="group-adjacent" e:type="XPathExpression"/>
+   <p:option name="wrapper" required="true" as="xs:QName"/>
+   <p:option name="wrapper-prefix" as="xs:NCName"/>
+   <p:option name="wrapper-namespace" as="xs:anyURI"/>
+   <p:option name="group-adjacent" as="xs:string" e:type="XPathExpression"/>
 </p:declare-step>
 
 <para>The value of the <option>wrapper</option> option
@@ -1945,10 +2111,10 @@ element.
 <para>The <tag>p:xinclude</tag> step applies <biblioref linkend="xinclude"/> processing to the <port>source</port> document.</para>
 
 <p:declare-step type="p:xinclude">
-  <p:input port="source"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result"/>
-  <p:option name="fixup-xml-base" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="fixup-xml-lang" select="'false'" e:type="xsd:boolean"/>
+  <p:option name="fixup-xml-base" select="'false'" as="xs:boolean"/>
+  <p:option name="fixup-xml-lang" select="'false'" as="xs:boolean"/>
 </p:declare-step>
 
 <para>The value of the <option>fixup-xml-base</option> option <rfc2119>must</rfc2119> be a
@@ -1976,15 +2142,15 @@ if an XInclude error occurs during processing.</error> </para>
 <biblioref linkend="xslt20"/> stylesheet to a document.</para>
 
 <p:declare-step type="p:xslt">
-  <p:input port="source" sequence="true" primary="true"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
   <p:input port="stylesheet"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" primary="true"/>
   <p:output port="secondary" sequence="true"/>
-  <p:option name="initial-mode" e:type="xsd:QName"/>
-  <p:option name="template-name" e:type="xsd:QName"/>
-  <p:option name="output-base-uri" e:type="xsd:anyURI"/>
-  <p:option name="version" e:type="xsd:string"/>
+  <p:option name="initial-mode" as="xs:QName"/>
+  <p:option name="template-name" as="xs:QName"/>
+  <p:option name="output-base-uri" as="xs:anyURI"/>
+  <p:option name="version" as="xs:string"/>
 </p:declare-step>
 
 <para>If present, the value of the <option>initial-mode</option>
@@ -2003,7 +2169,7 @@ value).</para>
 <para>If the step specifies a <option>version</option>, then that version
 of XSLT <rfc2119>must</rfc2119> be used to process the transformation.
 <error code="C0038">It is a
-<glossterm>dynamic error</glossterm> if the specified version of XSLT
+<glossterm>dynamic error</glossterm> if the specified version
 is not available.</error> If the step does not specify a version, the
 implementation may use any version it has available and may use any means
 to determine what version to use, including, but not limited to,
@@ -2011,7 +2177,7 @@ examining the version of the stylesheet.</para>
 
 <para>The XSLT stylesheet provided on the <port>stylesheet</port> port
 is applied to the document on the <port>source</port> port. Any
-parameters passed on the <port>parameters</port> port are used to
+parameters passed in the <option>parameters</option> option are used to
 define top-level stylesheet parameters. The primary result document of
 the transformation appears on the <port>result</port> port. All other
 result documents appear on the <port>secondary</port> port. If XSLT
@@ -2079,7 +2245,7 @@ with the following adjustments.</para>
 <term>Variable values</term>
 <listitem>
 <para>Any parameters
-passed on the <port>parameters</port> port are available as variable bindings
+passed in the <option>parameters</option> option are available as variable bindings
 to the XSLT processor.</para>
 </listitem>
 </varlistentry>
@@ -2127,17 +2293,17 @@ from standard error.</para>
   <p:output port="result" primary="true"/>
   <p:output port="errors"/>
   <p:output port="exit-status"/>
-  <p:option name="command" required="true" e:type="xsd:string"/>
-  <p:option name="args" select="''" e:type="xsd:string"/>
-  <p:option name="cwd" e:type="xsd:string"/>
-  <p:option name="source-is-xml" select="'true'" e:type="xsd:boolean"/>
-  <p:option name="result-is-xml" select="'true'" e:type="xsd:boolean"/>
-  <p:option name="wrap-result-lines" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="errors-is-xml" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="wrap-error-lines" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="path-separator" e:type="xsd:string"/>
-  <p:option name="failure-threshold" e:type="xsd:integer"/>
-  <p:option name="arg-separator" select="' '" e:type="xsd:string"/>
+  <p:option name="command" required="true" as="xs:string"/>
+  <p:option name="args" select="''" as="xs:string"/>
+  <p:option name="cwd" as="xs:string"/>
+  <p:option name="source-is-xml" select="'true'" as="xs:boolean"/>
+  <p:option name="result-is-xml" select="'true'" as="xs:boolean"/>
+  <p:option name="wrap-result-lines" select="'false'" as="xs:boolean"/>
+  <p:option name="errors-is-xml" select="'false'" as="xs:boolean"/>
+  <p:option name="wrap-error-lines" select="'false'" as="xs:boolean"/>
+  <p:option name="path-separator" as="xs:string"/>
+  <p:option name="failure-threshold" as="xs:integer"/>
+  <p:option name="arg-separator" select="' '" as="xs:string"/>
 
   <!-- plus the serialization options -->
   <xi:include href="serialization-options.xml"
@@ -2273,11 +2439,11 @@ for some value and injects it into the <port>source</port> document.</para>
 <p:declare-step type="p:hash">
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
-  <p:input port="parameters" kind="parameter"/>
-  <p:option name="value" required="true" e:type="xsd:string"/>
-  <p:option name="algorithm" required="true" e:type="xsd:QName"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="version" e:type="xsd:string"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
+  <p:option name="value" required="true" as="xs:string"/>
+  <p:option name="algorithm" required="true" as="xs:QName"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="version" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>algorithm</option> option must be a QName.
@@ -2340,8 +2506,8 @@ the <port>source</port> document.</para>
 <p:declare-step type="p:uuid">
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
-  <p:option name="version" e:type="xsd:integer"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
+  <p:option name="version" as="xs:integer"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option must be an
@@ -2390,23 +2556,22 @@ validation to the <port>source</port> document.</para>
 
 <p:declare-step type="p:validate-with-relax-ng">
   <p:input port="source" primary="true"/>
-  <p:input port="schema"/>
+  <p:input port="schema" content-types="application/xml */*+xml text/*"/>
   <p:output port="result"/>
-  <p:option name="dtd-attribute-values" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="dtd-id-idref-warnings" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="assert-valid" select="'true'" e:type="xsd:boolean"/>
+  <p:option name="dtd-attribute-values" select="'false'" as="xs:boolean"/>
+  <p:option name="dtd-id-idref-warnings" select="'false'" as="xs:boolean"/>
+  <p:option name="assert-valid" select="'true'" as="xs:boolean"/>
 </p:declare-step>
 
 <para>The values of the <option>dtd-attribute-values</option> and
 <option>dtd-id-idref-warnings</option> options
 <rfc2119>must</rfc2119> be booleans.</para>
 
-<para>If the root element of the schema is <tag>c:data</tag> or
-has a <tag class="attribute">c:content-type</tag> attribute that specifies
-a text content type or a media type that the implementation recognizes,
-then the step <rfc2119>should</rfc2119> treat the
-text node descendants of the element as a
-<biblioref linkend="relaxng-compact-syntax"/> document for validation.</para>
+<para>If the <port>schema</port> document has an XML media type, then
+it <rfc2119>must</rfc2119> be interpreted as a RELAX NG Grammar. If
+the media type has a “<literal>text</literal>” type, then it
+<rfc2119>must</rfc2119> be interpreted as a <biblioref
+linkend="relaxng-compact-syntax"/> document for validation.</para>
 
 <para>If the <option>dtd-attribute-values</option> option is
 <literal>true</literal>, then the attribute value defaulting conventions of
@@ -2443,13 +2608,13 @@ augmented by application of the
 processing to the <port>source</port> document.</para>
 
 <p:declare-step type="p:validate-with-schematron">
-  <p:input port="parameters" kind="parameter"/>
   <p:input port="source" primary="true"/>
   <p:input port="schema"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:output port="result" primary="true"/>
   <p:output port="report" sequence="true"/>
-  <p:option name="phase" select="'#ALL'" e:type="xsd:string"/>
-  <p:option name="assert-valid" select="'true'" e:type="xsd:boolean"/>
+  <p:option name="phase" select="'#ALL'" as="xs:string"/>
+  <p:option name="assert-valid" select="'true'" as="xs:boolean"/>
 </p:declare-step>
 
 <para><error code="C0054">It is a <glossterm>dynamic error</glossterm>
@@ -2459,7 +2624,7 @@ and any Schematron assertions fail.</error></para>
 <para>The value of the <option>phase</option> option identifies the
 Schematron validation phase with which validation begins.</para>
 
-<para>The <port>parameters</port> port provides name/value pairs which
+<para>The <option>parameters</option> option provides name/value pairs which
 correspond to Schematron external variables.</para>
 
 <para>The <port>result</port> output from this step is a copy of the
@@ -2487,10 +2652,11 @@ validity assessment to the <port>source</port> input.</para>
   <p:input port="source" primary="true"/>
   <p:input port="schema" sequence="true"/>
   <p:output port="result"/>
-  <p:option name="use-location-hints" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="try-namespaces" select="'false'" e:type="xsd:boolean"/>
-  <p:option name="assert-valid" select="'true'" e:type="xsd:boolean"/>
-  <p:option name="mode" select="'strict'" e:type="strict|lax"/>
+  <p:option name="use-location-hints" select="'false'" as="xs:boolean"/>
+  <p:option name="try-namespaces" select="'false'" as="xs:boolean"/>
+  <p:option name="assert-valid" select="'true'" as="xs:boolean"/>
+  <p:option name="mode" select="'strict'" as="xs:token" e:type="strict|lax"/>
+  <p:option name="version" as="xs:string"/>
 </p:declare-step>
 
 <para>The values of the <option>use-location-hints</option>,
@@ -2549,6 +2715,15 @@ schema-valid, otherwise it will be treated as invalid. The
 absence of a declaration for the document element does not itself
 count as an unsuccessful outcome of validation.</para>
 
+<para>If the step specifies a <option>version</option>, then that version
+of XML Schema <rfc2119>must</rfc2119> be used to process the validation.
+<error code="C0038">It is a
+<glossterm>dynamic error</glossterm> if the specified version
+is not available.</error> If the step does not specify a version, the
+implementation may use any version it has available and may use any means
+to determine what version to use, including, but not limited to,
+examining the version of the schema(s).</para>
+
 <para><error code="C0053">It is a <glossterm>dynamic error</glossterm>
 if the <option>assert-valid</option> option is <literal>true</literal>
 and the input document is not valid.</error> If the <option>assert-valid</option>
@@ -2580,17 +2755,18 @@ by the XML Schema recommendation.</para>
 <title>p:www-form-urldecode</title>
 
 <para>The <tag>p:www-form-urldecode</tag> step decodes a
-<literal>x-www-form-urlencoded</literal> string into a set of parameters.</para>
+<literal>x-www-form-urlencoded</literal> string into an XML representation.</para>
 
 <p:declare-step type="p:www-form-urldecode">
   <p:output port="result"/>
-  <p:option name="value" required="true" e:type="xsd:string"/>
+  <p:option name="value" required="true" as="xs:string"/>
 </p:declare-step>
 
 <para>The <option>value</option> option is interpreted as a string of
 parameter values encoded using the
-<literal>x-www-form-urlencoded</literal> algorithm. It turns each such
-encoded name/value pair into a parameter. The entire set of parameters
+<literal>x-www-form-urlencoded</literal> algorithm. Each name/value
+pair is written in a <tag>c:param</tag> element.
+The entire set of parameters
 is written (as a <tag>c:param-set</tag>) on the <port>result</port>
 output port.</para>
 
@@ -2610,10 +2786,7 @@ as the order of the encoded parameters, reading from left to right.</para>
 
 <para>If any parameter name occurs more than once in the encoded string,
 the resulting parameter set will contain a <tag>c:param</tag> for
-each instance. However, only one of these will actually be used if the
-parameter set is passed to another step on its <glossterm>parameter
-input port</glossterm>.</para>
-
+each instance.</para>
 
 </section>
 
@@ -2629,8 +2802,8 @@ injects it into the <port>source</port> document.</para>
 <p:declare-step type="p:www-form-urlencode">
   <p:input port="source" primary="true"/>
   <p:output port="result"/>
-  <p:input port="parameters" kind="parameter"/>
-  <p:option name="match" required="true" e:type="XSLTMatchPattern"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
+  <p:option name="match" required="true" as="xs:string" e:type="XSLTMatchPattern"/>
 </p:declare-step>
 
 <para>The value of the <option>match</option> option must be an
@@ -2643,9 +2816,8 @@ When parameters are encoded into name/value pairs,
 The namespace name is ignored and no prefix or colon appears in the name.
 </para>
 
-<para>The parameters are encoded in document order. That is, the first
-parameter appears first in the resulting string, the second parameter
-second, etc. reading from left to right.</para>
+<para><impl>The order of the parameters is
+is <glossterm>implementation-dependent</glossterm>.</impl></para>
 
 <para>The matched nodes are specified with the match pattern in the
 <option>match</option> option. For each matching node, the encoded
@@ -2670,10 +2842,11 @@ the encoded string.</para>
 provided on the <port>source</port> port.</para>
 
 <p:declare-step type="p:xquery">
-  <p:input port="source" sequence="true" primary="true"/>
-  <p:input port="query"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml" sequence="true" primary="true"/>
+  <p:input port="query" content-types="application/xml */*+xml text/*"/>
   <p:output port="result" sequence="true"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
+  <p:option name="version" as="xs:string"/>
 </p:declare-step>
 
 <para>If a sequence of documents is provided on the
@@ -2700,27 +2873,27 @@ XQueryX is <glossterm>implementation-defined</glossterm>.</impl>
 </listitem>
 
 <listitem>
-<para>If the document root element is <tag>c:data</tag> and either
-does not have a <tag class="attribute">content-type</tag> attribute or
-has a <tag class="attribute">content-type</tag> attribute that
-specifies a text content type or a media type that the implementation
-recognizes, then the text descendants of this element are considered
-the query.</para>
+<para>If the <port>query</port> document has an XML media type, then
+the string value of the document <rfc2119>must</rfc2119> be treated as
+the query. If the media type has a “<literal>text</literal>” type,
+then it <rfc2119>must</rfc2119> be interpreted as the query.</para>
 </listitem>
 
-<listitem>
-<para>If the document root element is not <tag>c:data</tag> but
-has a <tag class="attribute">c:content-type</tag> attribute that specifies
-a text content type or a media type that the implementation recognizes,
-then the text descendants of this element are considered
-the query.</para>
-</listitem>
 <listitem>
 <para><impl>Otherwise, the interpretation of the query
 is <glossterm>implementation-defined</glossterm>.</impl>
 </para>
 </listitem>
 </itemizedlist>
+
+<para>If the step specifies a <option>version</option>, then that version
+of XQuery <rfc2119>must</rfc2119> be used to process the transformation.
+<error code="C0038">It is a
+<glossterm>dynamic error</glossterm> if the specified version
+is not available.</error> If the step does not specify a version, the
+implementation may use any version it has available and may use any means
+to determine what version to use, including, but not limited to,
+examining the version of the query.</para>
 
 <para>The result of the <tag>p:xquery</tag> step must be a sequence of
 documents. <error code="C0057">It is a <glossterm>dynamic
@@ -2789,10 +2962,9 @@ way:</para>
 <varlistentry>
 <term>Variable values</term>
 <listitem>
-<para>Any parameters passed on the <port>parameters</port> port
+<para>Any parameters passed in the <option>parameters</option> option
 augment any implementation-defined variable bindings known to the XQuery
-processor. The parameter values are passed to the XQuery processor as
-values of type <type>xs:untypedAtomic</type>.
+processor.
 </para>
 </listitem>
 </varlistentry>
@@ -2871,11 +3043,11 @@ option. A reference to that result is produced on the output
 port.</para>
 
 <p:declare-step type="p:xsl-formatter">
-  <p:input port="source"/>
-  <p:input port="parameters" kind="parameter"/>
+  <p:input port="source" content-types="application/xml text/xml */*+xml"/>
   <p:output port="result" primary="false"/>
-  <p:option name="href" required="true" e:type="xsd:anyURI"/>
-  <p:option name="content-type" e:type="xsd:string"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
+  <p:option name="href" required="true" as="xs:anyURI"/>
+  <p:option name="content-type" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>href</option> option
@@ -2898,8 +3070,8 @@ the output type is <glossterm>implementation-defined</glossterm>.</impl> The def
 PDF.</para>
 
 <para><impl>A formatter may take any number of optional rendering
-parameters via the step's parameters; such parameters are defined by
-the XSL implementation used and are
+parameters via the step's <option>parameters</option>; such parameters
+are defined by the XSL implementation used and are
 <glossterm>implementation-defined</glossterm>.</impl></para>
 
 <para>The output of this step is a document containing a single

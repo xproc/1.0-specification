@@ -19,8 +19,6 @@
 </xsl:variable>
 
 <xsl:template match="/">
-  <xsl:comment> $Id: typed-pipeline-library.xsl,v 1.4 2009/11/06 17:09:59 NormanWalsh Exp $ </xsl:comment>
-  <xsl:text>&#10;</xsl:text>
   <p:library version='1.0'>
     <xsl:sequence select="$lib"/>
 
@@ -41,8 +39,7 @@
 
 <xsl:template match="p:declare-step" mode="copystep">
   <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
-    <xsl:copy-of select="@name|@port"/>
-    <xsl:copy-of select="@*[not(name(.) = 'name' or name(.) = 'port')]"/>
+    <xsl:apply-templates select="@*" mode="copystep"/>
     <xsl:attribute name="xml:id" select="substring-after(@type,':')"/>
     <xsl:apply-templates mode="copystep"/>
   </xsl:element>
@@ -50,10 +47,24 @@
 
 <xsl:template match="*" mode="copystep">
   <xsl:element name="{name(.)}" namespace="{namespace-uri(.)}">
-    <xsl:copy-of select="@name|@port"/>
-    <xsl:copy-of select="@*[not(name(.) = 'name' or name(.) = 'port')]"/>
+    <xsl:apply-templates select="@*" mode="copystep"/>
     <xsl:apply-templates mode="copystep"/>
   </xsl:element>
+</xsl:template>
+
+<xsl:template match="@as" mode="copystep">
+  <xsl:choose>
+    <xsl:when test="contains(., '(')">
+      <xsl:attribute name="as" select="'xs:string'"/>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:copy/>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
+
+<xsl:template match="attribute()" mode="copystep">
+  <xsl:copy/>
 </xsl:template>
 
 </xsl:stylesheet>

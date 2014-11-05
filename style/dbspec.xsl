@@ -56,19 +56,10 @@
 
 <!-- ============================================================ -->
 
-<xsl:template match="db:note" mode="n:normalized-title">
-  <xsl:param name="title-key"/>
+<xsl:template match="db:note[@role='editorial']/db:title" mode="m:titlepage-mode">
+  <xsl:param name="context" as="element()?" select="()"/>
 
-  <xsl:choose>
-    <xsl:when test="@role = 'editorial'">
-      <xsl:text>Editorial Note</xsl:text>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:call-template name="gentext">
-	<xsl:with-param name="key" select="$title-key"/>
-      </xsl:call-template>
-    </xsl:otherwise>
-  </xsl:choose>
+  <h3>Editorial Note</h3>
 </xsl:template>
 
 <xsl:template match="db:termdef/db:firstterm">
@@ -723,6 +714,16 @@
   <span class="type">
     <xsl:value-of select="db:type"/>
   </span>
+</xsl:template>
+
+<xsl:template match="db:parameter">
+  <xsl:call-template name="t:inline-italicmonoseq">
+    <xsl:with-param name="class" select="@class"/>
+    <xsl:with-param name="content">
+      <xsl:text>$</xsl:text>
+      <xsl:call-template name="t:xlink"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 </xsl:stylesheet>

@@ -13,4 +13,17 @@ then
     cd ..
     mv delta/diff.html .
     rm -rf delta
+else if [ -d "$DELTA_LOCAL" ]
+then
+    rm -rf delta
+    mkdir delta
+    cd delta
+    for f in `cat $DELTA_LOCAL/filelist`; do
+        cp "$DELTA_LOCAL/$f" .
+    done
+    make
+    cd ..
+    mv delta/diff.html .
+    rm -rf delta
+fi
 fi

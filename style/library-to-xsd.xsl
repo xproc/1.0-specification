@@ -35,7 +35,7 @@
 <xsl:template match="p:option">
  <xsl:variable name="stepType" select="parent::*/@type"/>
  <xsl:variable name="name" select="@name"/>
- <xsl:variable name="etype" select="@e:type"/>
+ <xsl:variable name="etype" select="replace((@e:type,@as)[1],'xs:','xsd:')"/>
  <attribute name="{$name}">
   <xsl:choose>
    <xsl:when test="not($etype)">
@@ -58,6 +58,9 @@
    </xsl:when>
    <xsl:when test="$etype='XPathExpression'">
     <xsl:attribute name="type">p:XPathExpression</xsl:attribute>
+   </xsl:when>
+   <xsl:when test="$etype='XPathSequenceType'">
+    <xsl:attribute name="type">p:XPathSequenceType</xsl:attribute>
    </xsl:when>
    <xsl:when test="$etype='NormalizationForm'">
     <xsl:attribute name="type">p:normFormType</xsl:attribute>

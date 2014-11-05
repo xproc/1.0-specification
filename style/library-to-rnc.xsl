@@ -72,9 +72,15 @@
   <xsl:variable name="name" select="@name"/>
   <xsl:variable name="type" as="xs:string+">
     <xsl:choose>
-      <xsl:when test="not(@e:type)">
-	<xsl:message>Warning: no e:type!!!</xsl:message>
+      <xsl:when test="not(@as) and not(@e:type)">
+	<xsl:message>
+          <xsl:text>Warning: no type for option: </xsl:text>
+          <xsl:value-of select="$name"/>
+        </xsl:message>
 	<xsl:value-of select="'xsd:string'"/>
+      </xsl:when>
+      <xsl:when test="not(@e:type)">
+	<xsl:value-of select="replace(@as, 'xs:', 'xsd:')"/>
       </xsl:when>
       <xsl:when test="contains(@e:type,'|')">
 	<xsl:for-each select="tokenize(@e:type,'\|')">

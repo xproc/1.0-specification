@@ -19,8 +19,19 @@ XPathExpression = text
 ]
 XSLTMatchPattern = text
 
+[
+   sa:model = "XPathSequenceType"
+]
+XPathSequenceType = text
+
+[
+   sa:model = "MediaTypes"
+]
+MediaTypes = text
+
 name.ncname.attr = attribute name { xsd:NCName }
 name.qname.attr = attribute name { xsd:QName }
+as.attr = attribute as { XPathSequenceType }
 port.attr = attribute port { xsd:NCName }
 required.attr = attribute required { xsd:boolean }
 sequence.attr = attribute sequence { xsd:boolean }
@@ -81,7 +92,7 @@ decl.attributes = psvi-required.attr?,
 start = Pipeline | Library | DeclareStep
  | VocabParam | VocabParamSet | VocabResult | VocabHttpRequest
  | VocabHeader | VocabMultipart | VocabBody | VocabHttpResponse | VocabQuery
- | VocabLine | VocabDirectory | Errors | StandardStep
+ | VocabLine | VocabData | VocabDirectory | Errors | StandardStep
 
 # ============================================================
 
@@ -117,7 +128,7 @@ Pipeline =
       common.attributes,
       use-when.attr?,
       decl.attributes,
-      (Input|ParameterInput|Output|Option|Log
+      (Input|Output|Option|Log
        |Serialization|Documentation|PipeInfo)*,
       (DeclareStep|Pipeline|Import|Documentation|PipeInfo)*,
       Subpipeline
@@ -138,11 +149,11 @@ InputDeclaration =
       port.attr,
       sequence.attr?,
       primary.attr?,
-      attribute kind { "document" }?,
+      attribute media-types { MediaTypes }?,
       select.attr?,
       common.attributes,
       use-when.attr?,
-      ((\Empty|(Document|Inline|Data)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|(Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 [
@@ -154,36 +165,13 @@ InputConnection =
       select.attr?,
       common.attributes,
       use-when.attr?,
-      ((\Empty|(Pipe|Document|Inline|Data)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 [
    sa:element = "input"
 ]
 Input = InputDeclaration | InputConnection
-
-# ============================================================
-
-[
-   sa:class = "language-construct"
-   sa:ignore = "yes"
-]
-ParameterInputDeclaration =
-   element input {
-      port.attr,
-      attribute sequence { xsd:boolean }?,
-      primary.attr?,
-      attribute kind { "parameter" },
-      common.attributes,
-      use-when.attr?,
-      ((\Empty|(Document|Inline)+)? & (Documentation|PipeInfo)*)
-   }
-
-[
-   sa:element = "input"
-   sa:ignore = "yes"
-]
-ParameterInput = ParameterInputDeclaration
 
 # ============================================================
 
@@ -210,7 +198,7 @@ OutputConnection =
       primary.attr?,
       common.attributes,
       use-when.attr?,
-      ((\Empty|(Pipe|Document|Inline|Data)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 [
@@ -236,6 +224,7 @@ Pipe =
 Document =
    element document {
       href.attr,
+      attribute content-type { text }?,
       common.attributes,
       use-when.attr?,
       (Documentation|PipeInfo)*
@@ -247,6 +236,7 @@ Document =
 Inline =
    element inline {
       exclude-inline-prefixes.attr?,
+      attribute expand-text { xsd:boolean }?,
       common.attributes,
       use-when.attr?,
       Any
@@ -259,23 +249,6 @@ Inline =
    element empty {
       (Documentation|PipeInfo)*
    }
-
-
-[
-   sa:class = "language-construct"
-]
-Data =
-   element data {
-      href.attr,
-      attribute wrapper { xsd:QName }?,
-      attribute wrapper-prefix { text }?,
-      attribute wrapper-namespace { text }?,
-      attribute content-type { text }?,
-      common.attributes,
-      use-when.attr?,
-      (Documentation|PipeInfo)*
-   }
-
 
 [
    sa:class = "language-construct"
@@ -323,6 +296,7 @@ Serialization =
 OptionDeclaration =
    element option {
       name.qname.attr,
+      as.attr?,
       required.attr?,
       common.attributes,
       use-when.attr?,
@@ -335,6 +309,7 @@ OptionDeclaration =
 OptionSelect =
    element option {
       name.qname.attr,
+      as.attr?,
       required.attr?,
       select.attr,
       common.attributes,
@@ -355,10 +330,11 @@ Option = OptionDeclaration | OptionSelect
 WithOptionSelect =
    element with-option {
       name.qname.attr,
+      as.attr?,
       select.attr,
       common.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Inline|Data)? & (Namespaces|Documentation|PipeInfo)*)
+      ((\Empty|Pipe|Document|Inline)? & (Namespaces|Documentation|PipeInfo)*)
    }
 
 [
@@ -374,10 +350,11 @@ WithOption = WithOptionSelect
 VariableSelect =
    element variable {
       name.qname.attr,
+      as.attr?,
       select.attr,
       common.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Inline|Data)? & (Namespaces|Documentation|PipeInfo)*)
+      ((\Empty|Pipe|Document|Inline)? & (Namespaces|Documentation|PipeInfo)*)
    }
 
 [
@@ -397,26 +374,7 @@ Namespaces =
       attribute except-prefixes { PrefixList }?,
       (Documentation|PipeInfo)*
    }
-      
-# ============================================================
 
-[
-   sa:class = "language-construct"
-]
-WithParamSelect =
-   element with-param {
-      name.qname.attr,
-      select.attr,
-      port.attr?,
-      common.attributes,
-      use-when.attr?,
-      ((\Empty|Pipe|Document|Inline|Data)? & (Namespaces|Documentation|PipeInfo)*)
-   }
-
-[
-   sa:element = "with-param"
-]
-WithParam = WithParamSelect
 
 # ============================================================
 
@@ -430,7 +388,7 @@ DeclareStep =
       decl.attributes,
       common.attributes,
       use-when.attr?,
-      (Input|ParameterInput|Output|Option|Log
+      (Input|Output|Option|Log
        |Serialization|Documentation|PipeInfo)*,
       ((DeclareStep|Pipeline|Import|Documentation|PipeInfo)*,Subpipeline)?
    }
@@ -456,7 +414,7 @@ IterationSource =
       select.attr?,
       common.attributes,
       use-when.attr?,
-      ((\Empty|(Pipe|Document|Inline|Data)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 # ============================================================
@@ -480,7 +438,7 @@ ViewportSource =
    element viewport-source {
       common.attributes,
       use-when.attr?,
-      ((Pipe|Document|Inline|Data)? & (Documentation|PipeInfo)*)
+      ((Pipe|Document|Inline)? & (Documentation|PipeInfo)*)
    }
 
 # ============================================================
@@ -508,7 +466,7 @@ XPathContext =
    element xpath-context {
       common.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Inline|Data) & (Documentation|PipeInfo)*)
+      ((\Empty|Pipe|Document|Inline) & (Documentation|PipeInfo)*)
    }
 
 [
@@ -593,7 +551,7 @@ OtherAtomicStep =
       option.attr*,
       common.attributes,
       p_use-when.attr?,
-      (InputConnection|WithOption|WithParam|Log|Documentation|PipeInfo)*
+      (InputConnection|WithOption|Log|Documentation|PipeInfo)*
    }
 
 [

@@ -39,7 +39,15 @@ build/langreq/Overview.html: langreq/xproc-v2-req.html
 	cp style/xproc.css build/langreq/
 	curl -s -o build/langreq/base.css http://www.w3.org/StyleSheets/TR/base.css
 
-langspec/langspec.html: langspec/langspec.xml $(STYLES)
+LANGSPECSRC=langspec/conformance.xml langspec/error-codes.xml \
+            langspec/glossary.xml langspec/langspec.xml \
+            langspec/language-summary.xml langspec/mediatype.xml \
+            langspec/namespace-fixup.xml langspec/parallel.xml \
+            langspec/references.xml \
+            langspec/serialization-options-for-escape-markup.xml \
+            langspec/serialization-options.xml langspec/standard-components.xml
+
+langspec/langspec.html: $(LANGSPECSRC) $(STYLES)
 	mkdir -p build/langspec build/langspec/schemas build/langspec/ns
 	$(MAKE) -C schema
 	$(MAKE) -C langspec
