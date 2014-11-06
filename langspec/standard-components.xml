@@ -282,7 +282,7 @@ equality.</para>
 <p:declare-step type="p:compare">
    <p:input port="source" primary="true"/>
    <p:input port="alternate"/>
-   <p:output port="result" primary="false" as="xs:boolean"/>
+   <p:output port="result" as="xs:boolean"/>
    <p:option name="fail-if-not-equal" select="'false'" as="xs:boolean"/>
 </p:declare-step>
 
@@ -1447,7 +1447,7 @@ this step does not attempt to distinguish which one.</para>
 as a <tag>c:param-set</tag> document.</para>
 
 <p:declare-step type="p:parameters">
-   <p:output port="result" primary="false"/>
+   <p:output port="result"/>
    <p:option name="parameters" as="map(xs:QName,item())"/>
 </p:declare-step>
 
@@ -1777,7 +1777,7 @@ stored document.</para>
 
 <p:declare-step type="p:store">
   <p:input port="source" content-types="*/*"/>
-  <p:output port="result" primary="false"/>
+  <p:output port="result"/>
   <p:option name="href" required='true' as="xs:anyURI"/>
   <xi:include href="serialization-options.xml"
               xpointer="xmlns(p=http://www.w3.org/ns/xproc)
@@ -3048,7 +3048,7 @@ port.</para>
 
 <p:declare-step type="p:xsl-formatter">
   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
-  <p:output port="result" primary="false"/>
+  <p:output port="result"/>
   <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:option name="href" required="true" as="xs:anyURI"/>
   <p:option name="content-type" as="xs:string"/>
