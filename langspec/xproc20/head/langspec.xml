@@ -4492,7 +4492,7 @@ equality.</para>
 <p:declare-step type="p:compare">
    <p:input port="source" primary="true"/>
    <p:input port="alternate"/>
-   <p:output port="result" primary="false" as="xs:boolean"/>
+   <p:output port="result" as="xs:boolean"/>
    <p:option name="fail-if-not-equal" select="'false'" as="xs:boolean"/>
 </p:declare-step>
 
@@ -5666,7 +5666,7 @@ this step does not attempt to distinguish which one.</para>
 as a <tag>c:param-set</tag> document.</para>
 
 <p:declare-step type="p:parameters">
-   <p:output port="result" primary="false"/>
+   <p:output port="result"/>
    <p:option name="parameters" as="map(xs:QName,item())"/>
 </p:declare-step>
 
@@ -5993,7 +5993,7 @@ stored document.</para>
 
 <p:declare-step type="p:store">
   <p:input port="source" content-types="*/*"/>
-  <p:output port="result" primary="false"/>
+  <p:output port="result"/>
   <p:option name="href" required="true" as="xs:anyURI"/>
   <p:option name="byte-order-mark" as="xs:boolean"/><p:option name="cdata-section-elements" select="''" as="xs:string" e:type="ListOfQNames"/><p:option name="doctype-public" as="xs:string"/><p:option name="doctype-system" as="xs:anyURI"/><p:option name="encoding" as="xs:string"/><p:option name="escape-uri-attributes" select="'false'" as="xs:boolean"/><p:option name="include-content-type" select="'true'" as="xs:boolean"/><p:option name="indent" select="'false'" as="xs:boolean"/><p:option name="media-type" as="xs:string"/><p:option name="method" select="'xml'" as="xs:QName"/><p:option name="normalization-form" select="'none'" as="xs:token" e:type="NormalizationForm"/><p:option name="omit-xml-declaration" select="'true'" as="xs:boolean"/><p:option name="standalone" select="'omit'" as="xs:token" e:type="true|false|omit"/><p:option name="undeclare-prefixes" as="xs:boolean"/><p:option name="version" select="'1.0'" as="xs:string"/>
 </p:declare-step>
@@ -7277,7 +7277,7 @@ port.</para>
 
 <p:declare-step type="p:xsl-formatter">
   <p:input port="source" content-types="application/xml text/xml */*+xml"/>
-  <p:output port="result" primary="false"/>
+  <p:output port="result"/>
   <p:option name="parameters" as="map(xs:QName,item())"/>
   <p:option name="href" required="true" as="xs:anyURI"/>
   <p:option name="content-type" as="xs:string"/>
