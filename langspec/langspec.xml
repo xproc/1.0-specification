@@ -3929,8 +3929,9 @@ See also <xref linkend="handling-imports"
               prefix has been preserved, but it would be equally correct if a different
               prefix had been used.</para>
           
-          <para>Optionally, foreign element(s) scoped outside of XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace may be provided wherever a <tag>p:inline</tag> element can exist.
-              Each foreign element would be interpreted as if wrapped with an implicit <tag>p:inline</tag>.</para>
+          <para>Optionally, foreign element(s) scoped outside of XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) 
+                namespace may be provided wherever a <tag>p:inline</tag> element can exist.
+                Each foreign element is interpreted as if wrapped with an implicit <tag>p:inline</tag>.</para>
           
           <para>The following example demonstrates this implied syntactic behaviour.</para>
           <programlisting language="xml"><![CDATA[<p:identity name="identity" code="my:implicitinline1">
