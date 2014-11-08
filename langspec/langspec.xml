@@ -3104,6 +3104,9 @@ and <tag class="attribute">primary</tag> is not specified. <error
 code="S0030">It is a <glossterm>static error</glossterm> to specify
 that more than one input port is the primary.</error></para>
 
+<para>For <tag class="attribute">exclude-inline-prefixes</tag>, see <tag>p:inline</tag> .  
+</para>
+        
 <para>The <tag class="attribute">content-types</tag> attribute lists one
 or more (space separated) content types that this input port will
 accept. A content type must be of the form
@@ -3188,6 +3191,12 @@ nodes (or an empty sequence).</error></para>
           declaration may include a default connection. If no connection is provided for an input
           port which has a default connection, then the input is treated as if the default
           connection appeared.</para>
+
+<para>An input declaration may contain foreign element(s), scoped outside of XProc vocabulary 
+(<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace. Each element is treated
+as if wrapped with a <tag>p:inline</tag> element. For definition of this implicit behaviour 
+see <tag>p:inline</tag>.</para>
+
 <para>A default connection does not satisfy the requirement
           that a primary input port is automatically connected by the processor, nor is it used when
           no default readable port is defined. In other words, a <tag>p:declare-step</tag> or a
@@ -3920,7 +3929,7 @@ See also <xref linkend="handling-imports"
               prefix has been preserved, but it would be equally correct if a different
               prefix had been used.</para>
           
-          <para>Optionally, foreign element(s) scoped outside of XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) and error (<uri type="xmlnamespace">http://www.w3.org/ns/xproc-error</uri>) namespaces maybe provided wherever a <tag>p:inline</tag> element can exist.
+          <para>Optionally, foreign element(s) scoped outside of XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace maybe provided wherever a <tag>p:inline</tag> element can exist.
               Each foreign element would be interpreted as if wrapped with an implicit <tag>p:inline</tag>.</para>
           
           <para>The following example demonstrates this implied syntactic behaviour.</para>
@@ -3943,9 +3952,8 @@ See also <xref linkend="handling-imports"
     </p:input>
 </p:identity>]]></programlisting>
           
-          <para>An explicit <tag>p:inline</tag> is still required if the author wants to include top level comment or processing instruction nodes, elements from XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>
-              ) or error (<uri type="xmlnamespace">http://www.w3.org/ns/xproc-error</uri>) namespaces or define <tag>exclude-inline-prefixes</tag>.</para>
-          
+          <para>An explicit <tag>p:inline</tag> is required if the author wants to include top level comment or processing instruction nodes, elements from XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>
+              ) namespace.</para>          
       </section>
 <section xml:id="p.document">
 <title>p:document</title>

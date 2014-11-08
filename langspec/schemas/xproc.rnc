@@ -150,10 +150,11 @@ InputDeclaration =
       sequence.attr?,
       primary.attr?,
       attribute media-types { MediaTypes }?,
+      exclude-inline-prefixes.attr?,
       select.attr?,
       common.attributes,
       use-when.attr?,
-      ((\Empty|(Document|Inline)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|(Document|Inline|Any)+)? & (Documentation|PipeInfo)*)
    }
 
 [
