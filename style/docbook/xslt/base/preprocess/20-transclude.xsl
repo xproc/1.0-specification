@@ -312,6 +312,7 @@
     </xsl:when>
     <xsl:otherwise>
       <xsl:message>Error: no matching ID for reference "<xsl:value-of select="$idref"/>" was found.</xsl:message>
+      <xsl:value-of select="$idref"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:function>

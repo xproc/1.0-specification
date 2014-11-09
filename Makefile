@@ -1,10 +1,84 @@
 STYLES=$(wildcard style/*.xsl)
 
+all: xproc20 req
+
+xproc20:
+	$(MAKE) -C schema
+	$(MAKE) -C langspec
+	mkdir -p build/langspec/xproc20
+	mkdir -p build/langspec/xproc20-steps
+	mkdir -p build/langspec/ns-p
+	mkdir -p build/langspec/ns-c
+	mkdir -p build/langspec/ns-err
+	curl -s -o build/langspec/xproc20/base.css http://www.w3.org/StyleSheets/TR/base.css
+	cp langspec/xproc20/Overview.html build/langspec/xproc20/
+	cp langspec/xproc20/,xproc20.xml  build/langspec/xproc20/xproc20.xml
+	cp langspec/xproc20/changelog.xml build/langspec/xproc20/
+	cp langspec/xproc20/changelog.html build/langspec/xproc20/
+	cp langspec/xproc20/.htaccess build/langspec/xproc20/
+	cd langspec/xproc20 && tar cf - graphics \
+           | (cd ../../build/langspec/xproc20; tar xf -)
+	cp style/xproc.css build/langspec/xproc20/
+	@echo ==================================================
+	cp build/langspec/xproc20/base.css build/langspec/xproc20-steps/
+	cp langspec/xproc20-steps/Overview.html build/langspec/xproc20-steps/
+	cp langspec/xproc20-steps/,steps.xml  build/langspec/xproc20-steps/xproc20-steps.xml
+	cp langspec/xproc20-steps/changelog.xml build/langspec/xproc20-steps/
+	cp langspec/xproc20-steps/changelog.html build/langspec/xproc20-steps/
+	cp langspec/xproc20-steps/.htaccess build/langspec/xproc20-steps/
+	cp style/xproc.css build/langspec/xproc20-steps/
+
+xxx:
+	cp langspec/ns-p/xproc.html build/xproc20/ns/
+	cp langspec/ns-c/xproc-step.html build/xproc20/ns/
+	cp langspec/ns-err/xproc-error.html build/xproc20/ns/
+	cp style/xproc.css build/xproc20/ns/
+	cp js/prism.js build/xproc20/
+	cp js/prism.js build/xproc20/ns/
+	cp build/xproc20/base.css build/xproc20/ns/
+	cp langspec/ns-p/xproc.html build/xproc20/ns/
+	cp langspec/ns-p/,xproc.xml build/xproc20/ns/xproc.xml
+	cp langspec/ns-c/xproc-step.html build/xproc20/ns/
+	cp langspec/ns-c/,xproc-step.xml build/xproc20/ns/xproc-step.xml
+	cp langspec/ns-err/xproc-error.html build/xproc20/ns/
+	cp langspec/ns-err/,xproc-error.xml build/xproc20/ns/xproc-error.xml
+	cp langspec/schemas/xproc.rng build/xproc20/schemas/
+	cp langspec/schemas/xproc.rnc build/xproc20/schemas/
+	cp langspec/schemas/xproc.xsd build/xproc20/schemas/
+	cp langspec/schemas/xproc.dtd build/xproc20/schemas/
+
+
+
 spec: build/langspec/Overview.html
 
 req: build/langreq/Overview.html
 
-all: spec req
+
+build/xproc20/Overview.html: langspec/xproc20.html
+	cp langspec/xproc20.html build/xproc20/
+	mv build/xproc20/xproc20.html $@
+	cp langspec/,xproc20.xml build/xproc20/xproc20.xml
+	cp langspec/changelog.xml build/xproc20/
+	cd langspec && tar cf - graphics | (cd ../build/xproc20; tar xf -)
+	cp langspec/ns-p/xproc.html build/xproc20/ns/
+	cp langspec/ns-c/xproc-step.html build/xproc20/ns/
+	cp langspec/ns-err/xproc-error.html build/xproc20/ns/
+	cp style/xproc.css build/xproc20/
+	cp style/xproc.css build/xproc20/ns/
+	cp js/prism.js build/xproc20/
+	cp js/prism.js build/xproc20/ns/
+	curl -s -o build/xproc20/base.css http://www.w3.org/StyleSheets/TR/base.css
+	cp build/xproc20/base.css build/xproc20/ns/
+	cp langspec/ns-p/xproc.html build/xproc20/ns/
+	cp langspec/ns-p/,xproc.xml build/xproc20/ns/xproc.xml
+	cp langspec/ns-c/xproc-step.html build/xproc20/ns/
+	cp langspec/ns-c/,xproc-step.xml build/xproc20/ns/xproc-step.xml
+	cp langspec/ns-err/xproc-error.html build/xproc20/ns/
+	cp langspec/ns-err/,xproc-error.xml build/xproc20/ns/xproc-error.xml
+	cp langspec/schemas/xproc.rng build/xproc20/schemas/
+	cp langspec/schemas/xproc.rnc build/xproc20/schemas/
+	cp langspec/schemas/xproc.xsd build/xproc20/schemas/
+	cp langspec/schemas/xproc.dtd build/xproc20/schemas/
 
 build/langspec/Overview.html: langspec/langspec.html
 	cp langspec/*.html build/langspec/
@@ -46,6 +120,11 @@ LANGSPECSRC=langspec/conformance.xml langspec/error-codes.xml \
             langspec/references.xml \
             langspec/serialization-options-for-escape-markup.xml \
             langspec/serialization-options.xml langspec/standard-components.xml
+
+langspec/xproc20.html: $(LANGSPECSRC) $(STYLES)
+	mkdir -p build/xproc20 build/xproc20/schemas build/xproc20/ns
+	$(MAKE) -C schema
+	$(MAKE) -C langspec
 
 langspec/langspec.html: $(LANGSPECSRC) $(STYLES)
 	mkdir -p build/langspec build/langspec/schemas build/langspec/ns

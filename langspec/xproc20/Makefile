@@ -67,4 +67,5 @@ error-list.xml: ,xproc20.xml
 
 clean:
 	rm -f $(TARGETS) ,xproc20.xml ,,xproc20.xml glossary.xml
+	rm -f diff.html error-list.xml
 	$(MAKE) -C examples clean

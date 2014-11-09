@@ -49,7 +49,17 @@ For updated information, please refer to the latest version of the
 <link xlink:href="http://www.w3.org/TR/xproc/">specification</link>.
 </para>
 
-<xi:include href="error-list.xml"/>
+<section xml:id="xproc-errors">
+<title>XProc 2.0 Errors</title>
+
+<xi:include href="error-list-1.xml"/>
+</section>
+
+<section xml:id="xproc-step-errors">
+<title>XProc 2.0 Step Errors</title>
+
+<xi:include href="error-list-2.xml"/>
+</section>
 
 <!--
 <para>The following names are defined in the

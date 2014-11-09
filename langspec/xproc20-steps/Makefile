@@ -55,4 +55,6 @@ typed-pipeline-library.xml: ,steps.xml pipeline-library.xml
 
 clean:
 	rm -f $(TARGETS) ,steps.xml ,steps.xml
+	rm -f pipeline-library.xml typed-pipeline-library.xml
+	rm -f error-list.xml diff.html
 	$(MAKE) -C examples clean
