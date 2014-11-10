@@ -22,6 +22,9 @@ env:
   - secure: RH8/XcvSQTlts0U5bBxtwEmguggMFb2et6tZrZSt/Sz+kZ22iuC1VY//hEtUBHLXyZkzScXVN2ee68HMptDh/+8WjRkQr+55Zbcfw1gVFCZjBlidrPI9SZ4b8uSgHhZCg1Ho/vic2VBubRutHhrbjmageE8wn4U9XXO8/6Zaq1A=
   - secure: H95BVgYSESZIXfUPZ/XgUwyfToPIUNPo0+rIs81+0vHvSs350gdarK+Twqp/m9z4vsi5tesNe9ONEnQjkAwSokKVDMGdyaFhXHyRxC9tw83GP/KOE7arR0AMPnlx3Yz19V3OFwwyghGoYC6SHW6eY1+KOLjxg0MIeSfPdpLZSP0=
   - secure: cq7nyXGYqww8fKPNsv7MV21rvKhjL9FULzjhZWSS4xSv8avgwt6eFOd8wMVNbEcouWbkI1+N+JlE7DvwsQFBLOrzjTHClYqDbWFmRmtoCkxe2pL+6JOj6q0K680UNhG+FV3csdOEvxZc01zhO6gndaVIFDhFbpiKm3k5iocfDBo=
+  - secure: LtGodDfyHzJ8l/Eg98bVSnyII3rDBKHe2NkloG/1CWJw2kf1+j3SiWYTGTAD0BtDoAq2RmgdDnLHr0+pRCBeokNvRaurtc7vS4nYXogTTMbhJaO0cD40qC7ImL0jLngHBVzOCO1QRhG2oq3LHGzof0bqIUQ5OC6Mvh9OsE+a8HI=
+  - secure: CP+ylHSqTy5G9np4rEVzGlFpMC82TRsao0XNwYErWQZSweKXS3KJ9La6xs3oZy7yHcO9/0x4L4Tu5U7DVymTMbG8Nm09Nk0aY6Q2Ojjbd4F3Q9K65hPaCMy2E5EIWullnzJrKAu/Tev1QuWN8CDN/edgWxBbCEgdVgWB+UwSa2M=
+  - secure: E7rwRKwCjpcC7aGli3A/eX1h+S+hd1q68pB5B2zXNv/eszFK1YI2jIgBmxcd6fy8WwhKDEzBSgEwEu+qkdiu6MixzfHt4fku2PXhevQK5g9pDubd1XoWwSAzxeTKVqshUcwUO0GvSTPcawCzGApufquwlduhC6Ui0/GryPBh4+0=
 
 after_success:
 - .travis/publish-spec.sh
