@@ -3953,8 +3953,7 @@ See also <xref linkend="handling-imports"
     </p:input>
 </p:identity>]]></programlisting>
           
-          <para>An explicit <tag>p:inline</tag> is required if the author wants to include top level comment or processing instruction nodes or elements from XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>
-              ) namespace.</para>          
+          <para>An explicit <tag>p:inline</tag> is required if the author wants to include top level comment or processing instruction nodes or elements from XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace.</para>          
       </section>
 <section xml:id="p.document">
 <title>p:document</title>
