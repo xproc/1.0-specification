@@ -79,13 +79,16 @@ identified.</entry>
 	    <xsl:apply-templates/>
 	  </a>
 	</xsl:when>
+        <xsl:when test="not(f:findid(@linkend,.))">
+          <xsl:message>
+            <xsl:text>Attempt to link to undefined ID: </xsl:text>
+            <xsl:value-of select="@linkend"/>
+          </xsl:message>
+          <xsl:text>@@LINKEND: </xsl:text>
+          <xsl:value-of select="@linkend"/>
+          <xsl:text>@@</xsl:text>
+        </xsl:when>
 	<xsl:otherwise>
-          <xsl:if test="not(f:findid(@linkend,.))">
-            <xsl:message>
-              <xsl:text>Attempt to link to undefined ID: </xsl:text>
-              <xsl:value-of select="@linkend"/>
-            </xsl:message>
-          </xsl:if>
 	  <a href="{f:href(., f:findid(@linkend,.))}">
             <xsl:sequence select="f:html-attributes(.)"/>
 	    <xsl:if test="$title != ''">
@@ -150,7 +153,9 @@ attribute or a <tag class="attribute">linkend</tag> attribute</para>
       </xsl:message>
       <span class="formatting-error">
         <xsl:sequence select="f:html-attributes(., @xml:id, ())"/>
-	<xsl:text>???</xsl:text>
+	<xsl:text>@@LINKEND: </xsl:text>
+        <xsl:value-of select="$linkend"/>
+	<xsl:text>@@</xsl:text>
       </span>
     </xsl:when>
 
@@ -174,7 +179,9 @@ attribute or a <tag class="attribute">linkend</tag> attribute</para>
 	  <a href="{f:href(/,$target)}">
             <xsl:sequence select="f:html-attributes(., @xml:id, ())"/>
 	    <span class="formatting-error">
-	      <xsl:text>???</xsl:text>
+              <xsl:text>@@ENDTERM: </xsl:text>
+              <xsl:value-of select="@endterm"/>
+              <xsl:text>@@</xsl:text>
 	    </span>
 	  </a>
         </xsl:when>

@@ -1,10 +1,126 @@
-<?xml version='1.0'?>
-<section xmlns="http://docbook.org/ns/docbook"
-	 xmlns:xlink="http://www.w3.org/1999/xlink"
-	 xmlns:xi="http://www.w3.org/2001/XInclude"
-	 xmlns:p="http://www.w3.org/ns/xproc"
-	 xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"
-	 version="5.0-extension w3c-xproc"
+<?xml version="1.0" encoding="UTF-8"?>
+<specification xmlns="http://docbook.org/ns/docbook"
+               xmlns:cs="http://www.w3.org/XML/XProc/2006/04/components#"
+               xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"
+               xmlns:p="http://www.w3.org/ns/xproc"
+               xmlns:xi="http://www.w3.org/2001/XInclude"
+               xmlns:xlink="http://www.w3.org/1999/xlink"
+               class="ed"
+               version="5.0-extension w3c-xproc">
+  <info>
+    <title>XProc 2.0: Standard Step Library</title>
+    <w3c-shortname>xproc20-steps</w3c-shortname>
+    <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
+
+    <bibliorelation role="x-no-errata" type="references"
+                    xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
+    <bibliorelation role="x-no-translations" type="references"
+                    xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
+
+    <bibliorelation type="isformatof" xlink:href="langsteps.xml">XML</bibliorelation>
+    <bibliorelation type="isformatof" xlink:href="changelog.html">ChangeLog</bibliorelation>
+
+<!--
+    <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/PR-xproc-20100309/"/>
+    <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/WD-xproc-20100105/"/>
+    <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2009/CR-xproc-20090528/"/>
+-->
+    <!--
+    <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2008/CR-xproc-20081126/"/>
+    <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2008/WD-xproc-20080814/"/>
+      <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2007/WD-xproc-20071129/"/>
+      <bibliorelation type="replaces"
+		xlink:href="http://www.w3.org/TR/2007/WD-xproc-20070920/"/>
+<bibliorelation type="replaces"
+		xlink:href="http://www.w3.org/TR/2007/WD-xproc-20070706/"/>
+<bibliorelation type="replaces"
+		xlink:href="http://www.w3.org/TR/2007/WD-xproc-20070405/"/>
+<bibliorelation type="replaces"
+		xlink:href="http://www.w3.org/TR/2006/WD-xproc-20061117/"/>
+-->
+    <authorgroup>
+      <author>
+        <personname>Norman Walsh</personname>
+        <affiliation>
+          <orgname>MarkLogic Corporation</orgname>
+        </affiliation>
+        <email>norman.walsh@marklogic.com</email>
+      </author>
+      <author>
+        <personname>Alex Milowski</personname>
+        <affiliation>
+          <orgname>Invited expert</orgname>
+        </affiliation>
+        <email>alex@milowski.org</email>
+      </author>
+      <author>
+        <personname>Henry S. Thompson</personname>
+        <affiliation>
+          <orgname>University of Edinburgh</orgname>
+        </affiliation>
+        <email>ht@inf.ed.ac.uk</email>
+      </author>
+    </authorgroup>
+
+<abstract>
+<para>This specification describes the standard step vocabulary of
+<citetitle>XProc 2.0: An XML Pipeline Language</citetitle>.</para>
+</abstract>
+
+<legalnotice role="status">
+
+<para><emphasis>This section describes the status of this document at
+the time of its publication. Other documents may supersede this
+document. A list of current W3C publications and the latest revision
+of this technical report can be found in the <link
+xlink:href="http://www.w3.org/TR/">W3C technical reports index</link>
+at http://www.w3.org/TR/.</emphasis></para>
+
+<para>This document is an editor's draft without normative standing.
+This document is a
+product of the
+<link xlink:href="http://www.w3.org/XML/Processing/" >XML Processing Model
+Working Group</link>
+as part of the W3C
+<link xlink:href="http://www.w3.org/XML/Activity">XML Activity</link>.
+</para>
+
+<para>Please report errors in this document by
+<link xlink:href="https://github.com/xproc/specification/issues">raising
+issues</link> on the
+<link xlink:href="https://github.com/xproc/specification">specification
+repository</link>.</para>
+
+<para>There is an
+<link xlink:href="http://www.w3.org/XML/XProc/2010/02/ir.html">Implementation
+Report for XProc 1.0</link>. It documents the performance of implementations
+against the
+<link xlink:href="http://tests.xproc.org/">XProc 1.0 Test Suite</link>.
+At this time, there are no such reports for XProc 2.0.
+</para>
+
+<para>This document was produced by a group operating under the <link
+xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
+February 2004 W3C Patent Policy</link>. W3C maintains a <link
+xlink:href="http://www.w3.org/2004/01/pp-impl/38398/status">public
+list of any patent disclosures</link> made in connection with the
+deliverables of the group; that page also includes instructions for
+disclosing a patent. An individual who has actual knowledge of a
+patent which the individual believes contains <link
+xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+Claim(s)</link> must disclose the information in accordance with <link
+xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+6 of the W3C Patent Policy</link>.</para>
+
+</legalnotice>
+</info>
+
+<section xml:id="introduction">
+  <title>Introduction</title>
+  <para>…</para>
+</section>
+
+<section version="5.0-extension w3c-xproc"
 	 xml:id="std-components">
 
 <title>Standard Step Library</title>
@@ -37,7 +153,8 @@ element for result information:</para>
 <e:rng-pattern name="VocabResult"/>
 
 <para>When a step uses an XPath to compute an option value, the XPath
-context is as defined in <link linkend="xpath-context"/>.</para>
+context is as defined in
+<olink targetdoc="../xproc20/xproc20.xml" targetptr="xpath-context"/>.</para>
 
 <para>When a step specifies a particular version of a technology,
 implementations <rfc2119>must</rfc2119> implement that
@@ -123,8 +240,8 @@ or any other prefix that resolves to the namespace name
 </error> Note, however, that while namespace declarations cannot be
 added explicitly by this step, adding an attribute whose name is in a
 namespace for which there is no namespace declaration in scope on the
-matched element may result in a namespace binding being added by <xref
-linkend="namespace-fixup"/>.</para>
+matched element may result in a namespace binding being added by
+<olink targetdoc="../xproc20/xproc20.xml" targetptr="namespace-fixup"/>.</para>
 
 <para>If an attribute named
 <tag class="attribute">xml:base</tag> is added or changed, the base URI
@@ -379,7 +496,7 @@ directory.</para>
 as an IRI reference. If it is relative, it is made absolute against
 the base URI of the element on which it is specified
 (<tag>p:with-option</tag> or <tag>p:directory-list</tag> in the case of a
-<link linkend="option-shortcut">syntactic shortcut</link> value).</para>
+<olink targetdoc="../xproc20/xproc20.xml" targetptr="option-shortcut">syntactic shortcut</olink> value).</para>
 
 <para><error code="C0017">It is a
 <glossterm>dynamic error</glossterm> if the absolute path does not
@@ -1189,8 +1306,8 @@ result an XML resource specified by an IRI.</para>
 <rfc2119>must</rfc2119> be an <type>anyURI</type>. It is interpreted
 as an IRI reference. If it is relative, it is made absolute against
 the base URI of the element on which it is specified
-(<tag>p:with-option</tag> or <tag>p:load</tag> in the case of a <link
-linkend="option-shortcut">syntactic shortcut</link> value).</para>
+(<tag>p:with-option</tag> or <tag>p:load</tag> in the case of a
+<olink targetdoc="../xproc20/xproc20.xml" targetptr="option-shortcut">syntactic shortcut</olink> value).</para>
 
 <para>The value of the <option>dtd-validate</option> option
 <rfc2119>must</rfc2119> be a boolean.</para>
@@ -1254,7 +1371,7 @@ nodes.</error></para>
 as an IRI reference. If it is relative, it is made absolute against
 the base URI of the element on which it is specified
 (<tag>p:with-option</tag> or <tag>p:make-absolute-uris</tag> in the case of
-a <link linkend="option-shortcut">syntactic shortcut</link>
+a <olink targetdoc="../xproc20/xproc20.xml" targetptr="option-shortcut">syntactic shortcut</olink>
 value).</para>
 
 <para>For every element or attribute in the input document which
@@ -1662,7 +1779,7 @@ If no elements match, the step will not change any elements.</para>
 copied from the <port>attributes</port> use namespaces, prefixes, or
 prefixes bound to different namespaces, the document produced on the
 <port>result</port> output port will require
-<link linkend="namespace-fixup">namespace fixup</link>.</para>
+<olink targetdoc="../xproc20/xproc20.xml" targetptr="namespace-fixup"/>.</para>
 
 <para>If an attribute named
 <tag class="attribute">xml:base</tag> is added or changed, the base URI
@@ -1744,7 +1861,7 @@ documents (which may be empty) to the <port>matched</port> port.
 All other documents are written to the <port>not-matched</port> port,
 irrespective of whether or not they match.</para>
 
-<para>The <link linkend="xpath-context">XPath context</link> for the
+<para>The <olink targetdoc="../xproc20/xproc20.xml" targetptr="xpath-context">XPath context</olink> for the
 <option>test</option> option changes over time. For each document that
 appears on the <code>source</code> port, the expression is evaluated
 with that document as the context document. The context position
@@ -1789,7 +1906,7 @@ stored document.</para>
 <rfc2119>must</rfc2119> be an <type>anyURI</type>. If it is relative,
 it is made absolute against the base URI of the element on which it is
 specified (<tag>p:with-option</tag> or <tag>p:store</tag> in the case
-of a <link linkend="option-shortcut">syntactic shortcut</link>
+of a <olink targetdoc="../xproc20/xproc20.xml" targetptr="option-shortcut">syntactic shortcut</olink>
 value).</para>
 
 <para>The step attempts to store the XML document to the specified
@@ -2088,7 +2205,9 @@ option.</para>
 
 <para>The <option>group-adjacent</option> option can be used to group
 adjacent documents.
-The <link linkend="xpath-context">XPath context</link> for the
+The
+<olink targetdoc="../xproc20/xproc20.xml" targetptr="xpath-context">XPath
+context</olink> for the
 <option>group-adjacent</option> option changes over time. For each document that
 appears on the <code>source</code> port, the expression is evaluated
 with that document as the context document. The context position
@@ -2163,7 +2282,7 @@ option <rfc2119>must</rfc2119> be a <type>QName</type>.</para>
 option <rfc2119>must</rfc2119> be an <type>anyURI</type>. If it is
 relative, it is made absolute against the base URI of the element on
 which it is specified (<tag>p:with-option</tag> or <tag>p:xslt</tag> in the
-case of a <link linkend="option-shortcut">syntactic shortcut</link>
+case of a <olink targetdoc="../xproc20/xproc20.xml" targetptr="option-shortcut">syntactic shortcut</olink>
 value).</para>
 
 <para>If the step specifies a <option>version</option>, then that version
@@ -2232,7 +2351,7 @@ option is specified.</para>
 
 <para>The static and initial dynamic contexts of the XSLT processor
 are the contexts defined in
-<xref linkend="step-xpath-context-20"/>
+<olink targetdoc="../xproc20/xproc20.xml" targetptr="step-xpath-context-20"/>
 with the following adjustments.</para>
 
 <para>The dynamic context is augmented as follows:</para>
@@ -2500,6 +2619,244 @@ its contents) is replaced by the hash.</para>
 
 <!-- ************************************************************************-->
 
+<section xml:id="c.in-scope-names">
+<title>p:in-scope-names</title>
+
+<para>The <code>p:in-scope-names</code> step exposes all of the
+in-scope variables and options as a set of parameters in a
+<tag>c:param-set</tag> document.</para>
+
+<p:declare-step type="p:in-scope-names">
+  <p:output port="result" primary="false"/>
+</p:declare-step>
+
+<para>Each in-scope variable and option is converted into a
+<tag>c:param</tag> element.
+The resulting <tag>c:param</tag> elements are wrapped in a 
+<tag>c:param-set</tag> and the parameter set document is written
+to the <port>result</port> port.
+<impl>The
+order in which <tag>c:param</tag> elements occur in the <tag>c:param-set</tag> is
+<glossterm>implementation-dependent</glossterm>.</impl></para>
+
+<para>For consistency and user convenience, if any of the variables or options
+have names that are in a namespace, the
+<tag class="attribute">namespace</tag> attribute on the
+<tag>c:param</tag> element <rfc2119>must</rfc2119> be used. Each
+<tag class="attribute">name</tag> <rfc2119>must</rfc2119> be an NCName.</para>
+
+<para>The base URI of the output document is the URI of the pipeline document
+that contains the step.</para>
+
+<para>For consistency with the <tag>p:parameters</tag> step, the
+<port>result</port> port is not primary.</para>
+
+<section xml:id="ex-in-scope-names" role="tocsuppress">
+<title>Example</title>
+
+<para>This unlikely pipeline demonstrates the behavior of <tag>p:in-scope-names</tag>:
+</para>
+
+<programlisting><xi:include href="examples/doctemp-3.xml" parse="text"/></programlisting>
+
+<para>Assuming the values supplied for the username and password
+options are “<literal>user</literal>” and “<literal>pass</literal>”,
+respectively, the output would be:</para>
+
+<programlisting><xi:include href="examples/doctemp-3-result.xml" parse="text"/></programlisting>
+
+</section>
+</section>
+
+<!-- ************************************************************************-->
+
+<section xml:id="c.template" role="ext-optional">
+<title>p:template</title>
+
+<para>The <code>p:template</code> replaces each XPath expression, delimited with
+curly braces, in the <port>template</port> document with the result of evaluating that
+expression.</para>
+
+<p:declare-step type="p:template">
+  <p:input port="template"/>
+  <p:input port="source" sequence="true" primary="true"/>
+  <p:input port="parameters" kind="parameter"/>
+  <p:output port="result"/>
+</p:declare-step>
+
+<para>While evaluating each expression, the names of any parameters passed to the
+step are available as variable values in the XPath dynamic context.</para>
+
+<para>The step searches for XPath expressions in attribute values,
+text content (adjacent text nodes, if they occur in the data model,
+must be coalesced; this step always processes maximal length text
+nodes), processing instruction data, and comments. XPath expressions
+are identified by curly braces, similar to attribute value templates
+in XSLT or enclosed expressions in XQuery.</para>
+
+<para>In order to allow curly braces to appear literally in content, they can be escaped
+by doubling them. In other words, where “<code>{</code>” would start an XPath expression,
+“<code>{{</code>” is simply a <emphasis>single</emphasis>, literal opening curly brace.
+The same applies for closing curly braces.</para>
+
+<para>Inside an XPath expression, strings quoted by single (<code>'</code>) or
+double (<code>"</code>) quotes are treated literally. Outside of quoted text, it
+is an error for an opening curly brace to occur. A closing curly brace ends the
+XPath expression (whether or not it is followed immediately by another closing
+curly brace).</para>
+
+<para>These parsing rules can be described by the following algorithm, though implementations
+are by no means required to implement the parsing in exactly this way, provided that they
+achieve the same results.</para>
+
+<itemizedlist>
+<listitem><para>The parser begins in <emphasis>regular-mode</emphasis> at the start of
+each unit of content where expansion may occur. In <emphasis>regular-mode</emphasis>:
+</para>
+<orderedlist>
+<listitem><para>“<code>{{</code>” is replaced by a single “<code>{</code>”.</para></listitem>
+<listitem><para>“<code>}}</code>” is replaced by a single “<code>}</code>”.
+</para>
+<para>Note:
+<error code="C0067">It is a <glossterm>dynamic error</glossterm> to
+encounter a single closing curly brace “<code>}</code>” that is not immediately
+followed by another closing curly brace.</error>
+</para></listitem>
+<listitem><para>A single opening curly brace “<code>{</code>” (not
+immediately followed by another opening curly brace) is discarded and
+the parser moves into <emphasis>xpath-mode</emphasis>. The inital expression is empty.
+</para></listitem>
+<listitem><para>All other characters are copied without change.</para></listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<para>In <emphasis>xpath-mode</emphasis>:</para>
+<orderedlist>
+<listitem><para><error code="C0067">It is a <glossterm>dynamic error</glossterm> to
+encounter an opening curly brace “<code>{</code>”.</error></para></listitem>
+<listitem><para>A closing curly brace “<code>}</code>” is discarded and ends the
+expression. The expression is evaluated and the result of that
+evaluation is copied to the output. The parser returns to
+<emphasis>regular-mode</emphasis>.</para>
+<para>Note: Braces cannot be escaped by doubling them
+in <emphasis>xpath-mode</emphasis>.</para></listitem>
+<listitem><para>A single quote (<code>'</code>) is added to the current expression and
+the parser moves to <emphasis>single-quote-mode</emphasis>.</para></listitem>
+<listitem><para>A double quote (<code>"</code>) is added to the current expression and
+the parser moves to <emphasis>double-quote-mode</emphasis>.</para></listitem>
+<listitem><para>All other characters are appended to the current expression.</para></listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<para>In <emphasis>single-quote-mode</emphasis>:</para>
+<orderedlist>
+<listitem><para>A single quote (<code>'</code>) is added to the current expression and
+the parser moves to <emphasis>xpath-mode</emphasis>.</para></listitem>
+<listitem><para>All other characters are appended to the current expression.</para></listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<para>In <emphasis>double-quote-mode</emphasis>:</para>
+<orderedlist>
+<listitem><para>A double quote (<code>"</code>) is added to the current expression and
+the parser moves to <emphasis>xpath-mode</emphasis>.</para></listitem>
+<listitem><para>All other characters are appended to the current expression.</para></listitem>
+</orderedlist>
+</listitem>
+</itemizedlist>
+
+<para><error code="C0067">It is a <glossterm>dynamic error</glossterm> if the parser reaches
+the end of the unit of content and it is not in <emphasis>regular-mode</emphasis>.</error>
+</para>
+
+<para>The context node used for each expression is the document passed on the
+<port>source</port> port.
+<error code="C0068">It is a <glossterm>dynamic error</glossterm>
+if more than one document appears on the <port>source</port> port.</error>
+In an XPath 1.0 implementation, if
+<tag>p:empty</tag> is given or implied on the <port>source</port> port, an
+empty document node is used as
+the context node. In an XPath 2.0 implementation, the context item is
+undefined.
+<error code="C0026">It is a <glossterm>dynamic error</glossterm> if
+any XPath expression makes reference to the context node, size, or
+position when the context item is undefined.</error></para>
+
+<para>In an attribute value, processing instruction, or comment, the
+string value of the XPath expression is used. In text content, an
+expression that selects nodes will cause those nodes to be copied into
+the template document.</para>
+
+<note>
+<para>Depending on which version of XPath an implementation supports,
+and possibly on the <tag class="attribute">xpath-version</tag> setting on
+the <tag>p:template</tag>, some implementations may report errors, or
+different results, than other implementations in those cases where the
+interpretation of an XPath expression differs between the versions of
+XPath.</para>
+</note>
+
+<section xml:id="ex-in-scope-names" role="tocsuppress">
+<title>Example</title>
+
+<para>It's quite common to construct documents using values computed
+by the pipeline. This is particularly (but not exclusively) the case
+when the pipeline uses the <tag>p:http-request</tag> step. The input
+to <tag>p:http-request</tag> is a <tag>c:request</tag> document;
+attributes on the <tag>c:request</tag> element control most of the
+request parameters; the body of the document forms the body of
+request.</para>
+
+<para>A typical example looks like this:</para>
+
+<programlisting><![CDATA[<c:request method="POST" href="http://example.com/post"
+           username="user" password="password">
+<c:body>
+  <computed-content/>
+</c:body>
+</c:request>]]></programlisting>
+
+<para>If we assume that the <tag class="attribute">href</tag> value and the computed
+content come from an input document, and the username and password are options, then a
+typical pipeline to compute the request becomes quite complex.</para>
+
+<programlisting><xi:include href="examples/doctemp-1.xml" parse="text"/></programlisting>
+
+<para>There's nothing wrong with this pipeline, but it requires
+several steps to accomplish with the pipeline author probably
+considers a single operation. What's more, the result of these steps
+is not immediately obvious on casual inspection.</para>
+
+<para>In order to make this simple construction case both literally
+and conceptually simpler, this note introduces two new XProc steps in
+the XProc namespace. Support for these steps is optional, but we
+strongly encourage implementors to provide them.</para>
+
+<para>The new steps are <tag>p:in-scope-names</tag> and
+<tag>p:template</tag>. Taken together, they greatly simplify
+the pipeline:</para>
+
+<programlisting><xi:include href="examples/doctemp-2.xml" parse="text"/></programlisting>
+
+<para>The <tag>p:in-scope-names</tag> step provides all of the in-scope options and variables
+in a <tag>c:param-set</tag> (this operation is exactly analagous to what the
+<tag>p:parameters</tag> step does, except that it operates on the options and variables instead
+of on parameters).</para>
+
+<para>The <tag>p:template</tag> step searches for XPath
+expressions, delimited by curly braces, in a template document and replaces each with the
+result of evaluating the expression. All of the parameters passed to the
+<tag>p:template</tag> step are available as in-scope variable names when evaluating
+each XPath expression.</para>
+
+<para>Where the expressions occur in attribute values, their string value is used. Where
+they appear in text content, their node values are used.</para>
+
+</section>
+</section>
+
+<!-- ************************************************************************-->
+
 <section xml:id="c.uuid">
 <title>p:uuid</title>
 
@@ -2683,8 +3040,9 @@ schema-processor-defined namespace-based strategies, for the
 namespaces covered by the documents available on the schemas port.</para>
 
 <para>If <code>xs:include</code> elements occur within the supplied
-schema documents, they are treated like any other <link
-linkend="external-docs">external documents</link>. <impl>It is
+schema documents, they are treated like any other
+<olink targetdoc="../xproc20/xproc20.xml" targetptr="external-docs">external
+documents</olink>. <impl>It is
 <glossterm>implementation-defined</glossterm> if the documents supplied
 on the <port>schemas</port> port are considered when resolving
 <code>xs:include</code> elements in the schema documents provided.</impl>
@@ -3058,7 +3416,7 @@ port.</para>
 <rfc2119>must</rfc2119> be an <type>anyURI</type>. If it is relative,
 it is made absolute against the base URI of the element on which it is
 specified (<tag>p:with-option</tag> or <tag>p:xsl-formatter</tag> in the
-case of a <link linkend="option-shortcut">syntactic shortcut</link>
+case of a <olink targetdoc="../xproc20/xproc20.xml" targetptr="option-shortcut">syntactic shortcut</olink>
 value).</para>
 
 <para>The content-type of the output is controlled by the
@@ -3289,3 +3647,8 @@ specification.</para>
 </note>
 </section>
 </section>
+
+<xi:include href="errors.xml"/>
+<xi:include href="error-codes.xml"/>
+<xi:include href="../xproc20/references.xml"/>
+</specification>

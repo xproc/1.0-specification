@@ -13,6 +13,10 @@
             cx:trim="true"/>
 
 <p:choose name="rngschema">
+  <p:when test="$schema = ''">
+    <p:output port="result"/>
+    <p:identity/>
+  </p:when>
   <p:when test="not(contains($schema, '.'))">
     <p:output port="result"/>
     <p:load>

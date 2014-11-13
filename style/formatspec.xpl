@@ -10,6 +10,7 @@
 <p:input port="parameters" kind="parameter"/>
 <p:output port="result"/>
 <p:serialization port="result" indent="false" method="xhtml"/>
+<p:option name="style" select="'dbspec.xsl'"/>
 
 <p:import href="docbook/xslt/base/pipelines/docbook.xpl"/>
 
@@ -24,7 +25,7 @@
     <p:pipe step="main" port="source"/>
   </p:input>
   <p:with-option name="style"
-                 select="resolve-uri('dbspec.xsl')"/>
+                 select="resolve-uri($style)"/>
 
   <p:with-param name="travis"
                 select="string(/c:result/c:env[@name='TRAVIS']/@value)"/>
@@ -40,8 +41,11 @@
                 select="substring-after(
                           /c:result/c:env[@name='TRAVIS_REPO_SLUG']/@value,
                           '/')"/>
+<!--
   <p:with-param name="auto-diff"
                 select="string((/c:result/c:env[@name='DELTA_BASE' or @name='DELTA_LOCAL'])[1]/@value)"/>
+-->
+  <p:with-param name="auto-diff" select="''"/>
 </dbp:docbook>
 
 </p:declare-step>
