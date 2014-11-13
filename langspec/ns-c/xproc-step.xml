@@ -48,7 +48,10 @@ and pipeline authors may amend this namespace.
 <section xml:id="names">
 <title>Names in the XProc Step Namespace</title>
 
-<xi:include href="ns-xproc-c-incl.xml"/>
+<itemizedlist spacing="compact">
+<xi:include href="ns-xproc-c-incl-1.xml" xpointer="xpath(/*/*)"/>
+<xi:include href="ns-xproc-c-incl-2.xml" xpointer="xpath(/*/*)"/>
+</itemizedlist>
 
 </section>
 </specification>

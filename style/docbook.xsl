@@ -293,8 +293,10 @@
         <xsl:if test="$auto-diff != ''">
           <xsl:text>, </xsl:text>
 	  automatic <a href="diff.html">change markup</a> from the previous draft
-          courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.
+          courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>
         </xsl:if>
+
+        <xsl:text>.</xsl:text>
       </p>
     </xsl:if>
 
@@ -443,8 +445,8 @@ use</a> rules apply.</p>
 
 <xsl:param name="generate.toc" as="element()*">
   <tocparam path="specification" toc="1"/>
-  <tocparam path="appendix" toc="1" title="1"/>
-  <tocparam path="section" toc="1" title="1"/>
+  <tocparam path="appendix" toc="0" title="1"/>
+  <tocparam path="section" toc="0" title="1"/>
 </xsl:param>
 
 <xsl:template match="db:specification" mode="m:toc">

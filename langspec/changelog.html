@@ -1,0 +1,57 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: ChangeLog</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.5" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="alternate" title="XML" href="changelog.xml" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc 2.0: ChangeLog</div></h1><h2>W3C Editor's Draft  <time datetime="2014-11-05T13:13:57Z">5 November 2014 at 13:13 UTC</time></h2><dl><dt>This Version:</dt><dd><a href="http://www.w3.org/TR/2014/ED-xproc-changelog-20141105/">http://www.w3.org/TR/2014/ED-xproc-changelog-20141105/</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc-changelog/">http://www.w3.org/TR/xproc-changelog/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd></dl><p>This document is also available in these non-normative formats: <a href="changelog.xml">XML</a></p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+© 2010 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+<a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved.
+W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+<a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>
+and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document
+use</a> rules apply.</p><hr /><div class="abstract"><h2>Abstract</h2>
+<p>This document summarizes the significant changes in
+XProc 2.0.</p>
+</div><div class="status"><h2>Status of this Document</h2><p><strong>This document is an editor's  draft that has no official standing.</strong></p>
+<p><em>This section describes the status of this document at
+the time of its publication. Other documents may supersede this
+document. A list of current W3C publications and the latest revision
+of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a>
+at http://www.w3.org/TR/.</em></p>
+
+<p>Please report errors in this document by
+<a href="https://github.com/xproc/specification/issues">raising
+issues</a> on the
+<a href="https://github.com/xproc/specification">specification
+repository</a></p>
+
+<p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
+February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/38398/status">public
+list of any patent disclosures</a> made in connection with the
+deliverables of the group; that page also includes instructions for
+disclosing a patent. An individual who has actual knowledge of a
+patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+6 of the W3C Patent Policy</a>.</p>
+</div></div><hr /><div class="toc"><h2 id="TableOfContents">Table of Contents</h2><dl class="toc"><dt><span>1 <a href="#introduction">Introduction</a></span></dt><dt><span>2 <a href="#changes">Changes</a></span></dt></dl></div>
+  
+
+<section id="introduction" class="section"><div class="section-titlepage"><h2>1 Introduction</h2></div>
+
+<p>This document attempts to summarize the significant changes
+in XProc 2.0. Generally speaking, each significant pull request should
+include an update to this document which describes the changes
+made. Of particular importance are user-visible syntax changes and
+changes in semantics.
+</p>
+</section>
+
+<section id="changes" class="section"><div class="section-titlepage"><h2>2 Changes</h2></div>
+
+
+<div class="variablelist">
+
+<dl><dt><span class="term">First attempt at removing XPath 1.0</span></dt><dd>
+<p>Removes references to XPath 1.0. Removes the
+<code class="literal">p:base-uri</code> and <code class="literal">p:resolve-uri</code>
+functions. They existed only for interoperability with XPath 1.0
+implementations. The standard XPath 2.0 functions can be used
+instead.</p>
+</dd></dl></div>
+</section>
+</div><script src="prism.js"></script></body></html>

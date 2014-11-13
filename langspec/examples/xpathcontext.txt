@@ -1,0 +1,9 @@
+<p:variable name="home" select="'http://example.com/docs'"/>
+
+<p:load name="read-from-home">
+  <p:with-option name="href" select="concat($home,'/document.xml')"/>
+</p:load>
+
+<p:split-sequence name="select-chapters" test="@role='chapter'">
+  <p:input port="source" select="//section"/>
+</p:split-sequence>

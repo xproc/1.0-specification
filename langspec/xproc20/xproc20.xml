@@ -8,7 +8,7 @@
   version="5.0-extension w3c-xproc">
   <info>
     <title>XProc 2.0: An XML Pipeline Language</title>
-    <w3c-shortname>xproc</w3c-shortname>
+    <w3c-shortname>xproc20</w3c-shortname>
     <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
 
     <bibliorelation role="x-no-errata" type="references"
@@ -4090,10 +4090,17 @@ validation.
           linkend="app.step-errors"/>.</para>
     </section>
   </section>
-  <xi:include href="standard-components.xml"/>
+
   <xi:include href="conformance.xml"/>
   <xi:include href="references.xml"/>
-  <xi:include href="glossary.xml"/>
+  <xi:include href="glossary.xml">
+    <xi:fallback>
+      <glossary xml:id="glossary">
+        <title>Glossary</title>
+        <para>Glossary needs to be generated</para>
+      </glossary>
+    </xi:fallback>
+  </xi:include>
   <xi:include href="language-summary.xml"/>
   <xi:include href="error-codes.xml"/>
   <xi:include href="namespace-fixup.xml"/>

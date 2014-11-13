@@ -14,9 +14,9 @@ XSD_PARTS=xproc_xsd_1.frag xproc_xsd_2.frag xproc_xsd_3.frag
 
 all: steps.rnc xproc.rng xproc.dtd xproc.xsd
 
-steps.rnc: ../typed-pipeline-library.xml ../../style/library-to-rnc.xsl
+steps.rnc: ../xproc20-steps/typed-pipeline-library.xml ../../style/library-to-rnc.xsl
 	@echo Build steps.rnc...
-	@$(SAXON) -s:../typed-pipeline-library.xml -xsl:../../style/library-to-rnc.xsl -o:$@
+	@$(SAXON) -s:../xproc20-steps/typed-pipeline-library.xml -xsl:../../style/library-to-rnc.xsl -o:$@
 
 xproc.rng: xproc.rnc steps.rnc
 	@echo Convert RNC to RNG
@@ -25,16 +25,16 @@ xproc.rng: xproc.rnc steps.rnc
 xproc.dtd: $(DTD_PARTS)
 	cat $^ > $@
 
-xproc_dtd_2.ent xproc_dtd_4.ent: ../typed-pipeline-library.xml ../../style/library-to-dtd.xsl
+xproc_dtd_2.ent xproc_dtd_4.ent: ../xproc20-steps/typed-pipeline-library.xml ../../style/library-to-dtd.xsl
 	@echo Construct DTD entities
-	@$(SAXON) -s:../typed-pipeline-library.xml -xsl:../../style/library-to-dtd.xsl step-cm=xproc_dtd_2.ent step-decls=xproc_dtd_4.ent
+	@$(SAXON) -s:../xproc20-steps/typed-pipeline-library.xml -xsl:../../style/library-to-dtd.xsl step-cm=xproc_dtd_2.ent step-decls=xproc_dtd_4.ent
 
 xproc.xsd: $(XSD_PARTS)
 	cat $^ > $@
 
-xproc_xsd_2.frag: ../typed-pipeline-library.xml ../../style/library-to-xsd.xsl
+xproc_xsd_2.frag: ../xproc20-steps/typed-pipeline-library.xml ../../style/library-to-xsd.xsl
 	@echo Construct XSD fragment
-	@$(SAXON) -s:../typed-pipeline-library.xml -xsl:../../style/library-to-xsd.xsl | sed '1d;/xmlns:/d;/<.wrapper/d' > $@
+	@$(SAXON) -s:../xproc20-steps/typed-pipeline-library.xml -xsl:../../style/library-to-xsd.xsl | sed '1d;/xmlns:/d;/<.wrapper/d' > $@
 
 clean:
 	rm -f xproc.rng xproc.dtd xproc.xsd
@@ -42,7 +42,7 @@ clean:
 	rm -f steps.rnc steps.rng errs_dtd.tmp errs_xsd.tmp
 
 testDTD: xproc.dtd
-	for f in ../examples/*.{xml,xpl} ;\
+	for f in ../xproc20/examples/*.{xml,xpl} ;\
 	 do de=`lxprintf -e '/*' '%s\n' 'local-name(.)' $$f` ;\
 	 case $$de in \
 	  pipeline|declare-step|library) \
@@ -52,7 +52,7 @@ testDTD: xproc.dtd
 	diff -bw errs_dtd.txt errs_dtd.tmp
 
 testXSD: xproc.xsd
-	for f in ../examples/*.{xml,xpl} ;\
+	for f in ../xproc20/examples/*.{xml,xpl} ;\
 	 do de=`lxprintf -e '/*' '%s\n' 'local-name(.)' $$f` ;\
 	 case $$de in \
 	  pipeline|declare-step|library) \

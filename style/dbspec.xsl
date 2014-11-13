@@ -21,7 +21,7 @@
 <xsl:include href="rngsyntax.xsl"/>
 <xsl:include href="xprocns.xsl"/>
 
-<xsl:output name="final" method="xhtml" indent="no" doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
+<xsl:output method="xhtml" indent="no" doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
 
 <xsl:output name="library" method="xml" indent="yes"/>
 

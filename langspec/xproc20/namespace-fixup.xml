@@ -31,9 +31,9 @@ this within the steps:</para>
 </listitem>
 
 <listitem>
-<para>When attributes are added by <link
-linkend="c.add-attribute">p:add-attribute</link> or <link
-linkend="c.set-attributes">p:set-attributes</link>, the step must
+<para>When attributes are added by
+<tag>p:add-attribute</tag> or
+<tag>p:set-attributes</tag>, the step must
 ensure the namespace of the attributes added are declared. If the
 prefix used by the QName is not in the in-scope namespaces of the
 element on which the attribute was added, the step must add a
@@ -46,8 +46,8 @@ should be changed to reflect that generated prefix value.
 </listitem>
 
 <listitem>
-<para>When an element is renamed by <link
-linkend="c.rename">p:rename</link>, the step must ensure the namespace
+<para>When an element is renamed by
+<tag>p:rename</tag>, the step must ensure the namespace
 of the element is declared. If the prefix used by the QName is not in
 the in-scope namespaces of the element being renamed, the step must
 add a namespace declaration of the prefix to the in-scope namespaces.
@@ -64,8 +64,8 @@ child element has a different default namespace.</para>
 </listitem>
 
 <listitem>
-<para>When an attribute is renamed by <link
-linkend="c.rename">p:rename</link>, the step must ensure the namespace
+<para>When an attribute is renamed by
+<tag>p:rename</tag>, the step must ensure the namespace
 of the renamed attribute is declared. If the prefix used by the QName
 is not in the in-scope namespaces of the element on which the
 attribute was added, the step must add a namespace declaration of the
@@ -78,7 +78,7 @@ to reflect that generated prefix value.
 </listitem>
 
 <listitem>
-<para>When an element wraps content via <link linkend="c.wrap">p:wrap</link>, there may be in-scope
+<para>When an element wraps content via <tag>p:wrap</tag>, there may be in-scope
 namespaces coming from ancestor elements of the new wrapper element.  The step must ensure the
 namespace of the element is declared properly.  By default, the wrapper element will inherit the
 in-scope namespaces of the parent element if one exists.  As such, there may be a existing namespace
@@ -98,19 +98,19 @@ namespace.</para>
 </listitem>
 
 <listitem>
-<para>When the wrapper element is added for <link linkend="c.wrap-sequence">p:wrap-sequence</link> or 
-<link linkend="c.pack">p:pack</link>, the prefix used by the QName must be added to the
+<para>When the wrapper element is added for <tag>p:wrap-sequence</tag> or 
+<tag>p:pack</tag>, the prefix used by the QName must be added to the
  in-scope namespaces.</para>
 </listitem>
 
 <listitem>
-<para>When a element is removed via <link linkend="c.unwrap">p:unwrap</link>, an in-scope namespaces that 
+<para>When a element is removed via <tag>p:unwrap</tag>, an in-scope namespaces that 
 are declared on the element must be copied to any child element except when the child element declares 
 the same prefix or declares a new default namespace.</para>
 </listitem>
 
 <listitem>
-<para>In the output from <link linkend="c.xslt">p:xslt</link>, if an element was generated from the xsl:element or an
+<para>In the output from <tag>p:xslt</tag>, if an element was generated from the xsl:element or an
  attribute from xsl:attribute, the step must guarantee that an namespace declaration exists for the namespace name 
  used.  Depending on the XSLT implementation, the namespace declaration for the namespace name of the
  element or attribute may not be declared.  It may also be the case that the original prefix is available.  

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itemizedlist xmlns="http://docbook.org/ns/docbook"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              spacing="compact">
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.request">c:body</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.cast-content-type">c:data</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.directory-list">c:directory</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.errors">c:error</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.errors">c:errors</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.directory-list">c:file</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.request">c:header</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.exec">c:line</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.request">c:multipart</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.directory-list">c:other</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.make-map">c:param</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.make-map">c:param-set</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.xquery">c:query</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.http-request">c:request</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.request_response">c:response</link>
+      </simpara>
+   </listitem>
+   <listitem>
+      <simpara>
+         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.compare">c:result</link>
+      </simpara>
+   </listitem>
+</itemizedlist>
