@@ -101,6 +101,8 @@
 <!ENTITY % xslt "%p;xslt">
 <!ENTITY % exec "%p;exec">
 <!ENTITY % hash "%p;hash">
+<!ENTITY % in-scope-names "%p;in-scope-names">
+<!ENTITY % template "%p;template">
 <!ENTITY % uuid "%p;uuid">
 <!ENTITY % validate-with-relax-ng "%p;validate-with-relax-ng">
 <!ENTITY % validate-with-schematron "%p;validate-with-schematron">
@@ -119,8 +121,9 @@
                   %sink;|%split-sequence;|%store;|%string-replace;|
                   %unescape-markup;|%unwrap;|%wrap;|%wrap-sequence;|
                   %xinclude;|%xslt;|%exec;|%hash;|
-                  %uuid;|%validate-with-relax-ng;|%validate-with-schematron;|%validate-with-xml-schema;|
-                  %www-form-urldecode;|%www-form-urlencode;|%xquery;|%xsl-formatter; %user-steps;)">
+                  %in-scope-names;|%template;|%uuid;|%validate-with-relax-ng;|
+                  %validate-with-schematron;|%validate-with-xml-schema;|%www-form-urldecode;|%www-form-urlencode;|
+                  %xquery;|%xsl-formatter; %user-steps;)">
 <!ENTITY % annotation "%documentation;|%pipeinfo;">
 <!ENTITY % component
  "(%for-each;|%viewport;|%choose;|%group;|%try;|%step;)">
@@ -685,6 +688,10 @@
  algorithm %QName; #IMPLIED
  match %XSLT_match_pattern; #IMPLIED
  version CDATA #IMPLIED>
+<!ELEMENT %in-scope-names; %step-model;>
+<!ATTLIST %in-scope-names; %step-attrs;>
+<!ELEMENT %template; %step-model;>
+<!ATTLIST %template; %step-attrs;>
 <!ELEMENT %uuid; %step-model;>
 <!ATTLIST %uuid; %step-attrs;
  match %XSLT_match_pattern; #IMPLIED

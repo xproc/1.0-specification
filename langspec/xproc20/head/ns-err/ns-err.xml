@@ -44,57 +44,11 @@ For updated information, please refer to the latest version of the
 <link xlink:href="http://www.w3.org/TR/xproc/">specification</link>.
 </para>
 
+<section xml:id="xproc-errors">
+<title>XProc 2.0 Errors</title>
+
 <!-- $Id: error-list.xsl,v 1.2 2009/09/10 17:17:57 NormanWalsh Exp $ --><error-list xmlns="http://www.w3.org/ns/xproc-error">
-   <error code="XC0002">It is a dynamic error if the value starts with the string “--”.</error>
-   <error code="XC0003">It is a dynamic error if a username or password is specified without specifying an auth-method, if the requested auth-method isn't supported, or the authentication challenge contains an authentication method that isn't supported.</error>
-   <error code="XC0004">It is a dynamic error if the status-only attribute has the value true and the detailed attribute does not have the value true.</error>
-   <error code="XC0005">It is a dynamic error if the request contains a c:body or c:multipart but the method does not allow for an entity body being sent with the request.</error>
-   <error code="XC0006">It is a dynamic error if the method is not specified on a c:request.</error>
-   <error code="XC0010">It is a dynamic error if an encoding of base64 is specified and the character set is not specified or if the specified character set is not supported by the implementation.</error>
-   <error code="XC0012">It is a dynamic error if the contents of the directory path are not available to the step due to access restrictions in the environment in which the pipeline is run.</error>
-   <error code="XC0013">It is a dynamic error if the pattern matches a processing instruction and the new name has a non-null namespace.</error>
-   <error code="XC0014">It is a dynamic error if the XML namespace (http://www.w3.org/XML/1998/namespace) or the XMLNS namespace (http://www.w3.org/2000/xmlns/) is the value of either the from option or the to option.</error>
-   <error code="XC0017">It is a dynamic error if the absolute path does not identify a directory.</error>
-   <error code="XC0019">It is a dynamic error if the documents are not equal, and the value of the fail-if-not-equal option is true.</error>
-   <error code="XC0020">It is a dynamic error if the the user specifies a value or values that are inconsistent with each other or with the requirements of the step or protocol.</error>
-   <error code="XC0022">it is a dynamic error if the content of the c:body element does not consist of exactly one element, optionally preceded and/or followed by any number of processing instructions, comments or whitespace characters</error>
    <error code="XC0023">It is a dynamic error if a select expression or match pattern returns a node type that is not allowed by the step.</error>
-   <error code="XC0025">It is a dynamic error if the match pattern matches anything other than an element node and the value of the position option is “first-child” or “last-child”.</error>
-   <error code="XC0027">It is a dynamic error if the document is not valid or the step doesn't support DTD validation.</error>
-   <error code="XC0028">it is a dynamic error if the content of the c:body element does not consist entirely of characters</error>
-   <error code="XC0029">It is a dynamic error if an XInclude error occurs during processing.</error>
-   <error code="XC0030">It is a dynamic error if the override-content-type value cannot be used (e.g. text/plain to override image/png).</error>
-   <error code="XC0033">It is a dynamic error if the command cannot be run.</error>
-   <error code="XC0034">It is a dynamic error if the current working directory cannot be changed to the value of the cwd option.</error>
-   <error code="XC0035">It is a dynamic error to specify both result-is-xml and wrap-result-lines.</error>
-   <error code="XC0036">It is a dynamic error if the requested hash algorithm is not one that the processor understands or if the value or parameters are not appropriate for that algorithm.</error>
-   <error code="XC0037">It is a dynamic error if the value provided is not a properly x-www-form-urlencoded value.</error>
-   <error code="XC0038">It is a dynamic error if the specified version is not available.</error>
-   <error code="XC0039">It is a dynamic error if a sequence of documents (including an empty sequence) is provided to an XSLT 1.0 step.</error>
-   <error code="XC0040">It is a dynamic error if the document element of the document that arrives on the source port is not c:request.</error>
-   <error code="XC0050">It is a dynamic error if the URI scheme is not supported or the step cannot store to the specified location.</error>
-   <error code="XC0051">It is a dynamic error if the content-type specified is not supported by the implementation.</error>
-   <error code="XC0052">It is a dynamic error if the encoding specified is not supported by the implementation.</error>
-   <error code="XC0053">It is a dynamic error if the assert-valid option is true and the input document is not valid.</error>
-   <error code="XC0054">It is a dynamic error if the assert-valid option is true and any Schematron assertions fail.</error>
-   <error code="XC0055">It is a dynamic error if the implementation does not support the specified mode.</error>
-   <error code="XC0056">It is a dynamic error if the specified initial mode or named template cannot be applied to the specified stylesheet.</error>
-   <error code="XC0057">It is a dynamic error if the sequence that results from evaluating the XQuery contains items other than documents and elements.</error>
-   <error code="XC0058">It is a dynamic error if the all and relative options are bothtrue.</error>
-   <error code="XC0059">It is a dynamic error if the QName value in the attribute-name option uses the prefix “xmlns” or any other prefix that resolves to the namespace name “http://www.w3.org/2000/xmlns/”.</error>
-   <error code="XC0060">It is a dynamic error if the processor does not support the specified version of the UUID algorithm.</error>
-   <error code="XC0061">It is a dynamic error if the name of any encoded parameter name is not a valid xs:NCName.</error>
-   <error code="XC0062">It is a dynamic error if the match option matches a namespace node.</error>
-   <error code="XC0063">It is a dynamic error if the path-separator option is specified and is not exactly one character long.</error>
-   <error code="XC0064">It is a dynamic error if the exit code from the command is greater than the specified failure-threshold value.</error>
-   <error code="XC0066">It is a dynamic error if the arg-separator option is specified and is not exactly one character long.</error>
-   <error code="XC1001">It is a dynamic error if the properties map contains a key equal to the string “content-type”.</error>
-   <error code="XC1002">It is a dynamic error if the supplied content-type is not a valid media type of the form “type/subtype+ext”.</error>
-   <error code="XC1003">It is a dynamic error if the p:cast-content-type step cannot perform the requested cast.</error>
-   <error code="XC1004">It is a dynamic error if the c:data contains content is not a valid base64 string.</error>
-   <error code="XC1005">It is a dynamic error if the c:data element does not have a content-type attribute.</error>
-   <error code="XC1006">It is a dynamic error if the content-type is supplied and is not the same as the content-type specified on the c:data element.</error>
-   <error code="XC1007">In all cases except when the input document is a c:data element, it is a dynamic error if the content-type is not supplied.</error>
    <error code="XD0003">It is a dynamic error if the viewport source does not provide exactly one document.</error>
    <error code="XD0004">It is a dynamic error if no subpipeline is selected by the p:choose and no default is provided.</error>
    <error code="XD0005">It is a dynamic error if more than one document appears on the connection for the xpath-context.</error>
@@ -106,21 +60,17 @@ For updated information, please refer to the latest version of the
    <error code="XD0011">It is a dynamic error if the resource referenced by a p:document element does not exist, cannot be accessed, or has an XML content type and is not a well-formed XML document.</error>
    <error code="XD0012">It is a dynamic error if any attempt is made to dereference a URI where the scheme of the URI reference is not supported.</error>
    <error code="XD0013">It is a dynamic error if the specified namespace bindings are inconsistent; that is, if the same prefix is bound to two different namespace names.</error>
-   <error code="XD0014">It is a dynamic error for any unqualified attribute names other than “name”, “namespace”, or “value” to appear on a c:param element.</error>
    <error code="XD0015">It is a dynamic error if the specified QName cannot be resolved with the in-scope namespace declarations.</error>
    <error code="XD0016">It is a dynamic error if the select expression on a p:input returns atomic values or anything other than element or document nodes (or an empty sequence).</error>
    <error code="XD0017">It is a dynamic error if the running pipeline attempts to invoke a step which the processor does not know how to perform.</error>
-   <error code="XD0018">It is a dynamic error if the parameter list contains any elements other than c:param.</error>
    <error code="XD0019">It is a dynamic error if any option value does not satisfy the type required for that option.</error>
    <error code="XD0020">It is a dynamic error if the combination of serialization options specified or defaulted is not allowed.</error>
    <error code="XD0021">It is a dynamic error for a pipeline to attempt to access a resource for which it has insufficient privileges or perform a step which is forbidden.</error>
    <error code="XD0022">It is a dynamic error if a processor that does not support PSVI annotations attempts to invoke a step which asserts that they are required.</error>
-   <error code="XD0025">It is a dynamic error if the namespace attribute is specified, the name contains a colon, and the specified namespace is not the same as the in-scope namespace binding for the specified prefix.</error>
    <error code="XD0026">It is a dynamic error if the select expression makes reference to the context node, size, or position when the context item is undefined.</error>
    <error code="XD0028">It is a dynamic error if any attribute value does not satisfy the type required for that attribute.</error>
    <error code="XD0030">It is a dynamic error if a step is unable or incapable of performing its function.</error>
    <error code="XD0033">It is a dynamic error if the name specified is not the name of an in-scope option or variable.</error>
-   <error code="XD0034">It is a dynamic error to specify a new namespace or prefix if the lexical value of the specified name contains a colon.</error>
    <error code="XD1000">It is a dynamic error if the element (or document element) passed to p:make-map is not a c:param-set element.</error>
    <error code="XD1001">It is a dynamic error if the computed value does not match the specified sequence type.</error>
    <error code="XD1002">It is a dynamic error if any of the c:param elements are invalid.</error>
@@ -171,6 +121,72 @@ For updated information, please refer to the latest version of the
    <error code="XS0062">It is a static error if a required version attribute is not present.</error>
    <error code="XS0063">It is a static error if the value of the version attribute is not a xs:decimal.</error>
 </error-list>
+</section>
+
+<section xml:id="xproc-step-errors">
+<title>XProc 2.0 Step Errors</title>
+
+<!-- $Id: error-list.xsl,v 1.2 2009/09/10 17:17:57 NormanWalsh Exp $ --><error-list xmlns="http://www.w3.org/ns/xproc-error">
+   <error code="XC0002">It is a dynamic error if the value starts with the string “--”.</error>
+   <error code="XC0003">It is a dynamic error if a username or password is specified without specifying an auth-method, if the requested auth-method isn't supported, or the authentication challenge contains an authentication method that isn't supported.</error>
+   <error code="XC0004">It is a dynamic error if the status-only attribute has the value true and the detailed attribute does not have the value true.</error>
+   <error code="XC0005">It is a dynamic error if the request contains a c:body or c:multipart but the method does not allow for an entity body being sent with the request.</error>
+   <error code="XC0006">It is a dynamic error if the method is not specified on a c:request.</error>
+   <error code="XC0010">It is a dynamic error if an encoding of base64 is specified and the character set is not specified or if the specified character set is not supported by the implementation.</error>
+   <error code="XC0012">It is a dynamic error if the contents of the directory path are not available to the step due to access restrictions in the environment in which the pipeline is run.</error>
+   <error code="XC0013">It is a dynamic error if the pattern matches a processing instruction and the new name has a non-null namespace.</error>
+   <error code="XC0014">It is a dynamic error if the XML namespace (http://www.w3.org/XML/1998/namespace) or the XMLNS namespace (http://www.w3.org/2000/xmlns/) is the value of either the from option or the to option.</error>
+   <error code="XC0017">It is a dynamic error if the absolute path does not identify a directory.</error>
+   <error code="XC0019">It is a dynamic error if the documents are not equal, and the value of the fail-if-not-equal option is true.</error>
+   <error code="XC0020">It is a dynamic error if the the user specifies a value or values that are inconsistent with each other or with the requirements of the step or protocol.</error>
+   <error code="XC0022">it is a dynamic error if the content of the c:body element does not consist of exactly one element, optionally preceded and/or followed by any number of processing instructions, comments or whitespace characters</error>
+   <error code="XC0023">It is a dynamic error if the match pattern does not match an element.</error>
+   <error code="XC0025">It is a dynamic error if the match pattern matches anything other than an element node and the value of the position option is “first-child” or “last-child”.</error>
+   <error code="XC0026">It is a dynamic error if any XPath expression makes reference to the context node, size, or position when the context item is undefined.</error>
+   <error code="XC0027">It is a dynamic error if the document is not valid or the step doesn't support DTD validation.</error>
+   <error code="XC0028">it is a dynamic error if the content of the c:body element does not consist entirely of characters</error>
+   <error code="XC0029">It is a dynamic error if an XInclude error occurs during processing.</error>
+   <error code="XC0030">It is a dynamic error if the override-content-type value cannot be used (e.g. text/plain to override image/png).</error>
+   <error code="XC0033">It is a dynamic error if the command cannot be run.</error>
+   <error code="XC0034">It is a dynamic error if the current working directory cannot be changed to the value of the cwd option.</error>
+   <error code="XC0035">It is a dynamic error to specify both result-is-xml and wrap-result-lines.</error>
+   <error code="XC0036">It is a dynamic error if the requested hash algorithm is not one that the processor understands or if the value or parameters are not appropriate for that algorithm.</error>
+   <error code="XC0037">It is a dynamic error if the value provided is not a properly x-www-form-urlencoded value.</error>
+   <error code="XC0038">It is a dynamic error if the specified version is not available.</error>
+   <error code="XC0039">It is a dynamic error if a sequence of documents (including an empty sequence) is provided to an XSLT 1.0 step.</error>
+   <error code="XC0040">It is a dynamic error if the document element of the document that arrives on the source port is not c:request.</error>
+   <error code="XC0050">It is a dynamic error if the URI scheme is not supported or the step cannot store to the specified location.</error>
+   <error code="XC0051">It is a dynamic error if the content-type specified is not supported by the implementation.</error>
+   <error code="XC0052">It is a dynamic error if the encoding specified is not supported by the implementation.</error>
+   <error code="XC0053">It is a dynamic error if the assert-valid option is true and the input document is not valid.</error>
+   <error code="XC0054">It is a dynamic error if the assert-valid option is true and any Schematron assertions fail.</error>
+   <error code="XC0055">It is a dynamic error if the implementation does not support the specified mode.</error>
+   <error code="XC0056">It is a dynamic error if the specified initial mode or named template cannot be applied to the specified stylesheet.</error>
+   <error code="XC0057">It is a dynamic error if the sequence that results from evaluating the XQuery contains items other than documents and elements.</error>
+   <error code="XC0058">It is a dynamic error if the all and relative options are bothtrue.</error>
+   <error code="XC0059">It is a dynamic error if the QName value in the attribute-name option uses the prefix “xmlns” or any other prefix that resolves to the namespace name “http://www.w3.org/2000/xmlns/”.</error>
+   <error code="XC0060">It is a dynamic error if the processor does not support the specified version of the UUID algorithm.</error>
+   <error code="XC0061">It is a dynamic error if the name of any encoded parameter name is not a valid xs:NCName.</error>
+   <error code="XC0062">It is a dynamic error if the match option matches a namespace node.</error>
+   <error code="XC0063">It is a dynamic error if the path-separator option is specified and is not exactly one character long.</error>
+   <error code="XC0064">It is a dynamic error if the exit code from the command is greater than the specified failure-threshold value.</error>
+   <error code="XC0066">It is a dynamic error if the arg-separator option is specified and is not exactly one character long.</error>
+   <error code="XC0067">It is a dynamic error to encounter a single closing curly brace “}” that is not immediately followed by another closing curly brace.</error>
+   <error code="XC0068">It is a dynamic error if more than one document appears on the source port.</error>
+   <error code="XC1001">It is a dynamic error if the properties map contains a key equal to the string “content-type”.</error>
+   <error code="XC1002">It is a dynamic error if the supplied content-type is not a valid media type of the form “type/subtype+ext”.</error>
+   <error code="XC1003">It is a dynamic error if the p:cast-content-type step cannot perform the requested cast.</error>
+   <error code="XC1004">It is a dynamic error if the c:data contains content is not a valid base64 string.</error>
+   <error code="XC1005">It is a dynamic error if the c:data element does not have a content-type attribute.</error>
+   <error code="XC1006">It is a dynamic error if the content-type is supplied and is not the same as the content-type specified on the c:data element.</error>
+   <error code="XC1007">In all cases except when the input document is a c:data element, it is a dynamic error if the content-type is not supplied.</error>
+   <error code="XD0006">It is a dynamic error if more than one document appears on the source port of the p:exec step.</error>
+   <error code="XD0014">It is a dynamic error for any unqualified attribute names other than “name”, “namespace”, or “value” to appear on a c:param element.</error>
+   <error code="XD0018">It is a dynamic error if the parameter list contains any elements other than c:param.</error>
+   <error code="XD0025">It is a dynamic error if the namespace attribute is specified, the name contains a colon, and the specified namespace is not the same as the in-scope namespace binding for the specified prefix.</error>
+   <error code="XD0034">It is a dynamic error to specify a new namespace or prefix if the lexical value of the specified name contains a colon.</error>
+</error-list>
+</section>
 
 <!--
 <para>The following names are defined in the

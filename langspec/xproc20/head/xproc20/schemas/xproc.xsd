@@ -1278,6 +1278,8 @@
          </complexContent>
       </complexType>
    </element>
+   <element name="in-scope-names" substitutionGroup="p:vanillaStep"/>
+   <element name="template" substitutionGroup="p:vanillaStep"/>
    <element name="uuid" substitutionGroup="p:atomicStep">
       <complexType>
          <complexContent>
