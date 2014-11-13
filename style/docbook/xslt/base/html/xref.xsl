@@ -84,9 +84,12 @@ identified.</entry>
             <xsl:text>Attempt to link to undefined ID: </xsl:text>
             <xsl:value-of select="@linkend"/>
           </xsl:message>
-          <xsl:text>@@LINKEND: </xsl:text>
-          <xsl:value-of select="@linkend"/>
-          <xsl:text>@@</xsl:text>
+          <span class="markup-error">
+            <xsl:sequence select="f:html-attributes(., @xml:id, ())"/>
+            <xsl:text>@@LINKEND: </xsl:text>
+            <xsl:value-of select="@linkend"/>
+            <xsl:text>@@</xsl:text>
+          </span>
         </xsl:when>
 	<xsl:otherwise>
 	  <a href="{f:href(., f:findid(@linkend,.))}">
@@ -151,7 +154,7 @@ attribute or a <tag class="attribute">linkend</tag> attribute</para>
         <xsl:text>XRef to nonexistent id: </xsl:text>
         <xsl:value-of select="$linkend"/>
       </xsl:message>
-      <span class="formatting-error">
+      <span class="markup-error">
         <xsl:sequence select="f:html-attributes(., @xml:id, ())"/>
 	<xsl:text>@@LINKEND: </xsl:text>
         <xsl:value-of select="$linkend"/>
@@ -178,11 +181,11 @@ attribute or a <tag class="attribute">linkend</tag> attribute</para>
           </xsl:message>
 	  <a href="{f:href(/,$target)}">
             <xsl:sequence select="f:html-attributes(., @xml:id, ())"/>
-	    <span class="formatting-error">
-              <xsl:text>@@ENDTERM: </xsl:text>
+            <span class="markup-error">
+	      <xsl:text>@@ENDTERM: </xsl:text>
               <xsl:value-of select="@endterm"/>
-              <xsl:text>@@</xsl:text>
-	    </span>
+	      <xsl:text>@@</xsl:text>
+            </span>
 	  </a>
         </xsl:when>
         <xsl:otherwise>
