@@ -19,7 +19,6 @@ Overview.html: ,xproc-error.xml
                ../../style/docbook.xsl ../../style/dbspec.xsl \
                ../../style/xprocns.xsl ../../style/rngsyntax.xsl
 	@echo Validate spec: $<
-	@echo FIXME: make this validate
 	@$(CALABASH) -isource=$< -oresult=$@ \
                     ../../style/validate.xpl schema=../../schema/dbspec.rng
 
