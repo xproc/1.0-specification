@@ -18,6 +18,8 @@ Overview.html: ,steps.xml typed-pipeline-library.xml error-list.xml \
 	@$(CALABASH) -isource=$< -oresult=$@ \
 	            -pschemaext.schema=../../../../../schema/dbspec.rng \
                     -pxml.toc.filename=steps.toc.xml \
+                    -potherspec=../xproc20/,xproc20.xml \
+                    -potherlabel="XP" \
                     ../../style/formatspec.xpl style=xproc-specs.xsl
 
 ,steps.xml: steps.xml errors.xml error-codes.xml \
