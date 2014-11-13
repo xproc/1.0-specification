@@ -14,7 +14,7 @@ xproc20:
 	curl -s -o build/langspec/xproc20/base.css http://www.w3.org/StyleSheets/TR/base.css
 	cp langspec/xproc20/Overview.html build/langspec/xproc20/index.html
 	cp langspec/xproc20/,xproc20.xml  build/langspec/xproc20/xproc20.xml
-	cp langspec/xproc20/diff.html build/langspec/xproc20/
+	if [ -f langspec/xproc20/diff.html ]; then cp langspec/xproc20/diff.html build/langspec/xproc20/; fi
 	cp langspec/xproc20/changelog.xml build/langspec/xproc20/
 	cp langspec/xproc20/changelog.html build/langspec/xproc20/
 	cd langspec/xproc20 && tar cf - graphics \
@@ -31,7 +31,7 @@ xproc20:
 	cp build/langspec/xproc20/base.css build/langspec/xproc20-steps/
 	cp langspec/xproc20-steps/Overview.html build/langspec/xproc20-steps/index.html
 	cp langspec/xproc20-steps/,steps.xml  build/langspec/xproc20-steps/xproc20-steps.xml
-	cp langspec/xproc20-steps/diff.html build/langspec/xproc20-steps/
+	if [ -f langspec/xproc20-steps/diff.html ]; then cp langspec/xproc20-steps/diff.html build/langspec/xproc20-steps/; fi
 	cp langspec/xproc20-steps/changelog.xml build/langspec/xproc20-steps/
 	cp langspec/xproc20-steps/changelog.html build/langspec/xproc20-steps/
 	cp style/xproc.css build/langspec/xproc20-steps/
