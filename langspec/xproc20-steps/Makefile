@@ -5,7 +5,7 @@ CLASSPATH=$(subst  $(space),:,$(wildcard ../../lib/*.jar)):../../lib
 SAXON=java -cp $(CLASSPATH) -jar ../../lib/saxon9he.jar
 CALABASH=java -cp $(CLASSPATH) com.xmlcalabash.drivers.Main -c ../../.calabash
 
-TARGETS=changelog.html Overview.html
+TARGETS=changelog.html Overview.html diff.html
 
 all: $(TARGETS)
 
@@ -31,8 +31,8 @@ Overview.html: ,steps.xml typed-pipeline-library.xml error-list.xml \
 
 # ============================================================
 
-diff.html: langspec.html
-	../lib/make-diff.sh
+diff.html: Overview.html
+	../../lib/make-diff.sh xproc20-steps
 
 changelog.html: changelog.xml
 	@echo Format changelog

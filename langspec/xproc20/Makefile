@@ -5,14 +5,9 @@ CLASSPATH=$(subst  $(space),:,$(wildcard ../../lib/*.jar)):../../lib
 SAXON=java -cp $(CLASSPATH) -jar ../../lib/saxon9he.jar
 CALABASH=java -cp $(CLASSPATH) com.xmlcalabash.drivers.Main -c ../../.calabash
 
-TARGETS=changelog.html Overview.html
+TARGETS=changelog.html Overview.html diff.html
 
 all: $(TARGETS)
-
-namespace-documents:
-	$(MAKE) -C ns-p
-	$(MAKE) -C ns-c
-	$(MAKE) -C ns-err
 
 # ============================================================
 
@@ -51,7 +46,7 @@ Overview.html: ,xproc20.xml error-list.xml \
 # ============================================================
 
 diff.html: Overview.html
-	../lib/make-diff.sh
+	../../lib/make-diff.sh xproc20
 
 changelog.html: changelog.xml
 	@echo Format changelog
