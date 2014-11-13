@@ -273,7 +273,7 @@
       <dt>Repository:</dt>
       <dd>
         <a href="http://github.com/{$travis-user}/{$travis-repo}">
-          <xsl:text>We are on GitHub</xsl:text>
+          <xsl:text>This specification on GitHub</xsl:text>
         </a>
       </dd>
       <dd>
@@ -290,7 +290,7 @@
       </xsl:if>
       <dd>
         <a href="http://github.com/{$travis-user}/{$travis-repo}/commits/{$travis-branch}">
-          <xsl:text>Commits</xsl:text>
+          <xsl:text>Commits for this specification</xsl:text>
         </a>
       </dd>
     </dl>
