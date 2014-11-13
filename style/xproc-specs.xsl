@@ -93,7 +93,7 @@
 	  <a href="{$otherhref}#{$ospec-id}">
 	    <xsl:apply-templates/>
 	  </a>
-          <sup>[<a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a>]</sup>
+          <sup class="xrefspec"><a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a></sup>
 	</xsl:when>
 	<xsl:otherwise>
 	  <xsl:message>Warning: No anchor for <xsl:value-of select="$id"/></xsl:message>
@@ -122,7 +122,7 @@
 	    </xsl:if>
 	    <xsl:apply-templates/>
 	  </a>
-          <sup>[<a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a>]</sup>
+          <sup class="xrefspec"><a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a></sup>
 	</xsl:when>
         <xsl:otherwise>
           <xsl:next-match/>
@@ -188,14 +188,14 @@
                   <xsl:text>@@</xsl:text>
 	        </span>
 	      </a>
-              <sup>[<a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a>]</sup>
+              <sup class="xrefspec"><a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a></sup>
             </xsl:when>
             <xsl:otherwise>
 	      <a href="{$otherhref}#{@endterm}">
                 <xsl:sequence select="f:html-attributes(., @xml:id, ())"/>
 	        <xsl:apply-templates select="$etarget" mode="m:endterm"/>
 	      </a>
-              <sup>[<a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a>]</sup>
+              <sup class="xrefspec"><a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a></sup>
 	    </xsl:otherwise>
           </xsl:choose>
         </xsl:when>
@@ -206,7 +206,7 @@
 	      <xsl:with-param name="target" select="$target"/>
 	    </xsl:call-template>
           </a>
-          <sup>[<a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a>]</sup>
+          <sup class="xrefspec"><a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a></sup>
         </xsl:when>
 
         <xsl:otherwise>
@@ -231,7 +231,7 @@
 	      </xsl:with-param>
 	    </xsl:apply-templates>
 	  </a>
-          <sup>[<a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a>]</sup>
+          <sup class="xrefspec"><a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a></sup>
 
           <xsl:apply-templates select="$target" mode="m:xref-to-suffix"/>
         </xsl:otherwise>
@@ -263,7 +263,7 @@
 	    <a href="{$otherhref}#{$termdef/@xml:id}">
 	      <xsl:apply-templates/>
 	    </a>
-            <sup>[<a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a>]</sup>
+            <sup class="xrefspec"><a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a></sup>
           </xsl:when>
           <xsl:otherwise>
 	    <xsl:message>
@@ -303,7 +303,7 @@
     <a href="{$otherhref}#{$ptr}">
       <xsl:sequence select="$linktext"/>
     </a>
-    <sup>[<a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a>]</sup>
+    <sup class="xrefspec"><a href="{$otherhref}"><xsl:value-of select="$otherlabel"/></a></sup>
   </span>
 </xsl:template>
 

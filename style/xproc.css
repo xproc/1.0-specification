@@ -133,3 +133,13 @@ a:hover.difflink {
 /* Not for us; we don't want h6 to be smallcaps! */
 h6 { font: italic 100% sans-serif }
 
+sup.xrefspec {
+   font-size: 70%;
+   color: #999999;
+}
+
+sup.xrefspec a,
+sup.xrefspec a:visited {
+   color: #999999;
+   text-decoration: none;
+}
