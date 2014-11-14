@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: An XML Pipeline Language</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc 2.0: An XML Pipeline Language</div></h1><h2>W3C Editor's Draft  <time datetime="2014-11-13T23:27:50Z">13 November 2014 at 23:27 UTC (<a href="https://github.com/xproc/specification/commit/67cbd12c0de0f3cea50aedf13063e855d9b8a26f">build 136</a>)</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20/">http://www.w3.org/TR/xproc20/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd><dt>Repository:</dt><dd><a href="http://github.com/xproc/specification">This specification on GitHub</a></dd><dd><a href="http://github.com/xproc/specification/issues">Report an issue</a></dd><dt>Changes:</dt><dd><a href="diff.html">Diff against current “status quo” draft</a></dd><dd><a href="http://github.com/xproc/specification/commits/">Commits for this specification</a></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: An XML Pipeline Language</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc 2.0: An XML Pipeline Language</div></h1><h2>W3C Editor's Draft  <time datetime="2014-11-14T14:57:50Z">14 November 2014 at 14:57 UTC (<a href="https://github.com/xproc/specification/commit/ee19cbd118d71fb418eb074ab3708e8b9bd383f5">build 138</a>)</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20/">http://www.w3.org/TR/xproc20/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd><dt>Repository:</dt><dd><a href="http://github.com/xproc/specification">This specification on GitHub</a></dd><dd><a href="http://github.com/xproc/specification/issues">Report an issue</a></dd><dt>Changes:</dt><dd><a href="diff.html">Diff against current “status quo” draft</a></dd><dd><a href="http://github.com/xproc/specification/commits/">Commits for this specification</a></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
 	  automatic <a href="diff.html">change markup</a> from the previous draft
           courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.</p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
 © 2010 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
@@ -76,7 +76,7 @@ Claim(s)</a> must disclose the information in accordance with <a href="http://ww
       Atomic steps carry out single operations and have no substructure as far as the pipeline is
       concerned. Compound steps and multi-container steps control the execution of other steps,
       which they include in the form of one or more subpipelines.</p>
-    <p>This specification defines a standard library, <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, of steps.
+    <p>This specification defines a standard library, <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, of steps.
       Pipeline implementations <span class="rfc2119" id="introduction.5.2">may</span> support additional types of steps as well. </p>
     <p><a href="#fig-xival" title="A simple, linear XInclude/Validate pipeline">Figure 1, “A simple, linear XInclude/Validate pipeline”</a> is a graphical representation of a simple pipeline that
       performs XInclude processing and validation on a document.</p>
@@ -219,7 +219,7 @@ free.</p>
         XSLT step, for example, performs XSLT processing; a Validate with XML Schema step validates
         one input with respect to some set of XML Schemas, etc.</p>
       <p>There are many <em>types</em> of atomic steps. The standard library of
-        atomic steps is described in <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, but implementations
+        atomic steps is described in <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, but implementations
           <span class="rfc2119" id="step-concept.5.3">may</span> provide others as well. <a name="impl-2"></a>It is
             <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> what additional step types, if any, are
           provided.  Each use, or instance, of an atomic step invokes the processing defined
@@ -390,7 +390,7 @@ one output.</p>
 <p>All atomic steps are defined by a <a href="#p.declare-step"><code class="tag-element">p:declare-step</code></a>. The
 declaration of an atomic step type defines the input ports, output
 ports, and options of all steps of that type. For example, every
-<a href="../xproc20-steps/#c.validate-with-xml-schema">p:validate-with-xml-schema</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step has two inputs, named
+<a href="../xproc20-steps/#c.validate-with-xml-schema">p:validate-with-xml-schema</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step has two inputs, named
 “<code class="literal">source</code>” and “<code class="literal">schema</code>”, one
 output named “<code class="literal">result</code>”, and the same set of options.
 </p>
@@ -480,7 +480,7 @@ that set.
         <p>It's common for some of the documents used in processing a pipeline to be read from
           URIs. Sometimes this occurs directly, for example with a <a href="#p.document"><code class="tag-element">p:document</code></a> element.
           Sometimes it occurs indirectly, for example if an implementation allows the URI of a
-          pipeline input to be specified on the command line or if an <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step
+          pipeline input to be specified on the command line or if an <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step
           encounters an <code class="tag-element">xsl:import</code> in the stylesheet that it is processing. It's also
           common for some of the documents produced in processing a pipeline to be written to
           locations which have, or at least could have, a URI. </p>
@@ -645,12 +645,12 @@ that set.
           for <em class="glossterm"><a href="#dt-namespace-fixup">namespace fixup</a></em>. In particular, processors are encouraged to
           take account of prefix information in creating new namespace bindings, to minimize
           negative impact on prefixed names in content.</p>
-        <p><a name="impl-11"></a>Except for cases which are specifically called out in <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, the extent to which namespace fixup, and other checks for
+        <p><a name="impl-11"></a>Except for cases which are specifically called out in <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, the extent to which namespace fixup, and other checks for
             outputs which cannot be serialized, are performed on intermediate outputs is
               <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
         <p>Whenever an implementation serializes pipeline contents, for example for pipeline
-          outputs, logging, or as part of steps such as <a href="../xproc20-steps/#c.store">p:store</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> or
-            <a href="../xproc20-steps/#c.http-request">p:http-request</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, it is a <a href="#err.D0001">dynamic error</a> if
+          outputs, logging, or as part of steps such as <a href="../xproc20-steps/#c.store">p:store</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> or
+            <a href="../xproc20-steps/#c.http-request">p:http-request</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, it is a <a href="#err.D0001">dynamic error</a> if
           that serialization could not be done so as to produce a document which is both well-formed
           and namespace-well-formed, as specified in <em class="glossterm"><a href="#dt-XML">XML</a></em> and
             <em class="glossterm"><a href="#dt-Namespaces-in-XML">Namespaces in XML</a></em>, regardless of what serialization method, if
@@ -787,14 +787,14 @@ variables; on atomic steps, to compute the actual values of options.
 &lt;/p:split-sequence&gt;</code></pre>
       <p>The select expression on the variable “<code class="varname">home</code>” is evaluated by the
         XProc processor. The value of the variable is “<code class="uri">http://example.com/docs</code>”.</p>
-      <p>The <code class="option">href</code> option of the <a href="../xproc20-steps/#c.load">p:load</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step is evaluated by the XProc
+      <p>The <code class="option">href</code> option of the <a href="../xproc20-steps/#c.load">p:load</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step is evaluated by the XProc
         processor. The actual <code class="literal">href</code> option received by the step is simply the
         string literal “<code class="uri">http://example.com/docs/document.xml</code>”. (The select expression on
-        the <code class="literal">source</code> input of the <a href="../xproc20-steps/#c.split-sequence">p:split-sequence</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step is also
+        the <code class="literal">source</code> input of the <a href="../xproc20-steps/#c.split-sequence">p:split-sequence</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step is also
         evaluated by the XProc processor.) </p>
       <p>The XPath expression “<code class="literal">@role='chapter'</code>” is passed literally to the
-          <code class="literal">test</code> option on the <a href="../xproc20-steps/#c.split-sequence">p:split-sequence</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step. That's because the
-        nature of the <a href="../xproc20-steps/#c.split-sequence">p:split-sequence</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> is that <em>it evaluates</em> the
+          <code class="literal">test</code> option on the <a href="../xproc20-steps/#c.split-sequence">p:split-sequence</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step. That's because the
+        nature of the <a href="../xproc20-steps/#c.split-sequence">p:split-sequence</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> is that <em>it evaluates</em> the
         expression. Only some options on some steps expect XPath expressions. </p>
       <p>The XProc processor evaluates all of the XPath expressions in <code class="tag-attribute">select</code> attributes on variables, options, and inputs, in <code class="tag-attribute">match</code> attributes on <a href="#p.viewport"><code class="tag-element">p:viewport</code></a>, and in <code class="tag-attribute">test</code> attributes on <a href="#p.when"><code class="tag-element">p:when</code></a> steps.</p>
 
@@ -1251,20 +1251,20 @@ reads such an XML document and produces a map.</p>
 represented by the <em class="parameter"><code>$param-set</code></em> item.</p>
 
 <p>The <em class="parameter"><code>$param-set</code></em> provided
-<span class="rfc2119" id="f.make-map.5.2">must</span> be a <a href="../xproc20-steps/#cv.param-set">c:param-set</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> element or a
-document. If it is a document, <a href="../xproc20-steps/#cv.param-set">c:param-set</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>
+<span class="rfc2119" id="f.make-map.5.2">must</span> be a <a href="../xproc20-steps/#cv.param-set">c:param-set</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> element or a
+document. If it is a document, <a href="../xproc20-steps/#cv.param-set">c:param-set</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>
 <span class="rfc2119" id="f.make-map.5.5">must</span> be the document element.
 <a name="err.inline.D1000"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D1000"><code class="errqname">err:XD1000</code></a>)
 if the element (or document element) passed to
-<a href="#f.make-map"><code class="function">p:make-map</code></a> is not a <a href="../xproc20-steps/#cv.param-set">c:param-set</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>
+<a href="#f.make-map"><code class="function">p:make-map</code></a> is not a <a href="../xproc20-steps/#cv.param-set">c:param-set</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>
 element.</p>
 
-<p>Only <a href="../xproc20-steps/#cv.param">c:param</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> children of the <a href="../xproc20-steps/#cv.param-set">c:param-set</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>
+<p>Only <a href="../xproc20-steps/#cv.param">c:param</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> children of the <a href="../xproc20-steps/#cv.param-set">c:param-set</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>
 element are considered, all other nodes are ignored. The parameters
-represented by those <a href="../xproc20-steps/#cv.param">c:param</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> children
+represented by those <a href="../xproc20-steps/#cv.param">c:param</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> children
 are added to the map that is returned.
 <a name="err.inline.D1002"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D1002"><code class="errqname">err:XD1002</code></a>)
-if any of the <a href="../xproc20-steps/#cv.param">c:param</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> elements are invalid.
+if any of the <a href="../xproc20-steps/#cv.param">c:param</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> elements are invalid.
 </p>
 
 <div class="note admonition"><h3>Note</h3>
@@ -1318,8 +1318,8 @@ associated with the <em class="parameter"><code>$doc</code></em> specified.</p>
             <em>children</em> that do not specify a value themselves.</p>
         </li></ul></div>
       <p>Many of the steps that an XProc pipeline can use are transformative in nature. The
-          <a href="../xproc20-steps/#c.delete">p:delete</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step, for example, can remove elements and attributes; the
-          <a href="../xproc20-steps/#c.label-elements">p:label-elements</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step can add attributes; etc. If PSVI annotations were always
+          <a href="../xproc20-steps/#c.delete">p:delete</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step, for example, can remove elements and attributes; the
+          <a href="../xproc20-steps/#c.label-elements">p:label-elements</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step can add attributes; etc. If PSVI annotations were always
         preserved, the use of such steps could result in documents that were inconsistent with their
         schema annotations.</p>
       <p>In order to avoid these inconsistencies, most steps <span class="rfc2119" id="psvi-support.8.1">must not</span> produce
@@ -1357,9 +1357,9 @@ associated with the <em class="parameter"><code>$doc</code></em> specified.</p>
                 <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> what PSVI properties, if any, are
               produced by extension steps.</p>
           <p>The exceptions in the standard XProc steps are the
-              <a href="../xproc20-steps/#c.validate-with-xml-schema">p:validate-with-xml-schema</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, <a href="../xproc20-steps/#c.validate-with-relax-ng">p:validate-with-relax-ng</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, and
-              <a href="../xproc20-steps/#c.validate-with-schematron">p:validate-with-schematron</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> steps, <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> (when XSLT 2.0 is
-            used), <a href="../xproc20-steps/#c.xquery">p:xquery</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, <a href="../xproc20-steps/#c.identity">p:identity</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, and <a href="../xproc20-steps/#c.split-sequence">p:split-sequence</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>.
+              <a href="../xproc20-steps/#c.validate-with-xml-schema">p:validate-with-xml-schema</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, <a href="../xproc20-steps/#c.validate-with-relax-ng">p:validate-with-relax-ng</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, and
+              <a href="../xproc20-steps/#c.validate-with-schematron">p:validate-with-schematron</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> steps, <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> (when XSLT 2.0 is
+            used), <a href="../xproc20-steps/#c.xquery">p:xquery</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, <a href="../xproc20-steps/#c.identity">p:identity</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, and <a href="../xproc20-steps/#c.split-sequence">p:split-sequence</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>.
           </p>
         </li></ol></div>
       <div class="note admonition"><h3>Note</h3>
@@ -1447,10 +1447,10 @@ specification.</p>
     <section id="security-considerations" class="section"><div class="section-titlepage"><h3>2.13 Security Considerations</h3></div>
       
       <p>An XProc pipeline may attempt to access arbitrary network resources: steps such as
-          <a href="../xproc20-steps/#c.load">p:load</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> and <a href="../xproc20-steps/#c.http-request">p:http-request</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> can attempt to read from an arbitrary URI;
-        steps such as <a href="../xproc20-steps/#c.store">p:store</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> can attempt to write to an arbitrary location;
-          <a href="../xproc20-steps/#c.exec">p:exec</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> can attempt to execute an arbitrary program. Note, also, that some
-        steps, such as <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> and <a href="../xproc20-steps/#c.xquery">p:xquery</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, include extension mechanisms which
+          <a href="../xproc20-steps/#c.load">p:load</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> and <a href="../xproc20-steps/#c.http-request">p:http-request</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> can attempt to read from an arbitrary URI;
+        steps such as <a href="../xproc20-steps/#c.store">p:store</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> can attempt to write to an arbitrary location;
+          <a href="../xproc20-steps/#c.exec">p:exec</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> can attempt to execute an arbitrary program. Note, also, that some
+        steps, such as <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> and <a href="../xproc20-steps/#c.xquery">p:xquery</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, include extension mechanisms which
         may attempt to execute arbitrary code. </p>
       <p>In some environments, it may be inappropriate to provide the XProc pipeline with access
         to these resources. In a server environment, for example, it may be impractical to allow
@@ -1585,7 +1585,7 @@ encounter the following step:</p>
 <p>The processor will simply ignore the “<code class="port">ancillary</code>” port.
 </p>
 
-          <p>Suppose that XProc version 2.0 changes the definition of the <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step
+          <p>Suppose that XProc version 2.0 changes the definition of the <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step
             so that it has an additional output port, <code class="code">messages</code>. Then consider the
             following pipeline: </p>
           <pre class="programlisting language-markup line-numbers"><code>&lt;p:pipeline xmlns:p="http://www.w3.org/ns/xproc"
@@ -1675,7 +1675,7 @@ appear on the <code class="code">messages</code> port.</p>
           </dd><dt><span class="term"><code class="uri">http://www.w3.org/ns/xproc-step</code></span></dt><dd>
             <p>The namespace used for documents that are inputs to and outputs from several
               standard and optional steps described in this specification. Some steps, such as
-                <a href="../xproc20-steps/#c.http-request">p:http-request</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> and <a href="../xproc20-steps/#c.store">p:store</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, have defined input or output
+                <a href="../xproc20-steps/#c.http-request">p:http-request</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> and <a href="../xproc20-steps/#c.store">p:store</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, have defined input or output
               vocabularies. We use this namespace for all of those documents. The conventional
               prefix “<code class="literal">c:</code>” is used for this namespace.</p>
           </dd><dt><span class="term"><code class="uri">http://www.w3.org/ns/xproc-error</code></span></dt><dd>
@@ -1815,7 +1815,7 @@ variable with the same name.
 URI.]</span> The <code class="tag-attribute">href</code> attribute on the
 <a href="#p.document"><code class="tag-element">p:document</code></a> element is used to refer to
 documents by URI.</p>
-            <p>In this example, the input to the <a href="../xproc20-steps/#c.identity">p:identity</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step named
+            <p>In this example, the input to the <a href="../xproc20-steps/#c.identity">p:identity</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step named
                 “<code class="literal">otherstep</code>” comes from “<code class="uri">http://example.com/input.xml</code>”. </p>
             <pre class="programlisting language-markup line-numbers"><code>&lt;p:output port="result"/&gt;
 
@@ -1830,7 +1830,7 @@ documents by URI.</p>
                 <code class="tag-attribute">step</code> and <code class="tag-attribute">port</code> attributes
               on the <a href="#p.pipe"><code class="tag-element">p:pipe</code></a> element are used for this purpose. </p>
             <p>In this example, the “<code class="literal">source</code>” input to the
-                <a href="../xproc20-steps/#c.xinclude">p:xinclude</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step named “<code class="literal">expand</code>” comes from the
+                <a href="../xproc20-steps/#c.xinclude">p:xinclude</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step named “<code class="literal">expand</code>” comes from the
                 “<code class="literal">result</code>” port of the step named
               “<code class="literal">otherstep</code>”.</p>
             <pre class="programlisting language-markup line-numbers"><code>&lt;p:xinclude name="expand"&gt;
@@ -2764,7 +2764,7 @@ undefined, the context item is undefined.</p>
       </section></section>
     <section id="p.atomic" class="section"><div class="section-titlepage"><h3>4.7 Atomic Steps</h3></div><p>In addition to the six step types
         described in the preceding sections, XProc provides a standard library of atomic step types.
-        The full vocabulary of standards steps is described in <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>.</p>
+        The full vocabulary of standards steps is described in <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>.</p>
 <p>All of the standard, atomic steps are invoked in the same way:</p>
       <p id="R.1" prefix="p" class="element-syntax element-syntax-language-construct"><code>&lt;<var>p:atomic-step</var><br />  name? = <var>NCName</var>&gt;<br />    (<a href="#p.input">p:input</a> | <br />     <a href="#p.with-option">p:with-option</a> | <br />     <a href="#p.log">p:log</a>)*<br />&lt;/<var>p:atomic-step</var>&gt;</code></p>
       <p>Where “<em class="replaceable"><code>p:atomic-step</code></em>” <span class="rfc2119" id="p.atomic.5.2">must</span> be in the XProc
@@ -3079,7 +3079,7 @@ nodes (or an empty sequence).</p>
         call from within another pipeline, for example) implementations <span class="rfc2119" id="p.serialization.5.5">may</span> but
         are not required to check that the specified options are allowed.</p>
 <p>The semantics
-        of the attributes on a <code class="tag-element">p:serialization</code> are described in <a href="../xproc20-steps/#serialization-options">Section 2.3, “Serialization Options”</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>.</p>
+        of the attributes on a <code class="tag-element">p:serialization</code> are described in <a href="../xproc20-steps/#serialization-options">Section 2.3, “Serialization Options”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>.</p>
 <p><a name="err.inline.S0039"></a>It is a
             <em class="glossterm"><a href="#dt-static-error">static error</a></em> (<a href="#err.S0039"><code class="errqname">err:XS0039</code></a>) if the port specified on the
             <code class="tag-element">p:serialization</code> is not the name of an output port on the pipeline in which it
@@ -3318,7 +3318,7 @@ step:</p><pre class="programlisting language-markup line-numbers"><code>&lt;p:de
   &lt;p:with-option name="match" select="'html:div'"
 	         xmlns:html="http://www.w3.org/1999/xhtml"/&gt;
 &lt;/p:delete&gt;</code></pre><p>The
-<a href="../xproc20-steps/#c.delete">p:delete</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step will delete elements that match the
+<a href="../xproc20-steps/#c.delete">p:delete</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step will delete elements that match the
 expression “<code class="literal">html:div</code>”, but that expression can only
 be correctly interpreted if there's a namespace binding for the prefix
 “<code class="literal">html</code>” so that binding has to travel with the
@@ -3368,7 +3368,7 @@ option or variable are used.</p>
                   xmlns:ex="http://example.org/ns/ex"
 		  xmlns:html="http://www.w3.org/1999/xhtml"
     divchild="html:p[@class='delete']"/&gt;</code></pre><p>In
-          this case, the <code class="varname">match</code> option passed to the <a href="../xproc20-steps/#c.delete">p:delete</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step
+          this case, the <code class="varname">match</code> option passed to the <a href="../xproc20-steps/#c.delete">p:delete</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step
           needs <em>both</em> the namespace binding of “<code class="literal">h</code>” specified
           in the <code class="tag-element">ex:delete-in-div</code> pipeline definition <em>and</em> the
           namespace binding of “<code class="literal">html</code>” specified in the
@@ -3440,7 +3440,7 @@ option or variable are used.</p>
 &lt;/p:pipeline&gt;</code></pre><p>The
             <a href="#p.namespaces"><code class="tag-element">p:namespaces</code></a> element provides namespace bindings for both of the prefixes
           necessary to correctly interpret the expression ultimately passed to the
-            <a href="../xproc20-steps/#c.delete">p:delete</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step (the binding for <code class="literal">html:</code> is explicitly
+            <a href="../xproc20-steps/#c.delete">p:delete</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step (the binding for <code class="literal">html:</code> is explicitly
           provided and the binding for <code class="literal">h:</code> is in-scope). </p><div class="note admonition"><h3>Note</h3>
           <p>The use of <a href="#p.namespaces"><code class="tag-element">p:namespaces</code></a> here, when all of the bindings are provided with
             explicit namespace declarations, is unnecessary. The bindings could simply be placed on
@@ -3790,7 +3790,7 @@ exist, cannot be accessed, or has an XML content type and is not a well-formed X
 document.
 </p>
 
-<p>Use the <a href="../xproc20-steps/#c.load">p:load</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> step if you need to perform DTD-based
+<p>Use the <a href="../xproc20-steps/#c.load">p:load</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> step if you need to perform DTD-based
 validation.
 </p>
 
@@ -3801,7 +3801,7 @@ validation.
             <code class="tag-element">p:document</code> in a <a href="#p.output"><code class="tag-element">p:output</code></a> causes the pipeline to
             <em>read</em> from the specified IRI and provide that document <em>as
             an output</em> on that port. </p>
-        <p>Use <a href="../xproc20-steps/#c.store">p:store</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> to store the results that appear on a
+        <p>Use <a href="../xproc20-steps/#c.store">p:store</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> to store the results that appear on a
           <a href="#p.output"><code class="tag-element">p:output</code></a>.</p>
       </div>
 </section>
@@ -4555,8 +4555,8 @@ this within the steps:</p>
 <p>Any step that outputs an element in the step vocabulary namespace <code class="uri">http://www.w3.org/ns/xproc-step</code> must ensure that namespace is declared.  An implementation should generate a namespace binding using the prefix “<code class="literal">c</code>”.</p>
 </li><li>
 <p>When attributes are added by
-<a href="../xproc20-steps/#c.add-attribute">p:add-attribute</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> or
-<a href="../xproc20-steps/#c.set-attributes">p:set-attributes</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, the step must
+<a href="../xproc20-steps/#c.add-attribute">p:add-attribute</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> or
+<a href="../xproc20-steps/#c.set-attributes">p:set-attributes</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, the step must
 ensure the namespace of the attributes added are declared. If the
 prefix used by the QName is not in the in-scope namespaces of the
 element on which the attribute was added, the step must add a
@@ -4568,7 +4568,7 @@ should be changed to reflect that generated prefix value.
 </p>
 </li><li>
 <p>When an element is renamed by
-<a href="../xproc20-steps/#c.rename">p:rename</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, the step must ensure the namespace
+<a href="../xproc20-steps/#c.rename">p:rename</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, the step must ensure the namespace
 of the element is declared. If the prefix used by the QName is not in
 the in-scope namespaces of the element being renamed, the step must
 add a namespace declaration of the prefix to the in-scope namespaces.
@@ -4584,7 +4584,7 @@ be preserved by adding a default namespace declaration unless the
 child element has a different default namespace.</p>
 </li><li>
 <p>When an attribute is renamed by
-<a href="../xproc20-steps/#c.rename">p:rename</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, the step must ensure the namespace
+<a href="../xproc20-steps/#c.rename">p:rename</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, the step must ensure the namespace
 of the renamed attribute is declared. If the prefix used by the QName
 is not in the in-scope namespaces of the element on which the
 attribute was added, the step must add a namespace declaration of the
@@ -4595,7 +4595,7 @@ generated, the prefix associated with the attribute should be changed
 to reflect that generated prefix value.
 </p>
 </li><li>
-<p>When an element wraps content via <a href="../xproc20-steps/#c.wrap">p:wrap</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, there may be in-scope
+<p>When an element wraps content via <a href="../xproc20-steps/#c.wrap">p:wrap</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, there may be in-scope
 namespaces coming from ancestor elements of the new wrapper element.  The step must ensure the
 namespace of the element is declared properly.  By default, the wrapper element will inherit the
 in-scope namespaces of the parent element if one exists.  As such, there may be a existing namespace
@@ -4613,15 +4613,15 @@ must be undeclared.  For each of the child elements, the original default namesp
 preserved by adding a default namespace declaration unless the child element has a different default 
 namespace.</p>
 </li><li>
-<p>When the wrapper element is added for <a href="../xproc20-steps/#c.wrap-sequence">p:wrap-sequence</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup> or 
-<a href="../xproc20-steps/#c.pack">p:pack</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, the prefix used by the QName must be added to the
+<p>When the wrapper element is added for <a href="../xproc20-steps/#c.wrap-sequence">p:wrap-sequence</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup> or 
+<a href="../xproc20-steps/#c.pack">p:pack</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, the prefix used by the QName must be added to the
  in-scope namespaces.</p>
 </li><li>
-<p>When a element is removed via <a href="../xproc20-steps/#c.unwrap">p:unwrap</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, an in-scope namespaces that 
+<p>When a element is removed via <a href="../xproc20-steps/#c.unwrap">p:unwrap</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, an in-scope namespaces that 
 are declared on the element must be copied to any child element except when the child element declares 
 the same prefix or declares a new default namespace.</p>
 </li><li>
-<p>In the output from <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup>[<a href="../xproc20-steps/">XProc 2.0 Steps</a>]</sup>, if an element was generated from the xsl:element or an
+<p>In the output from <a href="../xproc20-steps/#c.xslt">p:xslt</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, if an element was generated from the xsl:element or an
  attribute from xsl:attribute, the step must guarantee that an namespace declaration exists for the namespace name 
  used.  Depending on the XSLT implementation, the namespace declaration for the namespace name of the
  element or attribute may not be declared.  It may also be the case that the original prefix is available.  
