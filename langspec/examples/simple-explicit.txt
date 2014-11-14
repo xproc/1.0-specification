@@ -1,0 +1,21 @@
+<p:declare-step xmlns:p="http://www.w3.org/ns/xproc" version="1.0">
+<p:input port="source"/>
+<p:input port="parameters" kind="parameter"/>
+<p:output port="result">
+  <p:pipe step="transform" port="result"/>
+</p:output>
+
+<p:xslt name="transform">
+  <p:input port="source">
+    <p:pipe step="main" port="source"/>
+  </p:input>
+  <p:input port="stylesheet">
+    <p:document href="docbook.xsl"/>
+  </p:input>
+  <p:input port="parameters">
+    <p:pipe step="main" port="parameters"/>
+  </p:input>
+</p:xslt>
+
+</p:declare-step>
+

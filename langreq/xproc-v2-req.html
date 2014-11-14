@@ -1,0 +1,597 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc V2.0 Requirements</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="alternate" title="XML" href="xproc-v2-req.xml" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><p>The presentation of this document has been augmented to
+      identify changes from a previous version. Three kinds of changes
+      are highlighted: <span class="revision-added">new, added text</span>,
+      <span class="revision-changed">changed text</span>, and
+      <span class="revision-deleted">deleted text</span>.</p><hr /><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc V2.0 Requirements</div></h1><h2>W3C Editor's Draft  (with revision marks) <time datetime="2014-11-14T09:47:37Z">14 November 2014 at 09:47 UTC</time></h2><dl><dt>This Version:</dt><dd><a href="http://www.w3.org/TR/2014/ED-xproc-v2-req-20141114/">http://www.w3.org/TR/2014/ED-xproc-v2-req-20141114/</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc-v2-req/">http://www.w3.org/TR/xproc-v2-req/</a></dd><dt>Editors:</dt><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">James Fuller</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:jim.fuller@webcomposite.com">jim.fuller@webcomposite.com</a>&gt;</code></dd><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dt>Repository:</dt><dd><a href="http://github.com//">This specification on GitHub</a></dd><dd><a href="http://github.com/xproc/specification/issues">Report an issue</a></dd><dt>Changes:</dt><dd><a href="diff.html">Diff against current “status quo” draft</a></dd><dd><a href="http://github.com///commits/">Commits for this specification</a></dd></dl><p>This document is also available in these non-normative formats: <a href="xproc-v2-req.xml">XML</a>, 
+	  automatic <a href="diff.html">change markup</a> from the previous draft
+          courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.</p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+© 2010 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
+<a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved.
+W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+<a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>
+and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document
+use</a> rules apply.</p><hr /><div class="abstract"><h2>Abstract</h2>
+<p>This is the requirements document for XProc V2.0.</p>
+</div><div class="status"><h2>Status of this Document</h2><p><strong>This document is an editor's  draft that has no official standing.</strong></p>
+
+<p><em>This section describes the status of this document at
+the time of its publication. Other documents may supersede this
+document. A list of current W3C publications and the latest revision
+of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a>
+at http://www.w3.org/TR/.</em></p>
+
+<p>This document is a First Public Working Draft produced by the
+<a href="http://www.w3.org/XML/Processing/">XML Processing Model
+Working Group</a> which is part of the
+<a href="http://www.w3.org/XML/Activity">XML Activity</a>.
+</p>
+
+<p>Publication as a First Public Working Draft does not imply
+endorsement by the W3C Membership. This is a draft document and may be
+updated, replaced or obsoleted by other documents at any time. It is
+inappropriate to cite this document as other than work in
+progress.</p>
+
+<p>Please send comments about this document to
+<a href="mailto:public-xml-processing-model-comments@w3.org">public-xml-processing-model-comments@w3.org</a> (public
+<a href="http://lists.w3.org/Archives/Public/public-xml-processing-model-comments/">archives</a> are available).</p>
+
+<p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
+February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/38398/status">public
+list of any patent disclosures</a> made in connection with the
+deliverables of the group; that page also includes instructions for
+disclosing a patent. An individual who has actual knowledge of a
+patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
+6 of the W3C Patent Policy</a>.</p>
+
+</div></div><hr /><div class="toc"><h2 id="TableOfContents">Table of Contents</h2><dl class="toc"><dt><span>1 <a href="#introduction">Introduction</a></span></dt><dt><span>2 <a href="#must-requirements">MUST Requirements</a></span></dt><dd><dl class="toc"><dt><span>2.1 <a href="#simplify-parameters">Simplify parameters</a></span></dt><dt><span>2.2 <a href="#non-xml-documents">Integrate non-XML documents into pipelines</a></span></dt><dt><span>2.3 <a href="#align-with-xdm">Align with XPath 3.0 technologies</a></span></dt><dt><span>2.4 <a href="#flow-handling">Add explicit flow handling</a></span></dt><dt><span>2.5 <a href="#aribrary-vars">Allow arbitrary XDM values in variables</a></span></dt><dt><span>2.6 <a href="#avts">Allow attribute value templates</a></span></dt><dt><span>2.7 <a href="#syntax">Support a variety of syntactic simplifications</a></span></dt><dt><span>2.8 <a href="#backwards-incompatiblities">Document backwards-incompatibilities</a></span></dt><dt><span>2.9 <a href="#errata">Resolve specification errors</a></span></dt></dl></dd><dt><span>3 <a href="#should-requirements">SHOULD Requirements</a></span></dt><dd><dl class="toc"><dt><span>3.1 <a href="#editorial">Editorial improvements</a></span></dt><dt><span>3.2 <a href="#metadata">Associate arbitrary metadata with documents</a></span></dt><dt><span>3.3 <a href="#dynamic-ports">Support steps with a dynamic number of ports</a></span></dt><dt><span>3.4 <a href="#debugging">Provide improved status information</a></span></dt><dt><span>3.5 <a href="#user-defined-functions">Provide a mechanism for importing user-defined functions</a></span></dt><dt><span>3.6 <a href="#try-catch">Enhance try/catch</a></span></dt><dt><span>3.7 <a href="#primer">Write a primer</a></span></dt><dt><span>3.8 <a href="#xdm-everywhere">Consider using XDM everywhere</a></span></dt><dt><span>3.9 <a href="#divide-spec">Consider dividing the specification</a></span></dt><dt><span>3.10 <a href="#more-steps">Consider additional steps and enhancements</a></span></dt><dt><span>3.11 <a href="#viewport">Simplify p:viewport and allow it to have multiple outputs</a></span></dt><dt><span>3.12 <a href="#resource-manager">Resource manager</a></span></dt><dt><span>3.13 <a href="#xml-base">Provide a way to specify the base URI of a document</a></span></dt><dt><span>3.14 <a href="#xinclude">Add a secondary input port to <code class="tag-element">p:xinclude</code></a></span></dt></dl></dd><dt><span>A <a href="#references">References</a></span></dt></dl></div>
+  
+
+<section id="introduction" class="section"><div class="section-titlepage"><h2>1 Introduction</h2></div>
+
+
+<p>User and implementor experience with [<a href="#xproc"><span class="abbrev">XProc</span></a>]
+has exposed a number of ways in which the XProc language could be
+improved. The Working Group's focus for V2.0 is on usability
+improvements.
+</p>
+
+<p>The requirements in this document are divided into two groups,
+a set of “must” requirements and a set of
+“should” requirements. The Working Group feels that
+the requirements in the “must” category are absolutely essential. The
+requirements listed in the “should” category are viewed as either less
+critical or more speculative in nature.</p>
+
+</section>
+
+
+
+<section id="must-requirements" class="section"><div class="section-titlepage"><h2>2 MUST Requirements</h2></div>
+
+
+<p>The following requirements are considered “must”
+requirements for XProc V2.0.</p>
+
+<section id="simplify-parameters" class="section"><div class="section-titlepage"><h3>2.1 Simplify parameters</h3></div>
+
+
+<p>Experience with parameters in XProc 1.0 reveals that they are
+too complicated. They often cause user confusion and introduce
+syntactic complexity not justified by their function. XProc v2.0 must
+dramatically simplify parameters, perhaps simply removing parameter
+ports altogether without replacing them with a new mechanism of
+equivalent power (and complexity).
+</p>
+</section>
+
+<section id="non-xml-documents" class="section"><div class="section-titlepage"><h3>2.2 Integrate non-XML documents into pipelines</h3></div>
+
+
+<p>Experience has shown that real-world pipelines often involve non-XML
+documents. Several workarounds have been invented for special cases.
+The limitation that V1.0 can only pass XML between steps makes some
+pipelines difficult, if not impossible, to write.</p>
+
+<p>Providing the ability to allow non-XML documents to flow between
+steps opens up the possibility of writing simple pipelines to work
+with images, JSON, Turtle, EPUB, etc.</p>
+</section>
+
+<section id="align-with-xdm" class="section"><div class="section-titlepage"><h3>2.3 Align with XPath 3.0 technologies</h3></div>
+
+
+<p>Alignment with
+[<a href="#XQuery"><span class="abbrev">XQuery 3.0</span></a>]/[<a href="#XSLT30"><span class="abbrev">XSLT 3.0</span></a>]
+will keep features of XProc
+consistent with modern XML technologies: error handling, serialization
+options, [<a href="#XDM"><span class="abbrev">XDM</span></a>] features, etc. In addition, support for XPath 1.0 no
+longer seems relevant; it adds complexity to the specification and is
+unlikely to be implemented today. XPath 1.0 support will be removed
+from XProc.</p>
+</section>
+
+<section id="flow-handling" class="section"><div class="section-titlepage"><h3>2.4 Add explicit flow handling</h3></div>
+
+
+<p>There are many pipelines for which the flow analysis does not
+provide a convenient or predictable ordering of steps. Because some
+steps have side effects not manifest in the pipeline, it may be
+necessary to ensure a particular order. This facility is not supported
+by XProc 1.0, but is available in implementation-defined extensions.
+XProc 2.0 will standardize this facility.
+</p>
+</section>
+
+<section id="aribrary-vars" class="section"><div class="section-titlepage"><h3>2.5 Allow arbitrary XDM values in variables</h3></div>
+
+
+<p>XProc 1.0 restricts the values of variables, options, and
+parameters to be only strings. This has proven to be an inconvenient
+limitation. XProc 2.0 will allow variables, options, and parameters to
+have any [<a href="#XDM"><span class="abbrev">XDM</span></a>] value insofar as possible. XProc 2.0 will also allow the
+required types of variables, options, and parameters to be specified.
+</p>
+</section>
+
+<section id="avts" class="section"><div class="section-titlepage"><h3>2.6 Allow attribute value templates</h3></div>
+
+
+<p>The syntactic sugar that allows step options to be expressed
+concisely as attribute values on a step is foiled whenever the value
+of the option must be computed by the pipeline. Allowing those options
+to contain XSLT-style attribute value templates (AVTs) would simplify
+many pipelines. Additionally, allowing AVTs in other places, such as
+the href attribute on <code class="tag-element">p:document</code>, will be considered.
+</p>
+
+<p>[<a href="#XSLT30"><span class="abbrev">XSLT 3.0</span></a>] introduces a feature which allows
+expressions in curly braces to be evaluated in element content. This
+feature is similar to the facility provided by the <code class="tag-element">p:template
+step</code>. Extending XProc to support curly braces in a manner
+consistent with [<a href="#XSLT30"><span class="abbrev">XSLT 3.0</span></a>] will be considered.</p>
+</section>
+
+<section id="syntax" class="section"><div class="section-titlepage"><h3>2.7 Support a variety of syntactic simplifications</h3></div>
+
+
+<p>XProc 1.0 offers relatively few default behaviors, requiring
+instead that pipelines specify every construct fully. User experience
+has demonstrated that this leads to very verbose pipelines and has
+been a constant source of complaint. XProc 2.0 will introduce a
+variety of syntactic simplifications as an aid to readability and
+usability, including but not limited to:</p>
+
+<div class="itemizedlist">
+
+
+
+
+
+
+
+
+
+
+
+
+<ul><li>
+<p><code class="code">&lt;p:pipe step="name"/&gt;</code> binds to the primary
+output port of the step named “name”.
+</p>
+</li><li>
+<p><code class="code">&lt;p:pipe port="secondary"/&gt;</code> binds to the
+“secondary” port of the step on which the default readable port
+occurs.
+</p>
+</li><li>
+<p><code class="code">&lt;p:input port="portname" href="..."/&gt;</code> is a
+shortcut for a nested <code class="tag-element">p:document</code>.</p>
+</li><li>
+<p><code class="code">&lt;p:input port="portname"/&gt;</code> is a shortcut for
+a nested <code class="tag-element">p:empty</code>.
+</p>
+</li><li>
+<p>Allow <code class="tag-element">p:inline</code> to be optional.
+</p>
+</li><li>
+<p>Allow curly brace expansion in <code class="tag-element">p:inline</code> (with an
+attribute to control whether or not that behavior is enabled)
+</p>
+</li><li>
+<p>Provide a <code class="tag-attribute">select</code> attribute on
+<code class="tag-element">p:for-each</code>/<code class="tag-element">p:viewport</code>
+</p>
+</li><li>
+<p>Change all steps with a single non-primary output to have a
+single primary output
+</p>
+</li><li>
+<p>Consider harmonizing <code class="tag-element">p:viewport-source</code> and
+<code class="tag-element">p:iteration-source</code>
+</p>
+</li><li>
+<p>Add an AVT <code class="tag-attribute">value</code> attribute to
+options, parameters, and variables (to be used instead of
+<code class="tag-attribute">select</code>)
+</p>
+</li><li>
+<p>Allow input ports to appear as shortcut values on steps with
+the semantics that the value provided is a URI and is used to load
+the document (per <code class="tag-element">p:document</code>).</p>
+<p>For example, this step:</p>
+<pre class="programlisting language-markup line-numbers"><code>&lt;p:xslt source="doc.xml" stylesheet="{$a}.xsl"/&gt;</code></pre>
+<p>would be equivalent to this XProc V2.0 pipeline:</p>
+<pre class="programlisting language-markup line-numbers"><code>&lt;p:xslt&gt;
+  &lt;p:input port="source"&gt;
+    &lt;p:document href="doc.xml"/&gt;
+  &lt;/p:input&gt;
+  &lt;p:input port="stylesheet"&gt;
+    &lt;p:document href="{$a}.xsl"/&gt;
+  &lt;/p:input&gt;
+&lt;/p:xslt&gt;</code></pre>
+<p>Which, in the interest of completeness, would have to be written
+thus in XProc 1.0:</p>
+
+<pre class="programlisting language-markup line-numbers"><code>&lt;p:load name="load"&gt;
+  &lt;p:with-option name="href"
+                 select="concat($a, '.xsl')"/&gt;
+&lt;/p:load&gt;
+
+&lt;p:xslt&gt;
+  &lt;p:input port="source"&gt;
+    &lt;p:document href="doc.xml"/&gt;
+  &lt;/p:input&gt;
+  &lt;p:input port="stylesheet"&gt;
+    &lt;p:pipe step="load" port="result"/&gt;
+  &lt;/p:input&gt;
+&lt;/p:xslt&gt;</code></pre>
+</li><li>
+<p>Allow output ports to appear as shortcut values on steps with
+the semantics that the value provided is a URI and is used to store
+the document that appears on that result port, per <code class="tag-element">p:store</code>.
+</p>
+<p>For example, this step:</p>
+<pre class="programlisting language-markup line-numbers"><code>&lt;p:xslt result="out.xml"/&gt;</code></pre>
+<p>would be equivalent to this pipeline:</p>
+<pre class="programlisting language-markup line-numbers"><code>&lt;p:xslt name="style"/&gt;
+
+&lt;p:store href="out.xml"/&gt;
+
+&lt;p:identity&gt;
+  &lt;p:input port="source"&gt;
+    &lt;p:pipe step="style" port="result"/&gt;
+  &lt;/p:input&gt;
+&lt;/p:identity&gt;</code></pre>
+</li></ul></div>
+</section>
+
+<section id="backwards-incompatiblities" class="section"><div class="section-titlepage"><h3>2.8 Document backwards-incompatibilities</h3></div>
+
+
+<p>Backwards incompatiblity is painful for users and will be
+avoided wherever possible. However, XProc 2.0 will introduce language
+features that are not backwards compatible with 1.0. The specification
+must document these incompatibilities.
+</p>
+</section>
+
+<div class="revision-inherited"><div class="revision-added"><section id="errata" class="section"><div class="section-titlepage"><h3>2.9 Resolve specification errors</h3></div>
+
+
+<p>This section of the requirements document details a number
+of issues that must be resolved as part of the V2.0. Some are derived
+from errata on the 1.0 specification (items that are underspecified
+or incorrectly specified); some are simply requirements that will
+have to be met in order to achieve a correct V2.0 specification.
+</p>
+
+<div class="itemizedlist">
+
+
+
+
+<ul><li>
+<p>Define exactly how <code class="option">group-adjacent</code> is computed
+for <code class="tag-element">p:wrap-sequence</code>.
+</p>
+</li><li>
+<p>Define how sequences are converted to strings for attribute
+value templates.</p>
+</li><li>
+<p>Address the fact that we document <code class="tag-element">p:when</code>, <code class="tag-element">p:otherwise</code>,
+and <code class="tag-element">p:catch</code> as if they are subpipelines when, in fact, they
+are not.</p>
+</li><li>
+<p>Address the XPath requirement that the <code class="code">doc()</code> function
+must be stable.</p>
+</li></ul></div>
+</section></div></div>
+</section>
+
+<section id="should-requirements" class="section"><div class="section-titlepage"><h2>3 SHOULD Requirements</h2></div>
+
+
+<section id="editorial" class="section"><div class="section-titlepage"><h3>3.1 Editorial improvements</h3></div>
+
+
+<p>Implementation experience has demonstrated that there are areas
+of the specification that didn't get the balance right between
+precision for implementors and clarity for users, for example
+“non-step wrappers”. The XProc 2.0 specification should attempt to
+resolve these problems without introducing inordinate complexity.
+</p>
+
+<p>The 1.0 specification also defines the <code class="tag-element">p:pipeline</code>
+element as a syntactic shortcut for a particular form of
+<code class="tag-element">p:declare-step</code>. While convenient in some circumstances, it
+has proven to be a source of some confusion especially among new
+users. XProc 2.0 may remove the <code class="tag-element">p:pipeline</code> element.
+</p>
+</section>
+
+<section id="metadata" class="section"><div class="section-titlepage"><h3>3.2 Associate arbitrary metadata with documents</h3></div>
+
+
+<p>Adding metadata to documents is a natural thing for pipelines to
+do, either for subsequent use by the pipeline or for eventual output.
+For example, the serialization options provided in an XSLT stylesheet
+could be carried forward to the eventual serialization of the result
+document by the pipeline. In XProc 1.0, there's no way to maintain
+that association. XProc 2.0 should support the ability to associate
+processor and user-defined metadata with documents.
+</p>
+</section>
+
+<section id="dynamic-ports" class="section"><div class="section-titlepage"><h3>3.3 Support steps with a dynamic number of ports</h3></div>
+
+
+<p>While most steps have a predetermined and static number of
+inputs and outputs, this is not universally the case. In XProc 1.0, a
+putative <code class="tag-element">p:eval</code> step which could run a dynamically
+constructed pipeline, for example, suffers from the limitation that
+the signature of the <code class="tag-element">p:eval</code> step usually differs from the
+signature of the evaluated pipeline.
+</p>
+
+<p>XProc 2.0 should provide a facility for supporting steps with a
+variable number of inputs and outputs.
+</p>
+</section>
+
+<section id="debugging" class="section"><div class="section-titlepage"><h3>3.4 Provide improved status information</h3></div>
+
+
+<p>XProc 1.0 provides scant support for reporting the status of a
+pipeline and providing aid to users attempt to debug pipelines.
+Implementation-defined extensions have demonstrated that some
+additional facilities, such as a <code class="tag-element">p:message</code> step, would be
+an aid to users.</p>
+
+<p>XProc 2.0 will add some mechanism for reporting status messages
+and will consider adding additional steps and/or language features to
+aid in analysing the behavior of a running pipeline.</p>
+</section>
+
+<section id="user-defined-functions" class="section"><div class="section-titlepage"><h3>3.5 Provide a mechanism for importing user-defined functions</h3></div>
+
+
+<p>Experience with user-defined functions in XQuery and XSLT
+reveals that they can be a powerful addition to the language.
+Providing some feature that allowed users to extend the vocabulary of
+functions available in, for example, the test expressions on
+<code class="tag-element">p:when</code> elements would greatly simplify some pipelines.
+</p>
+
+<p>Such a mechanism might take the form of the ability to load
+extension functions defined in, for example, XQuery, or it might
+include adding the ability to define functions in XProc.
+</p>
+</section>
+
+<section id="try-catch" class="section"><div class="section-titlepage"><h3>3.6 Enhance try/catch</h3></div>
+
+
+<p>Support for catching errors in XProc 1.0 is limited to a simple
+<code class="tag-element">p:try</code>/<code class="tag-element">p:catch</code> pair, which catches and handles
+all errors uniformly. To align XProc with modern languages, the
+try/catch mechanism will be extended to support the ability to catch
+specific errors and possibly with the addition of a “finally”
+construct.
+</p>
+</section>
+
+<section id="primer" class="section"><div class="section-titlepage"><h3>3.7 Write a primer</h3></div>
+
+<p>A new user introduction to XProc would aid adoption.</p>
+</section>
+
+<section id="xdm-everywhere" class="section"><div class="section-titlepage"><h3>3.8 Consider using XDM everywhere</h3></div>
+
+
+<p>In addition to supporting [<a href="#XDM"><span class="abbrev">XDM</span></a>] values in
+variables, options, and parameters, XProc 2.0 might allow [<a href="#XDM"><span class="abbrev">XDM</span></a>] values in more places, such as allowing p:for-each to
+iterate over a sequence of strings or integers.
+</p>
+</section>
+
+<section id="divide-spec" class="section"><div class="section-titlepage"><h3>3.9 Consider dividing the specification</h3></div>
+
+
+<p>XProc 1.0 is a specification that consists of both the language
+definition and the inventory of required and optional steps. Release
+management might be simplified by separating the language core from
+the vocabulary of steps and providing some sort of versioning strategy
+that allowed the vocabulary of steps to be revised more frequently.
+XProc 2.0 may be defined in more than one Rec-track specification
+document.</p>
+</section>
+
+<section id="more-steps" class="section"><div class="section-titlepage"><h3>3.10 Consider additional steps and enhancements</h3></div>
+
+
+<p>The vocabulary of steps available in XProc is extensible. Users
+and implementors have developed additional steps. For example, to
+support pipelines that produce EPUB documents or manipulate files on
+disk. It is worth considering which, if any, new steps should be
+elevated to the XProc namespace. The candidates include, but are not
+limited to:</p>
+
+<div class="itemizedlist">
+
+
+
+
+
+
+
+
+
+
+
+<ul><li>
+<p><code class="tag-element">p:zip</code> and <code class="tag-element">p:unzip</code>
+</p>
+</li><li>
+<p><code class="tag-element">p:template</code> and <code class="tag-element">p:in-scope-names</code>
+</p>
+</li><li>
+<p><code class="tag-element">p:eval</code>
+</p>
+</li><li>
+<p>Semantic web steps (<code class="tag-element">p:sparql</code>, <code class="tag-element">p:rdfa</code>, ...)?
+</p>
+</li><li>
+<p>Operating system steps (<code class="tag-element">p:env</code>, ...)?
+</p>
+</li><li>
+<p>File system steps (<code class="tag-element">p:mkdir</code>, <code class="tag-element">p:copy</code>, ...)?
+</p>
+</li><li>
+<p>Step to turn a map into an XML serialization, function to turn
+an XML serialization into a map.
+</p>
+</li><li>
+<p>Function to return metadata as map; additional syntax/step to
+augment and/or override metadata.
+</p>
+</li><li>
+<p>Consider harmonizing with EXpath for extension functions/steps
+(e.g. <a href="http://expath.org/spec/binary">http://expath.org/spec/binary</a>).
+</p>
+</li><li>
+<p>Step for turning non-XML documents into various XML encoded
+forms.</p>
+</li><li>
+<p>Look at <code class="tag-element">p:store</code> and anywhere else serialization happens
+and document which metadata parameters have effect.</p>
+</li></ul></div>
+</section>
+<section id="viewport" class="section"><div class="section-titlepage"><h3>3.11 Simplify p:viewport and allow it to have multiple outputs</h3></div>
+
+
+<p>The use of an optional, single p:output binding in p:viewport
+creates confusion for users. The binding is used both to connect the
+inner workings of the viewport and as the name of the output port as
+seen from the outside.
+</p>
+
+<p>In addition, the fact that viewport can produce only a single
+result means that for some tasks, multiple passes are required, using
+a combination of <code class="tag-element">p:viewport</code> and <code class="tag-element">p:for-each</code>.
+Consider the task of changing image references in an XHTML document
+from .svg to .png and generating the sequence of .png images. In XProc
+1.0, this requires a <code class="tag-element">p:viewport</code> and a <code class="tag-element">p:for-each</code>.
+</p>
+
+<p>Adding an explicit <code class="tag-element">p:viewport-result</code> allows us to
+remove the confusion between the input and the name of the output.
+Allowing multiple outputs allows us to collapse the
+<code class="tag-element">p:viewport</code> and <code class="tag-element">p:for-each</code> logic into a single
+step.
+</p>
+
+<pre class="programlisting line-numbers"><code>&lt;p:viewport
+  name? = NCName
+  match = XSLTMatchPattern&gt;
+    ((p:viewport-source? &amp;
+      p:viewport-result? &amp;
+      p:output* &amp;
+      p:log?),
+     subpipeline)
+&lt;/p:viewport&gt;</code></pre>
+
+<p>The viewport-result connects the transformation inside the
+viewport back into the source document over which viewport is
+operating. The transformed document always appears on a port named
+'result'. Any other outputs are simply sequences analagous to
+<code class="tag-element">p:for-each</code>. It's a static error to name one of those outputs 'result'.
+</p>
+</section>
+
+<div class="revision-inherited"><div class="revision-added"><section id="resource-manager" class="section"><div class="section-titlepage"><h3>3.12 Resource manager</h3></div>
+
+<p>Consider whether XProc needs to define conceptually a resource
+manager and provide access to it. For example, a standard step like
+<a href="http://xmlcalabash.com/docs/reference/cx-collection-manager.html"><code class="tag-element">cx:collection-manager</code></a>.</p>
+</section></div></div>
+
+<section id="xml-base" class="section"><div class="section-titlepage"><h3>3.13 Provide a way to specify the base URI of a document</h3></div>
+
+
+<p>The base URI of a <em>document</em> created by the
+<code class="tag-element">p:inline</code> element is the base URI of the <code class="tag-element">p:inline</code> element.
+Specifying an <code class="tag-attribute">xml:base</code> attribute on the root
+element of the document does not help as that only applies to that element and
+its decendants.</p>
+
+<p>Additionally, in some pipelines, it is desirable to be able to change the
+base URI of documents produced by other steps. No convenient mechanism exists in
+XProc V1.0 to satisfy these requirements.</p>
+</section>
+
+<div class="revision-inherited"><div class="revision-added"><section id="xinclude" class="section"><div class="section-titlepage"><h3>3.14 Add a secondary input port to <code class="tag-element">p:xinclude</code></h3></div>
+
+
+<p>Add a secondary input port to <code class="tag-element">p:xinclude</code> from which
+included documents are preferentially resolved.</p>
+</section></div></div>
+</section>
+
+<article id="references" class="appendix"><header class="appendix-titlepage"><h2>A References</h2></header>
+
+
+<div class="bibliolist">
+<div id="rfc2119" class="bibliomixed"><p>[<span class="abbrev">RFC 2119</span>] 
+<a href="http://www.ietf.org/rfc/rfc2119.txt"><span class="citetitle"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></span></a>.
+S. Bradner.
+Network Working Group, IETF,
+Mar 1997.
+</p></div>
+<div id="xproc" class="bibliomixed"><p>[<span class="abbrev">XProc</span>] 
+<a href="http://www.w3.org/TR/xproc/"><span class="citetitle"><cite>XML:
+An XML Pipeline Language</cite></span></a>. Norman Walsh, Alex Milowski, and Henry S. Thompson,
+editors. W3C Recommedation 11 May 2010.
+</p></div>
+<div id="XDM" class="bibliomixed"><p>[<span class="abbrev">XDM</span>] 
+<a href="http://www.w3.org/TR/xpath-datamodel-30/"><span class="citetitle"><cite>XQuery and XPath Data Model (XDM) 3.0</cite></span></a>,
+Norman Walsh, John Snelson, Editors.
+World Wide Web Consortium,
+08 January 2013.</p></div>
+
+<div id="XQuery" class="bibliomixed"><p>[<span class="abbrev">XQuery 3.0</span>] 
+<a href="http://www.w3.org/TR/xquery-30/"><span class="citetitle"><cite>XQuery 3.0: An XML Query Language</cite></span></a>,
+Jonathan Robie, Don Chamberlin, Michael Dyck, John Snelson, Editors.
+World Wide Web Consortium,
+08 January 2013.</p></div>
+
+<div id="XSLT30" class="bibliomixed"><p>[<span class="abbrev">XSLT 3.0</span>] 
+<a href="http://www.w3.org/TR/xslt-30/"><span class="citetitle"><cite>XSL Transformations (XSLT) Version 3.0</cite></span></a>,
+Michael Kay, Editor.
+World Wide Web Consortium,
+10 July 2012.</p></div>
+</div>
+</article>
+
+</div><script src="prism.js"></script></body></html>

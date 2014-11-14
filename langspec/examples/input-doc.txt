@@ -1,0 +1,3 @@
+<p:input port="source">
+  <p:document href="http://example.org/input.html"/>
+</p:input>

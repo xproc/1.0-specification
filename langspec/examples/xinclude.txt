@@ -1,0 +1,5 @@
+<p:xinclude name="expand">
+  <p:input port="source">
+    <p:pipe step="otherstep" port="result"/>
+  </p:input>
+</p:xinclude>

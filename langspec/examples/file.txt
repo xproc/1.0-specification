@@ -1,0 +1,5 @@
+<p:identity name="readcsv">
+  <p:input port="source">
+    <p:data href="stateabbr.csv"/>
+  </p:input>
+</p:identity>
