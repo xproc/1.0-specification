@@ -352,8 +352,6 @@
 -->
   <link rel="stylesheet" type="text/css"
         href="http://www.w3.org/StyleSheets/TR/base.css"/>
-  <link rel="stylesheet" type="text/css"
-        href="xproc.css"/>
   <xsl:choose>
     <xsl:when test="$docbook.css.inline = 0">
       <link rel="stylesheet" type="text/css" href="{$docbook.css}"/>
@@ -364,6 +362,8 @@
       </style>
     </xsl:otherwise>
   </xsl:choose>
+  <link rel="stylesheet" type="text/css"
+        href="xproc.css"/>
 </xsl:template>
 
 <!-- ============================================================ -->

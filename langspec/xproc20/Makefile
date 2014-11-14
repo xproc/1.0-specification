@@ -19,7 +19,7 @@ Overview.html: ,xproc20.xml error-list.xml \
 	            -pschemaext.schema=../../../../../schema/dbspec.rng \
                     -pxml.toc.filename=xproc20.toc.xml \
                     -potherspec=../xproc20-steps/,steps.xml \
-                    -potherlabel="XProc 2.0 Steps" \
+                    -potherlabel="XPS" \
                     ../../style/formatspec.xpl style=xproc-specs.xsl
 
 # N.B. ,,xproc20.xml has a bogus glossary, you must re-validate (which
