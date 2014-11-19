@@ -3196,7 +3196,7 @@ nodes (or an empty sequence).</error></para>
           port which has a default connection, then the input is treated as if the default
           connection appeared.</para>
 
-<para>An input declaration may contain foreign element(s), scoped outside of XProc vocabulary 
+<para>An input declaration may contain foreign element, scoped outside of XProc vocabulary 
 (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace. Each element is treated
 as if wrapped with a <tag>p:inline</tag> element. For definition of this implicit behaviour 
 see <tag>p:inline</tag>.</para>
