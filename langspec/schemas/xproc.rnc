@@ -82,6 +82,8 @@ version.attr = attribute version { text }
 
 common.attributes = xmlid.attr?, xmlbase.attr?, extension.attr*
 
+inline.attributes = exclude-inline-prefixes.attr?, attribute expand-text { xsd:boolean }?
+
 decl.attributes = psvi-required.attr?,
    xpath-version.attr?,
    exclude-inline-prefixes.attr?,
@@ -152,8 +154,9 @@ InputDeclaration =
       attribute media-types { MediaTypes }?,
       select.attr?,
       common.attributes,
+      inline.attributes,
       use-when.attr?,
-      ((\Empty|(Document|Inline)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|Any|(Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 [
@@ -164,8 +167,9 @@ InputConnection =
       port.attr,
       select.attr?,
       common.attributes,
+      inline.attributes,
       use-when.attr?,
-      ((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|Any|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 [
@@ -197,8 +201,9 @@ OutputConnection =
       sequence.attr?,
       primary.attr?,
       common.attributes,
+      inline.attributes,
       use-when.attr?,
-      ((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|Any|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 [
@@ -235,9 +240,8 @@ Document =
 ]
 Inline =
    element inline {
-      exclude-inline-prefixes.attr?,
-      attribute expand-text { xsd:boolean }?,
       common.attributes,
+      inline.attributes,
       use-when.attr?,
       Any
    }
@@ -333,8 +337,9 @@ WithOptionSelect =
       as.attr?,
       select.attr,
       common.attributes,
+      inline.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Inline)? & (Namespaces|Documentation|PipeInfo)*)
+      ((\Empty|Pipe|Document|Any|Inline)? & (Namespaces|Documentation|PipeInfo)*)
    }
 
 [
@@ -353,8 +358,9 @@ VariableSelect =
       as.attr?,
       select.attr,
       common.attributes,
+      inline.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Inline)? & (Namespaces|Documentation|PipeInfo)*)
+      ((\Empty|Pipe|Document|Any|Inline)? & (Namespaces|Documentation|PipeInfo)*)
    }
 
 [
@@ -413,8 +419,9 @@ IterationSource =
    element iteration-source {
       select.attr?,
       common.attributes,
+      inline.attributes,
       use-when.attr?,
-      ((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
+      ((\Empty|Any|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
    }
 
 # ============================================================
@@ -437,8 +444,9 @@ Viewport =
 ViewportSource =
    element viewport-source {
       common.attributes,
+      inline.attributes,
       use-when.attr?,
-      ((Pipe|Document|Inline)? & (Documentation|PipeInfo)*)
+      ((Pipe|Document|Any|Inline)? & (Documentation|PipeInfo)*)
    }
 
 # ============================================================
@@ -465,8 +473,9 @@ Choose =
 XPathContext =
    element xpath-context {
       common.attributes,
+      inline.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Inline) & (Documentation|PipeInfo)*)
+      ((\Empty|Pipe|Document|Any|Inline) & (Documentation|PipeInfo)*)
    }
 
 [
