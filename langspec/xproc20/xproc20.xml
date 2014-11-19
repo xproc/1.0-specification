@@ -512,8 +512,8 @@ step.</para>
 <para>Within a compound step, the <glossterm>declared
 outputs</glossterm> of the step can be connected to any of the various
 available outputs of <glossterm baseform="contained steps">contained
-steps</glossterm>. Outputs can also be connected to any available
-readable port (see <xref linkend="connections"/>). If a (non-primary)
+steps</glossterm> as well as other data sources
+(see <xref linkend="connections"/>). If a (non-primary)
 output port of a compound step is left unconnected, it produces an
 empty sequence of documents from the perspective of its
 siblings.</para>
