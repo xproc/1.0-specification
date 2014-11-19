@@ -535,7 +535,7 @@ TryGroup =
 Catch =
    element catch {
       name.ncname.attr?,
-      attribute code { xsd:QName }?,
+      attribute code { xsd:QName+ }?,
       common.attributes,
       use-when.attr?,
       ((Output|Log|Documentation|PipeInfo)*, Subpipeline)

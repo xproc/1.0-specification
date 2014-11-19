@@ -2855,8 +2855,8 @@ subpipelines.</para>
 
 <para>Each <tag>p:catch</tag> pipeline is considered in document
 order. All except the last <rfc2119>must</rfc2119> have a
-<tag class="attribute">code</tag> attribute. If the specified error
-code matches the error that was raised in the <tag>p:group</tag>, then
+<tag class="attribute">code</tag> attribute. If any of the specified error
+codes matches the error that was raised in the <tag>p:group</tag>, then
 that <tag>p:catch</tag> is selected as the recovery pipeline.
 The last <tag>p:catch</tag>
 <rfc2119>must not</rfc2119> have a <tag class="attribute">code</tag>
@@ -2944,7 +2944,8 @@ block of an enclosing <tag>p:try</tag>.</para>
 <note role="editorial">
 <title>Ed Note</title>
 <para>I'm not actually sure <tag>p:finally</tag> is worth doing, but
-I've sketched it in for completeness.</para>
+I've sketched it in for completeness. Also, should <tag>p:catch</tag>
+be entirely optional, allowing just try/group/finally?</para>
 </note>
 
 <section xml:id="err-vocab">
