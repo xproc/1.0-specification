@@ -149,7 +149,7 @@ InputDeclaration =
       port.attr,
       sequence.attr?,
       primary.attr?,
-      attribute media-types { MediaTypes }?,
+      attribute content-types { MediaTypes }?,
       select.attr?,
       common.attributes,
       use-when.attr?,

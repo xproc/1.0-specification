@@ -232,7 +232,7 @@ free.</para>
 
     <para>The pattern of connections between steps will not always completely determine their order
       of evaluation. <impl>The evaluation order of steps not connected to one another is
-          <glossterm>implementation-dependent</glossterm></impl>. </para>
+          <glossterm>implementation-dependent</glossterm></impl>.</para>
     <section xml:id="step-concept">
       <title>Steps</title>
       <para><termdef xml:id="dt-step">A <firstterm>step</firstterm> is the basic computational unit
@@ -365,7 +365,7 @@ free.</para>
 <para>An XProc pipeline processes documents.
 <termdef xml:id="dt-document">A <firstterm>document</firstterm> is a
 <glossterm>representation</glossterm> and its
-<biblioref linkend="rfc2046"/>.</termdef>.
+<glossterm>document properties</glossterm>.</termdef>.
 <termdef xml:id="dt-representation">A <firstterm>representation</firstterm>
 is a data structure used by an XProc processor to refer to the actual
 document content.</termdef>
@@ -375,9 +375,30 @@ document content.</termdef>
 are key/value pairs. <termdef xml:id="dt-document-properties">The
 <firstterm>document properties</firstterm> are exposed to the XProc
 pipeline as a map (<code>map(xs:string, xs:string)</code>).</termdef>
-The document properties must always include a “<code>content-type</code>”
-key which identifies the <biblioref linkend="rfc2046"/> of the
-representation. Other properties may also be present, including user
+Several property keys are defined by this specification:</para>
+
+<variablelist>
+<varlistentry>
+<term><code>content-type</code></term>
+<listitem>
+<para>The value of the “<code>content-type</code>”
+key identifies the <biblioref linkend="rfc2046"/> of the
+representation. The “<code>content-type</code>” <rfc2119>must</rfc2119>
+always be present.
+</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term><code>base-uri</code></term>
+<listitem>
+<para>The value of the “<code>base-uri</code>” key identifies the
+base URI of the document. If no such key is present, the document has
+no base URI.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para>Other property keys may also be present, including user
 defined properties.</para>
 
 <section xml:id="xml-documents">
@@ -468,24 +489,34 @@ output named “<literal>result</literal>”, and the same set of options.
             are used by another step or expression.  Usually, this connection is made in reverse
             where the use of the output describes the connection (see <xref linkend="connections"
             />).</para>
-         <para>The <glossterm>primary output port</glossterm> of a step <rfc2119>must</rfc2119> be
-            connected to some consumer. <error code="S0005">It is a <glossterm>static
-                  error</glossterm> if the primary output port of any step is not connected.</error>
-            Other outputs can remain unconnected. Any documents produced on an unconnected output
-            port are discarded.</para>
-         <para>Primary input and primary output ports may be implicitly connected if no explicit
-            connection is given, see <xref linkend="primary-input-output"/>.</para>
-         <para>Output ports on compound steps have a dual nature: from the perspective of the
-            compound step's siblings, its outputs are just ordinary outputs and can be connected the
-            sames other <glossterm>declared outputs</glossterm>. From the perspective of the
-            subpipeline inside the compound step, they are inputs into which something may be
-            connected to produce the output of the compound step.</para>
-         <para>Within a compound step, the <glossterm>declared outputs</glossterm> of the step can
-            be connected to any of the various available outputs of <glossterm
-               baseform="contained steps">contained steps</glossterm> in combination with other
-            inputs (see <xref linkend="connections"/>).  If a (non-primary) output port of a
-            compound step is left unconnected, it produces an empty sequence of documents from the
-            perspective of its siblings.</para>
+
+<para>The <glossterm>primary output port</glossterm> of a step
+<rfc2119>must</rfc2119> be connected to some consumer. <error
+code="S0005">It is a <glossterm>static error</glossterm> if the
+primary output port of any step is not connected.</error> Other
+outputs can remain unconnected. Any documents produced on an
+unconnected output port are discarded.</para>
+
+<para>Primary input and primary output ports may be implicitly
+connected if no explicit connection is given, see <xref
+linkend="primary-input-output"/>.</para>
+
+<para>Output ports on compound steps have a dual nature: from the
+perspective of the compound step's siblings, its outputs are just
+ordinary outputs and can be connected the sames other
+<glossterm>declared outputs</glossterm>. From the perspective of the
+subpipeline inside the compound step, they are inputs into which
+something may be connected to produce the output of the compound
+step.</para>
+
+<para>Within a compound step, the <glossterm>declared
+outputs</glossterm> of the step can be connected to any of the various
+available outputs of <glossterm baseform="contained steps">contained
+steps</glossterm> as well as other data sources
+(see <xref linkend="connections"/>). If a (non-primary)
+output port of a compound step is left unconnected, it produces an
+empty sequence of documents from the perspective of its
+siblings.</para>
 
       <para>Each input and output on a step is declared to accept or produce either a single
         document or a sequence of documents. It <emphasis>is not</emphasis> an error to connect a
@@ -520,11 +551,12 @@ is <glossterm>implementation-defined</glossterm>.</impl></para>
 the pipeline is
 <glossterm>implementation-defined</glossterm>.</impl></para>
 
-<para>Input ports <rfc2119>may</rfc2119> specify a cointent type, or list of
+<para>Input ports <rfc2119>may</rfc2119> specify a content type, or list of
 content types, that they accept.
 <error code="D1003">If an input port provides a set of acceptable content
 types, it is a <glossterm>dynamic error</glossterm>
-if an input document that arrives on the port has a content type not in
+if an input document that arrives on the port has a content type that
+does not match any content type in
 that set.</error>
 </para>
 
@@ -659,9 +691,9 @@ that set.</error>
             within the current <glossterm>environment</glossterm>.</para>
 
       <section xml:id="namespace-fixup">
-        <title>Namespace Fixup on Outputs</title>
+        <title>Namespace Fixup on XML Outputs</title>
         <para>XProc processors are expected, and sometimes required, to perform <glossterm>namespace
-            fixup</glossterm>. Unless the semantics of a step explicitly says otherwise:</para>
+            fixup</glossterm> on XML outputs. Unless the semantics of a step explicitly says otherwise:</para>
         <itemizedlist>
           <listitem>
             <para>The in-scope namespaces associated with a node (even those that are inherited from
@@ -1519,6 +1551,7 @@ if any of the <tag>c:param</tag> elements are invalid.</error>
 </para>
 
 <note role="editorial">
+<title>Editorial Note</title>
 <para>Must tie down what “valid” means wrt the c:param element.</para>
 </note>
 </section>
@@ -1537,6 +1570,13 @@ of a document as a map.</para>
 
 <para>The map returned contains (exclusively) the document properties
 associated with the <parameter>doc</parameter> specified.</para>
+
+<note>
+<title>Editorial Note</title>
+<para>This function is only defined on XML documents but clearly the
+intent is that it should work on any kind of document. How can we
+do that?</para>
+</note>
 </section>
 
       <section xml:id="other-xpath-extension-functions">
@@ -1698,13 +1738,18 @@ the pipeline initially invoked by the processor is
 the command line options, APIs, or other mechanisms available to
 specify such options values are outside the scope of this
 specification.</para>
-         <para>Some steps require a set of name/value pairs for the operations they perform. For
-            example, an author may specify parameters to an XSLT transformation or external
-            variables to an XQuery. Such values are passed to the step via an option that requires a
-            map item value <biblioref linkend="lastcall-xslt30"/> . The map item contains the
-            mapping of between the names and the values whose interpretation is specific to the
-            step.</para>
-   
+
+<para>Some steps require a set of name/value pairs for the operations
+they perform. For example, an XSLT stylesheet might have required
+parameters or an XQuery query might have external variables.
+In the XProc Step Library, the standard way to pass such values to
+the step is to use an option named “<literal>parameters</literal>”
+whose value is a map item value
+<biblioref linkend="lastcall-xslt30"/>.
+The map item contains the
+mapping of between the names and the values whose interpretation is
+specific to the step.</para>
+
     </section>
     <section xml:id="security-considerations">
       <title>Security Considerations</title>
@@ -3984,6 +4029,11 @@ fail due to validation errors.
 </para>
 </listitem>
 </itemizedlist>
+
+<para>If the document identified has a non-XML content type, no extra
+processing is mandated.
+<impl>The number and variety of media types that an implementation
+can load is <glossterm>implementation-defined</glossterm></impl>.</para>
 
 <para><error code="D0011">It is a <glossterm>dynamic error</glossterm>
 if the resource referenced by a <tag>p:document</tag> element does not
