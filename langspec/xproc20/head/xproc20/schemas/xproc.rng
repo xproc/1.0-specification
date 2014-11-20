@@ -118,6 +118,16 @@
       <ref name="extension.attr"/>
     </zeroOrMore>
   </define>
+  <define name="inline.attributes">
+    <optional>
+      <ref name="exclude-inline-prefixes.attr"/>
+    </optional>
+    <optional>
+      <attribute name="expand-text">
+        <data type="boolean"/>
+      </attribute>
+    </optional>
+  </define>
   <define name="decl.attributes">
     <optional>
       <ref name="psvi-required.attr"/>
@@ -262,6 +272,7 @@
         <ref name="select.attr"/>
       </optional>
       <ref name="common.attributes"/>
+      <ref name="inline.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -269,6 +280,7 @@
         <optional>
           <choice>
             <ref name="Empty"/>
+            <ref name="Any"/>
             <oneOrMore>
               <choice>
                 <ref name="Document"/>
@@ -293,6 +305,7 @@
         <ref name="select.attr"/>
       </optional>
       <ref name="common.attributes"/>
+      <ref name="inline.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -300,6 +313,7 @@
         <optional>
           <choice>
             <ref name="Empty"/>
+            <ref name="Any"/>
             <oneOrMore>
               <choice>
                 <ref name="Pipe"/>
@@ -356,6 +370,7 @@
         <ref name="primary.attr"/>
       </optional>
       <ref name="common.attributes"/>
+      <ref name="inline.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -363,6 +378,7 @@
         <optional>
           <choice>
             <ref name="Empty"/>
+            <ref name="Any"/>
             <oneOrMore>
               <choice>
                 <ref name="Pipe"/>
@@ -425,15 +441,8 @@
   </define>
   <define name="Inline" sa:class="language-construct">
     <element name="inline">
-      <optional>
-        <ref name="exclude-inline-prefixes.attr"/>
-      </optional>
-      <optional>
-        <attribute name="expand-text">
-          <data type="boolean"/>
-        </attribute>
-      </optional>
       <ref name="common.attributes"/>
+      <ref name="inline.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -619,6 +628,7 @@
       </optional>
       <ref name="select.attr"/>
       <ref name="common.attributes"/>
+      <ref name="inline.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -628,6 +638,7 @@
             <ref name="Empty"/>
             <ref name="Pipe"/>
             <ref name="Document"/>
+            <ref name="Any"/>
             <ref name="Inline"/>
           </choice>
         </optional>
@@ -653,6 +664,7 @@
       </optional>
       <ref name="select.attr"/>
       <ref name="common.attributes"/>
+      <ref name="inline.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -662,6 +674,7 @@
             <ref name="Empty"/>
             <ref name="Pipe"/>
             <ref name="Document"/>
+            <ref name="Any"/>
             <ref name="Inline"/>
           </choice>
         </optional>
@@ -779,6 +792,7 @@
         <ref name="select.attr"/>
       </optional>
       <ref name="common.attributes"/>
+      <ref name="inline.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -786,6 +800,7 @@
         <optional>
           <choice>
             <ref name="Empty"/>
+            <ref name="Any"/>
             <oneOrMore>
               <choice>
                 <ref name="Pipe"/>
@@ -842,6 +857,7 @@
   <define name="ViewportSource" sa:class="language-construct">
     <element name="viewport-source">
       <ref name="common.attributes"/>
+      <ref name="inline.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -850,6 +866,7 @@
           <choice>
             <ref name="Pipe"/>
             <ref name="Document"/>
+            <ref name="Any"/>
             <ref name="Inline"/>
           </choice>
         </optional>
@@ -907,6 +924,7 @@
   <define name="XPathContext" sa:class="language-construct">
     <element name="xpath-context">
       <ref name="common.attributes"/>
+      <ref name="inline.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -915,6 +933,7 @@
           <ref name="Empty"/>
           <ref name="Pipe"/>
           <ref name="Document"/>
+          <ref name="Any"/>
           <ref name="Inline"/>
         </choice>
         <zeroOrMore>
@@ -1015,7 +1034,12 @@
             <ref name="Variable"/>
           </zeroOrMore>
           <ref name="TryGroup"/>
-          <ref name="Catch"/>
+          <oneOrMore>
+            <ref name="Catch"/>
+          </oneOrMore>
+          <optional>
+            <ref name="Finally"/>
+          </optional>
         </group>
         <zeroOrMore>
           <choice>
@@ -1050,6 +1074,13 @@
       <optional>
         <ref name="name.ncname.attr"/>
       </optional>
+      <optional>
+        <attribute name="code">
+          <oneOrMore>
+            <data type="QName"/>
+          </oneOrMore>
+        </attribute>
+      </optional>
       <ref name="common.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
@@ -1059,6 +1090,26 @@
           <choice>
             <ref name="Output"/>
             <ref name="Log"/>
+            <ref name="Documentation"/>
+            <ref name="PipeInfo"/>
+          </choice>
+        </zeroOrMore>
+        <ref name="Subpipeline"/>
+      </group>
+    </element>
+  </define>
+  <define name="Finally" sa:class="language-construct">
+    <element name="finally">
+      <optional>
+        <ref name="name.ncname.attr"/>
+      </optional>
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="use-when.attr"/>
+      </optional>
+      <group>
+        <zeroOrMore>
+          <choice>
             <ref name="Documentation"/>
             <ref name="PipeInfo"/>
           </choice>
