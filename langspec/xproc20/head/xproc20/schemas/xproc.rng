@@ -254,7 +254,7 @@
         <ref name="primary.attr"/>
       </optional>
       <optional>
-        <attribute name="media-types">
+        <attribute name="content-types">
           <ref name="MediaTypes"/>
         </attribute>
       </optional>
@@ -1015,7 +1015,12 @@
             <ref name="Variable"/>
           </zeroOrMore>
           <ref name="TryGroup"/>
-          <ref name="Catch"/>
+          <oneOrMore>
+            <ref name="Catch"/>
+          </oneOrMore>
+          <optional>
+            <ref name="Finally"/>
+          </optional>
         </group>
         <zeroOrMore>
           <choice>
@@ -1050,6 +1055,13 @@
       <optional>
         <ref name="name.ncname.attr"/>
       </optional>
+      <optional>
+        <attribute name="code">
+          <oneOrMore>
+            <data type="QName"/>
+          </oneOrMore>
+        </attribute>
+      </optional>
       <ref name="common.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
@@ -1059,6 +1071,26 @@
           <choice>
             <ref name="Output"/>
             <ref name="Log"/>
+            <ref name="Documentation"/>
+            <ref name="PipeInfo"/>
+          </choice>
+        </zeroOrMore>
+        <ref name="Subpipeline"/>
+      </group>
+    </element>
+  </define>
+  <define name="Finally" sa:class="language-construct">
+    <element name="finally">
+      <optional>
+        <ref name="name.ncname.attr"/>
+      </optional>
+      <ref name="common.attributes"/>
+      <optional>
+        <ref name="use-when.attr"/>
+      </optional>
+      <group>
+        <zeroOrMore>
+          <choice>
             <ref name="Documentation"/>
             <ref name="PipeInfo"/>
           </choice>

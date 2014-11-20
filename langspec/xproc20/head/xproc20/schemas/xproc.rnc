@@ -149,7 +149,7 @@ InputDeclaration =
       port.attr,
       sequence.attr?,
       primary.attr?,
-      attribute media-types { MediaTypes }?,
+      attribute content-types { MediaTypes }?,
       select.attr?,
       common.attributes,
       use-when.attr?,
@@ -516,7 +516,7 @@ Try =
       name.ncname.attr?,
       common.attributes,
       use-when.attr?,
-      ((Variable*, TryGroup, Catch) & (Documentation|PipeInfo)*)
+      ((Variable*, TryGroup, Catch+, Finally?) & (Documentation|PipeInfo)*)
    }
 
 [
@@ -535,9 +535,21 @@ TryGroup =
 Catch =
    element catch {
       name.ncname.attr?,
+      attribute code { xsd:QName+ }?,
       common.attributes,
       use-when.attr?,
       ((Output|Log|Documentation|PipeInfo)*, Subpipeline)
+   }
+
+[
+   sa:class = "language-construct"
+]
+Finally =
+   element finally {
+      name.ncname.attr?,
+      common.attributes,
+      use-when.attr?,
+      ((Documentation|PipeInfo)*, Subpipeline)
    }
 
 # ============================================================
