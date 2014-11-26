@@ -427,7 +427,8 @@ in an XProc pipeline is <glossterm>implementation-defined</glossterm>.</impl>
 are <glossterm>implementation-dependent</glossterm>.</impl>
 </para>
 
-<para>FIXME: implementors are free to optimize, etc.</para>
+<para>Implementors are free to optimize by storing them in convenient
+formats, caching them on disk, etc.</para>
 
 </section>
 </section>
@@ -1673,22 +1674,138 @@ do that?</para>
 <section xml:id="value-templates">
 <title>Value Templates</title>
 
+<para>The string value of an attribute or text node in a pipeline
+may, in particular circumstances, contain embedded expressions enclosed
+between curly brackets. Attributes and text nodes that use (or are
+permitted to use) this mechanism are referred to respectively as
+<glossterm>attribute value templates</glossterm> and
+<glossterm>text value templates.</glossterm>.</para>
+
+<para><termdef xml:id="dt-value-template">Collectively,
+attribute value templates and text value templates are referred to as
+<firstterm baseform="value template">value templates</firstterm>.</termdef>
+</para>
+
+<para>A value template is a string consisting of an alternating sequence
+of fixed parts and variable parts. A variable part consists of an
+XPath expression enclosed in curly brackets (<code>{}</code>). A fixed
+part may contain any characters, except that a left curly bracket
+<rfc2119>must</rfc2119> be written as <code>{{</code> and a right
+curly bracket <rfc2119>must</rfc2119> be written as <code>}}</code>.
+If the XPath expression ends with a closing curly bracket, this must
+be separated from the delimiting closing bracket by whitespace. If the
+XPath expression starts with an opening curly bracket, this must be
+preceded by whitespace, to avoid misinterpretation as an escaped
+<code>{{</code> sequence.</para>
+
+<note>
+<para>An expression within a variable part may contain an unescaped curly
+bracket within a string literals or within a comment.</para>
+
+<para>Currently no XPath expression starts with an opening curly
+bracket, so the use of <code>{{</code> creates no ambiguity. If an
+enclosed expression ends with a closing curly bracket, no whitespace
+is required between this and the closing delimiter.</para>
+</note>
+
+<para>
+<error code="S1003">It is a <glossterm>static error</glossterm> if an
+unescaped left curly bracket appears in a fixed part of a value
+template without a matching right curly bracket or if an unescaped
+right curly bracket appears in the fixed part of a value template.</error>
+</para>
+
+<para>It is a static error if the string contained between matching curly
+brackets in a value template, when interpreted as an XPath expression,
+contains errors. The error is signaled using the appropriate
+XPath error code.</para>
+
+<para><termdef xml:id="dt-effective-value">The result of evaluating a
+value template is referred to as its <firstterm>effective
+value</firstterm>.</termdef> The effective value is the string
+obtained by concatenating the expansions of the fixed and variable
+parts:</para>
+
+<itemizedlist>
+<listitem>
+<para>The expansion of a fixed part is obtained by replacing any double curly
+brackets (<code>{{</code> or <code>}}</code>) by the corresponding single curly
+bracket.</para>
+</listitem>
+<listitem>
+<para>The expansion of a variable part is obtained by evaluating the enclosed
+XPath expression and converting the
+resulting value to a string.</para>
+</listitem>
+</itemizedlist>
+
+<note>
+<para>This process can generate dynamic errors, for example if the
+sequence contains an element with a complex content type (which cannot
+be atomized).</para>
+</note>
+
+<para>In the case of an attribute value template, the effective value
+becomes the string value of the new attribute node. In the case of a
+text value template, the effective value becomes the string value of
+the new text node.</para>
+
 <section xml:id="attribute-value-templates">
 <title>Attribute Value Templates</title>
 
-<para><termdef xml:id="dt-attribute-value-template">An
-<firstterm>attribute value template</firstterm> is FIXME: the obvious
-concept from XSLT.</termdef>
-</para>
+<para><termdef xml:id="dt-attribute-value-template">In an attribute
+that is designated as an <firstterm>attribute value
+template</firstterm>, an expression can be used by surrounding the
+expression with curly brackets (<code>{}</code>), following the
+general rules for <glossterm>value
+templates</glossterm></termdef>.</para>
+
+<para>Curly brackets are not treated specially in an attribute value
+in an XProc pipeline unless the attribute is specifically designated
+as one that permits an attribute value template. Option shortcuts permit
+attribute value templates. In an element syntax
+summary, the value of other such attributes is surrounded by curly
+brackets.</para>
+
+<para>Curly brackets are <emphasis>not</emphasis> recognized recursively
+inside expressions.</para>
 </section>
 
 <section xml:id="text-value-templates">
 <title>Text Value Templates</title>
 
-<para><termdef xml:id="dt-text-value-template">A
-<firstterm>text value template</firstterm> is FIXME: the obvious concept from
-XSLT 3.0.</termdef>
+<para>The <tag class="attribute">expand-text</tag> attribute may appear on
+<tag>p:inline</tag> (and its parents in the case where the
+<tag>p:inline</tag> is omitted) and determines whether descendant text
+nodes of that element are treated as text value templates.</para>
+
+<para>This section describes how text nodes are processed when the
+effective value of <tag class="attribute">expand-text</tag>
+is <code>true</code>. Such
+text nodes are referred to as text value templates.</para>
+
+<para><termdef xml:id="dt-text-value-template">In a
+text node that is designated as a <firstterm>text value template</firstterm>,
+expressions can be used by surrounding each expression with curly
+brackets (<code>{}</code>).</termdef>
 </para>
+
+<para>The rules for text value templates are given in <xref
+linkend="value-templates"/>. A text node whose value is a text value
+template results in the construction of a text node in the result. The
+string value of that text node is obtained by computing the effective
+value of the value template.</para>
+
+<note>
+<para>The result of evaluating a text value template is a (possibly
+zero-length) text node. This text node becomes part of the result and
+is thereafter handled exactly as if the value had appeared explicitly
+as a text node in the stylesheet.</para>
+<para>Fixed parts consisting entirely of whitespace are significant
+and are handled in the same way as any other fixed part. This is
+different from the default treatment of "boundary space" in
+XQuery.</para>
+</note>
 </section>
 </section>
 
