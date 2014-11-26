@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: An XML Pipeline Language</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc 2.0: An XML Pipeline Language</div></h1><h2>W3C Editor's Draft  <time datetime="2014-11-22T14:43:27Z">22 November 2014 at 14:43 UTC (<a href="https://github.com/xproc/specification/commit/36fb068254fa45b01d47c5a827e5d150c8f6e6c8">build 156</a>)</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20/">http://www.w3.org/TR/xproc20/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd><dt>Repository:</dt><dd><a href="http://github.com/xproc/specification">This specification on GitHub</a></dd><dd><a href="http://github.com/xproc/specification/issues">Report an issue</a></dd><dt>Changes:</dt><dd><a href="diff.html">Diff against current “status quo” draft</a></dd><dd><a href="http://github.com/xproc/specification/commits/">Commits for this specification</a></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: An XML Pipeline Language</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc 2.0: An XML Pipeline Language</div></h1><h2>W3C Editor's Draft  <time datetime="2014-11-26T16:01:58Z">26 November 2014 at 16:01 UTC (<a href="https://github.com/xproc/specification/commit/ba66a66cfcfde39c5d9cf9c9991433ff2f738f15">build 157</a>)</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20/">http://www.w3.org/TR/xproc20/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd><dt>Repository:</dt><dd><a href="http://github.com/xproc/specification">This specification on GitHub</a></dd><dd><a href="http://github.com/xproc/specification/issues">Report an issue</a></dd><dt>Changes:</dt><dd><a href="diff.html">Diff against current “status quo” draft</a></dd><dd><a href="http://github.com/xproc/specification/commits/">Commits for this specification</a></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
 	  automatic <a href="diff.html">change markup</a> from the previous draft
           courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.</p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
 © 2010 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
@@ -387,7 +387,8 @@ in an XProc pipeline is <em class="glossterm"><a href="#dt-implementation-define
 are <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em>.
 </p>
 
-<p>FIXME: implementors are free to optimize, etc.</p>
+<p>Implementors are free to optimize by storing them in convenient
+formats, caching them on disk, etc.</p>
 
 </section>
 </section>
@@ -1406,22 +1407,137 @@ do that?</p>
 <section id="value-templates" class="section"><div class="section-titlepage"><h3>2.10 Value Templates</h3></div>
 
 
+<p>The string value of an attribute or text node in a pipeline
+may, in particular circumstances, contain embedded expressions enclosed
+between curly brackets. Attributes and text nodes that use (or are
+permitted to use) this mechanism are referred to respectively as
+<em class="glossterm">attribute value templates</em> and
+<em class="glossterm">text value templates.</em>.</p>
+
+<p><span id="dt-value-template" class="termdef">[Definition: Collectively,
+attribute value templates and text value templates are referred to as
+<em class="glossterm">value templates</em>.]</span>
+</p>
+
+<p>A value template is a string consisting of an alternating sequence
+of fixed parts and variable parts. A variable part consists of an
+XPath expression enclosed in curly brackets (<code class="code">{}</code>). A fixed
+part may contain any characters, except that a left curly bracket
+<span class="rfc2119" id="value-templates.4.2">must</span> be written as <code class="code">{{</code> and a right
+curly bracket <span class="rfc2119" id="value-templates.4.4">must</span> be written as <code class="code">}}</code>.
+If the XPath expression ends with a closing curly bracket, this must
+be separated from the delimiting closing bracket by whitespace. If the
+XPath expression starts with an opening curly bracket, this must be
+preceded by whitespace, to avoid misinterpretation as an escaped
+<code class="code">{{</code> sequence.</p>
+
+<div class="note admonition"><h3>Note</h3>
+<p>An expression within a variable part may contain an unescaped curly
+bracket within a string literals or within a comment.</p>
+
+<p>Currently no XPath expression starts with an opening curly
+bracket, so the use of <code class="code">{{</code> creates no ambiguity. If an
+enclosed expression ends with a closing curly bracket, no whitespace
+is required between this and the closing delimiter.</p>
+</div>
+
+<p>
+<a name="err.inline.S1003"></a>It is a <em class="glossterm"><a href="#dt-static-error">static error</a></em> (<a href="#err.S1003"><code class="errqname">err:XS1003</code></a>) if an
+unescaped left curly bracket appears in a fixed part of a value
+template without a matching right curly bracket or if an unescaped
+right curly bracket appears in the fixed part of a value template.
+</p>
+
+<p>It is a static error if the string contained between matching curly
+brackets in a value template, when interpreted as an XPath expression,
+contains errors. The error is signaled using the appropriate
+XPath error code.</p>
+
+<p><span id="dt-effective-value" class="termdef">[Definition: The result of evaluating a
+value template is referred to as its <em class="glossterm">effective
+value</em>.]</span> The effective value is the string
+obtained by concatenating the expansions of the fixed and variable
+parts:</p>
+
+<div class="itemizedlist">
+
+
+<ul><li>
+<p>The expansion of a fixed part is obtained by replacing any double curly
+brackets (<code class="code">{{</code> or <code class="code">}}</code>) by the corresponding single curly
+bracket.</p>
+</li><li>
+<p>The expansion of a variable part is obtained by evaluating the enclosed
+XPath expression and converting the
+resulting value to a string.</p>
+</li></ul></div>
+
+<div class="note admonition"><h3>Note</h3>
+<p>This process can generate dynamic errors, for example if the
+sequence contains an element with a complex content type (which cannot
+be atomized).</p>
+</div>
+
+<p>In the case of an attribute value template, the effective value
+becomes the string value of the new attribute node. In the case of a
+text value template, the effective value becomes the string value of
+the new text node.</p>
+
 <section id="attribute-value-templates" class="section"><div class="section-titlepage"><h4>2.10.1 Attribute Value Templates</h4></div>
 
 
-<p><span id="dt-attribute-value-template" class="termdef">[Definition: An
-<em class="glossterm">attribute value template</em> is FIXME: the obvious
-concept from XSLT.]</span>
-</p>
+<p><span id="dt-attribute-value-template" class="termdef">[Definition: In an attribute
+that is designated as an <em class="glossterm">attribute value
+template</em>, an expression can be used by surrounding the
+expression with curly brackets (<code class="code">{}</code>), following the
+general rules for <em class="glossterm">value
+templates</em>]</span>.</p>
+
+<p>Curly brackets are not treated specially in an attribute value
+in an XProc pipeline unless the attribute is specifically designated
+as one that permits an attribute value template. Option shortcuts permit
+attribute value templates. In an element syntax
+summary, the value of other such attributes is surrounded by curly
+brackets.</p>
+
+<p>Curly brackets are <em>not</em> recognized recursively
+inside expressions.</p>
 </section>
 
 <section id="text-value-templates" class="section"><div class="section-titlepage"><h4>2.10.2 Text Value Templates</h4></div>
 
 
-<p><span id="dt-text-value-template" class="termdef">[Definition: A
-<em class="glossterm">text value template</em> is FIXME: the obvious concept from
-XSLT 3.0.]</span>
+<p>The <code class="tag-attribute">expand-text</code> attribute may appear on
+<a href="#p.inline"><code class="tag-element">p:inline</code></a> (and its parents in the case where the
+<a href="#p.inline"><code class="tag-element">p:inline</code></a> is omitted) and determines whether descendant text
+nodes of that element are treated as text value templates.</p>
+
+<p>This section describes how text nodes are processed when the
+effective value of <code class="tag-attribute">expand-text</code>
+is <code class="code">true</code>. Such
+text nodes are referred to as text value templates.</p>
+
+<p><span id="dt-text-value-template" class="termdef">[Definition: In a
+text node that is designated as a <em class="glossterm">text value template</em>,
+expressions can be used by surrounding each expression with curly
+brackets (<code class="code">{}</code>).]</span>
 </p>
+
+<p>The rules for text value templates are given in <a href="#value-templates" title="Value Templates">Section 2.10, “Value Templates”</a>. A text node whose value is a text value
+template results in the construction of a text node in the result. The
+string value of that text node is obtained by computing the effective
+value of the value template.</p>
+
+<div class="note admonition"><h3>Note</h3>
+<p>The result of evaluating a text value template is a (possibly
+zero-length) text node. This text node becomes part of the result and
+is thereafter handled exactly as if the value had appeared explicitly
+as a text node in the stylesheet.</p>
+<p>Fixed parts consisting entirely of whitespace are significant
+and are handled in the same way as any other fixed part. This is
+different from the default treatment of "boundary space" in
+XQuery.</p>
+</div>
 </section>
 </section>
 
@@ -4394,9 +4510,13 @@ November, 1996.</p></div>
           any, are its <em class="glossterm"><a href="#dt-container">container</a></em> and the ancestors of its
           container.</p></dd><dt id="glossary.2.4" class="glossentry"><em class="glossterm"><a href="#dt-atomic-step">atomic step</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">atomic step</em> is a step that
           performs a unit of XML processing, such as XInclude or transformation, and has no internal
-            <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em>. </p></dd><dt id="glossary.2.5" class="glossentry"><em class="glossterm"><a href="#dt-attribute-value-template">attribute value template</a></em></dt><dd class="glossdef"><p>An
-<em class="firstterm">attribute value template</em> is FIXME: the obvious
-concept from XSLT.</p></dd><dt id="glossary.2.6" class="glossentry"><em class="glossterm"><a href="#dt-bag-merger">bag-merger</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">bag-merger</em> of two or more bags
+            <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em>. </p></dd><dt id="glossary.2.5" class="glossentry"><em class="glossterm"><a href="#dt-attribute-value-template">attribute value
+template</a></em></dt><dd class="glossdef"><p>In an attribute
+that is designated as an <em class="firstterm">attribute value
+template</em>, an expression can be used by surrounding the
+expression with curly brackets (<code class="code">{}</code>), following the
+general rules for <em class="glossterm">value
+templates</em></p></dd><dt id="glossary.2.6" class="glossentry"><em class="glossterm"><a href="#dt-bag-merger">bag-merger</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">bag-merger</em> of two or more bags
         (where a bag is an unordered list or, equivalently, something like a set except that it may
         contain duplicates) is a bag constructed by starting with an empty bag and adding each
         member of each of the input bags in turn to it. It follows that the cardinality of the
@@ -4422,72 +4542,78 @@ step are its <em class="firstterm">declared options</em>.</p></dd><dt id="glossa
 <em class="glossterm"><a href="#dt-document-properties">document properties</a></em>.</p></dd><dt id="glossary.2.18" class="glossentry"><em class="glossterm"><a href="#dt-document-properties">document properties</a></em></dt><dd class="glossdef"><p>The
 <em class="firstterm">document properties</em> are exposed to the XProc
 pipeline as a map (<code class="code">map(xs:string, xs:string)</code>).</p></dd><dt id="glossary.2.19" class="glossentry"><em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">dynamic error</em> is one which
-          occurs while a pipeline is being evaluated.</p></dd><dt id="glossary.2.20" class="glossentry"><em class="glossterm"><a href="#dt-empty-environment">empty environment</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">empty environment</em>
+          occurs while a pipeline is being evaluated.</p></dd><dt id="glossary.2.20" class="glossentry"><em class="glossterm"><a href="#dt-effective-value">effective
+value</a></em></dt><dd class="glossdef"><p>The result of evaluating a
+value template is referred to as its <em class="firstterm">effective
+value</em>.</p></dd><dt id="glossary.2.21" class="glossentry"><em class="glossterm"><a href="#dt-empty-environment">empty environment</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">empty environment</em>
           contains no readable ports, an undefined default readable port and no in-scope
-          bindings.</p></dd><dt id="glossary.2.21" class="glossentry"><em class="glossterm"><a href="#dt-empty-sequence">empty sequence</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">empty sequence</em> of
-                documents is specified with the <a href="#p.empty"><code class="tag-element">p:empty</code></a> element.</p></dd><dt id="glossary.2.22" class="glossentry"><em class="glossterm"><a href="#dt-environment">environment</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">environment</em> is a
-          context-dependent collection of information available within subpipelines.</p></dd><dt id="glossary.2.23" class="glossentry"><em class="glossterm"><a href="#dt-extension-attribute">extension attribute</a></em></dt><dd class="glossdef"><p>An element from the XProc namespace
-            <span class="rfc2119" id="glossary.2.23.2.1.1">may</span> have any attribute not from the XProc namespace, provided that
+          bindings.</p></dd><dt id="glossary.2.22" class="glossentry"><em class="glossterm"><a href="#dt-empty-sequence">empty sequence</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">empty sequence</em> of
+                documents is specified with the <a href="#p.empty"><code class="tag-element">p:empty</code></a> element.</p></dd><dt id="glossary.2.23" class="glossentry"><em class="glossterm"><a href="#dt-environment">environment</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">environment</em> is a
+          context-dependent collection of information available within subpipelines.</p></dd><dt id="glossary.2.24" class="glossentry"><em class="glossterm"><a href="#dt-extension-attribute">extension attribute</a></em></dt><dd class="glossdef"><p>An element from the XProc namespace
+            <span class="rfc2119" id="glossary.2.24.2.1.1">may</span> have any attribute not from the XProc namespace, provided that
           the expanded-QName of the attribute has a non-null namespace URI. Such an attribute is
-          called an <em class="firstterm">extension attribute</em>.</p></dd><dt id="glossary.2.24" class="glossentry"><em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em></dt><dd class="glossdef"><p>An
+          called an <em class="firstterm">extension attribute</em>.</p></dd><dt id="glossary.2.25" class="glossentry"><em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em></dt><dd class="glossdef"><p>An
 <em class="firstterm">implementation-defined</em> feature is one where the
 implementation has discretion in how it is performed.
-Conformant implementations <span class="rfc2119" id="glossary.2.24.2.1.2">must</span> document
-how <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> features are performed.</p></dd><dt id="glossary.2.25" class="glossentry"><em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em></dt><dd class="glossdef"><p>An
+Conformant implementations <span class="rfc2119" id="glossary.2.25.2.1.2">must</span> document
+how <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> features are performed.</p></dd><dt id="glossary.2.26" class="glossentry"><em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em></dt><dd class="glossdef"><p>An
 <em class="firstterm">implementation-dependent</em> feature is one where the
 implementation has discretion in how it is performed.
 Implementations are not required to document or explain
-how <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em> features are performed.</p></dd><dt id="glossary.2.26" class="glossentry"><em class="glossterm"><a href="#dt-in-scope-bindings">in-scope bindings</a></em></dt><dd class="glossdef"><p>The
+how <em class="glossterm"><a href="#dt-implementation-dependent">implementation-dependent</a></em> features are performed.</p></dd><dt id="glossary.2.27" class="glossentry"><em class="glossterm"><a href="#dt-in-scope-bindings">in-scope bindings</a></em></dt><dd class="glossdef"><p>The
                 <em class="firstterm">in-scope bindings</em> are a set of name-value pairs, based on
                 <em class="glossterm"><a href="#dt-option">option</a></em> and <em class="glossterm"><a href="#dt-variable">variable</a></em>
-              bindings.</p></dd><dt id="glossary.2.27" class="glossentry"><em class="glossterm"><a href="#dt-inherited-environment">inherited environment</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">inherited environment</em> of a
+              bindings.</p></dd><dt id="glossary.2.28" class="glossentry"><em class="glossterm"><a href="#dt-inherited-environment">inherited environment</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">inherited environment</em> of a
             <em class="glossterm"><a href="#dt-contained-steps">contained step</a></em> is an environment that
-          is the same as the environment of its <em class="glossterm"><a href="#dt-container">container</a></em> with the <a href="#dt-standard-modifications">standard modifications</a>. </p></dd><dt id="glossary.2.28" class="glossentry"><em class="glossterm"><a href="#dt-initial-environment">initial
+          is the same as the environment of its <em class="glossterm"><a href="#dt-container">container</a></em> with the <a href="#dt-standard-modifications">standard modifications</a>. </p></dd><dt id="glossary.2.29" class="glossentry"><em class="glossterm"><a href="#dt-initial-environment">initial
                      environment</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">initial
                      environment</em> is a <em class="glossterm"><a href="#dt-connection">connection</a></em> for each of the
                      <em class="glossterm"><a href="#dt-readable-ports">readable ports</a></em> and a set of option bindings used to
-                  construct the <em class="glossterm"><a href="#dt-in-scope-bindings">in-scope bindings</a></em>.</p></dd><dt id="glossary.2.29" class="glossentry"><em class="glossterm"><a href="#dt-inline-document">inline document</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">inline document</em> is
-                specified directly in the body of the element to which it connects.</p></dd><dt id="glossary.2.30" class="glossentry"><em class="glossterm"><a href="#dt-last-step">last step</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">last step</em> in a subpipeline is its
-          last step in document order.</p></dd><dt id="glossary.2.31" class="glossentry"><em class="glossterm"><a href="#dt-matches">matches</a></em></dt><dd class="glossdef"><p>A step <em class="firstterm">matches</em> its signature if and
+                  construct the <em class="glossterm"><a href="#dt-in-scope-bindings">in-scope bindings</a></em>.</p></dd><dt id="glossary.2.30" class="glossentry"><em class="glossterm"><a href="#dt-inline-document">inline document</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">inline document</em> is
+                specified directly in the body of the element to which it connects.</p></dd><dt id="glossary.2.31" class="glossentry"><em class="glossterm"><a href="#dt-last-step">last step</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">last step</em> in a subpipeline is its
+          last step in document order.</p></dd><dt id="glossary.2.32" class="glossentry"><em class="glossterm"><a href="#dt-matches">matches</a></em></dt><dd class="glossdef"><p>A step <em class="firstterm">matches</em> its signature if and
           only if it specifies an input for each declared input, it specifies no inputs that are not
           declared, it specifies an option for each option that is declared to be required, and it
-          specifies no options that are not declared.</p></dd><dt id="glossary.2.32" class="glossentry"><em class="glossterm"><a href="#dt-multi-container-step">multi-container
+          specifies no options that are not declared.</p></dd><dt id="glossary.2.33" class="glossentry"><em class="glossterm"><a href="#dt-multi-container-step">multi-container
             step</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">multi-container
-            step</em> is a step that contains several alternate <em class="glossterm"><a href="#dt-subpipeline">subpipelines</a></em>. </p></dd><dt id="glossary.2.33" class="glossentry"><em class="glossterm"><a href="#dt-namespace-fixup">namespace fixup</a></em></dt><dd class="glossdef"><p>To produce a serializable
+            step</em> is a step that contains several alternate <em class="glossterm"><a href="#dt-subpipeline">subpipelines</a></em>. </p></dd><dt id="glossary.2.34" class="glossentry"><em class="glossterm"><a href="#dt-namespace-fixup">namespace fixup</a></em></dt><dd class="glossdef"><p>To produce a serializable
               <em class="glossterm"><a href="#dt-XML">XML</a></em> document, the XProc processor must sometimes add additional
             namespace nodes, perhaps even renaming prefixes, to satisfy the constraints of
               <em class="glossterm"><a href="#dt-Namespaces-in-XML">Namespaces in XML</a></em>. This process is referred to as
-              <em class="firstterm">namespace fixup</em>.</p></dd><dt id="glossary.2.34" class="glossentry"><em class="glossterm"><a href="#dt-option">option</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">option</em>
-is a name/value pair. The name <span class="rfc2119" id="glossary.2.34.2.1.2">must</span> be an <a href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
-name</a>. The value may be any XDM value.</p></dd><dt id="glossary.2.35" class="glossentry"><em class="glossterm"><a href="#dt-pipeline">pipeline</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">pipeline</em> is a set of connected
-        steps, with outputs of one step flowing into inputs of another.</p></dd><dt id="glossary.2.36" class="glossentry"><em class="glossterm"><a href="#dt-primary-input-port">primary input
+              <em class="firstterm">namespace fixup</em>.</p></dd><dt id="glossary.2.35" class="glossentry"><em class="glossterm"><a href="#dt-option">option</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">option</em>
+is a name/value pair. The name <span class="rfc2119" id="glossary.2.35.2.1.2">must</span> be an <a href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
+name</a>. The value may be any XDM value.</p></dd><dt id="glossary.2.36" class="glossentry"><em class="glossterm"><a href="#dt-pipeline">pipeline</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">pipeline</em> is a set of connected
+        steps, with outputs of one step flowing into inputs of another.</p></dd><dt id="glossary.2.37" class="glossentry"><em class="glossterm"><a href="#dt-primary-input-port">primary input
             port</a></em></dt><dd class="glossdef"><p>If a step has a document input port which is
           explicitly marked “<code class="code">primary='true'</code>”, or if it has exactly one document input
           port and that port is <em>not</em> explicitly marked
             “<code class="code">primary='false'</code>”, then that input port is the <em class="firstterm">primary input
-            port</em> of the step.</p></dd><dt id="glossary.2.37" class="glossentry"><em class="glossterm"><a href="#dt-primary-output-port">primary output
+            port</em> of the step.</p></dd><dt id="glossary.2.38" class="glossentry"><em class="glossterm"><a href="#dt-primary-output-port">primary output
             port</a></em></dt><dd class="glossdef"><p>If a step has a document output port which is
           explicitly marked “<code class="code">primary='true'</code>”, or if it has exactly one document output
           port and that port is <em>not</em> explicitly marked
             “<code class="code">primary='false'</code>”, then that output port is the <em class="firstterm">primary output
-            port</em> of the step.</p></dd><dt id="glossary.2.38" class="glossentry"><em class="glossterm"><a href="#dt-readable-ports">readable
+            port</em> of the step.</p></dd><dt id="glossary.2.39" class="glossentry"><em class="glossterm"><a href="#dt-readable-ports">readable
                 ports</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">readable
-                ports</em> are a set of step name/port name pairs.</p></dd><dt id="glossary.2.39" class="glossentry"><em class="glossterm"><a href="#dt-representation">representation</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">representation</em>
+                ports</em> are a set of step name/port name pairs.</p></dd><dt id="glossary.2.40" class="glossentry"><em class="glossterm"><a href="#dt-representation">representation</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">representation</em>
 is a data structure used by an XProc processor to refer to the actual
-document content.</p></dd><dt id="glossary.2.40" class="glossentry"><em class="glossterm"><a href="#dt-signature">signature</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">signature</em> of a step is the set
-          of inputs, outputs, and options that it is declared to accept.</p></dd><dt id="glossary.2.41" class="glossentry"><em class="glossterm"><a href="#dt-specified-options">specified options</a></em></dt><dd class="glossdef"><p>The options on a step
+document content.</p></dd><dt id="glossary.2.41" class="glossentry"><em class="glossterm"><a href="#dt-signature">signature</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">signature</em> of a step is the set
+          of inputs, outputs, and options that it is declared to accept.</p></dd><dt id="glossary.2.42" class="glossentry"><em class="glossterm"><a href="#dt-specified-options">specified options</a></em></dt><dd class="glossdef"><p>The options on a step
 which have specified values, either because a <a href="#p.with-option"><code class="tag-element">p:with-option</code></a>
 element specifies a value or because the declaration included a
-default value, are its <em class="firstterm">specified options</em>.</p></dd><dt id="glossary.2.42" class="glossentry"><em class="glossterm"><a href="#dt-static-error">static error</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">static error</em> is one which can
-          be detected before pipeline evaluation is even attempted.</p></dd><dt id="glossary.2.43" class="glossentry"><em class="glossterm"><a href="#dt-step">step</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">step</em> is the basic computational unit
-          of a pipeline.</p></dd><dt id="glossary.2.44" class="glossentry"><em class="glossterm"><a href="#dt-step-type-exports">step type exports</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">step type exports</em> of an
+default value, are its <em class="firstterm">specified options</em>.</p></dd><dt id="glossary.2.43" class="glossentry"><em class="glossterm"><a href="#dt-static-error">static error</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">static error</em> is one which can
+          be detected before pipeline evaluation is even attempted.</p></dd><dt id="glossary.2.44" class="glossentry"><em class="glossterm"><a href="#dt-step">step</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">step</em> is the basic computational unit
+          of a pipeline.</p></dd><dt id="glossary.2.45" class="glossentry"><em class="glossterm"><a href="#dt-step-type-exports">step type exports</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">step type exports</em> of an
         XProc element, against the background of a set of URIs of resources already visited (call
-        this set <em>Visited</em>), are defined by cases.</p></dd><dt id="glossary.2.45" class="glossentry"><em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em></dt><dd class="glossdef"><p>Sibling steps (and the connections between them) form a
-            <em class="firstterm">subpipeline</em>.</p></dd><dt id="glossary.2.46" class="glossentry"><em class="glossterm"><a href="#dt-text-value-template">text value template</a></em></dt><dd class="glossdef"><p>A
-<em class="firstterm">text value template</em> is FIXME: the obvious concept from
-XSLT 3.0.</p></dd><dt id="glossary.2.47" class="glossentry"><em class="glossterm"><a href="#dt-variable">variable</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">variable</em>
-is a name/value pair. The name <span class="rfc2119" id="glossary.2.47.2.1.2">must</span> be an <a href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
-name</a>. The value may be any XDM value.</p></dd><dt id="glossary.2.48" class="glossentry"><em class="glossterm"><a href="#dt-visible">visible</a></em></dt><dd class="glossdef"><p>If two names are in the same scope, we say that they
+        this set <em>Visited</em>), are defined by cases.</p></dd><dt id="glossary.2.46" class="glossentry"><em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em></dt><dd class="glossdef"><p>Sibling steps (and the connections between them) form a
+            <em class="firstterm">subpipeline</em>.</p></dd><dt id="glossary.2.47" class="glossentry"><em class="glossterm"><a href="#dt-text-value-template">text value template</a></em></dt><dd class="glossdef"><p>In a
+text node that is designated as a <em class="firstterm">text value template</em>,
+expressions can be used by surrounding each expression with curly
+brackets (<code class="code">{}</code>).</p></dd><dt id="glossary.2.48" class="glossentry"><em class="glossterm">value templates</em></dt><dd class="glossdef"><p>Collectively,
+attribute value templates and text value templates are referred to as
+<em class="firstterm">value templates</em>.</p></dd><dt id="glossary.2.49" class="glossentry"><em class="glossterm"><a href="#dt-variable">variable</a></em></dt><dd class="glossdef"><p>A <em class="firstterm">variable</em>
+is a name/value pair. The name <span class="rfc2119" id="glossary.2.49.2.1.2">must</span> be an <a href="http://www.w3.org/TR/REC-xml-names/#dt-expname">expanded
+name</a>. The value may be any XDM value.</p></dd><dt id="glossary.2.50" class="glossentry"><em class="glossterm"><a href="#dt-visible">visible</a></em></dt><dd class="glossdef"><p>If two names are in the same scope, we say that they
           are <em class="firstterm">visible</em> to each other. </p></dd></dl></div></article>
   <article id="language-summary" class="appendix"><header class="appendix-titlepage"><h2>D Pipeline Language Summary</h2></header>
 
@@ -4629,7 +4755,10 @@ xs:decimal.</p><p>See: <a href="#err.inline.S0063">Versioning Considerations</a>
 if the code attribute is missing from
 any but the last p:catch, if the last p:catch
 has a code, or if any error code is
-repeated.</p><p>See: <a href="#err.inline.S1001">p:try</a></p></dd></dl></div>
+repeated.</p><p>See: <a href="#err.inline.S1001">p:try</a></p></dd><dt><a name="err.S1003"></a><code class="errqname">err:XS1003</code></dt><dd><p>It is a static error if an
+unescaped left curly bracket appears in a fixed part of a value
+template without a matching right curly bracket or if an unescaped
+right curly bracket appears in the fixed part of a value template.</p><p>See: <a href="#err.inline.S1003">Value Templates</a></p></dd></dl></div>
 </section>
 
 <section id="app.dynamic-errors" class="section"><div class="section-titlepage"><h2>2 Dynamic Errors</h2></div>

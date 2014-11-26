@@ -121,6 +121,7 @@ For updated information, please refer to the latest version of the
    <error code="XS0062">It is a static error if a required version attribute is not present.</error>
    <error code="XS0063">It is a static error if the value of the version attribute is not a xs:decimal.</error>
    <error code="XS1001">It is a static error if the code attribute is missing from any but the last p:catch, if the last p:catch has a code, or if any error code is repeated.</error>
+   <error code="XS1003">It is a static error if an unescaped left curly bracket appears in a fixed part of a value template without a matching right curly bracket or if an unescaped right curly bracket appears in the fixed part of a value template.</error>
 </error-list>
 </section>
 
