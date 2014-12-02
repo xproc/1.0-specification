@@ -182,7 +182,7 @@
   <xsl:variable name="code" select="@code"/>
   <xsl:variable name="num" select="count(preceding::db:error[@code=$code])"/>
 
-  <a name="err.inline.{@code}{if ($num&gt;0) then concat('.',$num) else ''}"/>
+  <a id="err.inline.{@code}{if ($num&gt;0) then concat('.',$num) else ''}"/>
   <xsl:apply-templates/>
 </xsl:template>
 
@@ -190,7 +190,7 @@
   <xsl:param name="summary" select="0"/>
 
   <xsl:if test="$summary = 0">
-    <a name="impl-{count(preceding::db:impl)+1}"/>
+    <a id="impl-{count(preceding::db:impl)+1}"/>
   </xsl:if>
   <xsl:apply-templates/>
 </xsl:template>
@@ -346,6 +346,9 @@
     </script>
   </xsl:if>
 
+  <link rel="stylesheet" type="text/css"
+        href="xproc.css"/>
+
 <!--
   <link rel="stylesheet" type="text/css"
         href="http://www.w3.org/StyleSheets/TR/w3c-tr.css"/>
@@ -362,8 +365,6 @@
       </style>
     </xsl:otherwise>
   </xsl:choose>
-  <link rel="stylesheet" type="text/css"
-        href="xproc.css"/>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -516,7 +517,7 @@
   <xsl:for-each-group select="$sorted-errors" group-by="@code">
     <xsl:variable name="codes" select="distinct-values(current-group()/@code)"/>
     <dt>
-      <a name="err.{$codes[1]}"/>
+      <a id="err.{$codes[1]}"/>
       <code class="errqname">
 	<xsl:text>err:X</xsl:text>
 	<xsl:value-of select="$codes[1]"/>
@@ -635,7 +636,7 @@
   <div class="diffpara">
     <p>
       <xsl:copy-of select="$htmlp/@*"/>
-      <a name="RF-{generate-id(.)}"/>
+      <a id="RF-{generate-id(.)}"/>
       <xsl:if test="$prev">
 	<a class="difflink" href="#RF-{generate-id($prev)}"
 	   title="Previous change (approximate)">←</a>

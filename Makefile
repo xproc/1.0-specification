@@ -1,4 +1,9 @@
 STYLES=$(wildcard style/*.xsl)
+STAGETYPE=WD
+STAGEROOT=/tmp/xproc20
+STAGEDATE=19670616
+STAGEXPROC=$(STAGEROOT)/$(STAGETYPE)-xproc20-$(STAGEDATE)
+STAGESTEPS=$(STAGEROOT)/$(STAGETYPE)-xproc20-steps-$(STAGEDATE)
 
 all: xproc20 req
 
@@ -54,6 +59,16 @@ xproc20:
 	cp langspec/ns-err/,xproc-error.xml  build/langspec/ns-err/ns-err.xml
 	cp style/xproc.css build/langspec/ns-err/
 	cp js/prism.js build/langspec/ns-err/
+
+stage-xproc20: xproc20
+	mkdir -p $(STAGEXPROC) $(STAGESTEPS)
+	rsync -ar build/langspec/xproc20/ $(STAGEXPROC)/
+	rsync -ar build/langspec/xproc20-steps/ $(STAGESTEPS)/
+	echo "<!DOCTYPE html>" > $(STAGEXPROC)/Overview.html
+	echo "<!DOCTYPE html>" > $(STAGESTEPS)/Overview.html
+	cat $(STAGEXPROC)/index.html >> $(STAGEXPROC)/Overview.html
+	cat $(STAGESTEPS)/index.html >> $(STAGESTEPS)/Overview.html
+	rm -f $(STAGEXPROC)/index.html $(STAGESTEPS)/index.html
 
 req:
 	mkdir -p build/langreq

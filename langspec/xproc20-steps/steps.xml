@@ -5,12 +5,13 @@
                xmlns:p="http://www.w3.org/ns/xproc"
                xmlns:xi="http://www.w3.org/2001/XInclude"
                xmlns:xlink="http://www.w3.org/1999/xlink"
-               class="ed"
+               class="fpwd"
                version="5.0-extension w3c-xproc">
   <info>
     <title>XProc 2.0: Standard Step Library</title>
     <w3c-shortname>xproc20-steps</w3c-shortname>
     <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
+    <pubdate>2014-12-08</pubdate>
 
     <bibliorelation role="x-no-errata" type="references"
                     xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
@@ -72,12 +73,18 @@
 <para><emphasis>This section describes the status of this document at
 the time of its publication. Other documents may supersede this
 document. A list of current W3C publications and the latest revision
-of this technical report can be found in the <link
-xlink:href="http://www.w3.org/TR/">W3C technical reports index</link>
-at http://www.w3.org/TR/.</emphasis></para>
+of this technical report can be found in the
+<link xlink:href="http://www.w3.org/TR/">W3C technical reports index</link> at
+http://www.w3.org/TR/.</emphasis></para>
 
-<para>This document is an editor's draft without normative standing.
-This document is a
+<para>Publication as a First Public Working Draft does not imply
+endorsement by the W3C Membership. This is a draft document and may be
+updated, replaced or obsoleted by other documents at any time. It is
+inappropriate to cite this document as other than work in
+progress.</para>
+
+<para><!--This document is an editor's draft without normative standing.
+-->This document is a
 product of the
 <link xlink:href="http://www.w3.org/XML/Processing/" >XML Processing Model
 Working Group</link>
@@ -89,8 +96,15 @@ as part of the W3C
 <link xlink:href="https://github.com/xproc/specification/issues">raising
 issues</link> on the
 <link xlink:href="https://github.com/xproc/specification">specification
-repository</link>.</para>
+repository</link>.
+Alternatively, you may report errors in this document to the public
+mailing list
+<link xlink:href="mailto:public-xml-processing-model-comments@w3.org"
+>public-xml-processing-model-comments@w3.org</link> (public
+<link xlink:href="http://lists.w3.org/Archives/Public/public-xml-processing-model-comments/"
+>archives</link> are available).</para>
 
+<!--
 <para>There is an
 <link xlink:href="http://www.w3.org/XML/XProc/2010/02/ir.html">Implementation
 Report for XProc 1.0</link>. It documents the performance of implementations
@@ -98,6 +112,7 @@ against the
 <link xlink:href="http://tests.xproc.org/">XProc 1.0 Test Suite</link>.
 At this time, there are no such reports for XProc 2.0.
 </para>
+-->
 
 <para>This document was produced by a group operating under the <link
 xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
@@ -112,6 +127,8 @@ Claim(s)</link> must disclose the information in accordance with <link
 xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
 6 of the W3C Patent Policy</link>.</para>
 
+<para>This document is governed by the
+<link xml:id="w3c_process_revision" xlink:href="http://www.w3.org/2014/Process-20140801/">1 August 2014 W3C Process Document</link>.</para>
 </legalnotice>
 </info>
 
@@ -236,7 +253,7 @@ code="C0059">It is a <glossterm>dynamic error</glossterm> if the QName
 value in the <option>attribute-name</option> option uses the prefix
 “<literal>xmlns</literal>”
 or any other prefix that resolves to the namespace name
-“<uri>http://www.w3.org/2000/xmlns/</uri>”.
+<uri>http://www.w3.org/2000/xmlns/</uri>.
 </error> Note, however, that while namespace declarations cannot be
 added explicitly by this step, adding an attribute whose name is in a
 namespace for which there is no namespace declaration in scope on the
@@ -2796,7 +2813,7 @@ interpretation of an XPath expression differs between the versions of
 XPath.</para>
 </note>
 
-<section xml:id="ex-in-scope-names" role="tocsuppress">
+<section xml:id="ex-template" role="tocsuppress">
 <title>Example</title>
 
 <para>It's quite common to construct documents using values computed
