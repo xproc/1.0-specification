@@ -11,7 +11,7 @@ xproc20:
 	mkdir -p build/langspec/ns-p
 	mkdir -p build/langspec/ns-c
 	mkdir -p build/langspec/ns-err
-	curl -s -o build/langspec/xproc20/base.css http://www.w3.org/StyleSheets/TR/base.css
+	cp style/base.css build/langspec/xproc20/base.css
 	cp langspec/xproc20/Overview.html build/langspec/xproc20/index.html
 	cp langspec/xproc20/,xproc20.xml  build/langspec/xproc20/xproc20.xml
 	if [ -f langspec/xproc20/diff.html ]; then cp langspec/xproc20/diff.html build/langspec/xproc20/; fi
@@ -62,7 +62,7 @@ req:
 	cp langreq/*.html build/langreq/
 	mv build/langreq/xproc-v2-req.html build/langreq/index.html
 	cp langreq/,xproc-v2-req.xml build/langreq/xproc-v2-req.xml
-	curl -s -o build/langreq/base.css http://www.w3.org/StyleSheets/TR/base.css
+	cp style/base.css build/langreq/base.css
 	cp style/xproc.css build/langreq/
 	cp js/prism.js build/langreq/
 
