@@ -90,6 +90,10 @@ product of the
 Working Group</link>
 as part of the W3C
 <link xlink:href="http://www.w3.org/XML/Activity">XML Activity</link>.
+This draft is a first attempt to address some of the requirements of
+<biblioref linkend="use-cases"/>. It is in many ways substantially incomplete.
+The Working Group is publishing it in order to establish an intended direction
+and to provide an official opportunity for comment.
 </para>
 
 <para>Please report errors in this document by
