@@ -10,7 +10,7 @@
     <title>XProc 2.0: An XML Pipeline Language</title>
     <w3c-shortname>xproc20</w3c-shortname>
     <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
-    <pubdate>2014-12-08</pubdate>
+    <pubdate>2014-12-16</pubdate>
 
     <bibliorelation role="x-no-errata" type="references"
                     xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
@@ -141,7 +141,7 @@ xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure"
 6 of the W3C Patent Policy</link>.</para>
 
 <para>This document is governed by the
-<link xml:id="w3c_process_revision" xlink:href="http://www.w3.org/2014/Process-20140801/">1 August 2014 W3C Process Document</link>.</para>
+<link xml:id="w3c_process_revision" xlink:href="http://www.w3.org/2005/10/Process-20051014/">14 October 2005 W3C Process Document</link>.</para>
 </legalnotice>
 </info>
 
@@ -336,7 +336,7 @@ one input with respect to some set of XML Schemas, etc.</para>
         <code>subpipeline</code>&#xa0;=&#xa0;<tag>p:variable</tag>*,&#160;(<tag>p:for-each</tag>|<tag>p:viewport</tag>|<tag>p:choose</tag>|<tag>p:group</tag>|<tag>p:try</tag>|<code
           xlink:href="#p.atomic">p:<replaceable>standard-step</replaceable></code>|<code
           xlink:href="#p.atomic"><replaceable>pfx:user-pipeline</replaceable></code>)+ </para>
-      <note>
+      <note xml:id="note-udp">
         <para>User-defined pipelines (identified with
               <code><replaceable>pfx:user-pipeline</replaceable></code> in the preceding syntax
           summary) are atomic. A pipeline <emphasis>declaration</emphasis> may contain a
@@ -623,7 +623,7 @@ that set.</error>
         </para>
         <para>Version 2.0 of XProc does not require implementations to guarantee that multiple
           attempts to dereference the same URI always produce consistent results.</para>
-        <note>
+        <note xml:id="note-unsatisfying">
           <para>On the one hand, this is a somewhat unsatisfying state of affairs because it leaves
             room for interoperability problems. On the other, it is not expected to cause such
             problems very often in practice. </para>
@@ -1007,7 +1007,7 @@ with the following static context:</para>
               <listitem>
                 <para>The union of the in-scope <glossterm>specified options</glossterm> and
                   variables are available as variable bindings to the XPath processor. </para>
-                <note>
+                <note xml:id="note-no-value">
                   <para>An option that has neither a specified value nor a default value will not
                     appear as an in-scope variable. Consequently, an attempt to refer to that
                     variable will raise an error.</para>
@@ -1292,7 +1292,7 @@ readable port then the context node is undefined.</para>
               </listitem>
             </varlistentry>
           </variablelist>
-          <note>
+          <note xml:id="note-amendments">
             <para>Some steps may also provide for implementation-defined or implementation-dependent
               amendments to the contexts. Those amendments are in addition to any specified by
               XProc.</para>
@@ -1589,7 +1589,7 @@ are added to the map that is returned.
 if any of the <tag>c:param</tag> elements are invalid.</error>
 </para>
 
-<note role="editorial">
+<note xml:id="ednote-what-is-valid" role="editorial">
 <title>Editorial Note</title>
 <para>Must tie down what “valid” means wrt the c:param element.</para>
 </note>
@@ -1610,7 +1610,7 @@ of a document as a map.</para>
 <para>The map returned contains (exclusively) the document properties
 associated with the <parameter>doc</parameter> specified.</para>
 
-<note>
+<note xml:id="ednote-non-xml-props">
 <title>Editorial Note</title>
 <para>This function is only defined on XML documents but clearly the
 intent is that it should work on any kind of document. How can we
@@ -1701,7 +1701,7 @@ do that?</para>
           </para>
         </listitem>
       </orderedlist>
-      <note>
+      <note xml:id="note-psvi">
         <para>A processor that supports passing PSVI properties between steps is always free to do
           so. Even if <code>psvi-required="false"</code> is explicitly specified, it is not an error
           for a step to produce a result that includes additional PSVI properties, provide it does
@@ -1736,7 +1736,7 @@ XPath expression starts with an opening curly bracket, this must be
 preceded by whitespace, to avoid misinterpretation as an escaped
 <code>{{</code> sequence.</para>
 
-<note>
+<note xml:id="note-curly">
 <para>An expression within a variable part may contain an unescaped curly
 bracket within a string literals or within a comment.</para>
 
@@ -1777,7 +1777,7 @@ resulting value to a string.</para>
 </listitem>
 </itemizedlist>
 
-<note>
+<note xml:id="note-dynerr">
 <para>This process can generate dynamic errors, for example if the
 sequence contains an element with a complex content type (which cannot
 be atomized).</para>
@@ -1834,7 +1834,7 @@ template results in the construction of a text node in the result. The
 string value of that text node is obtained by computing the effective
 value of the value template.</para>
 
-<note>
+<note xml:id="note-result-of-tvt">
 <para>The result of evaluating a text value template is a (possibly
 zero-length) text node. This text node becomes part of the result and
 is thereafter handled exactly as if the value had appeared explicitly
@@ -2418,7 +2418,8 @@ namespace.</para>
 <para>Conditional element exclusion occurs before any static analysis
 of the pipeline.</para>
 
-<note><para>The effective exclusion of <tag class="attribute">use-when</tag>
+<note xml:id="note-excl-use-when">
+<para>The effective exclusion of <tag class="attribute">use-when</tag>
 processing occurs after XML parsing and has no effect on well-formedness
 or validation errors which will be reported in the usual way. Note also that
 <tag class="attribute">use-when</tag> is not performed when it occurs on the
@@ -3155,8 +3156,8 @@ only to handle recovery and resource cleanup tasks. If cleanup tasks
 require access to readable ports, put them in the <tag>p:catch</tag>
 block of an enclosing <tag>p:try</tag>.</para>
 
-<note role="editorial">
-<title>Ed Note</title>
+<note xml:id="ednote-finally" role="editorial">
+<title>Editorial Note</title>
 <para>I'm not actually sure <tag>p:finally</tag> is worth doing, but
 I've sketched it in for completeness. Also, should <tag>p:catch</tag>
 be entirely optional, allowing just try/group/finally?</para>
@@ -3443,7 +3444,7 @@ or <tag>p:inline</tag> elements in the
 explicit connection is provided by the caller, then the default select
 expression is ignored.</para>
 
-<note>
+<note xml:id="note-pipe-excl">
   <para>The <tag>p:pipe</tag> element is explicitly excluded from a
   declaration because it would make the default value of an input
   dependent on the execution of some part of the pipeline. Default
@@ -3598,7 +3599,8 @@ see <tag>p:inline</tag>.</para>
           it appears or if more than one <tag>p:log</tag> element is applied to the same
           port.</error></para>
 <para>Implementations may, at user option, ignore all <tag>p:log</tag>
-        elements.</para><note>
+        elements.</para>
+<note xml:id="note-log-sec-risk">
         <para>This element represents a potential security risk: running unexamined 3rd-party
           pipelines could result in vital system resources being overwritten.</para>
       </note></section>
@@ -3985,7 +3987,9 @@ option or variable are used.</para>
             <tag>p:namespaces</tag> element provides namespace bindings for both of the prefixes
           necessary to correctly interpret the expression ultimately passed to the
             <tag>p:delete</tag> step (the binding for <literal>html:</literal> is explicitly
-          provided and the binding for <literal>h:</literal> is in-scope). </para><note>
+          provided and the binding for <literal>h:</literal> is in-scope). </para>
+
+<note xml:id="note-namespaces">
           <para>The use of <tag>p:namespaces</tag> here, when all of the bindings are provided with
             explicit namespace declarations, is unnecessary. The bindings could simply be placed on
             the parent <tag>p:with-option</tag> element. We use <tag>p:namespaces</tag> here only to
@@ -4116,7 +4120,9 @@ See <xref linkend="versioning-considerations"/>.</para>
       <para>For a description of <tag class="attribute">psvi-required</tag>, see <xref
           linkend="psvi-support"/>; for <tag class="attribute">xpath-version</tag>, see <xref
           linkend="xpath-context"/>; for <tag class="attribute">exclude-inline-prefixes</tag>, see
-          <tag>p:inline</tag>.</para><note>
+          <tag>p:inline</tag>.</para>
+
+<note xml:id="note-step-decl">
         <para>The steps declared in a pipeline library are referred to by their type. It is not an
           error to put a <tag>p:pipeline</tag> or <tag>p:declare-step</tag> without a <tag
             class="attribute">type</tag> in a <tag>p:library</tag>, but there is no standard
@@ -4359,7 +4365,7 @@ document.</error>
 validation.
 </para>
 
-<note>
+<note xml:id="note-document">
         <para>A <tag>p:document</tag> always <emphasis>reads</emphasis> from the specified IRI. In
           the context of a <tag>p:input</tag>, this seems perfectly natural. In the context of a
             <tag>p:output</tag>, this may seem a little asymmetrical. Putting a

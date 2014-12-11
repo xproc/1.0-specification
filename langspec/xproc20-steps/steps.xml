@@ -11,7 +11,7 @@
     <title>XProc 2.0: Standard Step Library</title>
     <w3c-shortname>xproc20-steps</w3c-shortname>
     <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
-    <pubdate>2014-12-08</pubdate>
+    <pubdate>2014-12-16</pubdate>
 
     <bibliorelation role="x-no-errata" type="references"
                     xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
@@ -132,7 +132,7 @@ xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure"
 6 of the W3C Patent Policy</link>.</para>
 
 <para>This document is governed by the
-<link xml:id="w3c_process_revision" xlink:href="http://www.w3.org/2014/Process-20140801/">1 August 2014 W3C Process Document</link>.</para>
+<link xml:id="w3c_process_revision" xlink:href="http://www.w3.org/2005/10/Process-20051014/">14 October 2005 W3C Process Document</link>.</para>
 </legalnotice>
 </info>
 
@@ -244,7 +244,7 @@ value of that existing attribute.  That is, the value of the
 existing attribute is changed to the <option>attribute-value</option>
 value. </para>
 
-<note><para>If multiple attributes need to be set on the same
+<note xml:id="note-multattr"><para>If multiple attributes need to be set on the same
 element(s), the <tag>p:set-attributes</tag> step can be used to set them
 all at once.</para>
 </note>
@@ -693,7 +693,7 @@ options control how the output markup is produced before it is escaped.
 <para>produces:</para>
 <programlisting language="xml"><xi:include href="examples/serialize.output.ex.txt" parse="text"/></programlisting>
 
-<note>
+<note xml:id="note-escaped">
 <para>The result of this step is an XML document that contains the
 Unicode characters that are the characters that result from escaping
 the input. It is not encoded characters in a serialized octet stream,
@@ -761,7 +761,7 @@ occurs in constructing a request.</para>
 if the document element of the document that arrives on the
 <port>source</port> port is not <tag>c:request</tag>.</error></para>
 
-<note role="editorial">
+<note xml:id="ednote-json" role="editorial">
 <title>Editorial Note</title>
 <para>Can the input document be JSON?</para>
 </note>
@@ -791,7 +791,8 @@ If the <code>href</code>
 attribute is not absolute, it will be resolved against the base URI of
 the element on which it is occurs.</para>
 
-<note><para>In the case of simple “GET” requests, implementors are encouraged
+<note xml:id="note-http-get">
+<para>In the case of simple “GET” requests, implementors are encouraged
 to support as many protocols as practical. In particular, pipeline authors may
 attempt to use <tag>p:http-request</tag> to load documents with computed
 URIs using the <literal>file:</literal> scheme.</para></note>
@@ -920,7 +921,7 @@ encoded string whose byte stream should be sent as the message body.
 error</glossterm> if the encoding specified is not supported by the
 implementation.</error></para>
 
-<note>
+<note xml:id="note-single-set-ser">
 <para>The <tag>p:http-request</tag> step provides only a single set of
 serialization options for XML media types. There's no direct support
 for sending a multipart message with two XML parts encoded
@@ -991,7 +992,7 @@ Content-Type: application/xml; charset="utf-8"
 <section xml:id="c.request_response">
 <title>Managing the response</title>
 
-<note role="editorial">
+<note xml:id="ednote-non-xml" role="editorial">
 <title>Editorial Note</title>
 <para>This section hasn't been updated to reflect the fact that
 non-XML documents are now possible.</para>
@@ -1104,7 +1105,7 @@ linkend="rfc1521"/>. In those situations, the result document will be
 a <tag>c:multipart</tag> element that contains multiple
 <tag>c:body</tag> elements inside.</para>
 
-<note>
+<note xml:id="note-multipart-multipart">
 <para>Although it is technically possible for any of the individual
 parts of a multipart message to <emphasis>also</emphasis> be
 multipart, XProc does not provide a standard representation for such
@@ -1148,7 +1149,7 @@ specified, and it must include any parameters returned by the server.</para>
 constructing a <tag>c:body</tag> element for each body part
 encountered.</para>
 
-<note>
+<note xml:id="note-text-html">
 <para>Given the above description, any content identified as
 <code>text/html</code> will be encoded as (escaped) text or
 base64-encoded in the <tag>c:body</tag> element, as HTML isn't always
@@ -1528,7 +1529,8 @@ not specified or has an empty string as its value) the namespace attribute is ab
   </listitem>
  </itemizedlist>
 
-<note><para>The <option>apply-to</option> option is primarily intended to make
+<note xml:id="note-apply-to">
+<para>The <option>apply-to</option> option is primarily intended to make
 it possible to avoid renaming attributes when the <option>from</option> option
 specifies no namespace, since many attributes are in no namespace.</para>
 
@@ -1575,7 +1577,7 @@ in the <option>wrapper</option> option, and writes that element to the
 other, then it simply wraps each of the remaining documents in the
 longer sequence.</para>
 
-<note>
+<note xml:id="note-two-docs">
 <para>In the common case, where the document element of a document in
 the <port>result</port> sequence has two element children, any
 comments, processing instructions, or white space text nodes that
@@ -1898,7 +1900,7 @@ with that document as the context document. The context position
 sequence and the context size (<code>last()</code>) is the total
 number of documents in the sequence.</para>
 
-<note>
+<note xml:id="note-stream">
 <para>In principle, this component cannot stream because it must
 buffer all of the input sequence in order to find the context size. In
 practice, if the test expression does not use the
@@ -2115,7 +2117,7 @@ the specified <option>match</option> pattern is replaced by its children,
 effectively “unwrapping” the children from their parent. Non-element nodes
 and unmatched elements are passed through unchanged.</para>
 
-<note>
+<note xml:id="note-match-doc">
 <para>The matching applies to the entire document, not just the “top-most”
 matches. A pattern of the form <literal>h:div</literal> will replace
 <emphasis>all</emphasis> <tag>h:div</tag> elements, not just the top-most
@@ -2816,7 +2818,7 @@ string value of the XPath expression is used. In text content, an
 expression that selects nodes will cause those nodes to be copied into
 the template document.</para>
 
-<note>
+<note xml:id="note-xpath-version">
 <para>Depending on which version of XPath an implementation supports,
 and possibly on the <tag class="attribute">xpath-version</tag> setting on
 the <tag>p:template</tag>, some implementations may report errors, or
@@ -3669,7 +3671,7 @@ output method.</para>
 <para>If a processor chooses to implement an option for serialization,
 it must conform to the semantics defined in the <biblioref linkend="xml-serialization"/> specification.</para>
 
-<note>
+<note xml:id="note-use-char-maps">
 <para>The use-character-maps parameter in <biblioref linkend="xml-serialization"/> specification has not been provided in
 the standard serialization options provided by this
 specification.</para>

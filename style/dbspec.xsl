@@ -10,9 +10,10 @@
                 xmlns:n="http://docbook.org/xslt/ns/normalize"
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
                 xmlns:t="http://docbook.org/xslt/ns/template"
+                xmlns:tmpl="http://docbook.org/xslt/titlepage-templates"
                 xmlns:xlink="http://www.w3.org/1999/xlink"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                exclude-result-prefixes="f h db doc m ml n rng t xlink xs"
+                exclude-result-prefixes="f h db doc m ml n rng t xlink xs tmpl"
                 version="2.0">
 
 <xsl:import href="docbook.xsl"/>
@@ -365,6 +366,34 @@
       </style>
     </xsl:otherwise>
   </xsl:choose>
+</xsl:template>
+
+<xsl:template name="t:syntax-highlight-head">
+  <link href="prism.css" rel="stylesheet" />
+</xsl:template>
+
+<xsl:template name="t:user-titlepage-templates" as="element(tmpl:templates-list)?">
+  <tmpl:templates-list>
+    <tmpl:templates name="section sect1 sect2 sect3 sect4 sect5
+                          simplesect">
+      <tmpl:titlepage>
+        <db:title/>
+        <db:subtitle/>
+      </tmpl:titlepage>
+    </tmpl:templates>
+
+    <tmpl:templates name="preface chapter appendix partintro">
+      <tmpl:titlepage>
+        <db:title/>
+        <db:subtitle/>
+        <db:authorgroup/>
+        <db:author/>
+        <db:releaseinfo/>
+        <db:abstract/>
+        <db:revhistory/>
+      </tmpl:titlepage>
+    </tmpl:templates>
+  </tmpl:templates-list>
 </xsl:template>
 
 <!-- ============================================================ -->

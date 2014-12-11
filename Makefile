@@ -25,6 +25,7 @@ xproc20:
 	cd langspec/xproc20 && tar cf - graphics \
            | (cd ../../build/langspec/xproc20; tar xf -)
 	cp style/xproc.css build/langspec/xproc20/
+	cp style/prism.css build/langspec/xproc20/
 	cp js/prism.js build/langspec/xproc20/
 	cp langspec/schemas/xproc.rng build/langspec/xproc20/schemas/
 	cp langspec/schemas/steps.rng build/langspec/xproc20/schemas/
@@ -40,24 +41,28 @@ xproc20:
 	cp langspec/xproc20-steps/changelog.xml build/langspec/xproc20-steps/
 	cp langspec/xproc20-steps/changelog.html build/langspec/xproc20-steps/
 	cp style/xproc.css build/langspec/xproc20-steps/
+	cp style/prism.css build/langspec/xproc20-steps/
 	cp js/prism.js build/langspec/xproc20-steps/
 	@echo ==================================================
 	cp build/langspec/xproc20/base.css build/langspec/ns-p/
 	cp langspec/ns-p/Overview.html build/langspec/ns-p/index.html
 	cp langspec/ns-p/,xproc.xml  build/langspec/ns-p/ns-p.xml
 	cp style/xproc.css build/langspec/ns-p/
+	cp style/prism.css build/langspec/ns-p/
 	cp js/prism.js build/langspec/ns-p/
 	@echo ==================================================
 	cp build/langspec/xproc20/base.css build/langspec/ns-c/
 	cp langspec/ns-c/Overview.html build/langspec/ns-c/index.html
 	cp langspec/ns-c/,xproc-step.xml  build/langspec/ns-c/ns-c.xml
 	cp style/xproc.css build/langspec/ns-c/
+	cp style/prism.css build/langspec/ns-c/
 	cp js/prism.js build/langspec/ns-c/
 	@echo ==================================================
 	cp build/langspec/xproc20/base.css build/langspec/ns-err/
 	cp langspec/ns-err/Overview.html build/langspec/ns-err/index.html
 	cp langspec/ns-err/,xproc-error.xml  build/langspec/ns-err/ns-err.xml
 	cp style/xproc.css build/langspec/ns-err/
+	cp style/prism.css build/langspec/ns-err/
 	cp js/prism.js build/langspec/ns-err/
 
 stage-xproc20: xproc20
