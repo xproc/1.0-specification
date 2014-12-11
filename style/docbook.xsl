@@ -168,7 +168,7 @@
       <xsl:text> </xsl:text>
       <time datetime="{$pubdt}">
         <xsl:value-of select="format-date($pubdate, '[D1] [MNn] [Y0001]')"/>
-        <xsl:if test="not(db:specification/db:info/db:pubdate)">
+        <xsl:if test="not(db:info/db:pubdate)">
           <xsl:text> at </xsl:text>
           <xsl:value-of select="format-dateTime($dtz, '[H01]:[m01]&#160;UTC')"/>
           <xsl:if test="$travis-build-number != ''">
@@ -270,29 +270,31 @@
 	</dd>
       </xsl:for-each>
 
-      <dt>Repository:</dt>
-      <dd>
-        <a href="http://github.com/{$travis-user}/{$travis-repo}">
-          <xsl:text>This specification on GitHub</xsl:text>
-        </a>
-      </dd>
-      <dd>
-        <a href="http://github.com/xproc/specification/issues">
-          <xsl:text>Report an issue</xsl:text>
-        </a>
-      </dd>
-
-      <dt>Changes:</dt>
-      <xsl:if test="$auto-diff != ''">
+      <xsl:if test="not(db:info/db:pubdate)">
+        <dt>Repository:</dt>
         <dd>
-          <a href="diff.html">Diff against current “status quo” draft</a>
+          <a href="http://github.com/{$travis-user}/{$travis-repo}">
+            <xsl:text>This specification on GitHub</xsl:text>
+          </a>
+        </dd>
+        <dd>
+          <a href="http://github.com/xproc/specification/issues">
+            <xsl:text>Report an issue</xsl:text>
+          </a>
+        </dd>
+
+        <dt>Changes:</dt>
+        <xsl:if test="$auto-diff != ''">
+          <dd>
+            <a href="diff.html">Diff against current “status quo” draft</a>
+          </dd>
+        </xsl:if>
+        <dd>
+          <a href="http://github.com/{$travis-user}/{$travis-repo}/commits/{$travis-branch}">
+            <xsl:text>Commits for this specification</xsl:text>
+          </a>
         </dd>
       </xsl:if>
-      <dd>
-        <a href="http://github.com/{$travis-user}/{$travis-repo}/commits/{$travis-branch}">
-          <xsl:text>Commits for this specification</xsl:text>
-        </a>
-      </dd>
     </dl>
 
     <xsl:apply-templates
