@@ -67,9 +67,9 @@
 describing operations to be performed on documents.</para>
 
 <para>An XML Pipeline specifies a sequence of operations to be
-performed on zero or more documents. Pipelines generally accept
-zero or more documents as input and produce zero or more
-documents as output. Pipelines are made up of simple steps which
+performed on documents. Pipelines generally accept
+documents as input and produce documents as output.
+Pipelines are made up of simple steps which
 perform atomic operations on documents and constructs similar to
 conditionals, iteration, and exception handlers which control which
 steps are executed.</para>
@@ -125,23 +125,35 @@ xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure"
 </info>
 
 <section xml:id="introduction">
-    <title>Introduction</title>
-    <para>An XML Pipeline specifies a sequence of operations to be performed on a collection of XML
-      input documents. Pipelines take zero or more documents as their input and produce zero or
-      more documents as their output.</para>
-    <para>A <glossterm>pipeline</glossterm> consists of steps. Like pipelines, steps take zero or
-      more documents as their inputs and produce zero or more documents as their outputs.
-      The inputs of a step come from the web, from the pipeline document, from the inputs to the
-      pipeline itself, or from the outputs of other steps in the pipeline. The outputs from a step
-      are consumed by other steps, are outputs of the pipeline as a whole, or are discarded.</para>
-    <para>There are three kinds of steps: atomic steps, compound steps, and multi-container steps.
-      Atomic steps carry out single operations and have no substructure as far as the pipeline is
-      concerned. Compound steps and multi-container steps control the execution of other steps,
-      which they include in the form of one or more subpipelines.</para>
-    <para>This specification defines a standard library, <xref linkend="std-components"/>, of steps.
-      Pipeline implementations <rfc2119>may</rfc2119> support additional types of steps as well. </para>
-    <para><xref linkend="fig-xival"/> is a graphical representation of a simple pipeline that
-      performs XInclude processing and validation on a document.</para>
+<title>Introduction</title>
+
+<para>An XML Pipeline specifies a sequence of operations to be
+performed on a collection of input documents. Pipelines take documents
+as their input and produce documents as their output.</para>
+
+<para>A <glossterm>pipeline</glossterm> consists of steps. Like
+pipelines, steps take documents as their inputs and
+produce documents as their outputs. The inputs of a step
+come from the web, from the pipeline document, from the inputs to the
+pipeline itself, or from the outputs of other steps in the pipeline.
+The outputs from a step are consumed by other steps, are outputs of
+the pipeline as a whole, or are discarded.</para>
+
+<para>There are three kinds of steps: atomic steps, compound steps,
+and multi-container steps. Atomic steps carry out single operations
+and have no substructure as far as the pipeline is concerned. Compound
+steps and multi-container steps control the execution of other steps,
+which they include in the form of one or more subpipelines.</para>
+
+<para><biblioref linkend="std-components"/>
+defines a standard library of steps. Pipeline implementations
+<rfc2119>may</rfc2119> support additional types of steps as well.
+</para>
+
+<para><xref linkend="fig-xival"/> is a graphical representation of a
+simple pipeline that performs XInclude processing and validation on a
+document.</para>
+
     <figure xml:id="fig-xival">
       <title>A simple, linear XInclude/Validate pipeline</title>
       <mediaobject>
@@ -242,14 +254,19 @@ free.</para>
       <para>There are three kinds of steps: <glossterm baseform="atomic step">atomic</glossterm>,
           <glossterm baseform="compound step">compound</glossterm>, and <glossterm
           baseform="multi-container step">multi-container</glossterm>.</para>
-      <para><termdef xml:id="dt-atomic-step">An <firstterm>atomic step</firstterm> is a step that
-          performs a unit of XML processing, such as XInclude or transformation, and has no internal
-            <glossterm>subpipeline</glossterm>. </termdef> Atomic steps carry out fundamental XML
-        operations and can perform arbitrary amounts of computation, but they are indivisible. An
-        XSLT step, for example, performs XSLT processing; a Validate with XML Schema step validates
-        one input with respect to some set of XML Schemas, etc.</para>
+
+<para><termdef xml:id="dt-atomic-step">An <firstterm>atomic
+step</firstterm> is a step that performs a unit of processing
+on its input,
+such as XInclude or transformation, and has no internal
+<glossterm>subpipeline</glossterm>. </termdef> Atomic steps carry out
+fundamental operations and can perform arbitrary amounts of
+computation, but they are indivisible. An XSLT step, for example,
+performs XSLT processing; a Validate with XML Schema step validates
+one input with respect to some set of XML Schemas, etc.</para>
+
       <para>There are many <emphasis>types</emphasis> of atomic steps. The standard library of
-        atomic steps is described in <xref linkend="std-components"/>, but implementations
+        atomic steps is described in <biblioref linkend="std-components"/>, but implementations
           <rfc2119>may</rfc2119> provide others as well. <impl>It is
             <glossterm>implementation-defined</glossterm> what additional step types, if any, are
           provided. </impl> Each use, or instance, of an atomic step invokes the processing defined
@@ -738,7 +755,7 @@ that set.</error>
           for <glossterm>namespace fixup</glossterm>. In particular, processors are encouraged to
           take account of prefix information in creating new namespace bindings, to minimize
           negative impact on prefixed names in content.</para>
-        <para><impl>Except for cases which are specifically called out in <xref
+        <para><impl>Except for cases which are specifically called out in <biblioref
               linkend="std-components"/>, the extent to which namespace fixup, and other checks for
             outputs which cannot be serialized, are performed on intermediate outputs is
               <glossterm>implementation-defined</glossterm>.</impl></para>
@@ -1911,7 +1928,7 @@ the <tag class="attribute">version</tag> attribute <rfc2119>must</rfc2119> be a
 <type>xs:decimal</type>.</error></para>
 
 <para>The version of XProc defined
-by this specification is “<literal>1.0</literal>”.</para>
+by this specification is “<literal>2.0</literal>”.</para>
 
 <para>A pipeline author <rfc2119>must</rfc2119> identify the version of XProc
 on the document element of a pipeline document.
@@ -2369,7 +2386,7 @@ are effectively excluded from the pipeline document. If a node is effectively
 excluded, the processor <rfc2119>must</rfc2119> behave as if the element
 was not present in the document.</para>
 
-<para>Elements that are not in the XProc namespace <rfc2119>may</rfc2119> also
+<para xml:id="p.use-when">Elements that are not in the XProc namespace <rfc2119>may</rfc2119> also
 have a <tag class="attribute">use-when</tag> attribute, but the attribute must
 be in the XProc namespace. The semantics of a
 <tag class="attribute">p:use-when</tag> attribute
@@ -2633,12 +2650,9 @@ attribute">extension attributes</glossterm>.</error>
   </section>
   <section xml:id="steps">
     <title>Steps</title>
-    <para>This section describes the core steps of XProc.</para>
-    <para>Several of the steps defined in this specification refer to other, evolving XML
-      technologies (XSLT, XQuery, XSL-FO, etc.). Where this specification identifies a specific
-      version of a technology, implementers <rfc2119>must</rfc2119> implement the specified version
-      or any subsequent edition or version that is backwards compatible. At user option, they may
-      support other, incompatible versions or extensions.</para>
+    <para>This section describes the core language steps of XProc; the full
+vocabulary of standard, atomic steps is described in
+<biblioref linkend="std-components"/>.</para>
     <section xml:id="p.pipeline"><title>p:pipeline</title><para>A <tag>p:pipeline</tag> declares a
         pipeline that can be evaluated by an XProc processor. It encapsulates the behavior of a
           <glossterm>subpipeline</glossterm>. Its children declare inputs, outputs, and options that
@@ -2696,15 +2710,22 @@ step declaration. A document that reads:</para>
           <programlisting language="xml"><xi:include href="examples/pipeline.txt" parse="text"/></programlisting>
         </example>
       </section></section>
-    <section xml:id="p.for-each"><title>p:for-each</title><para>A for-each is specified by the
-          <tag>p:for-each</tag> element. It is a <glossterm>compound step</glossterm> that processes
-        a sequence of documents, applying its <glossterm>subpipeline</glossterm> to each document in
-        turn.</para>
-      <e:rng-pattern name="ForEach"/>
-      <para>When a pipeline needs to process a sequence of documents using a subpipeline that only
-        processes a single document, the <tag>p:for-each</tag> construct can be used as a wrapper
-        around that subpipeline. The <tag>p:for-each</tag> will apply that subpipeline to each
-        document in the sequence in turn.</para>
+
+<section xml:id="p.for-each">
+<title>p:for-each</title>
+
+<para>A for-each is specified by the <tag>p:for-each</tag> element. It
+is a <glossterm>compound step</glossterm> that processes a sequence of
+documents, applying its <glossterm>subpipeline</glossterm> to each
+document in turn.</para>
+
+<e:rng-pattern name="ForEach"/>
+
+<para>When a pipeline needs to process a sequence of documents using a
+subpipeline that only processes a single document, the
+<tag>p:for-each</tag> construct can be used as a wrapper around that
+subpipeline. The <tag>p:for-each</tag> will apply that subpipeline to
+each document in the sequence in turn.</para>
 <para>The result of the <tag>p:for-each</tag> is a
         sequence of documents produced by processing each individual document in the input sequence.
         If the <tag>p:for-each</tag> has one or more output ports, what appears on each of those
@@ -2785,14 +2806,20 @@ with the <link linkend="dt-standard-modifications">standard modifications</link>
           and <literal>fo-results</literal> ports, respectively, of the <literal>chapters</literal>
           step itself.</para>
       </section></section>
-    <section xml:id="p.viewport"><title>p:viewport</title><para>A viewport is specified by the
-          <tag>p:viewport</tag> element. It is a <glossterm>compound step</glossterm> that processes
-        a single document, applying its <glossterm>subpipeline</glossterm> to one or more subtrees
-        of the document. </para>
-      <e:rng-pattern name="Viewport"/>
-      <para>The result of the <tag>p:viewport</tag> is a copy of the original document where the
-        selected subtrees have been replaced by the results of applying the subpipeline to
-        them.</para>
+
+<section xml:id="p.viewport">
+<title>p:viewport</title>
+
+<para>A viewport is specified by the <tag>p:viewport</tag> element. It
+is a <glossterm>compound step</glossterm> that processes a single XML
+document, applying its <glossterm>subpipeline</glossterm> to one or
+more subtrees of the document. </para>
+
+<e:rng-pattern name="Viewport"/>
+
+<para>The result of the <tag>p:viewport</tag> is a copy of the
+original document where the selected subtrees have been replaced by
+the results of applying the subpipeline to them.</para>
 <para>The <tag>p:viewport-source</tag> is an anonymous input: its
           <glossterm>connection</glossterm> provides a single document to the <tag>p:viewport</tag>
         step. If no document is explicitly provided, then the viewport source is read from the
@@ -3223,7 +3250,7 @@ can provide some sort of default for the rest of the pipeline.</para>
 
 <section xml:id="p.atomic"><title>Atomic Steps</title><para>In addition to the six step types
         described in the preceding sections, XProc provides a standard library of atomic step types.
-        The full vocabulary of standards steps is described in <xref linkend="std-components"
+        The full vocabulary of standards steps is described in <biblioref linkend="std-components"
         />.</para>
 <para>All of the standard, atomic steps are invoked in the same way:</para>
       <e:rng-pattern name="OtherAtomicStep"/>
@@ -3414,19 +3441,30 @@ step.</error></para>
           input will be connected to the <glossterm>default readable port</glossterm>. <error
             code="S0032">It is a <glossterm>static error</glossterm> if no connection is provided
             and the <glossterm>default readable port</glossterm> is undefined.</error></para>
-<para>A
-            <tag class="attribute">select</tag> expression <rfc2119>may</rfc2119> also be provided
-          with a connection. The <tag class="attribute">select</tag> expression, if specified,
-          applies the specified XPath select expression to the document(s) that are read. Each
-          selected node is wrapped in a document (unless it is a document) and provided to the input
-          port. In other
-          words,</para><programlisting language="xml"><xi:include href="examples/input-doc.txt" parse="text"/></programlisting><para>provides
-          a single document,
-          but</para><programlisting language="xml"><xi:include href="examples/input-select.txt" parse="text"/></programlisting><para>provides
-          a sequence of zero or more documents, one for each <code>html:div</code> in
-            <uri>http://example.org/input.html</uri>. (Note that in the case of nested
-            <code>html:div</code> elements, this may result in the same content being returned in
-          several documents.)</para>
+
+<para>A <tag class="attribute">select</tag> expression
+<rfc2119>may</rfc2119> also be provided with a connection.
+The <tag class="attribute">select</tag> expression, if specified, applies the
+specified XPath select expression to the document(s) that are read.
+<error code="D1004">It is a <glossterm>dynamic error</glossterm>
+if the <tag class="attribute">select</tag> is used and any input
+document is not an XML document.</error></para>
+
+<para>Each selected node is wrapped in a document (unless it is a document)
+and provided to the input port. In other words,</para>
+
+<programlisting language="xml"><xi:include href="examples/input-doc.txt" parse="text"/></programlisting>
+
+<para>provides a single document, but</para>
+
+<programlisting language="xml"><xi:include href="examples/input-select.txt" parse="text"/></programlisting>
+
+<para>provides a sequence of zero or more documents, one for each
+<code>html:div</code> in <uri>http://example.org/input.html</uri>.
+(Note that in the case of nested <code>html:div</code> elements, this
+may result in the same content being returned in several
+documents.)</para>
+
 <para>A select expression can equally be applied to input read
           from another step. This
           input:</para><programlisting language="xml"><xi:include href="examples/input-port.txt" parse="text"/></programlisting><para>provides
