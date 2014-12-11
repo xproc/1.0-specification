@@ -1,4 +1,4 @@
-XProc: An XML Pipeline Language
+XProc: An XML Pipeline Language [![Build Status](https://travis-ci.org/xproc/specification.svg?branch=xproc20)](https://travis-ci.org/xproc/specification)
 ===============================
 
 This is the `xproc20` branch of the repository; it contains the

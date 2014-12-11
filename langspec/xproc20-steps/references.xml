@@ -17,10 +17,10 @@ Alex Milowski, James Fuller, and Norman Walsh editors.
 W3C Working Draft 5 November 2013.
 </bibliomixed>
 
-<bibliomixed xml:id="std-components"><abbrev>XProc 2.0: Standard Step Library</abbrev>
-<citetitle xlink:href="http://www.w3.org/TR/xproc20-steps/">XProc 2.0:
-Standard Step Library</citetitle>.
-Alex Milowski, Henry Thompson, and Norman Walsh editors.
+<bibliomixed xml:id="xproc20"><abbrev>XProc 2.0</abbrev>
+<citetitle xlink:href="http://www.w3.org/TR/xproc20/">XProc 2.0:
+An XML Pipeline Language</citetitle>.
+Norman Walsh, Alex Milowski, and Henry Thompson, editors.
 W3C Working Draft 15 December 2014.
 </bibliomixed>
 
