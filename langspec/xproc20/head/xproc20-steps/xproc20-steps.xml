@@ -102,16 +102,14 @@ Claim(s)</link> must disclose the information in accordance with <link xlink:hre
 
 <section xml:id="introduction">
   <title>Introduction</title>
-  <para>…</para>
-</section>
 
-<section version="5.0-extension w3c-xproc" xml:id="std-components">
-
-<title>Standard Step Library</title>
-
-<para>This section describes the standard XProc steps. A machine-readable
-description of these steps may be found in
-<link xlink:href="http://www.w3.org/2008/xproc-1.0.xpl">xproc-1.0.xpl</link>.
+<para>This specification describes the standard, atomic XProc steps of
+<biblioref linkend="xproc20"/>.
+<!-- FIXME:
+A machine-readable description of
+these steps may be found in
+<link xlink:href="xproc-2.0.xpl">xproc-2.0.xpl</link>.
+-->
 </para>
 
 <para>Some aspects of documents are generally unchanged by steps:</para>
@@ -131,7 +129,7 @@ that flow through them.</para>
 </listitem>
 </itemizedlist>
 
-<para xml:id="cv.result">Also, in this section, several steps use this
+<para xml:id="cv.result">Also, in this specification, several steps use this
 element for result information:</para>
 
 <e:rng-pattern name="VocabResult"/>
@@ -716,6 +714,11 @@ occurs in constructing a request.</para>
 if the document element of the document that arrives on the
 <port>source</port> port is not <tag>c:request</tag>.</error></para>
 
+<note role="editorial">
+<title>Editorial Note</title>
+<para>Can the input document be JSON?</para>
+</note>
+
 <section xml:id="cv.request">
 <title>Specifying a request</title>
 
@@ -939,6 +942,12 @@ Content-Type: application/xml; charset="utf-8"
 
 <section xml:id="c.request_response">
 <title>Managing the response</title>
+
+<note role="editorial">
+<title>Editorial Note</title>
+<para>This section hasn't been updated to reflect the fact that
+non-XML documents are now possible.</para>
+</note>
 
 <para>The handling of the response to the request and the generation
 of the step's result document is controlled by the
@@ -1284,7 +1293,7 @@ remains the same.</para>
 <title>p:load</title>
 
 <para>The <code>p:load</code> step has no inputs but produces as its
-result an XML resource specified by an IRI.</para>
+result a document specified by an IRI.</para>
 
 <p:declare-step type="p:load">
   <p:output port="result"/>
@@ -1874,9 +1883,9 @@ any annotations that appear in the input.</para>
 <section xml:id="c.store">
 <title>p:store</title>
 
-<para>The <tag>p:store</tag> step stores a serialized version of its
-input to a URI. This step outputs a reference to the location of the
-stored document.</para>
+<para>The <tag>p:store</tag> step stores (a possibly serialized
+version of) its input to a URI. This step outputs a reference to the
+location of the stored document.</para>
 
 <p:declare-step type="p:store">
   <p:input port="source" content-types="*/*"/>
@@ -3776,6 +3785,13 @@ can be raised by steps in this specification:</para>
 Requirements</citetitle>.
 Alex Milowski, James Fuller, and Norman Walsh editors.
 W3C Working Draft 5 November 2013.
+</bibliomixed>
+
+<bibliomixed xml:id="xproc20"><abbrev>XProc 2.0</abbrev>
+<citetitle xlink:href="http://www.w3.org/TR/xproc20/">XProc 2.0:
+An XML Pipeline Language</citetitle>.
+Norman Walsh, Alex Milowski, and Henry Thompson, editors.
+W3C Working Draft 15 December 2014.
 </bibliomixed>
 
 <bibliomixed xml:id="xml-infoset-rec"><abbrev>Infoset</abbrev>

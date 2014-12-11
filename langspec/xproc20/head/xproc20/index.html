@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: An XML Pipeline Language</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc 2.0: An XML Pipeline Language</div></h1><h2>W3C Editor's Draft  <time datetime="2014-11-26T16:01:58Z">26 November 2014 at 16:01 UTC (<a href="https://github.com/xproc/specification/commit/ba66a66cfcfde39c5d9cf9c9991433ff2f738f15">build 157</a>)</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20/">http://www.w3.org/TR/xproc20/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd><dt>Repository:</dt><dd><a href="http://github.com/xproc/specification">This specification on GitHub</a></dd><dd><a href="http://github.com/xproc/specification/issues">Report an issue</a></dd><dt>Changes:</dt><dd><a href="diff.html">Diff against current “status quo” draft</a></dd><dd><a href="http://github.com/xproc/specification/commits/">Commits for this specification</a></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: An XML Pipeline Language</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="alternate" title="XML" href="langspec.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc 2.0: An XML Pipeline Language</div></h1><h2>W3C Editor's Draft  <time datetime="2014-12-11T14:19:28Z">11 December 2014 at 14:19 UTC (<a href="https://github.com/xproc/specification/commit/e6a79ea06f421adc29bef9e98580b4af8fecec22">build 159</a>)</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20/">http://www.w3.org/TR/xproc20/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd><dt>Repository:</dt><dd><a href="http://github.com/xproc/specification">This specification on GitHub</a></dd><dd><a href="http://github.com/xproc/specification/issues">Report an issue</a></dd><dt>Changes:</dt><dd><a href="diff.html">Diff against current “status quo” draft</a></dd><dd><a href="http://github.com/xproc/specification/commits/">Commits for this specification</a></dd></dl><p>This document is also available in these non-normative formats: <a href="langspec.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
 	  automatic <a href="diff.html">change markup</a> from the previous draft
           courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.</p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
 © 2010 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
@@ -12,9 +12,9 @@ use</a> rules apply.</p><hr /><div class="abstract"><h2>Abstract</h2>
 describing operations to be performed on documents.</p>
 
 <p>An XML Pipeline specifies a sequence of operations to be
-performed on zero or more documents. Pipelines generally accept
-zero or more documents as input and produce zero or more
-documents as output. Pipelines are made up of simple steps which
+performed on documents. Pipelines generally accept
+documents as input and produce documents as output.
+Pipelines are made up of simple steps which
 perform atomic operations on documents and constructs similar to
 conditionals, iteration, and exception handlers which control which
 steps are executed.</p>
@@ -63,23 +63,35 @@ Claim(s)</a> must disclose the information in accordance with <a href="http://ww
   
 
 <section id="introduction" class="section"><div class="section-titlepage"><h2>1 Introduction</h2></div>
-    
-    <p>An XML Pipeline specifies a sequence of operations to be performed on a collection of XML
-      input documents. Pipelines take zero or more documents as their input and produce zero or
-      more documents as their output.</p>
-    <p>A <em class="glossterm"><a href="#dt-pipeline">pipeline</a></em> consists of steps. Like pipelines, steps take zero or
-      more documents as their inputs and produce zero or more documents as their outputs.
-      The inputs of a step come from the web, from the pipeline document, from the inputs to the
-      pipeline itself, or from the outputs of other steps in the pipeline. The outputs from a step
-      are consumed by other steps, are outputs of the pipeline as a whole, or are discarded.</p>
-    <p>There are three kinds of steps: atomic steps, compound steps, and multi-container steps.
-      Atomic steps carry out single operations and have no substructure as far as the pipeline is
-      concerned. Compound steps and multi-container steps control the execution of other steps,
-      which they include in the form of one or more subpipelines.</p>
-    <p>This specification defines a standard library, <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, of steps.
-      Pipeline implementations <span class="rfc2119" id="introduction.5.2">may</span> support additional types of steps as well. </p>
-    <p><a href="#fig-xival" title="A simple, linear XInclude/Validate pipeline">Figure 1, “A simple, linear XInclude/Validate pipeline”</a> is a graphical representation of a simple pipeline that
-      performs XInclude processing and validation on a document.</p>
+
+
+<p>An XML Pipeline specifies a sequence of operations to be
+performed on a collection of input documents. Pipelines take documents
+as their input and produce documents as their output.</p>
+
+<p>A <em class="glossterm"><a href="#dt-pipeline">pipeline</a></em> consists of steps. Like
+pipelines, steps take documents as their inputs and
+produce documents as their outputs. The inputs of a step
+come from the web, from the pipeline document, from the inputs to the
+pipeline itself, or from the outputs of other steps in the pipeline.
+The outputs from a step are consumed by other steps, are outputs of
+the pipeline as a whole, or are discarded.</p>
+
+<p>There are three kinds of steps: atomic steps, compound steps,
+and multi-container steps. Atomic steps carry out single operations
+and have no substructure as far as the pipeline is concerned. Compound
+steps and multi-container steps control the execution of other steps,
+which they include in the form of one or more subpipelines.</p>
+
+<p>[<a href="#std-components"><span class="abbrev">XProc 2.0: Standard Step Library</span></a>]
+defines a standard library of steps. Pipeline implementations
+<span class="rfc2119" id="introduction.5.2">may</span> support additional types of steps as well.
+</p>
+
+<p><a href="#fig-xival" title="A simple, linear XInclude/Validate pipeline">Figure 1, “A simple, linear XInclude/Validate pipeline”</a> is a graphical representation of a
+simple pipeline that performs XInclude processing and validation on a
+document.</p>
+
     <figure id="fig-xival" class="figure-wrapper"><div class="figure"><div id="fig-xival.2" title="A simple, linear XInclude/Validate pipeline" class="mediaobject"><img src="graphics/sch-xinclude-validate-pipeline.png" alt="A simple, linear XInclude/Validate pipeline" /></div></div><div class="title">Figure 1. A simple, linear XInclude/Validate pipeline</div></figure>
     <p>This is a pipeline that consists of two atomic steps, XInclude and Validate with XML
       Schema. The pipeline itself has two inputs, “source” (a source document) and “schemas” (a
@@ -212,14 +224,19 @@ free.</p>
         can have options.</p>
       <p>There are three kinds of steps: <em class="glossterm"><a href="#dt-atomic-step">atomic</a></em>,
           <em class="glossterm"><a href="#dt-compound-step">compound</a></em>, and <em class="glossterm"><a href="#dt-multi-container-step">multi-container</a></em>.</p>
-      <p><span id="dt-atomic-step" class="termdef">[Definition: An <em class="glossterm">atomic step</em> is a step that
-          performs a unit of XML processing, such as XInclude or transformation, and has no internal
-            <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em>. ]</span> Atomic steps carry out fundamental XML
-        operations and can perform arbitrary amounts of computation, but they are indivisible. An
-        XSLT step, for example, performs XSLT processing; a Validate with XML Schema step validates
-        one input with respect to some set of XML Schemas, etc.</p>
+
+<p><span id="dt-atomic-step" class="termdef">[Definition: An <em class="glossterm">atomic
+step</em> is a step that performs a unit of processing
+on its input,
+such as XInclude or transformation, and has no internal
+<em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em>. ]</span> Atomic steps carry out
+fundamental operations and can perform arbitrary amounts of
+computation, but they are indivisible. An XSLT step, for example,
+performs XSLT processing; a Validate with XML Schema step validates
+one input with respect to some set of XML Schemas, etc.</p>
+
       <p>There are many <em>types</em> of atomic steps. The standard library of
-        atomic steps is described in <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, but implementations
+        atomic steps is described in [<a href="#std-components"><span class="abbrev">XProc 2.0: Standard Step Library</span></a>], but implementations
           <span class="rfc2119" id="step-concept.5.3">may</span> provide others as well. <a name="impl-2"></a>It is
             <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em> what additional step types, if any, are
           provided.  Each use, or instance, of an atomic step invokes the processing defined
@@ -671,7 +688,7 @@ that set.
           for <em class="glossterm"><a href="#dt-namespace-fixup">namespace fixup</a></em>. In particular, processors are encouraged to
           take account of prefix information in creating new namespace bindings, to minimize
           negative impact on prefixed names in content.</p>
-        <p><a name="impl-11"></a>Except for cases which are specifically called out in <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>, the extent to which namespace fixup, and other checks for
+        <p><a name="impl-11"></a>Except for cases which are specifically called out in [<a href="#std-components"><span class="abbrev">XProc 2.0: Standard Step Library</span></a>], the extent to which namespace fixup, and other checks for
             outputs which cannot be serialized, are performed on intermediate outputs is
               <em class="glossterm"><a href="#dt-implementation-defined">implementation-defined</a></em>.</p>
         <p>Whenever an implementation serializes pipeline contents, for example for pipeline
@@ -1641,7 +1658,7 @@ the <code class="tag-attribute">version</code> attribute <span class="rfc2119" i
 <code class="type">xs:decimal</code>.</p>
 
 <p>The version of XProc defined
-by this specification is “<code class="literal">1.0</code>”.</p>
+by this specification is “<code class="literal">2.0</code>”.</p>
 
 <p>A pipeline author <span class="rfc2119" id="versioning-considerations.4.1">must</span> identify the version of XProc
 on the document element of a pipeline document.
@@ -2101,7 +2118,7 @@ are effectively excluded from the pipeline document. If a node is effectively
 excluded, the processor <span class="rfc2119" id="use-when.2.3">must</span> behave as if the element
 was not present in the document.</p>
 
-<p>Elements that are not in the XProc namespace <span class="rfc2119" id="use-when.3.1">may</span> also
+<p id="p.use-when">Elements that are not in the XProc namespace <span class="rfc2119" id="p.use-when.1">may</span> also
 have a <code class="tag-attribute">use-when</code> attribute, but the attribute must
 be in the XProc namespace. The semantics of a
 <code class="tag-attribute">p:use-when</code> attribute
@@ -2336,12 +2353,9 @@ Expression per [<a href="#xpath2"><span class="abbrev">XPath 2.0</span></a>] or 
   </section>
   <section id="steps" class="section"><div class="section-titlepage"><h2>4 Steps</h2></div>
     
-    <p>This section describes the core steps of XProc.</p>
-    <p>Several of the steps defined in this specification refer to other, evolving XML
-      technologies (XSLT, XQuery, XSL-FO, etc.). Where this specification identifies a specific
-      version of a technology, implementers <span class="rfc2119" id="steps.3.1">must</span> implement the specified version
-      or any subsequent edition or version that is backwards compatible. At user option, they may
-      support other, incompatible versions or extensions.</p>
+    <p>This section describes the core language steps of XProc; the full
+vocabulary of standard, atomic steps is described in
+[<a href="#std-components"><span class="abbrev">XProc 2.0: Standard Step Library</span></a>].</p>
     <section id="p.pipeline" class="section"><div class="section-titlepage"><h3>4.1 p:pipeline</h3></div><p>A <code class="tag-element">p:pipeline</code> declares a
         pipeline that can be evaluated by an XProc processor. It encapsulates the behavior of a
           <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em>. Its children declare inputs, outputs, and options that
@@ -2411,15 +2425,22 @@ step declaration. A document that reads:</p>
 
 &lt;/p:pipeline&gt;</code></pre></div></figure>
       </section></section>
-    <section id="p.for-each" class="section"><div class="section-titlepage"><h3>4.2 p:for-each</h3></div><p>A for-each is specified by the
-          <code class="tag-element">p:for-each</code> element. It is a <em class="glossterm"><a href="#dt-compound-step">compound step</a></em> that processes
-        a sequence of documents, applying its <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em> to each document in
-        turn.</p>
-      <p id="R.1" prefix="p" class="element-syntax element-syntax-language-construct"><code>&lt;p:for-each<br />  name? = <var>NCName</var>&gt;<br />    ((<a href="#p.iteration-source">p:iteration-source</a>? &amp; <br />      (<a href="#p.output">p:output</a> | <br />       <a href="#p.log">p:log</a>)*),<br />     <var>subpipeline</var>)<br />&lt;/p:for-each&gt;</code></p>
-      <p>When a pipeline needs to process a sequence of documents using a subpipeline that only
-        processes a single document, the <code class="tag-element">p:for-each</code> construct can be used as a wrapper
-        around that subpipeline. The <code class="tag-element">p:for-each</code> will apply that subpipeline to each
-        document in the sequence in turn.</p>
+
+<section id="p.for-each" class="section"><div class="section-titlepage"><h3>4.2 p:for-each</h3></div>
+
+
+<p>A for-each is specified by the <code class="tag-element">p:for-each</code> element. It
+is a <em class="glossterm"><a href="#dt-compound-step">compound step</a></em> that processes a sequence of
+documents, applying its <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em> to each
+document in turn.</p>
+
+<p id="R.1" prefix="p" class="element-syntax element-syntax-language-construct"><code>&lt;p:for-each<br />  name? = <var>NCName</var>&gt;<br />    ((<a href="#p.iteration-source">p:iteration-source</a>? &amp; <br />      (<a href="#p.output">p:output</a> | <br />       <a href="#p.log">p:log</a>)*),<br />     <var>subpipeline</var>)<br />&lt;/p:for-each&gt;</code></p>
+
+<p>When a pipeline needs to process a sequence of documents using a
+subpipeline that only processes a single document, the
+<code class="tag-element">p:for-each</code> construct can be used as a wrapper around that
+subpipeline. The <code class="tag-element">p:for-each</code> will apply that subpipeline to
+each document in the sequence in turn.</p>
 <p>The result of the <code class="tag-element">p:for-each</code> is a
         sequence of documents produced by processing each individual document in the input sequence.
         If the <code class="tag-element">p:for-each</code> has one or more output ports, what appears on each of those
@@ -2515,14 +2536,20 @@ step declaration. A document that reads:</p>
           and <code class="literal">fo-results</code> ports, respectively, of the <code class="literal">chapters</code>
           step itself.</p>
       </section></section>
-    <section id="p.viewport" class="section"><div class="section-titlepage"><h3>4.3 p:viewport</h3></div><p>A viewport is specified by the
-          <code class="tag-element">p:viewport</code> element. It is a <em class="glossterm"><a href="#dt-compound-step">compound step</a></em> that processes
-        a single document, applying its <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em> to one or more subtrees
-        of the document. </p>
-      <p id="R.1" prefix="p" class="element-syntax element-syntax-language-construct"><code>&lt;p:viewport<br />  name? = <var>NCName</var><br />  <strong>match</strong> = <var>XSLTMatchPattern</var>&gt;<br />    ((<a href="#p.viewport-source">p:viewport-source</a>? &amp; <br />      <a href="#p.output">p:output</a>? &amp; <br />      <a href="#p.log">p:log</a>?),<br />     <var>subpipeline</var>)<br />&lt;/p:viewport&gt;</code></p>
-      <p>The result of the <code class="tag-element">p:viewport</code> is a copy of the original document where the
-        selected subtrees have been replaced by the results of applying the subpipeline to
-        them.</p>
+
+<section id="p.viewport" class="section"><div class="section-titlepage"><h3>4.3 p:viewport</h3></div>
+
+
+<p>A viewport is specified by the <code class="tag-element">p:viewport</code> element. It
+is a <em class="glossterm"><a href="#dt-compound-step">compound step</a></em> that processes a single XML
+document, applying its <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em> to one or
+more subtrees of the document. </p>
+
+<p id="R.1" prefix="p" class="element-syntax element-syntax-language-construct"><code>&lt;p:viewport<br />  name? = <var>NCName</var><br />  <strong>match</strong> = <var>XSLTMatchPattern</var>&gt;<br />    ((<a href="#p.viewport-source">p:viewport-source</a>? &amp; <br />      <a href="#p.output">p:output</a>? &amp; <br />      <a href="#p.log">p:log</a>?),<br />     <var>subpipeline</var>)<br />&lt;/p:viewport&gt;</code></p>
+
+<p>The result of the <code class="tag-element">p:viewport</code> is a copy of the
+original document where the selected subtrees have been replaced by
+the results of applying the subpipeline to them.</p>
 <p>The <a href="#p.viewport-source"><code class="tag-element">p:viewport-source</code></a> is an anonymous input: its
           <em class="glossterm"><a href="#dt-connection">connection</a></em> provides a single document to the <code class="tag-element">p:viewport</code>
         step. If no document is explicitly provided, then the viewport source is read from the
@@ -3021,7 +3048,7 @@ can provide some sort of default for the rest of the pipeline.</p>
 
 <section id="p.atomic" class="section"><div class="section-titlepage"><h3>4.7 Atomic Steps</h3></div><p>In addition to the six step types
         described in the preceding sections, XProc provides a standard library of atomic step types.
-        The full vocabulary of standards steps is described in <a href="../xproc20-steps/#std-components">Section 2, “Standard Step Library”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>.</p>
+        The full vocabulary of standards steps is described in [<a href="#std-components"><span class="abbrev">XProc 2.0: Standard Step Library</span></a>].</p>
 <p>All of the standard, atomic steps are invoked in the same way:</p>
       <p id="R.1" prefix="p" class="element-syntax element-syntax-language-construct"><code>&lt;<var>p:atomic-step</var><br />  name? = <var>NCName</var>&gt;<br />    (<a href="#p.input">p:input</a> | <br />     <a href="#p.with-option">p:with-option</a> | <br />     <a href="#p.log">p:log</a>)*<br />&lt;/<var>p:atomic-step</var>&gt;</code></p>
       <p>Where “<em class="replaceable"><code>p:atomic-step</code></em>” <span class="rfc2119" id="p.atomic.5.2">must</span> be in the XProc
@@ -3202,23 +3229,34 @@ step.</p>
         <p>If no connection is provided for a <em class="glossterm"><a href="#dt-primary-input-port">primary input port</a></em>, the
           input will be connected to the <em class="glossterm"><a href="#dt-default-readable-port">default readable port</a></em>. <a name="err.inline.S0032"></a>It is a <em class="glossterm"><a href="#dt-static-error">static error</a></em> (<a href="#err.S0032"><code class="errqname">err:XS0032</code></a>) if no connection is provided
             and the <em class="glossterm"><a href="#dt-default-readable-port">default readable port</a></em> is undefined.</p>
-<p>A
-            <code class="tag-attribute">select</code> expression <span class="rfc2119" id="p.input.18.2">may</span> also be provided
-          with a connection. The <code class="tag-attribute">select</code> expression, if specified,
-          applies the specified XPath select expression to the document(s) that are read. Each
-          selected node is wrapped in a document (unless it is a document) and provided to the input
-          port. In other
-          words,</p><pre class="programlisting language-markup line-numbers"><code>&lt;p:input port="source"&gt;
+
+<p>A <code class="tag-attribute">select</code> expression
+<span class="rfc2119" id="p.input.18.2">may</span> also be provided with a connection.
+The <code class="tag-attribute">select</code> expression, if specified, applies the
+specified XPath select expression to the document(s) that are read.
+<a name="err.inline.D1004"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.D1004"><code class="errqname">err:XD1004</code></a>)
+if the <code class="tag-attribute">select</code> is used and any input
+document is not an XML document.</p>
+
+<p>Each selected node is wrapped in a document (unless it is a document)
+and provided to the input port. In other words,</p>
+
+<pre class="programlisting language-markup line-numbers"><code>&lt;p:input port="source"&gt;
   &lt;p:document href="http://example.org/input.html"/&gt;
-&lt;/p:input&gt;</code></pre><p>provides
-          a single document,
-          but</p><pre class="programlisting language-markup line-numbers"><code>&lt;p:input port="source" select="//html:div" xmlns:html="http://www.w3.org/1999/xhtml"&gt;
+&lt;/p:input&gt;</code></pre>
+
+<p>provides a single document, but</p>
+
+<pre class="programlisting language-markup line-numbers"><code>&lt;p:input port="source" select="//html:div" xmlns:html="http://www.w3.org/1999/xhtml"&gt;
   &lt;p:document href="http://example.org/input.html"/&gt;
-&lt;/p:input&gt;</code></pre><p>provides
-          a sequence of zero or more documents, one for each <code class="code">html:div</code> in
-            <code class="uri">http://example.org/input.html</code>. (Note that in the case of nested
-            <code class="code">html:div</code> elements, this may result in the same content being returned in
-          several documents.)</p>
+&lt;/p:input&gt;</code></pre>
+
+<p>provides a sequence of zero or more documents, one for each
+<code class="code">html:div</code> in <code class="uri">http://example.org/input.html</code>.
+(Note that in the case of nested <code class="code">html:div</code> elements, this
+may result in the same content being returned in several
+documents.)</p>
+
 <p>A select expression can equally be applied to input read
           from another step. This
           input:</p><pre class="programlisting language-markup line-numbers"><code>&lt;p:input port="source" select="//html:div" xmlns:html="http://www.w3.org/1999/xhtml"&gt;
@@ -3251,7 +3289,7 @@ see <a href="#p.inline"><code class="tag-element">p:inline</code></a>.</p>
           never used by an atomic step since the step, when it's called, will always connect the
           primary input port to the default readable port (or cause a static error). The only case
           where it has value is on a <a href="#p.pipeline"><code class="tag-element">p:pipeline</code></a> when that pipeline is invoked directly by
-          the processor. In that case, the processor <span class="rfc2119" id="p.input.29.4">must</span> use the default
+          the processor. In that case, the processor <span class="rfc2119" id="p.input.30.4">must</span> use the default
           connection if no external connection is provided for the port.</p></section>
 
     <section id="p.iteration-source" class="section"><div class="section-titlepage"><h3>5.2 p:iteration-source</h3></div><p>A
@@ -3354,7 +3392,7 @@ see <a href="#p.inline"><code class="tag-element">p:inline</code></a>.</p>
         call from within another pipeline, for example) implementations <span class="rfc2119" id="p.serialization.5.5">may</span> but
         are not required to check that the specified options are allowed.</p>
 <p>The semantics
-        of the attributes on a <code class="tag-element">p:serialization</code> are described in <a href="../xproc20-steps/#serialization-options">Section 2.3, “Serialization Options”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>.</p>
+        of the attributes on a <code class="tag-element">p:serialization</code> are described in <a href="../xproc20-steps/#serialization-options">Section 1.3, “Serialization Options”</a><sup class="xrefspec"><a href="../xproc20-steps/">XPS</a></sup>.</p>
 <p><a name="err.inline.S0039"></a>It is a
             <em class="glossterm"><a href="#dt-static-error">static error</a></em> (<a href="#err.S0039"><code class="errqname">err:XS0039</code></a>) if the port specified on the
             <code class="tag-element">p:serialization</code> is not the name of an output port on the pipeline in which it
@@ -4344,6 +4382,13 @@ Alex Milowski, James Fuller, and Norman Walsh editors.
 W3C Working Draft 5 November 2013.
 </p></div>
 
+<div id="std-components" class="bibliomixed"><p>[<span class="abbrev">XProc 2.0: Standard Step Library</span>] 
+<a href="http://www.w3.org/TR/xproc20-steps/"><span class="citetitle"><cite>XProc 2.0:
+Standard Step Library</cite></span></a>.
+Alex Milowski, Henry Thompson, and Norman Walsh editors.
+W3C Working Draft 15 December 2014.
+</p></div>
+
 <div id="xml-infoset-rec" class="bibliomixed"><p>[<span class="abbrev">Infoset</span>] 
 <a href="http://www.w3.org/TR/xml-infoset/"><span class="citetitle"><cite>XML
 Information Set (Second Edition)</cite></span></a>. John Cowan,
@@ -4508,9 +4553,12 @@ November, 1996.</p></div>
           [<a href="#xml11"><span class="abbrev">XML 1.1</span></a>]. Unless otherwise noted, the term
         “<em class="firstterm">XML</em>” refers equally to both versions.</p></dd><dt id="glossary.2.3" class="glossentry"><em class="glossterm"><a href="#dt-ancestors">ancestors</a></em></dt><dd class="glossdef"><p>The <em class="firstterm">ancestors</em> of a step, if it has
           any, are its <em class="glossterm"><a href="#dt-container">container</a></em> and the ancestors of its
-          container.</p></dd><dt id="glossary.2.4" class="glossentry"><em class="glossterm"><a href="#dt-atomic-step">atomic step</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">atomic step</em> is a step that
-          performs a unit of XML processing, such as XInclude or transformation, and has no internal
-            <em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em>. </p></dd><dt id="glossary.2.5" class="glossentry"><em class="glossterm"><a href="#dt-attribute-value-template">attribute value
+          container.</p></dd><dt id="glossary.2.4" class="glossentry"><em class="glossterm"><a href="#dt-atomic-step">atomic
+step</a></em></dt><dd class="glossdef"><p>An <em class="firstterm">atomic
+step</em> is a step that performs a unit of processing
+on its input,
+such as XInclude or transformation, and has no internal
+<em class="glossterm"><a href="#dt-subpipeline">subpipeline</a></em>. </p></dd><dt id="glossary.2.5" class="glossentry"><em class="glossterm"><a href="#dt-attribute-value-template">attribute value
 template</a></em></dt><dd class="glossdef"><p>In an attribute
 that is designated as an <em class="firstterm">attribute value
 template</em>, an expression can be used by surrounding the
@@ -4821,7 +4869,9 @@ if any of the c:param elements are invalid.</p><p>See: <a href="#err.inline.D100
 types, it is a dynamic error
 if an input document that arrives on the port has a content type that
 does not match any content type in
-that set.</p><p>See: <a href="#err.inline.D1003">Inputs and Outputs</a></p></dd></dl></div>
+that set.</p><p>See: <a href="#err.inline.D1003">Inputs and Outputs</a></p></dd><dt><a name="err.D1004"></a><code class="errqname">err:XD1004</code></dt><dd><p>It is a dynamic error
+if the select is used and any input
+document is not an XML document.</p><p>See: <a href="#err.inline.D1004">p:input</a></p></dd></dl></div>
 </section>
 
 <section id="app.step-errors" class="section"><div class="section-titlepage"><h2>3 Step Errors</h2></div>

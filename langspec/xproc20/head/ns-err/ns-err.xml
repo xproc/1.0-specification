@@ -75,6 +75,7 @@ For updated information, please refer to the latest version of the
    <error code="XD1001">It is a dynamic error if the computed value does not match the specified sequence type.</error>
    <error code="XD1002">It is a dynamic error if any of the c:param elements are invalid.</error>
    <error code="XD1003">If an input port provides a set of acceptable content types, it is a dynamic error if an input document that arrives on the port has a content type that does not match any content type in that set.</error>
+   <error code="XD1004">It is a dynamic error if the select is used and any input document is not an XML document.</error>
    <error code="XS0001">It is a static error if there are any loops in the connections between steps: no step can be connected to itself nor can there be any sequence of connections through other steps that leads back to itself.</error>
    <error code="XS0002">All steps in the same scope must have unique names: it is a static error if two steps with the same name appear in the same scope.</error>
    <error code="XS0003">It is a static error if any declared input is not connected.</error>

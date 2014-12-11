@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: Standard Step Library</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="alternate" title="XML" href="langsteps.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc 2.0: Standard Step Library</div></h1><h2>W3C Editor's Draft  <time datetime="2014-11-26T16:03:15Z">26 November 2014 at 16:03 UTC (<a href="https://github.com/xproc/specification/commit/ba66a66cfcfde39c5d9cf9c9991433ff2f738f15">build 157</a>)</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20-steps/">http://www.w3.org/TR/xproc20-steps/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd><dt>Repository:</dt><dd><a href="http://github.com/xproc/specification">This specification on GitHub</a></dd><dd><a href="http://github.com/xproc/specification/issues">Report an issue</a></dd><dt>Changes:</dt><dd><a href="diff.html">Diff against current “status quo” draft</a></dd><dd><a href="http://github.com/xproc/specification/commits/">Commits for this specification</a></dd></dl><p>This document is also available in these non-normative formats: <a href="langsteps.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: Standard Step Library</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="base.css" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="alternate" title="XML" href="langsteps.xml" /><link rel="alternate" title="ChangeLog" href="changelog.html" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="https://docbook.github.com/release/2.0.5/base/css/prism.css" rel="stylesheet" /><link href="https://docbook.github.com/release/2.0.5/base/css/db-prism.css" rel="stylesheet" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1><div class="title">XProc 2.0: Standard Step Library</div></h1><h2>W3C Editor's Draft  <time datetime="2014-12-11T14:20:53Z">11 December 2014 at 14:20 UTC (<a href="https://github.com/xproc/specification/commit/e6a79ea06f421adc29bef9e98580b4af8fecec22">build 159</a>)</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20-steps/">http://www.w3.org/TR/xproc20-steps/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd><dt>Repository:</dt><dd><a href="http://github.com/xproc/specification">This specification on GitHub</a></dd><dd><a href="http://github.com/xproc/specification/issues">Report an issue</a></dd><dt>Changes:</dt><dd><a href="diff.html">Diff against current “status quo” draft</a></dd><dd><a href="http://github.com/xproc/specification/commits/">Commits for this specification</a></dd></dl><p>This document is also available in these non-normative formats: <a href="langsteps.xml">XML</a>, <a href="changelog.html">ChangeLog</a>, 
 	  automatic <a href="diff.html">change markup</a> from the previous draft
           courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.</p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
 © 2010 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
@@ -49,21 +49,15 @@ patent which the individual believes contains <a href="http://www.w3.org/Consort
 Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
 6 of the W3C Patent Policy</a>.</p>
 
-</div></div><hr /><div class="toc"><h2 id="TableOfContents">Table of Contents</h2><dl class="toc"><dt><span>1 <a href="#introduction">Introduction</a></span></dt><dt><span>2 <a href="#std-components">Standard Step Library</a></span></dt><dd><dl class="toc"><dt><span>2.1 <a href="#std-required">Required Steps</a></span></dt><dd><dl class="toc"><dt><span>2.1.1 <a href="#c.add-attribute">p:add-attribute</a></span></dt><dt><span>2.1.2 <a href="#c.add-xml-base">p:add-xml-base</a></span></dt><dt><span>2.1.3 <a href="#c.cast-content-type">p:cast-content-type</a></span></dt><dt><span>2.1.4 <a href="#c.compare">p:compare</a></span></dt><dt><span>2.1.5 <a href="#c.count">p:count</a></span></dt><dt><span>2.1.6 <a href="#c.delete">p:delete</a></span></dt><dt><span>2.1.7 <a href="#c.directory-list">p:directory-list</a></span></dt><dt><span>2.1.8 <a href="#c.error">p:error</a></span></dt><dt><span>2.1.9 <a href="#c.escape-markup">p:escape-markup</a></span></dt><dt><span>2.1.10 <a href="#c.filter">p:filter</a></span></dt><dt><span>2.1.11 <a href="#c.http-request">p:http-request</a></span></dt><dt><span>2.1.12 <a href="#c.identity">p:identity</a></span></dt><dt><span>2.1.13 <a href="#c.insert">p:insert</a></span></dt><dt><span>2.1.14 <a href="#c.label-elements">p:label-elements</a></span></dt><dt><span>2.1.15 <a href="#c.load">p:load</a></span></dt><dt><span>2.1.16 <a href="#c.make-absolute-uris">p:make-absolute-uris</a></span></dt><dt><span>2.1.17 <a href="#c.namespace-rename">p:namespace-rename</a></span></dt><dt><span>2.1.18 <a href="#c.pack">p:pack</a></span></dt><dt><span>2.1.19 <a href="#c.parameters">p:parameters</a></span></dt><dt><span>2.1.20 <a href="#c.rename">p:rename</a></span></dt><dt><span>2.1.21 <a href="#c.replace">p:replace</a></span></dt><dt><span>2.1.22 <a href="#c.set-attributes">p:set-attributes</a></span></dt><dt><span>2.1.23 <a href="#c.set-properties">p:set-properties</a></span></dt><dt><span>2.1.24 <a href="#c.sink">p:sink</a></span></dt><dt><span>2.1.25 <a href="#c.split-sequence">p:split-sequence</a></span></dt><dt><span>2.1.26 <a href="#c.store">p:store</a></span></dt><dt><span>2.1.27 <a href="#c.string-replace">p:string-replace</a></span></dt><dt><span>2.1.28 <a href="#c.unescape-markup">p:unescape-markup</a></span></dt><dt><span>2.1.29 <a href="#c.unwrap">p:unwrap</a></span></dt><dt><span>2.1.30 <a href="#c.wrap">p:wrap</a></span></dt><dt><span>2.1.31 <a href="#c.wrap-sequence">p:wrap-sequence</a></span></dt><dt><span>2.1.32 <a href="#c.xinclude">p:xinclude</a></span></dt><dt><span>2.1.33 <a href="#c.xslt">p:xslt</a></span></dt></dl></dd><dt><span>2.2 <a href="#std-optional">Optional Steps</a></span></dt><dd><dl class="toc"><dt><span>2.2.1 <a href="#c.exec">p:exec</a></span></dt><dt><span>2.2.2 <a href="#c.hash">p:hash</a></span></dt><dt><span>2.2.3 <a href="#c.in-scope-names">p:in-scope-names</a></span></dt><dt><span>2.2.4 <a href="#c.template">p:template</a></span></dt><dt><span>2.2.5 <a href="#c.uuid">p:uuid</a></span></dt><dt><span>2.2.6 <a href="#c.validate-with-relax-ng">p:validate-with-relax-ng</a></span></dt><dt><span>2.2.7 <a href="#c.validate-with-schematron">p:validate-with-schematron</a></span></dt><dt><span>2.2.8 <a href="#c.validate-with-xml-schema">p:validate-with-xml-schema</a></span></dt><dt><span>2.2.9 <a href="#c.www-form-urldecode">p:www-form-urldecode</a></span></dt><dt><span>2.2.10 <a href="#c.www-form-urlencode">p:www-form-urlencode</a></span></dt><dt><span>2.2.11 <a href="#c.xquery">p:xquery</a></span></dt><dt><span>2.2.12 <a href="#c.xsl-formatter">p:xsl-formatter</a></span></dt></dl></dd><dt><span>2.3 <a href="#serialization-options">Serialization Options</a></span></dt></dl></dd><dt><span>3 <a href="#errors">Errors</a></span></dt><dd><dl class="toc"><dt><span>3.1 <a href="#static-errors">Static Errors</a></span></dt><dt><span>3.2 <a href="#dynamic-errors">Dynamic Errors</a></span></dt><dt><span>3.3 <a href="#step-errors">Step Errors</a></span></dt></dl></dd><dt><span>A <a href="#app.step-errors">Step Errors</a></span></dt><dt><span>B <a href="#references">References</a></span></dt><dd><dl class="toc"><dt><span>1 <a href="#normative-references">Normative References</a></span></dt><dt><span>2 <a href="#informative-references">Informative References</a></span></dt></dl></dd></dl></div>
+</div></div><hr /><div class="toc"><h2 id="TableOfContents">Table of Contents</h2><dl class="toc"><dt><span>1 <a href="#introduction">Introduction</a></span></dt><dd><dl class="toc"><dt><span>1.1 <a href="#std-required">Required Steps</a></span></dt><dd><dl class="toc"><dt><span>1.1.1 <a href="#c.add-attribute">p:add-attribute</a></span></dt><dt><span>1.1.2 <a href="#c.add-xml-base">p:add-xml-base</a></span></dt><dt><span>1.1.3 <a href="#c.cast-content-type">p:cast-content-type</a></span></dt><dt><span>1.1.4 <a href="#c.compare">p:compare</a></span></dt><dt><span>1.1.5 <a href="#c.count">p:count</a></span></dt><dt><span>1.1.6 <a href="#c.delete">p:delete</a></span></dt><dt><span>1.1.7 <a href="#c.directory-list">p:directory-list</a></span></dt><dt><span>1.1.8 <a href="#c.error">p:error</a></span></dt><dt><span>1.1.9 <a href="#c.escape-markup">p:escape-markup</a></span></dt><dt><span>1.1.10 <a href="#c.filter">p:filter</a></span></dt><dt><span>1.1.11 <a href="#c.http-request">p:http-request</a></span></dt><dt><span>1.1.12 <a href="#c.identity">p:identity</a></span></dt><dt><span>1.1.13 <a href="#c.insert">p:insert</a></span></dt><dt><span>1.1.14 <a href="#c.label-elements">p:label-elements</a></span></dt><dt><span>1.1.15 <a href="#c.load">p:load</a></span></dt><dt><span>1.1.16 <a href="#c.make-absolute-uris">p:make-absolute-uris</a></span></dt><dt><span>1.1.17 <a href="#c.namespace-rename">p:namespace-rename</a></span></dt><dt><span>1.1.18 <a href="#c.pack">p:pack</a></span></dt><dt><span>1.1.19 <a href="#c.parameters">p:parameters</a></span></dt><dt><span>1.1.20 <a href="#c.rename">p:rename</a></span></dt><dt><span>1.1.21 <a href="#c.replace">p:replace</a></span></dt><dt><span>1.1.22 <a href="#c.set-attributes">p:set-attributes</a></span></dt><dt><span>1.1.23 <a href="#c.set-properties">p:set-properties</a></span></dt><dt><span>1.1.24 <a href="#c.sink">p:sink</a></span></dt><dt><span>1.1.25 <a href="#c.split-sequence">p:split-sequence</a></span></dt><dt><span>1.1.26 <a href="#c.store">p:store</a></span></dt><dt><span>1.1.27 <a href="#c.string-replace">p:string-replace</a></span></dt><dt><span>1.1.28 <a href="#c.unescape-markup">p:unescape-markup</a></span></dt><dt><span>1.1.29 <a href="#c.unwrap">p:unwrap</a></span></dt><dt><span>1.1.30 <a href="#c.wrap">p:wrap</a></span></dt><dt><span>1.1.31 <a href="#c.wrap-sequence">p:wrap-sequence</a></span></dt><dt><span>1.1.32 <a href="#c.xinclude">p:xinclude</a></span></dt><dt><span>1.1.33 <a href="#c.xslt">p:xslt</a></span></dt></dl></dd><dt><span>1.2 <a href="#std-optional">Optional Steps</a></span></dt><dd><dl class="toc"><dt><span>1.2.1 <a href="#c.exec">p:exec</a></span></dt><dt><span>1.2.2 <a href="#c.hash">p:hash</a></span></dt><dt><span>1.2.3 <a href="#c.in-scope-names">p:in-scope-names</a></span></dt><dt><span>1.2.4 <a href="#c.template">p:template</a></span></dt><dt><span>1.2.5 <a href="#c.uuid">p:uuid</a></span></dt><dt><span>1.2.6 <a href="#c.validate-with-relax-ng">p:validate-with-relax-ng</a></span></dt><dt><span>1.2.7 <a href="#c.validate-with-schematron">p:validate-with-schematron</a></span></dt><dt><span>1.2.8 <a href="#c.validate-with-xml-schema">p:validate-with-xml-schema</a></span></dt><dt><span>1.2.9 <a href="#c.www-form-urldecode">p:www-form-urldecode</a></span></dt><dt><span>1.2.10 <a href="#c.www-form-urlencode">p:www-form-urlencode</a></span></dt><dt><span>1.2.11 <a href="#c.xquery">p:xquery</a></span></dt><dt><span>1.2.12 <a href="#c.xsl-formatter">p:xsl-formatter</a></span></dt></dl></dd><dt><span>1.3 <a href="#serialization-options">Serialization Options</a></span></dt></dl></dd><dt><span>2 <a href="#errors">Errors</a></span></dt><dd><dl class="toc"><dt><span>2.1 <a href="#static-errors">Static Errors</a></span></dt><dt><span>2.2 <a href="#dynamic-errors">Dynamic Errors</a></span></dt><dt><span>2.3 <a href="#step-errors">Step Errors</a></span></dt></dl></dd><dt><span>A <a href="#app.step-errors">Step Errors</a></span></dt><dt><span>B <a href="#references">References</a></span></dt><dd><dl class="toc"><dt><span>1 <a href="#normative-references">Normative References</a></span></dt><dt><span>2 <a href="#informative-references">Informative References</a></span></dt></dl></dd></dl></div>
   
 
 <section id="introduction" class="section"><div class="section-titlepage"><h2>1 Introduction</h2></div>
   
-  <p>…</p>
-</section>
 
-<section id="std-components" class="section"><div class="section-titlepage"><h2>2 Standard Step Library</h2></div>
+<p>This specification describes the standard, atomic XProc steps of
+[<a href="#xproc20"><span class="abbrev">XProc 2.0</span></a>].
 
-
-
-<p>This section describes the standard XProc steps. A machine-readable
-description of these steps may be found in
-<a href="http://www.w3.org/2008/xproc-1.0.xpl">xproc-1.0.xpl</a>.
 </p>
 
 <p>Some aspects of documents are generally unchanged by steps:</p>
@@ -83,7 +77,7 @@ modify the <em class="glossterm"><a href="../xproc20/#dt-document-properties">do
 that flow through them.</p>
 </li></ul></div>
 
-<p id="cv.result">Also, in this section, several steps use this
+<p id="cv.result">Also, in this specification, several steps use this
 element for result information:</p>
 
 <p id="R.1" prefix="c" class="element-syntax element-syntax-step-vocabulary"><code>&lt;c:result&gt;<br />    <var>string</var><br />&lt;/c:result&gt;</code></p>
@@ -93,19 +87,19 @@ context is as defined in
 <span class="xspecref"><a href="../xproc20/#xpath-context">Section 2.7, “XPaths in XProc”</a><sup class="xrefspec"><a href="../xproc20/">XP</a></sup></span>.</p>
 
 <p>When a step specifies a particular version of a technology,
-implementations <span class="rfc2119" id="std-components.8.1">must</span> implement that
+implementations <span class="rfc2119" id="introduction.8.1">must</span> implement that
 version or a subsequent version that is backwards compatible with that
 version. At user-option, they may implement other non-backwards
 compatible versions.</p>
 
-<section id="std-required" class="section"><div class="section-titlepage"><h3>2.1 Required Steps</h3></div>
+<section id="std-required" class="section"><div class="section-titlepage"><h3>1.1 Required Steps</h3></div>
 
 
 <p>This section describes standard steps that must be supported
 by any conforming processor.</p>
 
 
-<section id="c.add-attribute" class="section"><div class="section-titlepage"><h4>2.1.1 p:add-attribute</h4></div>
+<section id="c.add-attribute" class="section"><div class="section-titlepage"><h4>1.1.1 p:add-attribute</h4></div>
 
 
 <p>The <code class="code">p:add-attribute</code> step adds a single attribute to
@@ -176,7 +170,7 @@ of the element <span class="rfc2119" id="c.add-attribute.11.2">must</span> also 
 
 
 
-<section id="c.add-xml-base" class="section"><div class="section-titlepage"><h4>2.1.2 p:add-xml-base</h4></div>
+<section id="c.add-xml-base" class="section"><div class="section-titlepage"><h4>1.1.2 p:add-xml-base</h4></div>
 
 
 
@@ -232,7 +226,7 @@ element's [base URI].</p>
 
 
 
-<section id="c.cast-content-type" class="section"><div class="section-titlepage"><h4>2.1.3 p:cast-content-type</h4></div>
+<section id="c.cast-content-type" class="section"><div class="section-titlepage"><h4>1.1.3 p:cast-content-type</h4></div>
 
 
 <p>The <code class="tag-element">p:cast-content-type</code> step changes the media type
@@ -304,7 +298,7 @@ error</a></em> (<a href="#err.C1007"><code class="errqname">err:XC1007</code></
 
 
 
-<section id="c.compare" class="section"><div class="section-titlepage"><h4>2.1.4 p:compare</h4></div>
+<section id="c.compare" class="section"><div class="section-titlepage"><h4>1.1.4 p:compare</h4></div>
 
 
 <p>The <code class="code">p:compare</code> step compares two documents for
@@ -329,7 +323,7 @@ are equal, otherwise <code class="literal">false</code>.</p>
 
 
 
-<section id="c.count" class="section"><div class="section-titlepage"><h4>2.1.5 p:count</h4></div>
+<section id="c.count" class="section"><div class="section-titlepage"><h4>1.1.5 p:count</h4></div>
 
 
 <p>The <code class="code">p:count</code> step counts the number of documents in
@@ -351,7 +345,7 @@ continue.</p>
 
 
 
-<section id="c.delete" class="section"><div class="section-titlepage"><h4>2.1.6 p:delete</h4></div>
+<section id="c.delete" class="section"><div class="section-titlepage"><h4>1.1.6 p:delete</h4></div>
 
 
 <p>The <code class="code">p:delete</code> step deletes items specified by a match
@@ -377,7 +371,7 @@ of the element on which it occurred.</p>
 </section>
 
 
-<section id="c.directory-list" class="section"><div class="section-titlepage"><h4>2.1.7 p:directory-list</h4></div>
+<section id="c.directory-list" class="section"><div class="section-titlepage"><h4>1.1.7 p:directory-list</h4></div>
 
 
 <p>The <code class="code">p:directory-list</code> step produces a list of the
@@ -472,7 +466,7 @@ are <em class="glossterm"><a href="../xproc20/#dt-implementation-defined">implem
 
 
 
-<section id="c.error" class="section"><div class="section-titlepage"><h4>2.1.8 p:error</h4></div>
+<section id="c.error" class="section"><div class="section-titlepage"><h4>1.1.8 p:error</h4></div>
 
 
 <p>The <code class="code">p:error</code> step generates a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> using the input provided
@@ -532,7 +526,7 @@ element in the pipeline.</p>
 
 
 
-<section id="c.escape-markup" class="section"><div class="section-titlepage"><h4>2.1.9 p:escape-markup</h4></div>
+<section id="c.escape-markup" class="section"><div class="section-titlepage"><h4>1.1.9 p:escape-markup</h4></div>
 
 
 <p>The <code class="code">p:escape-markup</code> step applies XML serialization to the
@@ -543,7 +537,7 @@ serialized.</p>
 
 <p class="element-syntax element-syntax-declare-step-rqd"><span class="decl"><code>&lt;p:declare-step</code> <code class="attr type-attr">type</code><code>="</code><code class="value type-value">p:escape-markup</code><code>"</code><code>&gt;</code></span><br />     <span class="input"><code>&lt;p:input</code> <code class="attr port-attr">port</code><code>="</code><code class="value port-value">source</code><code>"</code> <code class="attr content-types-attr">content-types</code><code>="</code><code class="value content-types-value">application/xml text/xml */*+xml</code><code>"</code><code>/&gt;</code></span><br />     <span class="input"><code>&lt;p:output</code> <code class="attr port-attr">port</code><code>="</code><code class="value port-value">result</code><code>"</code><code>/&gt;</code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">cdata-section-elements</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">''</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:string</code><code>"</code><code>/&gt;</code><code></code><code class="comment">&lt;!-- </code><span class="opt-type">ListOfQNames</span><code class="comment"> --&gt;</code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">doctype-public</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:string</code><code>"</code><code>/&gt;</code><code>              </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">doctype-system</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:anyURI</code><code>"</code><code>/&gt;</code><code>              </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">escape-uri-attributes</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'false'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code></code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">include-content-type</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'true'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code></code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">indent</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'false'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code>    </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">media-type</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:string</code><code>"</code><code>/&gt;</code><code>                  </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">method</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'xml'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:QName</code><code>"</code><code>/&gt;</code><code>        </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">omit-xml-declaration</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'true'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code></code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">standalone</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'omit'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:token</code><code>"</code><code>/&gt;</code><code>   </code><code class="comment">&lt;!-- </code><span class="opt-type">"true" | "false" | "omit"</span><code class="comment"> --&gt;</code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">undeclare-prefixes</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code>         </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">version</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'1.0'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:string</code><code>"</code><code>/&gt;</code><code>      </code></span><br /><code>&lt;/p:declare-step&gt;</code></p>
 
-<p>This step supports the standard serialization options as specified in <a href="#serialization-options" title="Serialization Options">Section 2.3, “Serialization Options”</a>.  These
+<p>This step supports the standard serialization options as specified in <a href="#serialization-options" title="Serialization Options">Section 1.3, “Serialization Options”</a>.  These
 options control how the output markup is produced before it is escaped.
 </p>
 
@@ -577,7 +571,7 @@ XML declaration in the escaped result.</p>
 
 
 
-<section id="c.filter" class="section"><div class="section-titlepage"><h4>2.1.10 p:filter</h4></div>
+<section id="c.filter" class="section"><div class="section-titlepage"><h4>1.1.10 p:filter</h4></div>
 
 
 <p>The <code class="code">p:filter</code> step selects portions of the source document
@@ -593,7 +587,7 @@ expression is computed dynamically.</p>
 
 
 
-<section id="c.http-request" class="section"><div class="section-titlepage"><h4>2.1.11 p:http-request</h4></div>
+<section id="c.http-request" class="section"><div class="section-titlepage"><h4>1.1.11 p:http-request</h4></div>
 
 
 <p>The <code class="code">p:http-request</code> step provides for interaction
@@ -608,14 +602,19 @@ including an entity body (content) for the request.</p>
 
 <p>The standard serialization options are provided to control the
 serialization of any XML content which is sent as part of the request.
-The effect of these options is as specified in <a href="#serialization-options" title="Serialization Options">Section 2.3, “Serialization Options”</a>. See <a href="#c.request_body" title="Request Entity body conversion">Section 2.1.11.2, “Request Entity body conversion”</a> for a discussion of when serialization
+The effect of these options is as specified in <a href="#serialization-options" title="Serialization Options">Section 1.3, “Serialization Options”</a>. See <a href="#c.request_body" title="Request Entity body conversion">Section 1.1.11.2, “Request Entity body conversion”</a> for a discussion of when serialization
 occurs in constructing a request.</p>
 
 <p><a name="err.inline.C0040"></a>It is a <em class="glossterm"><a href="#dt-dynamic-error">dynamic error</a></em> (<a href="#err.C0040"><code class="errqname">err:XC0040</code></a>)
 if the document element of the document that arrives on the
 <code class="port">source</code> port is not <a href="#cv.request"><code class="tag-element">c:request</code></a>.</p>
 
-<section id="cv.request" class="section"><div class="section-titlepage"><h5>2.1.11.1 Specifying a request</h5></div>
+<div class="note admonition"><h3>Editorial Note</h3>
+
+<p>Can the input document be JSON?</p>
+</div>
+
+<section id="cv.request" class="section"><div class="section-titlepage"><h5>1.1.11.1 Specifying a request</h5></div>
 
 
 <p>An HTTP request is represented by a <code class="tag-element">c:request</code> element.</p>
@@ -698,7 +697,7 @@ header name and value, either for inclusion in a request, or as received in a re
 <a href="#cv.header"><code class="tag-element">c:header</code></a> and <a href="#cv.multipart"><code class="tag-element">c:multipart</code></a> or <a href="#cv.body"><code class="tag-element">c:body</code></a> children,
 if present, and transmitted to the host (and port, if present) specified by the
 <code class="code">href</code> attribute.  The details of how the request entity body, if any, is
-constructed are given in <a href="#c.response_body" title="Converting Response Entity Bodies">Section 2.1.11.4, “Converting Response Entity Bodies”</a>.</p>
+constructed are given in <a href="#c.response_body" title="Converting Response Entity Bodies">Section 1.1.11.4, “Converting Response Entity Bodies”</a>.</p>
 
 <p>When the request is formulated, the step and/or protocol
 implementation may add headers as necessary to either complete the
@@ -723,7 +722,7 @@ of the step or protocol.
 </p>
 </section>
 
-<section id="c.request_body" class="section"><div class="section-titlepage"><h5>2.1.11.2 Request Entity body conversion</h5></div>
+<section id="c.request_body" class="section"><div class="section-titlepage"><h5>1.1.11.2 Request Entity body conversion</h5></div>
 
 
 <p>The <code class="code">c:multipart</code> element specifies a multi-part
@@ -836,8 +835,14 @@ Content-Type: application/xml; charset="utf-8"
 </code></pre>
 </section>
 
-<section id="c.request_response" class="section"><div class="section-titlepage"><h5>2.1.11.3 Managing the response</h5></div>
+<section id="c.request_response" class="section"><div class="section-titlepage"><h5>1.1.11.3 Managing the response</h5></div>
 
+
+<div class="note admonition"><h3>Editorial Note</h3>
+
+<p>This section hasn't been updated to reflect the fact that
+non-XML documents are now possible.</p>
+</div>
 
 <p>The handling of the response to the request and the generation
 of the step's result document is controlled by the
@@ -879,7 +884,7 @@ response to the request is handled as follows:</p>
 <ol style="list-style: decimal;"><li><p>A single <a href="#c.response"><code class="tag-element">c:response</code></a> element is produced with the <code class="code">status</code> attribute containing the status of the response received.</p></li><li><p>Each response header is translated into a <a href="#cv.header"><code class="tag-element">c:header</code></a> element.</p></li><li><p>Unless the <code class="code">status-only</code> attribute has a value
 <code class="literal">true</code>, the entity body of the response is converted into
 a <a href="#cv.body"><code class="tag-element">c:body</code></a> or <a href="#cv.multipart"><code class="tag-element">c:multipart</code></a> element via the rules given in
- <a href="#c.response_body" title="Converting Response Entity Bodies">Section 2.1.11.4, “Converting Response Entity Bodies”</a>.</p></li></ol></div>
+ <a href="#c.response_body" title="Converting Response Entity Bodies">Section 1.1.11.4, “Converting Response Entity Bodies”</a>.</p></li></ol></div>
 
 <p>Otherwise (the <code class="code">detailed</code> attribute is not specified
 or its value is <code class="literal">false</code>), the response to the request
@@ -893,12 +898,12 @@ is handled as follows:</p>
 response header) is an XML media type, the entity is decoded if necessary, then parsed as an XML document
 and produced on the <code class="code">result</code> output port as the entire output of the step.</p></li><li><p>Otherwise, the entity body of the response is converted into
 a <a href="#cv.body"><code class="tag-element">c:body</code></a> or <a href="#cv.multipart"><code class="tag-element">c:multipart</code></a> element via the rules given in
-<a href="#c.response_body" title="Converting Response Entity Bodies">Section 2.1.11.4, “Converting Response Entity Bodies”</a>.</p></li></ol></div>
+<a href="#c.response_body" title="Converting Response Entity Bodies">Section 1.1.11.4, “Converting Response Entity Bodies”</a>.</p></li></ol></div>
 
 <p>In either case the base URI of the output document is the resolved value
 of the <code class="code">href</code> attribute from the input <a href="#cv.request"><code class="tag-element">c:request</code></a>.</p>
 
-<section id="redirects" class="section"><div class="section-titlepage"><h6>2.1.11.3.1 Redirects</h6></div>
+<section id="redirects" class="section"><div class="section-titlepage"><h6>1.1.11.3.1 Redirects</h6></div>
 
 
 <p>One possible response from an HTTP request is a redirect,
@@ -913,7 +918,7 @@ if they are returned by the server.
 </p>
 </section>
 
-<section id="cookies" class="section"><div class="section-titlepage"><h6>2.1.11.3.2 Cookies</h6></div>
+<section id="cookies" class="section"><div class="section-titlepage"><h6>1.1.11.3.2 Cookies</h6></div>
 
 
 <p>With one exception, in version 1.0 of XProc, the
@@ -937,7 +942,7 @@ authentication protocol.</p>
 </section>
  </section>
 
-<section id="c.response_body" class="section"><div class="section-titlepage"><h5>2.1.11.4 Converting Response Entity Bodies</h5></div>
+<section id="c.response_body" class="section"><div class="section-titlepage"><h5>1.1.11.4 Converting Response Entity Bodies</h5></div>
 
 
 <p>The entity of a response may be multipart per [<a href="#rfc1521"><span class="abbrev">RFC 1521</span></a>]. In those situations, the result document will be
@@ -996,7 +1001,7 @@ using the <a href="#c.unescape-markup"><code class="tag-element">p:unescape-mark
 </div>
 </section>
 
-<section id="example-http-request" class="section"><div class="section-titlepage"><h5>2.1.11.5 HTTP Request Example</h5></div>
+<section id="example-http-request" class="section"><div class="section-titlepage"><h5>1.1.11.5 HTTP Request Example</h5></div>
 
 
 <p>A simple form might be posted as follows:</p>
@@ -1032,7 +1037,7 @@ name=W3C&amp;amp;spec=XProc
 
 
 
-<section id="c.identity" class="section"><div class="section-titlepage"><h4>2.1.12 p:identity</h4></div>
+<section id="c.identity" class="section"><div class="section-titlepage"><h4>1.1.12 p:identity</h4></div>
 
 
 <p>The <code class="code">p:identity</code> step makes a verbatim copy of its input
@@ -1048,7 +1053,7 @@ any annotations that appear in the input.</p>
 
 
 
-<section id="c.insert" class="section"><div class="section-titlepage"><h4>2.1.13 p:insert</h4></div>
+<section id="c.insert" class="section"><div class="section-titlepage"><h4>1.1.13 p:insert</h4></div>
 
 
 <p>The <code class="code">p:insert</code> step inserts the
@@ -1101,7 +1106,7 @@ as the source.</p>
 
 
 
-<section id="c.label-elements" class="section"><div class="section-titlepage"><h4>2.1.14 p:label-elements</h4></div>
+<section id="c.label-elements" class="section"><div class="section-titlepage"><h4>1.1.14 p:label-elements</h4></div>
 
 
 <p>The <code class="code">p:label-elements</code> step generates a label for each matched
@@ -1161,11 +1166,11 @@ remains the same.</p>
 
 
 
-<section id="c.load" class="section"><div class="section-titlepage"><h4>2.1.15 p:load</h4></div>
+<section id="c.load" class="section"><div class="section-titlepage"><h4>1.1.15 p:load</h4></div>
 
 
 <p>The <code class="code">p:load</code> step has no inputs but produces as its
-result an XML resource specified by an IRI.</p>
+result a document specified by an IRI.</p>
 
 <p class="element-syntax element-syntax-declare-step-rqd"><span class="decl"><code>&lt;p:declare-step</code> <code class="attr type-attr">type</code><code>="</code><code class="value type-value">p:load</code><code>"</code><code>&gt;</code></span><br />     <span class="input"><code>&lt;p:output</code> <code class="attr port-attr">port</code><code>="</code><code class="value port-value">result</code><code>"</code><code>/&gt;</code></span><br />     <span class="opt-req"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">href</code><code>"</code> <code class="attr required-attr">required</code><code>="</code><code class="value required-value">true</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:anyURI</code><code>"</code><code>/&gt;</code><code>        </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">dtd-validate</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'false'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code></code></span><br /><code>&lt;/p:declare-step&gt;</code></p>
 
@@ -1212,7 +1217,7 @@ retrieve it.</p>
 
 
 
-<section id="c.make-absolute-uris" class="section"><div class="section-titlepage"><h4>2.1.16 p:make-absolute-uris</h4></div>
+<section id="c.make-absolute-uris" class="section"><div class="section-titlepage"><h4>1.1.16 p:make-absolute-uris</h4></div>
 
 
 <p>The <code class="code">p:make-absolute-uris</code> step makes an element or
@@ -1258,7 +1263,7 @@ the results are <em class="glossterm"><a href="../xproc20/#dt-implementation-dep
 
 
 
-<section id="c.namespace-rename" class="section"><div class="section-titlepage"><h4>2.1.17 p:namespace-rename</h4></div>
+<section id="c.namespace-rename" class="section"><div class="section-titlepage"><h4>1.1.17 p:namespace-rename</h4></div>
 
 
 <p>The <code class="code">p:namespace-rename</code> step renames any namespace declaration or
@@ -1366,7 +1371,7 @@ XPath expressions, may end up with no appropriate namespace binding.</p></div>
 
 
 
-<section id="c.pack" class="section"><div class="section-titlepage"><h4>2.1.18 p:pack</h4></div>
+<section id="c.pack" class="section"><div class="section-titlepage"><h4>1.1.18 p:pack</h4></div>
 
 
 <p>The <code class="code">p:pack</code> step merges two document sequences in a pair-wise
@@ -1405,7 +1410,7 @@ this step does not attempt to distinguish which one.</p>
 
 
 
-<section id="c.parameters" class="section"><div class="section-titlepage"><h4>2.1.19 p:parameters</h4></div>
+<section id="c.parameters" class="section"><div class="section-titlepage"><h4>1.1.19 p:parameters</h4></div>
 
 
 <p>The <code class="code">p:parameters</code> step exposes a set of parameters
@@ -1431,7 +1436,7 @@ have names that are in a namespace, the
 <p>The base URI of the output document is the URI of the pipeline document
 that contains the step.</p>
 
-<section id="cv.param" class="section"><div class="section-titlepage"><h5>2.1.19.1 The c:param element</h5></div>
+<section id="cv.param" class="section"><div class="section-titlepage"><h5>1.1.19.1 The c:param element</h5></div>
 
 
 <p>A <code class="tag-element">c:param</code> represents a parameter on a parameter
@@ -1470,7 +1475,7 @@ names other than “<code class="literal">name</code>”,
 appear on a <code class="tag-element">c:param</code> element.</p>
 </section>
 
-<section id="cv.param-set" class="section"><div class="section-titlepage"><h5>2.1.19.2 The c:param-set element</h5></div>
+<section id="cv.param-set" class="section"><div class="section-titlepage"><h5>1.1.19.2 The c:param-set element</h5></div>
 
 
 <p>A <code class="tag-element">c:param-set</code> represents a set of parameters on a
@@ -1494,7 +1499,7 @@ element.</p>
 
 
 
-<section id="c.rename" class="section"><div class="section-titlepage"><h4>2.1.20 p:rename</h4></div>
+<section id="c.rename" class="section"><div class="section-titlepage"><h4>1.1.20 p:rename</h4></div>
 
 
 <p>The <code class="code">p:rename</code> step renames elements, attributes, or
@@ -1547,7 +1552,7 @@ a processing instruction and the new name has a non-null namespace.
 
 
 
-<section id="c.replace" class="section"><div class="section-titlepage"><h4>2.1.21 p:replace</h4></div>
+<section id="c.replace" class="section"><div class="section-titlepage"><h4>1.1.21 p:replace</h4></div>
 
 
 <p>The <code class="code">p:replace</code> step replaces matching nodes in
@@ -1573,7 +1578,7 @@ be matched.</p>
 
 
 
-<section id="c.set-attributes" class="section"><div class="section-titlepage"><h4>2.1.22 p:set-attributes</h4></div>
+<section id="c.set-attributes" class="section"><div class="section-titlepage"><h4>1.1.22 p:set-attributes</h4></div>
 
 
 <p>The <code class="tag-element">p:set-attributes</code> step sets attributes on
@@ -1614,7 +1619,7 @@ of the element <span class="rfc2119" id="c.set-attributes.9.2">must</span> also 
 
 
 
-<section id="c.set-properties" class="section"><div class="section-titlepage"><h4>2.1.23 p:set-properties</h4></div>
+<section id="c.set-properties" class="section"><div class="section-titlepage"><h4>1.1.23 p:set-properties</h4></div>
 
 
 <p>The <code class="tag-element">p:set-properties</code> step sets <em class="glossterm"><a href="../xproc20/#dt-document-properties">document
@@ -1637,7 +1642,7 @@ a key equal to the string “<code class="literal">content-type</code>”.
 
 
 
-<section id="c.sink" class="section"><div class="section-titlepage"><h4>2.1.24 p:sink</h4></div>
+<section id="c.sink" class="section"><div class="section-titlepage"><h4>1.1.24 p:sink</h4></div>
 
 
 <p>The <code class="tag-element">p:sink</code> step accepts a sequence of documents and
@@ -1649,7 +1654,7 @@ discards them. It has no output.</p>
 
 
 
-<section id="c.split-sequence" class="section"><div class="section-titlepage"><h4>2.1.25 p:split-sequence</h4></div>
+<section id="c.split-sequence" class="section"><div class="section-titlepage"><h4>1.1.25 p:split-sequence</h4></div>
 
 
 <p>The <code class="tag-element">p:split-sequence</code> step accepts a sequence of
@@ -1698,12 +1703,12 @@ any annotations that appear in the input.</p>
 
 
 
-<section id="c.store" class="section"><div class="section-titlepage"><h4>2.1.26 p:store</h4></div>
+<section id="c.store" class="section"><div class="section-titlepage"><h4>1.1.26 p:store</h4></div>
 
 
-<p>The <code class="tag-element">p:store</code> step stores a serialized version of its
-input to a URI. This step outputs a reference to the location of the
-stored document.</p>
+<p>The <code class="tag-element">p:store</code> step stores (a possibly serialized
+version of) its input to a URI. This step outputs a reference to the
+location of the stored document.</p>
 
 <p class="element-syntax element-syntax-declare-step-rqd"><span class="decl"><code>&lt;p:declare-step</code> <code class="attr type-attr">type</code><code>="</code><code class="value type-value">p:store</code><code>"</code><code>&gt;</code></span><br />     <span class="input"><code>&lt;p:input</code> <code class="attr port-attr">port</code><code>="</code><code class="value port-value">source</code><code>"</code> <code class="attr content-types-attr">content-types</code><code>="</code><code class="value content-types-value">*/*</code><code>"</code><code>/&gt;</code></span><br />     <span class="input"><code>&lt;p:output</code> <code class="attr port-attr">port</code><code>="</code><code class="value port-value">result</code><code>"</code><code>/&gt;</code></span><br />     <span class="opt-req"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">href</code><code>"</code> <code class="attr required-attr">required</code><code>="</code><code class="value required-value">true</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:anyURI</code><code>"</code><code>/&gt;</code><code>        </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">byte-order-mark</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code>            </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">cdata-section-elements</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">''</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:string</code><code>"</code><code>/&gt;</code><code></code><code class="comment">&lt;!-- </code><span class="opt-type">ListOfQNames</span><code class="comment"> --&gt;</code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">doctype-public</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:string</code><code>"</code><code>/&gt;</code><code>              </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">doctype-system</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:anyURI</code><code>"</code><code>/&gt;</code><code>              </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">encoding</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:string</code><code>"</code><code>/&gt;</code><code>                    </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">escape-uri-attributes</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'false'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code></code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">include-content-type</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'true'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code></code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">indent</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'false'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code>    </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">media-type</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:string</code><code>"</code><code>/&gt;</code><code>                  </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">method</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'xml'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:QName</code><code>"</code><code>/&gt;</code><code>        </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">normalization-form</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'none'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:token</code><code>"</code><code>/&gt;</code><code></code><code class="comment">&lt;!-- </code><span class="opt-type">NormalizationForm</span><code class="comment"> --&gt;</code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">omit-xml-declaration</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'true'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code></code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">standalone</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'omit'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:token</code><code>"</code><code>/&gt;</code><code>   </code><code class="comment">&lt;!-- </code><span class="opt-type">"true" | "false" | "omit"</span><code class="comment"> --&gt;</code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">undeclare-prefixes</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:boolean</code><code>"</code><code>/&gt;</code><code>         </code></span><br />     <span class="opt-opt"><code>&lt;p:option</code> <code class="attr name-attr">name</code><code>="</code><code class="value name-value">version</code><code>"</code> <code class="attr select-attr">select</code><code>="</code><code class="value select-value">'1.0'</code><code>"</code> <code class="attr as-attr">as</code><code>="</code><code class="value as-value">xs:string</code><code>"</code><code>/&gt;</code><code>      </code></span><br /><code>&lt;/p:declare-step&gt;</code></p>
 
@@ -1725,12 +1730,12 @@ document stored by the step.</p>
 
 <p>The standard serialization options are provided to control the
 serialization of XML content when it is stored. These options are
-as specified in <a href="#serialization-options" title="Serialization Options">Section 2.3, “Serialization Options”</a>.</p>
+as specified in <a href="#serialization-options" title="Serialization Options">Section 1.3, “Serialization Options”</a>.</p>
 </section>
 
 
 
-<section id="c.string-replace" class="section"><div class="section-titlepage"><h4>2.1.27 p:string-replace</h4></div>
+<section id="c.string-replace" class="section"><div class="section-titlepage"><h4>1.1.27 p:string-replace</h4></div>
 
 
 <p>The <code class="tag-element">p:string-replace</code> step matches nodes in the
@@ -1767,7 +1772,7 @@ the string value of the <code class="option">replace</code> expression.</p>
 
 
 
-<section id="c.unescape-markup" class="section"><div class="section-titlepage"><h4>2.1.28 p:unescape-markup</h4></div>
+<section id="c.unescape-markup" class="section"><div class="section-titlepage"><h4>1.1.28 p:unescape-markup</h4></div>
 
 
 <p>The <code class="tag-element">p:unescape-markup</code> step takes the string value of
@@ -1863,7 +1868,7 @@ namespace, the following input:</p>
 
 
 
-<section id="c.unwrap" class="section"><div class="section-titlepage"><h4>2.1.29 p:unwrap</h4></div>
+<section id="c.unwrap" class="section"><div class="section-titlepage"><h4>1.1.29 p:unwrap</h4></div>
 
 
 <p>The <code class="tag-element">p:unwrap</code> step replaces matched elements with their
@@ -1894,7 +1899,7 @@ unwrapped, the result might not be well-formed XML.</p>
 
 
 
-<section id="c.wrap" class="section"><div class="section-titlepage"><h4>2.1.30 p:wrap</h4></div>
+<section id="c.wrap" class="section"><div class="section-titlepage"><h4>1.1.30 p:wrap</h4></div>
 
 
 <p>The <code class="tag-element">p:wrap</code> step wraps matching nodes in the
@@ -1954,7 +1959,7 @@ instruction nodes.</p>
 
 
 
-<section id="c.wrap-sequence" class="section"><div class="section-titlepage"><h4>2.1.31 p:wrap-sequence</h4></div>
+<section id="c.wrap-sequence" class="section"><div class="section-titlepage"><h4>1.1.31 p:wrap-sequence</h4></div>
 
 
 <p>The <code class="tag-element">p:wrap-sequence</code> step accepts a sequence of
@@ -2004,7 +2009,7 @@ element.
 
 
 
-<section id="c.xinclude" class="section"><div class="section-titlepage"><h4>2.1.32 p:xinclude</h4></div>
+<section id="c.xinclude" class="section"><div class="section-titlepage"><h4>1.1.32 p:xinclude</h4></div>
 
 
 <p>The <code class="tag-element">p:xinclude</code> step applies [<a href="#xinclude"><span class="abbrev">XInclude</span></a>] processing to the <code class="port">source</code> document.</p>
@@ -2028,7 +2033,7 @@ if an XInclude error occurs during processing. </p>
 
 
 
-<section id="c.xslt" class="section"><div class="section-titlepage"><h4>2.1.33 p:xslt</h4></div>
+<section id="c.xslt" class="section"><div class="section-titlepage"><h4>1.1.33 p:xslt</h4></div>
 
 
 <p>The <code class="tag-element">p:xslt</code> step applies an
@@ -2146,7 +2151,7 @@ to the XSLT processor.</p>
 
 
 
-<section id="std-optional" class="section"><div class="section-titlepage"><h3>2.2 Optional Steps</h3></div>
+<section id="std-optional" class="section"><div class="section-titlepage"><h3>1.2 Optional Steps</h3></div>
 
 
 <p>The following steps are optional. If they are supported by a
@@ -2156,7 +2161,7 @@ steps.</p>
 
 
 
-<section id="c.exec" class="section"><div class="section-titlepage"><h4>2.2.1 p:exec</h4></div>
+<section id="c.exec" class="section"><div class="section-titlepage"><h4>1.2.1 p:exec</h4></div>
 
 
 <p>The <code class="tag-element">p:exec</code> step runs an external command passing the
@@ -2285,7 +2290,7 @@ can be captured with a <a href="../xproc20/#p.try">p:try</a><sup class="xrefspec
 
 
 
-<section id="c.hash" class="section"><div class="section-titlepage"><h4>2.2.2 p:hash</h4></div>
+<section id="c.hash" class="section"><div class="section-titlepage"><h4>1.2.2 p:hash</h4></div>
 
 
 <p>The <code class="tag-element">p:hash</code> step generates a hash, or digital “fingerprint”,
@@ -2343,7 +2348,7 @@ its contents) is replaced by the hash.</p>
 
 
 
-<section id="c.in-scope-names" class="section"><div class="section-titlepage"><h4>2.2.3 p:in-scope-names</h4></div>
+<section id="c.in-scope-names" class="section"><div class="section-titlepage"><h4>1.2.3 p:in-scope-names</h4></div>
 
 
 <p>The <code class="code">p:in-scope-names</code> step exposes all of the
@@ -2373,7 +2378,7 @@ that contains the step.</p>
 <p>For consistency with the <a href="#c.parameters"><code class="tag-element">p:parameters</code></a> step, the
 <code class="port">result</code> port is not primary.</p>
 
-<section id="ex-in-scope-names" class="section tocsuppress"><div class="section-titlepage"><h5>2.2.3.1 Example</h5></div>
+<section id="ex-in-scope-names" class="section tocsuppress"><div class="section-titlepage"><h5>1.2.3.1 Example</h5></div>
 
 
 <p>This unlikely pipeline demonstrates the behavior of <a href="#c.in-scope-names"><code class="tag-element">p:in-scope-names</code></a>:
@@ -2408,7 +2413,7 @@ respectively, the output would be:</p>
 
 
 
-<section id="c.template" class="section ext-optional"><div class="section-titlepage"><h4>2.2.4 p:template</h4></div>
+<section id="c.template" class="section ext-optional"><div class="section-titlepage"><h4>1.2.4 p:template</h4></div>
 
 
 <p>The <code class="code">p:template</code> replaces each XPath expression, delimited with
@@ -2529,7 +2534,7 @@ interpretation of an XPath expression differs between the versions of
 XPath.</p>
 </div>
 
-<section id="ex-in-scope-names" class="section tocsuppress"><div class="section-titlepage"><h5>2.2.4.1 Example</h5></div>
+<section id="ex-in-scope-names" class="section tocsuppress"><div class="section-titlepage"><h5>1.2.4.1 Example</h5></div>
 
 
 <p>It's quite common to construct documents using values computed
@@ -2651,7 +2656,7 @@ they appear in text content, their node values are used.</p>
 
 
 
-<section id="c.uuid" class="section"><div class="section-titlepage"><h4>2.2.5 p:uuid</h4></div>
+<section id="c.uuid" class="section"><div class="section-titlepage"><h4>1.2.5 p:uuid</h4></div>
 
 
 <p>The <code class="tag-element">p:uuid</code> step generates a
@@ -2696,7 +2701,7 @@ its contents) is replaced by the UUID.</p>
 
 
 
-<section id="c.validate-with-relax-ng" class="section"><div class="section-titlepage"><h4>2.2.6 p:validate-with-relax-ng</h4></div>
+<section id="c.validate-with-relax-ng" class="section"><div class="section-titlepage"><h4>1.2.6 p:validate-with-relax-ng</h4></div>
 
 
 <p>The <code class="tag-element">p:validate-with-relax-ng</code> step applies
@@ -2742,7 +2747,7 @@ augmented by application of the
 
 
 
-<section id="c.validate-with-schematron" class="section"><div class="section-titlepage"><h4>2.2.7 p:validate-with-schematron</h4></div>
+<section id="c.validate-with-schematron" class="section"><div class="section-titlepage"><h4>1.2.7 p:validate-with-schematron</h4></div>
 
 
 <p>The <code class="tag-element">p:validate-with-schematron</code> step applies
@@ -2775,7 +2780,7 @@ Validation Report Language</em> (SVRL).</p>
 
 
 
-<section id="c.validate-with-xml-schema" class="section"><div class="section-titlepage"><h4>2.2.8 p:validate-with-xml-schema</h4></div>
+<section id="c.validate-with-xml-schema" class="section"><div class="section-titlepage"><h4>1.2.8 p:validate-with-xml-schema</h4></div>
 
 
 <p>The <code class="tag-element">p:validate-with-xml-schema</code> step applies
@@ -2876,7 +2881,7 @@ by the XML Schema recommendation.</p>
 
 
 
-<section id="c.www-form-urldecode" class="section"><div class="section-titlepage"><h4>2.2.9 p:www-form-urldecode</h4></div>
+<section id="c.www-form-urldecode" class="section"><div class="section-titlepage"><h4>1.2.9 p:www-form-urldecode</h4></div>
 
 
 <p>The <code class="tag-element">p:www-form-urldecode</code> step decodes a
@@ -2914,7 +2919,7 @@ each instance.</p>
 
 
 
-<section id="c.www-form-urlencode" class="section"><div class="section-titlepage"><h4>2.2.10 p:www-form-urlencode</h4></div>
+<section id="c.www-form-urlencode" class="section"><div class="section-titlepage"><h4>1.2.10 p:www-form-urlencode</h4></div>
 
 
 <p>The <code class="tag-element">p:www-form-urlencode</code> step encodes a set of parameter
@@ -2951,7 +2956,7 @@ the encoded string.</p>
 
 
 
-<section id="c.xquery" class="section"><div class="section-titlepage"><h4>2.2.11 p:xquery</h4></div>
+<section id="c.xquery" class="section"><div class="section-titlepage"><h4>1.2.11 p:xquery</h4></div>
 
 
 <p>The <code class="tag-element">p:xquery</code> step applies an
@@ -3089,7 +3094,7 @@ is <em class="glossterm"><a href="../xproc20/#dt-implementation-dependent">imple
 </p>
 </dd></dl></div>
 
-<section id="example-xquery" class="section tocsuppress"><div class="section-titlepage"><h5>2.2.11.1 Example</h5></div>
+<section id="example-xquery" class="section tocsuppress"><div class="section-titlepage"><h5>1.2.11.1 Example</h5></div>
 
 
 <p>The following pipeline applies XInclude processing and schema
@@ -3122,7 +3127,7 @@ validation before using XQuery:</p>
 
 
 
-<section id="c.xsl-formatter" class="section"><div class="section-titlepage"><h4>2.2.12 p:xsl-formatter</h4></div>
+<section id="c.xsl-formatter" class="section"><div class="section-titlepage"><h4>1.2.12 p:xsl-formatter</h4></div>
 
 
 <p>The <code class="tag-element">p:xsl-formatter</code> step receives an [<a href="#xsl11"><span class="abbrev">XSL 1.1</span></a>] document and renders the content. The result of
@@ -3162,7 +3167,7 @@ document stored by the step.</p>
 </section>
 </section>
 
-<section id="serialization-options" class="section"><div class="section-titlepage"><h3>2.3 Serialization Options</h3></div>
+<section id="serialization-options" class="section"><div class="section-titlepage"><h3>1.3 Serialization Options</h3></div>
 
 
 <p>Several steps in this step library require serialization options
@@ -3315,11 +3320,11 @@ specification.</p>
 </section>
 </section>
 
-<section id="errors" class="section"><div class="section-titlepage"><h2>3 Errors</h2></div>
+<section id="errors" class="section"><div class="section-titlepage"><h2>2 Errors</h2></div>
 
     <p>Errors in a pipeline can be divided into two classes: static errors and dynamic
       errors.</p>
-    <section id="static-errors" class="section"><div class="section-titlepage"><h3>3.1 Static Errors</h3></div>
+    <section id="static-errors" class="section"><div class="section-titlepage"><h3>2.1 Static Errors</h3></div>
       
       <p><span id="dt-static-error" class="termdef">[Definition: A <em class="glossterm">static error</em> is one which can
           be detected before pipeline evaluation is even attempted.]</span> Examples of static
@@ -3327,7 +3332,7 @@ specification.</p>
       <p>Static errors are fatal and must be detected before any steps are evaluated.</p>
       <p>For a complete list of static errors, see <a href="../xproc20/#app.static-errors">Section 1, “Static Errors”</a><sup class="xrefspec"><a href="../xproc20/">XP</a></sup>.</p>
     </section>
-    <section id="dynamic-errors" class="section"><div class="section-titlepage"><h3>3.2 Dynamic Errors</h3></div>
+    <section id="dynamic-errors" class="section"><div class="section-titlepage"><h3>2.2 Dynamic Errors</h3></div>
       
       <p>A <span id="dt-dynamic-error" class="termdef">[Definition: A <em class="glossterm">dynamic error</em> is one which
           occurs while a pipeline is being evaluated.]</span> Examples of dynamic errors include
@@ -3338,7 +3343,7 @@ specification.</p>
           <a href="../xproc20/#p.try">p:try</a><sup class="xrefspec"><a href="../xproc20/">XP</a></sup>, step failure causes the entire pipeline to fail.</p>
       <p>For a complete list of dynamic errors, see <a href="../xproc20/#app.dynamic-errors">Section 2, “Dynamic Errors”</a><sup class="xrefspec"><a href="../xproc20/">XP</a></sup>.</p>
     </section>
-    <section id="step-errors" class="section"><div class="section-titlepage"><h3>3.3 Step Errors</h3></div>
+    <section id="step-errors" class="section"><div class="section-titlepage"><h3>2.3 Step Errors</h3></div>
       
       <p>Several of the steps in the standard and option step library can generate dynamic
         errors.</p>
@@ -3486,6 +3491,13 @@ error if the content-type is not supplied.</p><p>See: <a href="#err.inline.C1007
 
 <div class="bibliolist">
 
+
+<div id="xproc20" class="bibliomixed"><p>[<span class="abbrev">XProc 2.0</span>] 
+<a href="http://www.w3.org/TR/xproc20/"><span class="citetitle"><cite>XProc 2.0:
+An XML Pipeline Language</cite></span></a>.
+Norman Walsh, Alex Milowski, and Henry Thompson, editors.
+W3C Working Draft 15 December 2014.
+</p></div>
 
 
 
