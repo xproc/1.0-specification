@@ -89,7 +89,10 @@ http://www.w3.org/TR/.</emphasis></para>
 endorsement by the W3C Membership. This is a draft document and may be
 updated, replaced or obsoleted by other documents at any time. It is
 inappropriate to cite this document as other than work in
-progress.</para>
+progress.
+The significant changes in this draft are summarized in
+<xref linkend="changelog"/>.
+</para>
 
 <para><!--This document is an editor's draft without normative standing.
 It implements the requirements and use cases
@@ -4529,4 +4532,90 @@ validation.
   </appendix>
   <xi:include href="parallel.xml"/>
   <xi:include href="mediatype.xml"/>
+
+<appendix xml:id="changelog">
+<title>Change Log</title>
+<para>This appendix summarizes significant changes in this
+draft.</para>
+
+<para>This First Public Working Draft contains a number of significant
+changes to the XProc pipeline language. Future drafts will attempt to address
+<link xlink:href="https://github.com/xproc/specification/issues?q=is%3Aopen+is%3Aissue">the remaining issues</link>.</para>
+
+<para>In this draft:</para>
+
+<itemizedlist>
+<listitem>
+<para>An attempt has been made to simplify how parameters are handled.
+There are no more parameter input ports. Instead, parameters are handled
+with a map and an otherwise ordinary option named “<code>parameters</code>”.
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/28">#28</link>)
+</para>
+</listitem>
+<listitem>
+<para>Documents have accessible, arbitrary metadata (key/value pairs).
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/46">#46</link>)
+</para>
+</listitem>
+<listitem>
+<para>Non-XML documents can flow between steps.
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/29">#29</link>)
+</para>
+</listitem>
+<listitem>
+<para>Option shortcut attributes can contain
+<link linkend="attribute-value-templates">attribute value templates</link> and
+inline XML can contain
+<link linkend="text-value-templates">text value templates</link>.
+(See issues <link xlink:href="https://github.com/xproc/specification/issues/33">#33</link>
+and <link xlink:href="https://github.com/xproc/specification/issues/39">#39</link>)
+</para>
+</listitem>
+<listitem>
+<para>The <tag>p:variable</tag> and <tag>p:option</tag> elements may
+specify a value type.
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/62">#62</link>)
+</para>
+</listitem>
+<listitem>
+<para>The <tag>p:inline</tag> can be omitted when the result is
+unambiguous.
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/38">#38</link>)
+</para>
+</listitem>
+<listitem>
+<para>The <tag>p:try</tag> step has been enhanced.
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/50">#50</link>)
+</para>
+</listitem>
+
+<listitem>
+<para>All steps have a primary output port.
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/41">#41</link>)
+</para>
+</listitem>
+<listitem>
+<para>The specification has been split into a language specification
+and standard step library specification.
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/53">#53</link>)
+</para>
+</listitem>
+<listitem>
+<para>A version option has been added to <tag>p:validate-with-xml-schema</tag>.
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/83">#83</link>)
+</para>
+</listitem>
+<listitem>
+<para>A version option has been added to <tag>p:xquery</tag>
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/84">#84</link>)
+</para>
+</listitem>
+<listitem>
+<para>Support for XPath 1.0 has been removed.
+(See issue <link xlink:href="https://github.com/xproc/specification/issues/52">#52</link>)
+</para>
+</listitem>
+</itemizedlist>
+</appendix>
+
 </specification>
