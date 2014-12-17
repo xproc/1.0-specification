@@ -311,7 +311,7 @@
 <!-- ============================================================ -->
 
 <xsl:template match="ss:element-summary">
-  <p id="{generate-id(.)}">
+  <p id="{if (@xml:id) then @xml:id else generate-id(.)}">
     <!-- this generates the prefix= attribute ...
     <xsl:sequence select="f:html-attributes(., generate-id(.))"/>
     -->

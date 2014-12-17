@@ -11,15 +11,17 @@
     <title>XProc 2.0: Standard Step Library</title>
     <w3c-shortname>xproc20-steps</w3c-shortname>
     <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
-    <pubdate>2014-12-16</pubdate>
+    <pubdate>2014-12-18</pubdate>
 
     <bibliorelation role="x-no-errata" type="references"
                     xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
     <bibliorelation role="x-no-translations" type="references"
                     xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
 
-    <bibliorelation type="isformatof" xlink:href="langsteps.xml">XML</bibliorelation>
+    <bibliorelation type="isformatof" xlink:href="xproc20-steps.xml">XML</bibliorelation>
+<!--
     <bibliorelation type="isformatof" xlink:href="changelog.html">ChangeLog</bibliorelation>
+-->
 
 <!--
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/PR-xproc-20100309/"/>

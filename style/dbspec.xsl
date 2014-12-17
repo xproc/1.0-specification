@@ -79,7 +79,8 @@
 
 <xsl:template match="db:glossterm">
   <xsl:variable name="term" select="string(.)"/>
-  <xsl:variable name="anchorterm" select="if (@baseform) then @baseform else normalize-space($term)"/>
+  <xsl:variable name="anchorterm"
+                select="if (@baseform) then @baseform else normalize-space($term)"/>
   <xsl:variable name="anchor" select="translate($anchorterm,' ','-')"/>
   <xsl:variable name="termdef" select="key('id',concat('dt-', $anchor))"/>
 
@@ -132,7 +133,8 @@
   </em>
 
   <xsl:if test="ancestor::db:error
-		and ($anchorterm = 'static error' or $anchorterm = 'dynamic error')">
+		and ($anchorterm = 'static error'
+                     or $anchorterm = 'dynamic error')">
     <xsl:variable name="code" select="ancestor::db:error[1]/@code"/>
     <xsl:text>&#160;(</xsl:text>
     <a href="#err.{$code}">
@@ -190,10 +192,16 @@
 <xsl:template match="db:impl">
   <xsl:param name="summary" select="0"/>
 
-  <xsl:if test="$summary = 0">
-    <a id="impl-{count(preceding::db:impl)+1}"/>
-  </xsl:if>
-  <xsl:apply-templates/>
+  <xsl:choose>
+    <xsl:when test="$summary = 0">
+      <span id="impl-{count(preceding::db:impl)+1}">
+        <xsl:apply-templates/>
+      </span>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:apply-templates/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template match="db:literal[@role='infoset-property']">
@@ -545,8 +553,7 @@
 
   <xsl:for-each-group select="$sorted-errors" group-by="@code">
     <xsl:variable name="codes" select="distinct-values(current-group()/@code)"/>
-    <dt>
-      <a id="err.{$codes[1]}"/>
+    <dt id="err.{$codes[1]}">
       <code class="errqname">
 	<xsl:text>err:X</xsl:text>
 	<xsl:value-of select="$codes[1]"/>

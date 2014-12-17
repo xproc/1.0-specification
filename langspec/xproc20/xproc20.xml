@@ -10,15 +10,17 @@
     <title>XProc 2.0: An XML Pipeline Language</title>
     <w3c-shortname>xproc20</w3c-shortname>
     <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
-    <pubdate>2014-12-16</pubdate>
+    <pubdate>2014-12-18</pubdate>
 
     <bibliorelation role="x-no-errata" type="references"
                     xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
     <bibliorelation role="x-no-translations" type="references"
                     xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
 
-    <bibliorelation type="isformatof" xlink:href="langspec.xml">XML</bibliorelation>
+    <bibliorelation type="isformatof" xlink:href="xproc20.xml">XML</bibliorelation>
+<!--
     <bibliorelation type="isformatof" xlink:href="changelog.html">ChangeLog</bibliorelation>
+-->
 
 <!--
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/PR-xproc-20100309/"/>
@@ -785,7 +787,7 @@ that set.</error>
               <glossterm>implementation-defined</glossterm>.</impl></para>
         <para>Whenever an implementation serializes pipeline contents, for example for pipeline
           outputs, logging, or as part of steps such as <tag>p:store</tag> or
-            <tag>p:http-request</tag>, it is a <link xlink:href="#err.D0001">dynamic error</link> if
+            <tag>p:http-request</tag>, it is a dynamic error if
           that serialization could not be done so as to produce a document which is both well-formed
           and namespace-well-formed, as specified in <glossterm>XML</glossterm> and
             <glossterm>Namespaces in XML</glossterm>, regardless of what serialization method, if
@@ -1341,7 +1343,7 @@ evaluated by the processor.</para>
                 succession, or if several processors are running simultaneously, each invocation of
                 each processor should get a distinct value from <varname>p:episode</varname>.</para>
               <para>The unique identifier must be a valid <link
-                  xlink:href="http://www.w3.org/TR/XML#NT-Name">XML name</link>. </para>
+                  xlink:href="http://www.w3.org/TR/xml/#NT-Name">XML name</link>. </para>
             </listitem>
           </varlistentry>
           <varlistentry>
@@ -2678,7 +2680,48 @@ attribute">extension attributes</glossterm>.</error>
     <para>This section describes the core language steps of XProc; the full
 vocabulary of standard, atomic steps is described in
 <biblioref linkend="std-components"/>.</para>
-    <section xml:id="p.pipeline"><title>p:pipeline</title><para>A <tag>p:pipeline</tag> declares a
+
+<para>The following dynamic errors are described in the atomic step vocabulary.
+They are repeated here so that the list of dynamic errors is wholly contained
+within this specification.</para>
+
+<note xml:id="ednote-dup-derrs" role="editorial">
+<title>Editorial Note</title>
+<para>This is not the right long term solution.</para>
+</note>
+
+<itemizedlist>
+<listitem>
+<para><error code="D0014">It is a
+<glossterm>dynamic error</glossterm> for any unqualified attribute
+names other than “<literal>name</literal>”,
+“<literal>namespace</literal>”, or “<literal>value</literal>” to
+appear on a <code>c:param</code> element.</error></para>
+</listitem>
+<listitem>
+<para><error code="D0025" >It is a <glossterm>dynamic
+error</glossterm> if the <tag class="attribute" >namespace</tag>
+attribute is specified on <code>c:param</code>,
+the <tag class="attribute">name</tag> contains
+a colon, and the specified namespace is not the same as the in-scope
+namespace binding for the specified prefix.</error></para>
+</listitem>
+<listitem>
+<para><error code="D0018">It is a
+<glossterm>dynamic error</glossterm> if the <code>c:parameter-set</code>
+parameter list contains
+any elements other than <tag>c:param</tag>.</error></para>
+</listitem>
+<listitem>
+<para><error code="D0034">On steps which allow independent specification
+of a namespace and a name, it is a
+<glossterm>dynamic error</glossterm> to specify a new namespace or
+prefix if the lexical value of the specified name contains a
+colon.</error></para>
+</listitem>
+</itemizedlist>
+
+<section xml:id="p.pipeline"><title>p:pipeline</title><para>A <tag>p:pipeline</tag> declares a
         pipeline that can be evaluated by an XProc processor. It encapsulates the behavior of a
           <glossterm>subpipeline</glossterm>. Its children declare inputs, outputs, and options that
         the pipeline exposes and identify the steps in its subpipeline. (A <tag>p:pipeline</tag> is

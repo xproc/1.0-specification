@@ -47,7 +47,7 @@
 
   <para>This parameter has identical semantics to the <code>charset</code>
 parameter of the <code>application/xml</code> media type as
-specified in <xref linkend="rfc3023"/> or its successors.
+specified in <biblioref linkend="rfc3023"/> or its successors.
 </para>
   </listitem>
   </varlistentry>
@@ -60,7 +60,7 @@ specified in <xref linkend="rfc3023"/> or its successors.
 <listitem>
 <para>By virtue of XProc content being XML, it has the same
 considerations when sent as <quote><code>application/xproc+xml</code></quote>
-as does XML. See <xref linkend="rfc3023"/>, Section 3.2.
+as does XML. See <biblioref linkend="rfc3023"/>, Section 3.2.
 </para>
 </listitem>
 </varlistentry>
@@ -69,7 +69,7 @@ as does XML. See <xref linkend="rfc3023"/>, Section 3.2.
 <term>Security considerations:</term>
 <listitem>
 <para>Several XProc elements may refer to arbitrary URIs.
-In this case, the security issues of <xref linkend="rfc2396"/>, section 7,
+In this case, the security issues of <biblioref linkend="rfc2396"/>, section 7,
 should be considered.</para>
 
 <para>In addition, because of the extensibility features of XProc, it
@@ -103,7 +103,7 @@ document.</para>
 <listitem>
 <para>This media type registration is for XProc documents as described by
 this specification which is located at
-<link xlink:href="http://www.w3.org/TR/xproc"/>.</para>
+<link xlink:href="http://www.w3.org/TR/xproc/"/>.</para>
 </listitem>
 </varlistentry>
 
@@ -186,6 +186,6 @@ over these specifications.</para>
 the fragment
 identifier notation is exactly that for
 <quote><code>application/xml</code></quote>,
-as specified in <xref linkend="rfc3023"/> or its successors.</para>
+as specified in <biblioref linkend="rfc3023"/> or its successors.</para>
 </section>
 </appendix>

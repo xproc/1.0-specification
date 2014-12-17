@@ -19,6 +19,8 @@ Overview.html: ,steps.xml typed-pipeline-library.xml error-list.xml \
 	            -pschemaext.schema=../../../../../schema/dbspec.rng \
                     -pxml.toc.filename=steps.toc.xml \
                     -potherspec=../xproc20/,xproc20.xml \
+                    -potherprefix="http://www.w3.org/TR/" \
+	            -pothersuffix="/" \
                     -potherlabel="XP" \
                     ../../style/formatspec.xpl style=xproc-specs.xsl
 
