@@ -16,13 +16,20 @@
                 version="2.0">
 
 <!-- Stylesheet for langspec/steps/steps.xml -->
-
 <xsl:import href="dbspec.xsl"/>
+
+<xsl:key name="errcode" match="db:error" use="@code"/>
 
 <xsl:param name="otherspec" select="'../xproc20/,xproc20.xml'"/>
 <xsl:param name="otherlabel" select="'XProc 2.0'"/>
 
-<xsl:param name="otherhref" select="substring-before($otherspec, ',')"/>
+<xsl:param name="otherprefix" select="''"/>
+<xsl:param name="othersuffix" select="''"/>
+
+<xsl:param name="otherhref"
+           select="concat($otherprefix,
+                          substring-after(substring-before($otherspec, '/,'),'/'),
+                          $othersuffix)"/>
 
 <xsl:function name="f:ospec" as="element()">
   <xsl:param name="context"/>
@@ -253,6 +260,36 @@
   <xsl:variable name="anchor" select="translate($anchorterm,' ','-')"/>
   <xsl:variable name="termdef" select="key('id',concat('dt-', $anchor))"/>
 
+  <xsl:if test="($anchorterm = 'static error' or $anchorterm = 'dynamic error')
+                and (not(ancestor::db:error)
+		     and not(ancestor::db:termdef)
+		     and not(ancestor::db:glossentry)
+		     and not(@role = 'unwrapped'))">
+    <xsl:message>
+      <xsl:text>Unwrapped </xsl:text>
+      <xsl:value-of select="$anchorterm"/>
+      <xsl:text> (</xsl:text>
+      <xsl:value-of select="name(parent::*)"/>
+      <xsl:text> ) in </xsl:text>
+      <xsl:value-of select="parent::*"/>
+    </xsl:message>
+  </xsl:if>
+
+  <xsl:if test="($anchorterm = 'implementation-defined'
+		 or $anchorterm = 'implementation-dependent')
+                and (not(ancestor::db:impl)
+		     and not(@role='unwrapped')
+		     and not(ancestor::db:glossentry))">
+    <xsl:message>
+      <xsl:text>Unwrapped </xsl:text>
+      <xsl:value-of select="$anchorterm"/>
+      <xsl:text> (</xsl:text>
+      <xsl:value-of select="name(parent::*)"/>
+      <xsl:text> ) in </xsl:text>
+      <xsl:value-of select="parent::*"/>
+    </xsl:message>
+  </xsl:if>
+
   <xsl:choose>
     <xsl:when test="empty($termdef)">
       <xsl:variable name="termdef"
@@ -277,9 +314,59 @@
       </em>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:next-match/>
+      <em class="glossterm">
+	<a href="#{$termdef/@xml:id}">
+	  <xsl:apply-templates/>
+	</a>
+      </em>
     </xsl:otherwise>
   </xsl:choose>
+
+  <xsl:if test="ancestor::db:error
+		and ($anchorterm = 'static error'
+                     or $anchorterm = 'dynamic error')">
+    <xsl:variable name="code" select="ancestor::db:error[1]/@code"/>
+    <xsl:text>&#160;(</xsl:text>
+
+    <xsl:variable name="step-spec" select="not(contains($otherspec, '-steps'))"/>
+    <xsl:variable name="step-err" select="starts-with($code, 'C')"/>
+
+    <xsl:choose>
+      <!-- MAJOR HACKING -->
+      <xsl:when test="($step-spec and $step-err)
+                      or (not($step-spec) and not($step-err))">
+        <a href="#err.{$code}">
+          <code class="errqname">
+	    <xsl:text>err:X</xsl:text>
+	    <xsl:value-of select="$code"/>
+          </code>
+        </a>
+      </xsl:when>
+      <xsl:when test="($step-spec and not($step-err))
+                      or (not($step-spec) and $step-err)">
+	<a href="{$otherhref}#err.{$code}">
+          <code class="errqname">
+	    <xsl:text>err:X</xsl:text>
+	    <xsl:value-of select="$code"/>
+          </code>
+	</a>
+        <sup class="xrefspec">
+          <a href="{$otherhref}">
+            <xsl:value-of select="$otherlabel"/>
+          </a>
+        </sup>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:message>
+	  <xsl:text>No anchor for err: "</xsl:text>
+	  <xsl:value-of select="$code"/>
+	  <xsl:text>"</xsl:text>
+	</xsl:message>
+	<xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>)</xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="db:olink">

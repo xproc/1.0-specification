@@ -5,20 +5,23 @@
                xmlns:p="http://www.w3.org/ns/xproc"
                xmlns:xi="http://www.w3.org/2001/XInclude"
                xmlns:xlink="http://www.w3.org/1999/xlink"
-               class="ed"
+               class="fpwd"
                version="5.0-extension w3c-xproc">
   <info>
     <title>XProc 2.0: Standard Step Library</title>
     <w3c-shortname>xproc20-steps</w3c-shortname>
     <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
+    <pubdate>2014-12-18</pubdate>
 
     <bibliorelation role="x-no-errata" type="references"
                     xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
     <bibliorelation role="x-no-translations" type="references"
                     xlink:href="http://www.w3.org/2003/03/Translations/byTechnology?technology=xproc">translations</bibliorelation>
 
-    <bibliorelation type="isformatof" xlink:href="langsteps.xml">XML</bibliorelation>
+    <bibliorelation type="isformatof" xlink:href="xproc20-steps.xml">XML</bibliorelation>
+<!--
     <bibliorelation type="isformatof" xlink:href="changelog.html">ChangeLog</bibliorelation>
+-->
 
 <!--
     <bibliorelation type="replaces" xlink:href="http://www.w3.org/TR/2010/PR-xproc-20100309/"/>
@@ -72,25 +75,42 @@
 <para><emphasis>This section describes the status of this document at
 the time of its publication. Other documents may supersede this
 document. A list of current W3C publications and the latest revision
-of this technical report can be found in the <link
-xlink:href="http://www.w3.org/TR/">W3C technical reports index</link>
-at http://www.w3.org/TR/.</emphasis></para>
+of this technical report can be found in the
+<link xlink:href="http://www.w3.org/TR/">W3C technical reports index</link> at
+http://www.w3.org/TR/.</emphasis></para>
 
-<para>This document is an editor's draft without normative standing.
-This document is a
+<para>Publication as a First Public Working Draft does not imply
+endorsement by the W3C Membership. This is a draft document and may be
+updated, replaced or obsoleted by other documents at any time. It is
+inappropriate to cite this document as other than work in
+progress.</para>
+
+<para><!--This document is an editor's draft without normative standing.
+-->This document is a
 product of the
 <link xlink:href="http://www.w3.org/XML/Processing/" >XML Processing Model
 Working Group</link>
 as part of the W3C
 <link xlink:href="http://www.w3.org/XML/Activity">XML Activity</link>.
+This draft is a first attempt to address some of the requirements of
+<biblioref linkend="use-cases"/>. It is in many ways substantially incomplete.
+The Working Group is publishing it in order to establish an intended direction
+and to provide an official opportunity for comment.
 </para>
 
 <para>Please report errors in this document by
 <link xlink:href="https://github.com/xproc/specification/issues">raising
 issues</link> on the
 <link xlink:href="https://github.com/xproc/specification">specification
-repository</link>.</para>
+repository</link>.
+Alternatively, you may report errors in this document to the public
+mailing list
+<link xlink:href="mailto:public-xml-processing-model-comments@w3.org"
+>public-xml-processing-model-comments@w3.org</link> (public
+<link xlink:href="http://lists.w3.org/Archives/Public/public-xml-processing-model-comments/"
+>archives</link> are available).</para>
 
+<!--
 <para>There is an
 <link xlink:href="http://www.w3.org/XML/XProc/2010/02/ir.html">Implementation
 Report for XProc 1.0</link>. It documents the performance of implementations
@@ -98,6 +118,7 @@ against the
 <link xlink:href="http://tests.xproc.org/">XProc 1.0 Test Suite</link>.
 At this time, there are no such reports for XProc 2.0.
 </para>
+-->
 
 <para>This document was produced by a group operating under the <link
 xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5
@@ -112,6 +133,8 @@ Claim(s)</link> must disclose the information in accordance with <link
 xlink:href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
 6 of the W3C Patent Policy</link>.</para>
 
+<para>This document is governed by the
+<link xml:id="w3c_process_revision" xlink:href="http://www.w3.org/2005/10/Process-20051014/">14 October 2005 W3C Process Document</link>.</para>
 </legalnotice>
 </info>
 
@@ -223,7 +246,7 @@ value of that existing attribute.  That is, the value of the
 existing attribute is changed to the <option>attribute-value</option>
 value. </para>
 
-<note><para>If multiple attributes need to be set on the same
+<note xml:id="note-multattr"><para>If multiple attributes need to be set on the same
 element(s), the <tag>p:set-attributes</tag> step can be used to set them
 all at once.</para>
 </note>
@@ -233,7 +256,7 @@ code="C0059">It is a <glossterm>dynamic error</glossterm> if the QName
 value in the <option>attribute-name</option> option uses the prefix
 “<literal>xmlns</literal>”
 or any other prefix that resolves to the namespace name
-“<uri>http://www.w3.org/2000/xmlns/</uri>”.
+<uri>http://www.w3.org/2000/xmlns/</uri>.
 </error> Note, however, that while namespace declarations cannot be
 added explicitly by this step, adding an attribute whose name is in a
 namespace for which there is no namespace declaration in scope on the
@@ -672,7 +695,7 @@ options control how the output markup is produced before it is escaped.
 <para>produces:</para>
 <programlisting language="xml"><xi:include href="examples/serialize.output.ex.txt" parse="text"/></programlisting>
 
-<note>
+<note xml:id="note-escaped">
 <para>The result of this step is an XML document that contains the
 Unicode characters that are the characters that result from escaping
 the input. It is not encoded characters in a serialized octet stream,
@@ -740,7 +763,7 @@ occurs in constructing a request.</para>
 if the document element of the document that arrives on the
 <port>source</port> port is not <tag>c:request</tag>.</error></para>
 
-<note role="editorial">
+<note xml:id="ednote-json" role="editorial">
 <title>Editorial Note</title>
 <para>Can the input document be JSON?</para>
 </note>
@@ -770,7 +793,8 @@ If the <code>href</code>
 attribute is not absolute, it will be resolved against the base URI of
 the element on which it is occurs.</para>
 
-<note><para>In the case of simple “GET” requests, implementors are encouraged
+<note xml:id="note-http-get">
+<para>In the case of simple “GET” requests, implementors are encouraged
 to support as many protocols as practical. In particular, pipeline authors may
 attempt to use <tag>p:http-request</tag> to load documents with computed
 URIs using the <literal>file:</literal> scheme.</para></note>
@@ -899,7 +923,7 @@ encoded string whose byte stream should be sent as the message body.
 error</glossterm> if the encoding specified is not supported by the
 implementation.</error></para>
 
-<note>
+<note xml:id="note-single-set-ser">
 <para>The <tag>p:http-request</tag> step provides only a single set of
 serialization options for XML media types. There's no direct support
 for sending a multipart message with two XML parts encoded
@@ -970,7 +994,7 @@ Content-Type: application/xml; charset="utf-8"
 <section xml:id="c.request_response">
 <title>Managing the response</title>
 
-<note role="editorial">
+<note xml:id="ednote-non-xml" role="editorial">
 <title>Editorial Note</title>
 <para>This section hasn't been updated to reflect the fact that
 non-XML documents are now possible.</para>
@@ -1083,7 +1107,7 @@ linkend="rfc1521"/>. In those situations, the result document will be
 a <tag>c:multipart</tag> element that contains multiple
 <tag>c:body</tag> elements inside.</para>
 
-<note>
+<note xml:id="note-multipart-multipart">
 <para>Although it is technically possible for any of the individual
 parts of a multipart message to <emphasis>also</emphasis> be
 multipart, XProc does not provide a standard representation for such
@@ -1127,7 +1151,7 @@ specified, and it must include any parameters returned by the server.</para>
 constructing a <tag>c:body</tag> element for each body part
 encountered.</para>
 
-<note>
+<note xml:id="note-text-html">
 <para>Given the above description, any content identified as
 <code>text/html</code> will be encoded as (escaped) text or
 base64-encoded in the <tag>c:body</tag> element, as HTML isn't always
@@ -1507,7 +1531,8 @@ not specified or has an empty string as its value) the namespace attribute is ab
   </listitem>
  </itemizedlist>
 
-<note><para>The <option>apply-to</option> option is primarily intended to make
+<note xml:id="note-apply-to">
+<para>The <option>apply-to</option> option is primarily intended to make
 it possible to avoid renaming attributes when the <option>from</option> option
 specifies no namespace, since many attributes are in no namespace.</para>
 
@@ -1554,7 +1579,7 @@ in the <option>wrapper</option> option, and writes that element to the
 other, then it simply wraps each of the remaining documents in the
 longer sequence.</para>
 
-<note>
+<note xml:id="note-two-docs">
 <para>In the common case, where the document element of a document in
 the <port>result</port> sequence has two element children, any
 comments, processing instructions, or white space text nodes that
@@ -1877,7 +1902,7 @@ with that document as the context document. The context position
 sequence and the context size (<code>last()</code>) is the total
 number of documents in the sequence.</para>
 
-<note>
+<note xml:id="note-stream">
 <para>In principle, this component cannot stream because it must
 buffer all of the input sequence in order to find the context size. In
 practice, if the test expression does not use the
@@ -2094,7 +2119,7 @@ the specified <option>match</option> pattern is replaced by its children,
 effectively “unwrapping” the children from their parent. Non-element nodes
 and unmatched elements are passed through unchanged.</para>
 
-<note>
+<note xml:id="note-match-doc">
 <para>The matching applies to the entire document, not just the “top-most”
 matches. A pattern of the form <literal>h:div</literal> will replace
 <emphasis>all</emphasis> <tag>h:div</tag> elements, not just the top-most
@@ -2795,7 +2820,7 @@ string value of the XPath expression is used. In text content, an
 expression that selects nodes will cause those nodes to be copied into
 the template document.</para>
 
-<note>
+<note xml:id="note-xpath-version">
 <para>Depending on which version of XPath an implementation supports,
 and possibly on the <tag class="attribute">xpath-version</tag> setting on
 the <tag>p:template</tag>, some implementations may report errors, or
@@ -2804,7 +2829,7 @@ interpretation of an XPath expression differs between the versions of
 XPath.</para>
 </note>
 
-<section xml:id="ex-in-scope-names" role="tocsuppress">
+<section xml:id="ex-template" role="tocsuppress">
 <title>Example</title>
 
 <para>It's quite common to construct documents using values computed
@@ -3648,7 +3673,7 @@ output method.</para>
 <para>If a processor chooses to implement an option for serialization,
 it must conform to the semantics defined in the <biblioref linkend="xml-serialization"/> specification.</para>
 
-<note>
+<note xml:id="note-use-char-maps">
 <para>The use-character-maps parameter in <biblioref linkend="xml-serialization"/> specification has not been provided in
 the standard serialization options provided by this
 specification.</para>

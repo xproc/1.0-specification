@@ -168,7 +168,7 @@
       <xsl:text> </xsl:text>
       <time datetime="{$pubdt}">
         <xsl:value-of select="format-date($pubdate, '[D1] [MNn] [Y0001]')"/>
-        <xsl:if test="not(db:specification/db:info/db:pubdate)">
+        <xsl:if test="not(db:info/db:pubdate)">
           <xsl:text> at </xsl:text>
           <xsl:value-of select="format-dateTime($dtz, '[H01]:[m01]&#160;UTC')"/>
           <xsl:if test="$travis-build-number != ''">
@@ -270,29 +270,31 @@
 	</dd>
       </xsl:for-each>
 
-      <dt>Repository:</dt>
-      <dd>
-        <a href="http://github.com/{$travis-user}/{$travis-repo}">
-          <xsl:text>This specification on GitHub</xsl:text>
-        </a>
-      </dd>
-      <dd>
-        <a href="http://github.com/xproc/specification/issues">
-          <xsl:text>Report an issue</xsl:text>
-        </a>
-      </dd>
-
-      <dt>Changes:</dt>
-      <xsl:if test="$auto-diff != ''">
+      <xsl:if test="not(db:info/db:pubdate)">
+        <dt>Repository:</dt>
         <dd>
-          <a href="diff.html">Diff against current “status quo” draft</a>
+          <a href="http://github.com/{$travis-user}/{$travis-repo}">
+            <xsl:text>This specification on GitHub</xsl:text>
+          </a>
+        </dd>
+        <dd>
+          <a href="http://github.com/xproc/specification/issues">
+            <xsl:text>Report an issue</xsl:text>
+          </a>
+        </dd>
+
+        <dt>Changes:</dt>
+        <xsl:if test="$auto-diff != ''">
+          <dd>
+            <a href="diff.html">Diff against current “status quo” draft</a>
+          </dd>
+        </xsl:if>
+        <dd>
+          <a href="http://github.com/{$travis-user}/{$travis-repo}/commits/{$travis-branch}">
+            <xsl:text>Commits for this specification</xsl:text>
+          </a>
         </dd>
       </xsl:if>
-      <dd>
-        <a href="http://github.com/{$travis-user}/{$travis-repo}/commits/{$travis-branch}">
-          <xsl:text>Commits for this specification</xsl:text>
-        </a>
-      </dd>
     </dl>
 
     <xsl:apply-templates
@@ -324,22 +326,7 @@
       </p>
     </xsl:if>
 
-<p class="copyright"><a href=
-"http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
-© 2010 <a href="http://www.w3.org/"><acronym title=
-"World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href=
-"http://www.csail.mit.edu/"><acronym title=
-"Massachusetts Institute of Technology">MIT</acronym></a>, <a href=
-"http://www.ercim.org/"><acronym title=
-"European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>,
-<a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved.
-W3C <a href=
-"http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-<a href=
-"http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>
-and <a href=
-"http://www.w3.org/Consortium/Legal/copyright-documents">document
-use</a> rules apply.</p>
+<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2014 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
 
     <hr/>
 
@@ -403,7 +390,7 @@ use</a> rules apply.</p>
 	      mode="m:titlepage-mode"
 	      priority="100">
   <h1>
-    <xsl:next-match/>
+    <xsl:apply-templates/>
   </h1>
 </xsl:template>
 
@@ -477,16 +464,12 @@ use</a> rules apply.</p>
   <xsl:param name="toc.params"
              select="f:find-toc-params(., $generate.toc)"/>
 
-  <xsl:variable name="toc">
-    <xsl:call-template name="t:make-lots">
-      <xsl:with-param name="toc.params" select="$toc.params"/>
-      <xsl:with-param name="toc">
-        <xsl:call-template name="t:component-toc"/>
-      </xsl:with-param>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:apply-templates select="$toc/h:div" mode="fixup-toc"/>
+  <xsl:call-template name="t:make-lots">
+    <xsl:with-param name="toc.params" select="$toc.params"/>
+    <xsl:with-param name="toc">
+      <xsl:call-template name="t:component-toc"/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <xsl:template match="db:section[@role='tocsuppress']" mode="m:toc">

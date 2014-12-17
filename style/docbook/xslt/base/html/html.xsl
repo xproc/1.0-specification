@@ -196,6 +196,8 @@ and a CSS style is specified.</para>
   <script type="text/javascript"
           src="{concat($resource.root, 'js/dbmodnizr.js')}"/>
 
+  <xsl:call-template name="t:syntax-highlight-head"/>
+
   <xsl:if test="//*[@xlink:type='extended']">
     <script type="text/javascript"
             src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"/>
@@ -206,7 +208,6 @@ and a CSS style is specified.</para>
     <script type="text/javascript"
             src="{concat($resource.root, 'js/nhrefs.js')}"/>
   </xsl:if>
-  <xsl:call-template name="t:syntax-highlight-head"/>
 </xsl:template>
 
 <xsl:template name="t:user-javascript">
@@ -327,6 +328,10 @@ primary result document.</para>
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
 
+    <xsl:call-template name="t:javascript">
+      <xsl:with-param name="node" select="$node"/>
+    </xsl:call-template>
+
     <xsl:call-template name="t:head-links">
       <xsl:with-param name="node" select="$node"/>
     </xsl:call-template>
@@ -360,10 +365,6 @@ body { background-image: url('<xsl:value-of select="$draft.watermark.image"/>');
         </link>
       </xsl:for-each>
     </xsl:if>
-
-    <xsl:call-template name="t:javascript">
-      <xsl:with-param name="node" select="$node"/>
-    </xsl:call-template>
 
     <xsl:call-template name="t:user-head-content">
       <xsl:with-param name="node" select="$node"/>

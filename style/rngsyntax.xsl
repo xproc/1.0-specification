@@ -311,8 +311,10 @@
 <!-- ============================================================ -->
 
 <xsl:template match="ss:element-summary">
-  <p>
-    <xsl:sequence select="f:html-attributes(., f:node-id(.))"/>
+  <p id="{if (@xml:id) then @xml:id else generate-id(.)}">
+    <!-- this generates the prefix= attribute ...
+    <xsl:sequence select="f:html-attributes(., generate-id(.))"/>
+    -->
     <xsl:attribute name="class">
       <xsl:text>element-syntax</xsl:text>
       <xsl:if test="@class">
@@ -531,27 +533,5 @@
     </xsl:when>
   </xsl:choose>
 </xsl:template>
-
-<!-- 
-   <ss:element-summary name="pipeline" prefix="p">
-      <ss:attribute name="name" type="QName" optional="yes"/>
-      <ss:attribute name="p:ignore-prefixes" type="NMTOKENS" optional="yes"/>
-      <ss:attribute name="xml:id" type="ID" optional="yes"/>
-      <ss:attribute name="xml:base" type="anyURI" optional="yes"/>
-      <ss:content-model>
-         <ss:group type="zeroOrMore">
-            <ss:group type="choice" optional="no">
-               <ss:element name="input"/>
-               <ss:element name="output"/>
-               <ss:element name="parameter"/>
-               <ss:element name="import"/>
-               <ss:element name="declare-step"/>
-               <ss:element name="p:doc"/>
-            </ss:group>
-         </ss:group>
-         <ss:model name="subpipeline"/>
-      </ss:content-model>
-   </ss:element-summary>
--->
 
 </xsl:stylesheet>
