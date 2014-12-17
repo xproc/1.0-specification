@@ -10,14 +10,330 @@
 automagically by <a href="http://travis-ci.org/">Travis CI</a> after
 every commit.</p>
 <dl>
-<dt>The <em>xproc20</em> branch, 11 December 2014:</dt>
+<dt>The <em>xproc20</em> branch, 18 December 2014:</dt>
 <dd>
 <ul>
-<li><a href="langspec/xproc20/head/xproc20/">XProc 2.0: An XML Pipeline Language</a></li>
-<li><a href="langspec/xproc20/head/xproc20-steps/">XProc 2.0: Standard Step Library</a></li>
-<li><a href="langspec/xproc20/head/ns-p/">XProc Namespace</a></li>
-<li><a href="langspec/xproc20/head/ns-c/">XProc Step Namespace</a></li>
-<li><a href="langspec/xproc20/head/ns-err/">XProc Error Namespace</a></li>
+<li><a href="langspec/xproc20/head/xproc20/"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: An XML Pipeline Language</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="prism.css" rel="stylesheet" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-WD.css" /><link rel="alternate" title="XML" href="xproc20.xml" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc 2.0: An XML Pipeline Language</h1><h2>W3C First Public Working Draft <time datetime="2014-12-18">18 December 2014</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20/">http://www.w3.org/TR/xproc20/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd></dl><p>This document is also available in these non-normative formats: <a href="xproc20.xml">XML</a>, 
+	  automatic <a href="diff.html">change markup</a> from the previous draft
+          courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.</p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2014 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p><hr /><div class="abstract"><h2>Abstract</h2>
+<p>This specification describes the syntax and semantics of
+<em class="citetitle">XProc 2.0: An XML Pipeline Language</em>, a language for
+describing operations to be performed on documents.</p>
+
+<p>An XML Pipeline specifies a sequence of operations to be
+performed on documents. Pipelines generally accept
+documents as input and produce documents as output.
+Pipelines are made up of simple steps which
+perform atomic operations on documents and constructs similar to
+conditionals, iteration, and exception handlers which control which
+steps are executed.</p>
+</div><div class="status"><h2>Status of this Document</h2>
+
+<p><em>This section describes the status of this document at
+the time of its publication. Other documents may supersede this
+document. A list of current W3C publications and the latest revision
+of this technical report can be found in the
+<a href="http://www.w3.org/TR/">W3C technical reports index</a> at
+http://</a></li>
+<li><a href="langspec/xproc20/head/xproc20-steps/"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>XProc 2.0: Standard Step Library</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="prism.css" rel="stylesheet" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/W3C-WD.css" /><link rel="alternate" title="XML" href="xproc20-steps.xml" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /></head><body><div class="specification"><div class="head" id="spec.head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc 2.0: Standard Step Library</h1><h2>W3C First Public Working Draft <time datetime="2014-12-18">18 December 2014</time></h2><dl><dt>This Version:</dt><dd><a href="https://xproc.github.io/specification/langspec">https://xproc.github.io/specification/langspec</a></dd><dt>Latest Version:</dt><dd><a href="http://www.w3.org/TR/xproc20-steps/">http://www.w3.org/TR/xproc20-steps/</a></dd><dt>Editors:</dt><dd><span class="personname">Norman Walsh</span>, <span class="orgname">MarkLogic Corporation</span> <code class="email">&lt;<a href="mailto:norman.walsh@marklogic.com">norman.walsh@marklogic.com</a>&gt;</code></dd><dd><span class="personname">Alex Milowski</span>, <span class="orgname">Invited expert</span> <code class="email">&lt;<a href="mailto:alex@milowski.org">alex@milowski.org</a>&gt;</code></dd><dd><span class="personname">Henry S. Thompson</span>, <span class="orgname">University of Edinburgh</span> <code class="email">&lt;<a href="mailto:ht@inf.ed.ac.uk">ht@inf.ed.ac.uk</a>&gt;</code></dd></dl><p>This document is also available in these non-normative formats: <a href="xproc20-steps.xml">XML</a>, 
+	  automatic <a href="diff.html">change markup</a> from the previous draft
+          courtesy of <a href="http://www.deltaxml.com/">DeltaXML</a>.</p><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2014 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p><hr /><div class="abstract"><h2>Abstract</h2>
+<p>This specification describes the standard step vocabulary of
+<em class="citetitle">XProc 2.0: An XML Pipeline Language</em>.</p>
+</div><div class="status"><h2>Status of this Document</h2>
+
+<p><em>This section describes the status of this document at
+the time of its publication. Other documents may supersede this
+document. A list of current W3C publications and the latest revision
+of this technical report can be found in the
+<a href="http://www.w3.org/TR/">W3C technical reports index</a> at
+http://www.w3.org/TR/.</em></p>
+
+<p>Publication as a First Public Working Draft does not imply
+endorsement by the W3C Membership. This is a draft document and may be
+updated, replaced or obsoleted by other documents at any time. It is
+inappropriate to cite this document as other than work in
+progress.</p>
+
+<p>This document is a
+product of the
+<a href="http://www.w3.org/XML/Processing/">XML Processing Model
+Working</a></li>
+<li><a href="langspec/xproc20/head/ns-p/"><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>XProc Namespace</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="prism.css" rel="stylesheet" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /></head><body><div class="specification"><div class="head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc Namespace</h1></div><hr />
+
+
+<section id="introduction" class="section"><h2>1 Introduction</h2>
+
+
+<p>This document describes the names that are defined in
+the <code class="uri">http://www.w3.org/ns/xproc</code>
+namespace at the time of publication. The W3C reserves the right to
+define additional names in this namespace in the future.
+Only the <a href="http://www.w3.org/XML/Processing/">XML Processing Model
+Working Group</a> or its successors
+may amend this namespace.</p>
+
+</section>
+
+<section id="names" class="section"><h2>2 Names in the XProc Namespace</h2>
+
+
+<p>The following names are defined in the
+<a href="http://www.w3.org/TR/2010/REC-xproc-20100506/">XProc: An XML
+Pipeline Language</a> specification (May, 2010 version).
+For updated information, please refer to the latest version of the
+<a href="http://www.w3.org/TR/xproc/">specification</a>.
+</p>
+
+<section id="xproc-names" class="section"><h3>2.1 XProc 2.0 Names</h3>
+
+
+<div class="itemizedlist">
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+<ul><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.choose">p:choose</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.declare-step">p:declare-step</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.document">p:document</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.document-properties">p:document-properties</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.documentation">p:documentation</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.empty">p:empty</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.for-each">p:for-each</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.group">p:group</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.import">p:import</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.inline">p:inline</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.input">p:input</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.iteration-position">p:iteration-position</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.iteration-size">p:iteration-size</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.iteration-source">p:iteration-source</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.library">p:library</</a></li>
+<li><a href="langspec/xproc20/head/ns-c/"><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>XProc Step Namespace</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="prism.css" rel="stylesheet" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /></head><body><div class="specification"><div class="head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc Step Namespace</h1></div><hr />
+
+
+<section id="introduction" class="section"><h2>1 Introduction</h2>
+
+
+<p>This document describes the names that are defined in
+the <code class="uri">http://www.w3.org/ns/xproc-step</code>
+by the
+<a href="http://www.w3.org/TR/2010/REC-xproc-20100506/">XProc: An XML
+Pipeline Language</a> specification (May, 2010 version).
+For updated information, please refer to the latest version of the
+<a href="http://www.w3.org/TR/xproc/">specification</a>.
+</p>
+
+<p>This document describes the names that are defined in this
+namespace at the time of publication. The W3C reserves the right to
+define additional names in this namespace in the future. Language implementors
+and pipeline authors may amend this namespace.
+</p>
+</section>
+
+<section id="names" class="section"><h2>2 Names in the XProc Step Namespace</h2>
+
+
+<div class="itemizedlist">
+
+
+<ul><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.errors">c:error</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.errors">c:errors</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.make-map">c:param</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#f.make-map">c:param-set</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.request">c:body</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.cast-content-type">c:data</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.directory-list">c:directory</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.error">c:error</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.error">c:errors</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.directory-list">c:file</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.request">c:header</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.exec">c:line</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#cv.request">c:multipart</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.directory-list">c:other</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.parameters">c:param</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.parameters">c:param-set</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/REC-xproc-20100511/#c.xquery">c:query</a>
+      
+   </li><li>
+      
+         <a href="http://www.w3.org/TR/2010/R</a></li>
+<li><a href="langspec/xproc20/head/ns-err/"><?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>XProc Error Namespace</title><meta charset="utf-8" /><meta name="generator" content="DocBook XSL 2.0 Stylesheets V2.0.7" /><script type="text/javascript" src="https://docbook.github.com/release/2.0.5/base/js/dbmodnizr.js"></script><link href="prism.css" rel="stylesheet" /><link rel="stylesheet" type="text/css" href="xproc.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" /><link rel="alternate" title="Latest editor's draft" href="http://www.w3.org/XML/XProc/docs/langspec.html" /><link rel="alternate" title="Latest Public Working Draft" href="http://www.w3.org/TR/xproc/" /></head><body><div class="specification"><div class="head"><p><a href="http://www.w3.org/"><img height="48" width="72" alt="W3C" src="http://www.w3.org/Icons/w3c_home" /></a></p><h1>XProc Error Namespace</h1></div><hr />
+
+
+<section id="introduction" class="section"><h2>1 Introduction</h2>
+
+
+<p>This document describes the names that are defined in
+the <code class="uri">http://www.w3.org/ns/xproc-error</code>
+namespace at the time of publication. The W3C reserves the right to
+define additional names in this namespace in the future.
+Only the <a href="http://www.w3.org/XML/Processing/">XML Processing Model
+Working Group</a> or its successors
+may amend this namespace.</p>
+
+</section>
+
+<section id="names" class="section"><h2>2 Names in the XProc Error Namespace</h2>
+
+
+<p>The following names are defined in the
+<a href="http://www.w3.org/TR/2010/REC-xproc-20100506/">XProc: An XML
+Pipeline Language</a> specification (May, 2010 version).
+For updated information, please refer to the latest version of the
+<a href="http://www.w3.org/TR/xproc/">specification</a>.
+</p>
+
+<section id="xproc-errors" class="section"><h3>2.1 XProc 2.0 Errors</h3>
+
+
+<dl xmlns:err="http://www.w3.org/ns/xproc-error">
+   <dt><code>err:XC0023</code></dt><dd><p>It is a dynamic error if a select expression or match pattern returns a node type that is not allowed by the step.</p></dd>
+   <dt><code>err:XD0003</code></dt><dd><p>It is a dynamic error if the viewport source does not provide exactly one document.</p></dd>
+   <dt><code>err:XD0004</code></dt><dd><p>It is a dynamic error if no subpipeline is selected by the p:choose and no default is provided.</p></dd>
+   <dt><code>err:XD0005</code></dt><dd><p>It is a dynamic error if more than one document appears on the connection for the xpath-context.</p></dd>
+   <dt><code>err:XD0006</code></dt><dd><p>If sequence is not specified, or has the value false, then it is a dynamic error unless exactly one document appears on the declared port.</p></dd>
+   <dt><code>err:XD0007</code></dt><dd><p>If sequence is not specified on p:output, or has the value false, then it is a dynamic error if the step does not produce exactly one document on the declared port.</p></dd>
+   <dt><code>err:XD0008</code></dt><dd><p>It is a dynamic error if a document sequence appears where a document to be used as the context node is expected.</p></dd>
+   <dt><code>err:XD0009</code></dt><dd><p>It is a dynamic error if the element attribute on p:namespaces is specified and it does not identify a single element node.</p></dd>
+   <dt><code>err:XD0010</code></dt><dd><p>It is a dynamic error if the match expression on p:viewport does not match an element or document.</p></dd>
+   <dt><code>err:XD0011</code></dt><dd><p>It is a dynamic error if the resource referenced by a p:document element does not exist, cannot be accessed, or has an XML content type and is not a well-formed XML document.</p></dd>
+   <dt><code>err:XD0012</code></dt><dd><p>It is a dynamic error if any attempt is made to dereference a URI where the scheme of the URI reference is not supported.</p></dd>
+   <dt><code>err</a></li>
 </ul>
 </dd>
 </dl>
