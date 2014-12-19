@@ -75,7 +75,7 @@ sub title {
     open (F, $spec) || return "date unknown";
     read (F, $_, 4096);
     close (F);
-    s/^.*?<div class=.title.>(.*?)<\/div>.*$/$1/s;
+    s/^.*?<h1>(.*?)<\/h1>.*$/$1/s;
     return $_;
 }
 
