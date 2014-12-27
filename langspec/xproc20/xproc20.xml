@@ -4,13 +4,12 @@
   xmlns:cs="http://www.w3.org/XML/XProc/2006/04/components#"
   xmlns:e="http://www.w3.org/1999/XSL/Spec/ElementSyntax"
   xmlns:xi="http://www.w3.org/2001/XInclude"
-  class="fpwd"
+  class="ed"
   version="5.0-extension w3c-xproc">
   <info>
     <title>XProc 2.0: An XML Pipeline Language</title>
     <w3c-shortname>xproc20</w3c-shortname>
-    <!-- defaults to date formatted <pubdate>2014-08-20</pubdate> -->
-    <pubdate>2014-12-18</pubdate>
+    <!-- defaults to date formatted <pubdate>2014-12-18</pubdate> -->
 
     <bibliorelation role="x-no-errata" type="references"
                     xlink:href="http://www.w3.org/XML/2010/xproc-errata.html">errata</bibliorelation>
