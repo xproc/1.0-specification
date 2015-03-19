@@ -1328,9 +1328,10 @@ remains the same.</para>
 result a document specified by an IRI.</para>
 
 <p:declare-step type="p:load">
-  <p:output port="result"/>
+  <p:output port="result" sequence="true"/>
   <p:option name="href" required="true" as="xs:anyURI"/>
   <p:option name="dtd-validate" select="'false'" as="xs:boolean"/>
+  <p:option name="override-content-type" as="xs:string"/>
 </p:declare-step>
 
 <para>The value of the <option>href</option> option
@@ -1340,39 +1341,42 @@ the base URI of the element on which it is specified
 (<tag>p:with-option</tag> or <tag>p:load</tag> in the case of a
 <olink targetdoc="../xproc20/xproc20.xml" targetptr="option-shortcut">syntactic shortcut</olink> value).</para>
 
-<para>The value of the <option>dtd-validate</option> option
-<rfc2119>must</rfc2119> be a boolean.</para>
+<para>The <tag>p:load</tag> step is roughly analagous to performing a
+GET request on the specified <tag class="attribute">href</tag> URI
+with the <tag>p:http-request</tag> step.</para>
 
-<para>The <tag>p:load</tag> step is the same as <tag>p:document</tag>
-with two additions:</para>
+<para><impl>On <tag>p:load</tag>, for URI schemes (such as
+<code>file:</code> and <code>ftp:</code>) where a content type may not
+be provided by the underlying request, the content type is
+<glossterm>implementation-defined</glossterm>.</impl></para>
 
-<orderedlist>
-<listitem>
-<para>The URI to be accessed can be constructed dynamically by the
-pipeline.</para>
-</listitem>
-<listitem>
-<para>The <tag>p:load</tag> step has an option to invoke DTD validation.
+<para>The <code>override-content-type</code> attribute controls the
+interpretation of the content type of the result. If the option is
+present, the response will be treated as if it returned the content
+type given by the option's value. <error code="C0030">It is a
+<glossterm>dynamic error</glossterm> if the
+<code>override-content-type</code> value cannot be used (e.g.
+<code>text/plain</code> to override
+<code>image/png</code>).</error></para>
+
+<para>If the content type is multipart, one document is returned for
+each part.</para>
+
+<para>If the <option>dtd-validate</option> option is
+<literal>true</literal>, the resource <rfc2119>must</rfc2119> be
+parsed with a validating XML parser. <error code="C0027">It is a
+<glossterm>dynamic error</glossterm> if the document is not valid, the
+response is multipart, or
+the step doesn't support DTD validation.</error>
 </para>
-</listitem>
-</orderedlist>
 
-<para>When <option>dtd-validate</option> is <literal>false</literal>,
-<tag>p:load</tag> processing is the same as <tag>p:document</tag>
-processing on the computed <option>href</option> value.</para>
-
-<para>When <option>dtd-validate</option> is <literal>true</literal>,
-<tag>p:load</tag> processing is the same as <tag>p:document</tag>
-processing on the computed <option>href</option> value but
-<rfc2119>must</rfc2119> use a validating parser. <error
-code="C0027">It is a <glossterm>dynamic error</glossterm> if the
-document is not valid or the step doesn't support DTD
-validation.</error>
-</para>
-
-<para>The retrieved document is produced on the <port>result</port>
-port. The base URI of the result is the (absolute) IRI used to
-retrieve it.</para>
+<para>The retrieved document or documents are produced on the
+<port>result</port> port. For single part responses, the base URI of
+the result is the (absolute) IRI used to retrieve it. For multipart
+responses, the base URI of each part is the (absolute) IRI used to
+retrieve it unless the <code>content-disposition</code> header indicates
+a URI. If the <code>content-disposition</code> header indicates a relative
+URI, it is made absolute agains the (absolute) IRI used to retreive it.</para>
 </section>
 
 <!-- ************************************************************************-->
