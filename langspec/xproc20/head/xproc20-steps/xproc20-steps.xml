@@ -2715,8 +2715,8 @@ expression.</para>
 <p:declare-step type="p:template">
   <p:input port="template"/>
   <p:input port="source" sequence="true" primary="true"/>
-  <p:input port="parameters" kind="parameter"/>
   <p:output port="result"/>
+  <p:option name="parameters" as="map(xs:QName,item())"/>
 </p:declare-step>
 
 <para>While evaluating each expression, the names of any parameters passed to the

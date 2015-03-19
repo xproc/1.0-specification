@@ -1769,15 +1769,20 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
+      <optional>
+        <attribute name="parameters">
+          <data type="string"/>
+        </attribute>
+      </optional>
       <interleave>
         <zeroOrMore>
           <ref name="InputConnection"/>
         </zeroOrMore>
         <zeroOrMore>
-          <ref name="Log"/>
+          <ref name="WithOption"/>
         </zeroOrMore>
         <zeroOrMore>
-          <ref name="WithParam"/>
+          <ref name="Log"/>
         </zeroOrMore>
         <zeroOrMore>
           <choice>

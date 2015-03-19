@@ -691,7 +691,8 @@
 <!ELEMENT %in-scope-names; %step-model;>
 <!ATTLIST %in-scope-names; %step-attrs;>
 <!ELEMENT %template; %step-model;>
-<!ATTLIST %template; %step-attrs;>
+<!ATTLIST %template; %step-attrs;
+ parameters CDATA #IMPLIED>
 <!ELEMENT %uuid; %step-model;>
 <!ATTLIST %uuid; %step-attrs;
  match %XSLT_match_pattern; #IMPLIED

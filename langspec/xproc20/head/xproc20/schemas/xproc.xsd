@@ -1279,7 +1279,17 @@
       </complexType>
    </element>
    <element name="in-scope-names" substitutionGroup="p:vanillaStep"/>
-   <element name="template" substitutionGroup="p:vanillaStep"/>
+   <element name="template" substitutionGroup="p:atomicStep">
+      <complexType>
+         <complexContent>
+            <restriction base="p:atomicStepType">
+               <group ref="p:atomicStepModel"/>
+               <attribute name="parameters" type="string"/>
+               <anyAttribute namespace="##other" processContents="lax"/>
+            </restriction>
+         </complexContent>
+      </complexType>
+   </element>
    <element name="uuid" substitutionGroup="p:atomicStep">
       <complexType>
          <complexContent>

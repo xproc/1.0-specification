@@ -73,10 +73,13 @@
     maybe ("#all" | (PrefixList | "#default")+), but neither
     one of those is allowed by RELAX NG.
   -->
-  <define name="ExcludeInlinePrefixes" sa:model="prefix list">
+  <define name="ExcludeInlinePrefixes" sa:model="ExcludeInlinePrefixes">
     <text/>
   </define>
-  <define name="PrefixList" sa:model="prefix list">
+  <define name="PrefixList" sa:model="PrefixList">
+    <data type="NMTOKENS"/>
+  </define>
+  <define name="QNameList" sa:model="QNameList">
     <data type="NMTOKENS"/>
   </define>
   <define name="xmlid.attr" sa:ignore="yes">
@@ -276,26 +279,28 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
-      <interleave>
-        <optional>
-          <choice>
-            <ref name="Empty"/>
-            <ref name="Any"/>
-            <oneOrMore>
-              <choice>
-                <ref name="Document"/>
-                <ref name="Inline"/>
-              </choice>
-            </oneOrMore>
-          </choice>
-        </optional>
-        <zeroOrMore>
-          <choice>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
-          </choice>
-        </zeroOrMore>
-      </interleave>
+      <choice>
+        <interleave>
+          <optional>
+            <choice>
+              <ref name="Empty"/>
+              <oneOrMore>
+                <choice>
+                  <ref name="Document"/>
+                  <ref name="Inline"/>
+                </choice>
+              </oneOrMore>
+            </choice>
+          </optional>
+          <zeroOrMore>
+            <choice>
+              <ref name="Documentation"/>
+              <ref name="PipeInfo"/>
+            </choice>
+          </zeroOrMore>
+        </interleave>
+        <ref name="Any"/>
+      </choice>
     </element>
   </define>
   <define name="InputConnection" sa:class="language-construct">
@@ -309,27 +314,28 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
-      <interleave>
-        <optional>
-          <choice>
-            <ref name="Empty"/>
-            <ref name="Any"/>
-            <oneOrMore>
-              <choice>
-                <ref name="Pipe"/>
-                <ref name="Document"/>
-                <ref name="Inline"/>
-              </choice>
-            </oneOrMore>
-          </choice>
-        </optional>
-        <zeroOrMore>
-          <choice>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
-          </choice>
-        </zeroOrMore>
-      </interleave>
+      <choice>
+        <interleave>
+          <optional>
+            <choice>
+              <ref name="Empty"/>
+              <oneOrMore>
+                <choice>
+                  <ref name="Document"/>
+                  <ref name="Inline"/>
+                </choice>
+              </oneOrMore>
+            </choice>
+          </optional>
+          <zeroOrMore>
+            <choice>
+              <ref name="Documentation"/>
+              <ref name="PipeInfo"/>
+            </choice>
+          </zeroOrMore>
+        </interleave>
+        <ref name="Any"/>
+      </choice>
     </element>
   </define>
   <define name="Input" sa:element="input">
@@ -374,27 +380,29 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
-      <interleave>
-        <optional>
-          <choice>
-            <ref name="Empty"/>
-            <ref name="Any"/>
-            <oneOrMore>
-              <choice>
-                <ref name="Pipe"/>
-                <ref name="Document"/>
-                <ref name="Inline"/>
-              </choice>
-            </oneOrMore>
-          </choice>
-        </optional>
-        <zeroOrMore>
-          <choice>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
-          </choice>
-        </zeroOrMore>
-      </interleave>
+      <choice>
+        <interleave>
+          <optional>
+            <choice>
+              <ref name="Empty"/>
+              <oneOrMore>
+                <choice>
+                  <ref name="Pipe"/>
+                  <ref name="Document"/>
+                  <ref name="Inline"/>
+                </choice>
+              </oneOrMore>
+            </choice>
+          </optional>
+          <zeroOrMore>
+            <choice>
+              <ref name="Documentation"/>
+              <ref name="PipeInfo"/>
+            </choice>
+          </zeroOrMore>
+        </interleave>
+        <ref name="Any"/>
+      </choice>
     </element>
   </define>
   <define name="Output" sa:element="output">
@@ -632,24 +640,26 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
-      <interleave>
-        <optional>
-          <choice>
-            <ref name="Empty"/>
-            <ref name="Pipe"/>
-            <ref name="Document"/>
-            <ref name="Any"/>
-            <ref name="Inline"/>
-          </choice>
-        </optional>
-        <zeroOrMore>
-          <choice>
-            <ref name="Namespaces"/>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
-          </choice>
-        </zeroOrMore>
-      </interleave>
+      <choice>
+        <interleave>
+          <optional>
+            <choice>
+              <ref name="Empty"/>
+              <ref name="Pipe"/>
+              <ref name="Document"/>
+              <ref name="Inline"/>
+            </choice>
+          </optional>
+          <zeroOrMore>
+            <choice>
+              <ref name="Namespaces"/>
+              <ref name="Documentation"/>
+              <ref name="PipeInfo"/>
+            </choice>
+          </zeroOrMore>
+        </interleave>
+        <ref name="Any"/>
+      </choice>
     </element>
   </define>
   <define name="WithOption" sa:element="with-option">
@@ -668,24 +678,26 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
-      <interleave>
-        <optional>
-          <choice>
-            <ref name="Empty"/>
-            <ref name="Pipe"/>
-            <ref name="Document"/>
-            <ref name="Any"/>
-            <ref name="Inline"/>
-          </choice>
-        </optional>
-        <zeroOrMore>
-          <choice>
-            <ref name="Namespaces"/>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
-          </choice>
-        </zeroOrMore>
-      </interleave>
+      <choice>
+        <interleave>
+          <optional>
+            <choice>
+              <ref name="Empty"/>
+              <ref name="Pipe"/>
+              <ref name="Document"/>
+              <ref name="Inline"/>
+            </choice>
+          </optional>
+          <zeroOrMore>
+            <choice>
+              <ref name="Namespaces"/>
+              <ref name="Documentation"/>
+              <ref name="PipeInfo"/>
+            </choice>
+          </zeroOrMore>
+        </interleave>
+        <ref name="Any"/>
+      </choice>
     </element>
   </define>
   <define name="Variable" sa:element="variable">
@@ -796,27 +808,29 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
-      <interleave>
-        <optional>
-          <choice>
-            <ref name="Empty"/>
-            <ref name="Any"/>
-            <oneOrMore>
-              <choice>
-                <ref name="Pipe"/>
-                <ref name="Document"/>
-                <ref name="Inline"/>
-              </choice>
-            </oneOrMore>
-          </choice>
-        </optional>
-        <zeroOrMore>
-          <choice>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
-          </choice>
-        </zeroOrMore>
-      </interleave>
+      <choice>
+        <interleave>
+          <optional>
+            <choice>
+              <ref name="Empty"/>
+              <oneOrMore>
+                <choice>
+                  <ref name="Pipe"/>
+                  <ref name="Document"/>
+                  <ref name="Inline"/>
+                </choice>
+              </oneOrMore>
+            </choice>
+          </optional>
+          <zeroOrMore>
+            <choice>
+              <ref name="Documentation"/>
+              <ref name="PipeInfo"/>
+            </choice>
+          </zeroOrMore>
+        </interleave>
+        <ref name="Any"/>
+      </choice>
     </element>
   </define>
   <!-- ============================================================ -->
@@ -861,22 +875,24 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
-      <interleave>
-        <optional>
-          <choice>
-            <ref name="Pipe"/>
-            <ref name="Document"/>
-            <ref name="Any"/>
-            <ref name="Inline"/>
-          </choice>
-        </optional>
-        <zeroOrMore>
-          <choice>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
-          </choice>
-        </zeroOrMore>
-      </interleave>
+      <choice>
+        <interleave>
+          <optional>
+            <choice>
+              <ref name="Pipe"/>
+              <ref name="Document"/>
+              <ref name="Inline"/>
+            </choice>
+          </optional>
+          <zeroOrMore>
+            <choice>
+              <ref name="Documentation"/>
+              <ref name="PipeInfo"/>
+            </choice>
+          </zeroOrMore>
+        </interleave>
+        <ref name="Any"/>
+      </choice>
     </element>
   </define>
   <!-- ============================================================ -->
@@ -928,21 +944,23 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
-      <interleave>
-        <choice>
-          <ref name="Empty"/>
-          <ref name="Pipe"/>
-          <ref name="Document"/>
-          <ref name="Any"/>
-          <ref name="Inline"/>
-        </choice>
-        <zeroOrMore>
+      <choice>
+        <interleave>
           <choice>
-            <ref name="Documentation"/>
-            <ref name="PipeInfo"/>
+            <ref name="Empty"/>
+            <ref name="Pipe"/>
+            <ref name="Document"/>
+            <ref name="Inline"/>
           </choice>
-        </zeroOrMore>
-      </interleave>
+          <zeroOrMore>
+            <choice>
+              <ref name="Documentation"/>
+              <ref name="PipeInfo"/>
+            </choice>
+          </zeroOrMore>
+        </interleave>
+        <ref name="Any"/>
+      </choice>
     </element>
   </define>
   <define name="When" sa:class="language-construct">
@@ -1076,9 +1094,7 @@
       </optional>
       <optional>
         <attribute name="code">
-          <oneOrMore>
-            <data type="QName"/>
-          </oneOrMore>
+          <ref name="QNameList"/>
         </attribute>
       </optional>
       <ref name="common.attributes"/>
