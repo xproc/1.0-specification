@@ -48,14 +48,19 @@ exclude-inline-prefixes.attr =
 # maybe ("#all" | (PrefixList | "#default")+), but neither
 # one of those is allowed by RELAX NG.
 [
-   sa:model = "prefix list"
+   sa:model = "ExcludeInlinePrefixes"
 ]
 ExcludeInlinePrefixes = text
 
 [
-   sa:model = "prefix list"
+   sa:model = "PrefixList"
 ]
 PrefixList = xsd:NMTOKENS
+
+[
+   sa:model = "QNameList"
+]
+QNameList = xsd:NMTOKENS
 
 [
    sa:ignore = "yes"
@@ -156,7 +161,7 @@ InputDeclaration =
       common.attributes,
       inline.attributes,
       use-when.attr?,
-      ((\Empty|Any|(Document|Inline)+)? & (Documentation|PipeInfo)*)
+      (((\Empty|(Document|Inline)+)? & (Documentation|PipeInfo)*)|Any)
    }
 
 [
@@ -169,7 +174,7 @@ InputConnection =
       common.attributes,
       inline.attributes,
       use-when.attr?,
-      ((\Empty|Any|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
+      (((\Empty|(Document|Inline)+)? & (Documentation|PipeInfo)*)|Any)
    }
 
 [
@@ -203,7 +208,7 @@ OutputConnection =
       common.attributes,
       inline.attributes,
       use-when.attr?,
-      ((\Empty|Any|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
+      (((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)|Any)
    }
 
 [
@@ -339,7 +344,7 @@ WithOptionSelect =
       common.attributes,
       inline.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Any|Inline)? & (Namespaces|Documentation|PipeInfo)*)
+      (((\Empty|Pipe|Document|Inline)? & (Namespaces|Documentation|PipeInfo)*)|Any)
    }
 
 [
@@ -360,7 +365,7 @@ VariableSelect =
       common.attributes,
       inline.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Any|Inline)? & (Namespaces|Documentation|PipeInfo)*)
+      (((\Empty|Pipe|Document|Inline)? & (Namespaces|Documentation|PipeInfo)*)|Any)
    }
 
 [
@@ -421,7 +426,7 @@ IterationSource =
       common.attributes,
       inline.attributes,
       use-when.attr?,
-      ((\Empty|Any|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)
+      (((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)|Any)
    }
 
 # ============================================================
@@ -446,7 +451,7 @@ ViewportSource =
       common.attributes,
       inline.attributes,
       use-when.attr?,
-      ((Pipe|Document|Any|Inline)? & (Documentation|PipeInfo)*)
+      (((Pipe|Document|Inline)? & (Documentation|PipeInfo)*)|Any)
    }
 
 # ============================================================
@@ -475,7 +480,7 @@ XPathContext =
       common.attributes,
       inline.attributes,
       use-when.attr?,
-      ((\Empty|Pipe|Document|Any|Inline) & (Documentation|PipeInfo)*)
+      (((\Empty|Pipe|Document|Inline) & (Documentation|PipeInfo)*)|Any)
    }
 
 [
@@ -544,7 +549,7 @@ TryGroup =
 Catch =
    element catch {
       name.ncname.attr?,
-      attribute code { xsd:QName+ }?,
+      attribute code { QNameList }?,
       common.attributes,
       use-when.attr?,
       ((Output|Log|Documentation|PipeInfo)*, Subpipeline)

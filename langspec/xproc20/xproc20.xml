@@ -1720,8 +1720,8 @@ do that?</para>
 may, in particular circumstances, contain embedded expressions enclosed
 between curly brackets. Attributes and text nodes that use (or are
 permitted to use) this mechanism are referred to respectively as
-<glossterm>attribute value templates</glossterm> and
-<glossterm>text value templates.</glossterm>.</para>
+<glossterm baseform="attribute value template">attribute value templates</glossterm> and
+<glossterm baseform="text value template">text value templates.</glossterm>.</para>
 
 <para><termdef xml:id="dt-value-template">Collectively,
 attribute value templates and text value templates are referred to as
@@ -1799,7 +1799,7 @@ the new text node.</para>
 that is designated as an <firstterm>attribute value
 template</firstterm>, an expression can be used by surrounding the
 expression with curly brackets (<code>{}</code>), following the
-general rules for <glossterm>value
+general rules for <glossterm baseform="value template">value
 templates</glossterm></termdef>.</para>
 
 <para>Curly brackets are not treated specially in an attribute value
@@ -2583,10 +2583,21 @@ or collections.</error>
     </para>
   </listitem>
   <listitem>
+    <para><type>QNameList</type>: As a whitespace separated list of
+    QNames, per the definition above.
+    </para>
+  </listitem>
+  <listitem>
     <para><type>PrefixList</type>: As a list with <literal
     role="infoset-property">item type</literal> <type>NMTOKEN</type>,
     per <biblioref linkend="xmlschema-2"/>, including whitespace
     normalization.
+    </para>
+  </listitem>
+  <listitem>
+    <para><type>ExcludeInlinePrefixes</type>: As a <type>PrefixList</type>
+    per the definition above, with the following extensions: the tokens
+    <literal>#all</literal> and <literal>#default</literal> may appear.
     </para>
   </listitem>
   <listitem>
