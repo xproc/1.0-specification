@@ -2608,37 +2608,50 @@ or collections.</error>
           <para>Attributes that are <link linkend="option-shortcut">syntactic shortcuts for option
               values</link> are not shown.</para>
         </listitem>
-      </itemizedlist><para>The types given for attributes should be understood as follows:</para><itemizedlist>
-        <listitem>
-          <para><type>ID</type>, <type>NCName</type>, <type>NMTOKEN</type>, <type>NMTOKENS</type>,
-              <type>anyURI</type>, <type>boolean</type>, <type>integer</type>, <type>string</type>:
-            As per <biblioref linkend="xmlschema-2"/> including whitespace normalization as
-            appropriate.</para>
-        </listitem>
-        <listitem>
-          <para><type>QName</type>: With whitespace normalization as per <biblioref linkend="xmlschema-2"/> and according to the following definition: In the context of
-            XProc, a <type>QName</type> is almost always a QName in the <glossterm>Namespaces in
-              XML</glossterm> sense. Note, however, that <tag>p:option</tag>
-              values can get their namespace declarations in a non-standard
-            way (with <tag>p:namespaces</tag>) and QNames that have no prefix are always in
-            no-namespace, irrespective of the default namespace. </para>
-        </listitem>
-        <listitem>
-          <para><type>PrefixList</type>: As a list with <literal role="infoset-property">item
-              type</literal>
-            <type>NMTOKEN</type>, per <biblioref linkend="xmlschema-2"/>, including whitespace
-            normalization. </para>
-        </listitem>
+      </itemizedlist>
 
-<listitem>
-<para><type>XPathExpression</type>, <type>XSLTMatchPattern</type>: As
-a string per <biblioref linkend="xmlschema-2"/>, including whitespace
-normalization, and the further requirement to be a conformant
-Expression per <biblioref linkend="xpath2"/> or Match pattern per
-<biblioref linkend="xslt20"/>.
-</para>
-        </listitem>
-      </itemizedlist></section>
+<para>The types given for attributes should be understood as follows:</para>
+<itemizedlist>
+  <listitem>
+    <para><type>ID</type>, <type>NCName</type>, <type>NMTOKEN</type>,
+    <type>NMTOKENS</type>, <type>anyURI</type>, <type>boolean</type>,
+    <type>integer</type>, <type>string</type>: As per <biblioref linkend="xmlschema-2"/> including whitespace normalization as
+    appropriate.</para>
+  </listitem>
+  <listitem>
+    <para><type>QName</type>: With whitespace normalization as per
+    <biblioref linkend="xmlschema-2"/> and according to the following
+    definition: In the context of XProc, a <type>QName</type> is
+    almost always a QName in the <glossterm>Namespaces in
+    XML</glossterm> sense. Note, however, that <tag>p:option</tag>
+    values can get their namespace declarations in a non-standard way
+    (with <tag>p:namespaces</tag>) and QNames that have no prefix are
+    always in no-namespace, irrespective of the default namespace.
+    </para>
+  </listitem>
+  <listitem>
+    <para><type>PrefixList</type>: As a list with <literal role="infoset-property">item type</literal> <type>NMTOKEN</type>,
+    per <biblioref linkend="xmlschema-2"/>, including whitespace
+    normalization.
+    </para>
+  </listitem>
+  <listitem>
+    <para><type>XPathExpression</type>, <type>XSLTMatchPattern</type>:
+    As a string per <biblioref linkend="xmlschema-2"/>, including
+    whitespace normalization, and the further requirement to be a
+    conformant Expression per <biblioref linkend="xpath2"/> or Match
+    pattern per <biblioref linkend="xslt20"/>.
+    </para>
+  </listitem>
+  <listitem>
+    <para><type>MediaTypes</type>:
+    As a whitespace separated list of media types as defined in
+    <biblioref linkend="rfc2046"/>.
+    </para>
+  </listitem>
+</itemizedlist>
+</section>
+
     <section xml:id="common-errors">
       <title>Common errors</title>
       <para>A number of errors apply generally:</para>
