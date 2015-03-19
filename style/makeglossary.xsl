@@ -22,12 +22,13 @@
 
 <xsl:template match="db:termdef">
   <xsl:variable name="defs" select="db:glossterm"/>
-  <xsl:variable name="uses" select="key('glossterm', normalize-space(db:firstterm[1]))"/>
+  <xsl:variable name="uses" select="key('glossterm',
+                                    normalize-space((db:firstterm[1]/@baseform,db:firstterm[1])[1]))"/>
   <xsl:variable name="refs" select="$uses except $defs"/>
 
   <glossentry>
     <glossterm>
-      <xsl:copy-of select="db:firstterm[1]/node()"/>
+      <xsl:value-of select="(db:firstterm[1]/@baseform,db:firstterm[1])[1]"/>
     </glossterm>
     <glossdef>
       <para>
@@ -37,7 +38,7 @@
       <xsl:if test="count($refs) = 0">
 	<xsl:message>
 	  <xsl:text>Note: glossterm "</xsl:text>
-	  <xsl:value-of select="db:firstterm[1]"/>
+	  <xsl:value-of select="normalize-space((db:firstterm[1]/@baseform,db:firstterm[1])[1])"/>
 	  <xsl:text>" defined but never referenced</xsl:text>
 	</xsl:message>
       </xsl:if>
@@ -51,16 +52,5 @@
     <xsl:apply-templates/>
   </xsl:element>
 </xsl:template>
-
-<!--
-xmlns="http://www.w3.org/1999/xhtml"
-xmlns:html="http://www.w3.org/1999/xhtml"
-
-xmlns:doc="http://nwalsh.com/xsl/documentation/1.0"
-xmlns:f="http://docbook.org/xslt/ns/extension"
-xmlns:m="http://docbook.org/xslt/ns/mode"
-xmlns:t="http://docbook.org/xslt/ns/template"
-xmlns:u="http://nwalsh.com/xsl/unittests#"
--->
 
 </xsl:stylesheet>
