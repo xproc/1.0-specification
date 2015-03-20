@@ -234,7 +234,7 @@ Pipe =
 Document =
    element document {
       href.attr,
-      attribute content-type { text }?,
+      attribute override-content-type { text }?,
       common.attributes,
       use-when.attr?,
       (Documentation|PipeInfo)*
