@@ -1325,7 +1325,7 @@ remains the same.</para>
 <title>p:load</title>
 
 <para>The <code>p:load</code> step has no inputs but produces as its
-result a document specified by an IRI.</para>
+result a document (or documents) specified by an IRI.</para>
 
 <p:declare-step type="p:load">
   <p:output port="result" sequence="true"/>
@@ -1341,14 +1341,18 @@ the base URI of the element on which it is specified
 (<tag>p:with-option</tag> or <tag>p:load</tag> in the case of a
 <olink targetdoc="../xproc20/xproc20.xml" targetptr="option-shortcut">syntactic shortcut</olink> value).</para>
 
+<para>The document identified by the URI is loaded and returned. If the
+URI protocol supports redirection, then redirects
+<rfc2119>must</rfc2119> be followed.</para>
+
 <para>The <tag>p:load</tag> step is roughly analagous to performing a
-GET request on the specified <tag class="attribute">href</tag> URI
+“get” request on the specified <tag class="attribute">href</tag> URI
 with the <tag>p:http-request</tag> step.</para>
 
 <para><impl>On <tag>p:load</tag>, for URI schemes (such as
-<code>file:</code> and <code>ftp:</code>) where a content type may not
-be provided by the underlying request, the content type is
-<glossterm>implementation-defined</glossterm>.</impl></para>
+<code>file:</code> and <code>ftp:</code>) where a content type is not
+provided by the underlying request, the content type is
+<glossterm>implementation-dependent</glossterm>.</impl></para>
 
 <para>The <code>override-content-type</code> attribute controls the
 interpretation of the content type of the result. If the option is
@@ -1359,16 +1363,50 @@ type given by the option's value. <error code="C0030">It is a
 <code>text/plain</code> to override
 <code>image/png</code>).</error></para>
 
-<para>If the content type is multipart, one document is returned for
+<para>If the content type is multipart, one document is created for
 each part.</para>
 
+<para>If (any of) the resource(s) returned has an XML content type,
+it must be parsed as XML:</para>
+
+<itemizedlist>
+<listitem>
+<para>The parser which <tag>p:load</tag> employs
+<rfc2119>must</rfc2119> process the external subset; all general and
+external parsed entities <rfc2119>must</rfc2119> be fully expanded.</para>
+</listitem>
+<listitem>
+<para>It
+<rfc2119>may</rfc2119> perform <tag class="attribute">xml:id</tag>
+processing, but it <rfc2119>must not</rfc2119> perform any other
+processing, such as expanding XIncludes.</para>
+</listitem>
+<listitem>
+<para>The parser
+<rfc2119>must</rfc2119> be conformant to <citetitle>Namespaces in
+XML</citetitle>.</para>
+</listitem>
+<listitem>
 <para>If the <option>dtd-validate</option> option is
 <literal>true</literal>, the resource <rfc2119>must</rfc2119> be
 parsed with a validating XML parser. <error code="C0027">It is a
-<glossterm>dynamic error</glossterm> if the document is not valid, the
-response is multipart, or
-the step doesn't support DTD validation.</error>
+<glossterm>dynamic error</glossterm> if the document is not valid
+or the step implementation doesn't support DTD validation.</error>
 </para>
+</listitem>
+<listitem>
+<para>If the <option>dtd-validate</option> option is
+<literal>false</literal>, the resource <rfc2119>must not</rfc2119> be
+parsed with a validating XML parser. Loading the document
+<rfc2119>must not</rfc2119> fail due to validation errors.
+</para>
+</listitem>
+</itemizedlist>
+
+<para>If the document identified has a non-XML content type, no extra
+processing is mandated. <impl>The number and variety of media types
+that an implementation can load is
+<glossterm>implementation-defined</glossterm></impl>.</para>
 
 <para>The retrieved document or documents are produced on the
 <port>result</port> port. For single part responses, the base URI of

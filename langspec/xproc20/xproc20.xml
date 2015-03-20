@@ -4380,55 +4380,23 @@ See also <xref linkend="handling-imports"
 
 <e:rng-pattern name="Document"/>
 
-<para>The document identified by the URI in the
-<tag class="attribute">href</tag> attribute is loaded and returned. If the
-URI protocol supports redirection, then redirects
-<rfc2119>must</rfc2119> be followed.</para>
+<para>The value of the <tag class="attribute">href</tag> attribute
+<rfc2119>must</rfc2119> be an <type>anyURI</type>. It is interpreted
+as an IRI reference. If it is relative, it is made absolute against
+the base URI of the <tag>p:document</tag> element.</para>
 
-<para>Exactly how the data is encoded depends on the content type of the
-resource. If the resource has a content type associated with it (e.g.,
-if the resource was retrieved with HTTP), then that content type
-<rfc2119>must</rfc2119> be used, otherwise, if the user specified a
-<tag class="attribute">content-type</tag> on the <tag>p:document</tag>,
-then that content type <rfc2119>must</rfc2119> be assumed.
-<impl>If no content type was
-specified or is associated with the resource, the inferred content
-type is <glossterm>implementation-dependent</glossterm>.</impl>
+<para>The semantics of <tag>p:document</tag> are the same as a the
+semantics of <tag>p:load</tag> where the <option>href</option> option
+comes from the <tag class="attribute">href</tag> attribute, the
+<option>override-content-type</option> option comes from the
+<tag class="attribute">override-content-type</tag> attribute, and the
+<option>dtd-validate</option> option is always <literal>false</literal>.
 </para>
-
-<para>If the document identified has an XML content type, it must
-be parsed as XML:</para>
-
-<itemizedlist>
-<listitem>
-<para>The parser which the <tag>p:document</tag> element employs
-<rfc2119>must</rfc2119> process the external subset; all general and
-external parsed entities <rfc2119>must</rfc2119> be fully expanded.</para>
-</listitem>
-<listitem>
-<para>It
-<rfc2119>may</rfc2119> perform <tag class="attribute">xml:id</tag>
-processing, but it <rfc2119>must not</rfc2119> perform any other
-processing, such as expanding XIncludes.</para>
-</listitem>
-<listitem>
-<para>The parser
-<rfc2119>must</rfc2119> be conformant to <citetitle>Namespaces in
-XML</citetitle>. Loading the document <rfc2119>must not</rfc2119>
-fail due to validation errors.
-</para>
-</listitem>
-</itemizedlist>
-
-<para>If the document identified has a non-XML content type, no extra
-processing is mandated.
-<impl>The number and variety of media types that an implementation
-can load is <glossterm>implementation-defined</glossterm></impl>.</para>
 
 <para><error code="D0011">It is a <glossterm>dynamic error</glossterm>
 if the resource referenced by a <tag>p:document</tag> element does not
-exist, cannot be accessed, or has an XML content type and is not a well-formed XML
-document.</error>
+exist, cannot be accessed, or has an XML content type and is not a
+well-formed XML document.</error>
 </para>
 
 <para>Use the <tag>p:load</tag> step if you need to perform DTD-based
@@ -4436,15 +4404,17 @@ validation.
 </para>
 
 <note xml:id="note-document">
-        <para>A <tag>p:document</tag> always <emphasis>reads</emphasis> from the specified IRI. In
-          the context of a <tag>p:input</tag>, this seems perfectly natural. In the context of a
-            <tag>p:output</tag>, this may seem a little asymmetrical. Putting a
-            <tag>p:document</tag> in a <tag>p:output</tag> causes the pipeline to
-            <emphasis>read</emphasis> from the specified IRI and provide that document <emphasis>as
-            an output</emphasis> on that port. </para>
-        <para>Use <tag>p:store</tag> to store the results that appear on a
-          <tag>p:output</tag>.</para>
-      </note>
+<para>A <tag>p:document</tag> always <emphasis>reads</emphasis> from
+the specified IRI. In the context of a <tag>p:input</tag>, this seems
+perfectly natural. In the context of a <tag>p:output</tag>, this may
+seem a little asymmetrical. Putting a <tag>p:document</tag> in a
+<tag>p:output</tag> causes the pipeline to <emphasis>read</emphasis>
+from the specified IRI and provide that document <emphasis>as an
+output</emphasis> on that port. </para>
+
+<para>Use <tag>p:store</tag> to store the results that appear on a
+<tag>p:output</tag>.</para>
+</note>
 </section>
 
     <section xml:id="p.empty"><title>p:empty</title><para>A <tag>p:empty</tag> connects to an
