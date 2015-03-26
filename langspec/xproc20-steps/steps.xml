@@ -876,6 +876,20 @@ of the step or protocol.</error>
 </para>
 </section>
 
+<section xml:id="file-globbing">
+<title>Filename globbing</title>
+
+<para>Implementations that support <literal>file:</literal> URIs,
+<rfc2119>should</rfc2119> support “globbing”. For example, the
+URI <uri>file:///path/to/dir/*.xml</uri> should return all of the
+XML documents in the directory
+<filename class="directory">/path/to/dir</filename>.</para>
+
+<note xml:id="ednote-globbing" role="editorial">
+<para>Must define the globbing rules!</para>
+</note>
+</section>
+
 <section xml:id="c.request_body">
 <title>Request Entity body conversion</title>
 
