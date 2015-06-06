@@ -11,6 +11,13 @@ The goal of XProc 2.0 is to address the published
 You can view formatted versions of the latest editor's drafts at
 https://xproc.github.io/specification/
 
+Additional editorial drafts may also be available from the
+editors' repositories:
+
+* Norman Walsh, https://ndw.github.io/specification/
+* Alex Miłowski, https://alexmilowski.github.io/specification/
+* James Fuller, https://xquery.github.io/xproc-vnext-spec/
+
 Developments, including proposed errata, for
 [XProc 1.0](http://www.w3.org/TR/xproc/) are in
 the [`xproc10`](../../tree/xproc10) branch.
