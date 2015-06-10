@@ -744,7 +744,7 @@ including an entity body (content) for the request.</para>
 
 <p:declare-step type="p:http-request">
   <p:input port="source" content-types="*/*"/>
-  <p:output port="result"/>
+  <p:output port="result" sequence="true"/>
   <xi:include href="serialization-options.xml"
               xpointer="xmlns(p=http://www.w3.org/ns/xproc)
                         xpath(/p:pipeline/p:option)"
@@ -1444,7 +1444,7 @@ the base URI of the element on which it is specified
 (<tag>p:with-option</tag> or <tag>p:load</tag> in the case of a
 <olink targetdoc="../xproc20/xproc20.xml" targetptr="option-shortcut">syntactic shortcut</olink> value).</para>
 
-<para>The document identified by the URI is loaded and returned. If the
+<para>The document or documents identified by the URI is loaded and returned. If the
 URI protocol supports redirection, then redirects
 <rfc2119>must</rfc2119> be followed.</para>
 
