@@ -1002,6 +1002,10 @@ unchanged as a <tag>c:header</tag> in the result document. <error code="C0030">I
 <code>text/plain</code> to override
 <code>image/png</code>).</error></para>
 
+<para>If the <code>override-content-type</code> includes an encoding
+parameter, then that encoding <rfc2119>must</rfc2119> be used to
+read the document.</para>
+
 <para>If the <code>status-only</code> attribute has the value
 <literal>true</literal>, the result document will contain only header
 information. The entity of the response will not be processed to
