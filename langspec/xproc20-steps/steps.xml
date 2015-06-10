@@ -1017,7 +1017,7 @@ code="C0030">It is a <glossterm>dynamic error</glossterm> if the
 <code>image/png</code>).</error></para>
 
 <para>If the <code>override-content-type</code> includes an encoding
-parameter, then that encoding <rfc2119>should</rfc2119> be used to
+parameter, then that encoding <rfc2119>must</rfc2119> be used to
 read the document.</para>
 
 <para>If the <code>status-only</code> attribute has the value
