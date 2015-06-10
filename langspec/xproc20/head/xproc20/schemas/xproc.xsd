@@ -962,6 +962,7 @@
                <group ref="p:atomicStepModel"/>
                <attribute name="href" type="anyURI"/>
                <attribute name="dtd-validate" type="boolean"/>
+               <attribute name="override-content-type" type="string"/>
                <anyAttribute namespace="##other" processContents="lax"/>
             </restriction>
          </complexContent>

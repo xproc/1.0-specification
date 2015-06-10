@@ -177,6 +177,7 @@ Step-load =
     use-when.attr?,
     attribute href { xsd:anyURI }?,
     attribute dtd-validate { xsd:boolean }?,
+    attribute override-content-type { xsd:string }?,
     (WithOption* & (Documentation|PipeInfo)*)
   }
 

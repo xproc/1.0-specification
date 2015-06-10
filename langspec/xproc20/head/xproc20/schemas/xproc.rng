@@ -433,7 +433,7 @@
     <element name="document">
       <ref name="href.attr"/>
       <optional>
-        <attribute name="content-type"/>
+        <attribute name="override-content-type"/>
       </optional>
       <ref name="common.attributes"/>
       <optional>

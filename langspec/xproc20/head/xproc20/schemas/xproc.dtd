@@ -559,7 +559,8 @@
 <!ELEMENT %load; %step-model;>
 <!ATTLIST %load; %step-attrs;
  href %URIref; #IMPLIED
- dtd-validate %boolean; #IMPLIED>
+ dtd-validate %boolean; #IMPLIED
+ override-content-type CDATA #IMPLIED>
 <!ELEMENT %make-absolute-uris; %step-model;>
 <!ATTLIST %make-absolute-uris; %step-attrs;
  match %XSLT_match_pattern; #IMPLIED

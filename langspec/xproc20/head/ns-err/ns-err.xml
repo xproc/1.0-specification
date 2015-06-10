@@ -150,7 +150,6 @@ For updated information, please refer to the latest version of the
    <error code="XC0023">It is a dynamic error if the match pattern does not match an element.</error>
    <error code="XC0025">It is a dynamic error if the match pattern matches anything other than an element node and the value of the position option is “first-child” or “last-child”.</error>
    <error code="XC0026">It is a dynamic error if any XPath expression makes reference to the context node, size, or position when the context item is undefined.</error>
-   <error code="XC0027">It is a dynamic error if the document is not valid or the step doesn't support DTD validation.</error>
    <error code="XC0028">it is a dynamic error if the content of the c:body element does not consist entirely of characters</error>
    <error code="XC0029">It is a dynamic error if an XInclude error occurs during processing.</error>
    <error code="XC0030">It is a dynamic error if the override-content-type value cannot be used (e.g. text/plain to override image/png).</error>
