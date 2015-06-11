@@ -169,7 +169,7 @@ InputDeclaration =
 ]
 InputConnection =
    element input {
-      port.attr,
+      port.attr?,
       select.attr?,
       common.attributes,
       inline.attributes,
@@ -189,7 +189,7 @@ Input = InputDeclaration | InputConnection
 ]
 OutputDeclaration =
    element output {
-      port.attr,
+      port.attr?,
       sequence.attr?,
       primary.attr?,
       common.attributes,
@@ -202,7 +202,7 @@ OutputDeclaration =
 ]
 OutputConnection =
    element output {
-      port.attr,
+      port.attr?,
       sequence.attr?,
       primary.attr?,
       common.attributes,
@@ -221,8 +221,8 @@ Output = OutputDeclaration | OutputConnection
 ]
 Pipe =
    element pipe {
-      attribute step { xsd:NCName },
-      port.attr,
+      attribute step { xsd:NCName }?,
+      port.attr?,
       common.attributes,
       use-when.attr?,
       (Documentation|PipeInfo)*
@@ -266,7 +266,7 @@ Log =
    element log {
       common.attributes,
       use-when.attr?,
-      port.attr,
+      port.attr?,
       href.attr?,
       (Documentation|PipeInfo)*
    }
@@ -414,19 +414,7 @@ ForEach =
       name.ncname.attr?,
       common.attributes,
       use-when.attr?,
-      ((IterationSource? & (Output|Log|Documentation|PipeInfo)*), Subpipeline)
-   }
-
-[
-   sa:class = "language-construct"
-]
-IterationSource =
-   element iteration-source {
-      select.attr?,
-      common.attributes,
-      inline.attributes,
-      use-when.attr?,
-      (((\Empty|(Pipe|Document|Inline)+)? & (Documentation|PipeInfo)*)|Any)
+      ((Input? & (Output|Log|Documentation|PipeInfo)*), Subpipeline)
    }
 
 # ============================================================
@@ -440,18 +428,7 @@ Viewport =
       attribute match { XSLTMatchPattern },
       common.attributes,
       use-when.attr?,
-      ((ViewportSource? & Output? & Log? & Documentation* & PipeInfo*), Subpipeline)
-   }
-
-[
-   sa:class = "language-construct"
-]
-ViewportSource =
-   element viewport-source {
-      common.attributes,
-      inline.attributes,
-      use-when.attr?,
-      (((Pipe|Document|Inline)? & (Documentation|PipeInfo)*)|Any)
+      ((Input? & Output? & Log? & Documentation* & PipeInfo*), Subpipeline)
    }
 
 # ============================================================
@@ -465,22 +442,11 @@ Choose =
       common.attributes,
       use-when.attr?,
       ((Documentation|PipeInfo)*,
-         XPathContext?,
+         Input?,
          Variable*,
          (When|Documentation|PipeInfo)*,
          Otherwise?,
          (Documentation|PipeInfo)*)
-   }
-
-[
-   sa:class = "language-construct"
-]
-XPathContext =
-   element xpath-context {
-      common.attributes,
-      inline.attributes,
-      use-when.attr?,
-      (((\Empty|Pipe|Document|Inline) & (Documentation|PipeInfo)*)|Any)
    }
 
 [
@@ -492,7 +458,7 @@ When =
       common.attributes,
       use-when.attr?,
       ((Documentation|PipeInfo)*,
-         XPathContext?,
+         Input?,
          (Output|Log|Documentation|PipeInfo)*,
          Subpipeline)
    }
