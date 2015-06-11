@@ -2771,7 +2771,7 @@ declared primary.</para>
 <para>The <tag class="attribute">version</tag> attribute identifies the version
 of XProc for which this pipeline was authored. If the <tag>p:pipeline</tag>
 has no ancestors in the XProc namespace, then it <rfc2119>must</rfc2119>
-have a <tag class="attribute">version</tag> attribute. 
+have a <tag class="attribute">version</tag> attribute.
 See <xref linkend="versioning-considerations"/>.</para>
 
 <para>If a pipeline does not have a <tag class="attribute">type</tag>
@@ -3472,9 +3472,9 @@ and <tag class="attribute">primary</tag> is not specified. <error
 code="S0030">It is a <glossterm>static error</glossterm> to specify
 that more than one input port is the primary.</error></para>
 
-<para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .  
+<para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .
 </para>
-        
+
 <para>The <tag class="attribute">content-types</tag> attribute lists one
 or more (space separated) content types that this input port will
 accept. A content type must be of the form
@@ -3534,8 +3534,25 @@ form:</para>
 <e:rng-pattern name="InputConnection"/>
 
 <para>If the <tag class="attribute">port</tag> is specified, then this
-is a binding for the specified port. If no port is specified, then it
-is a binding for the primary input port of the current step.</para>
+is a binding for the specified port. If no port is specified, then:</para>
+
+<itemizedlist>
+<listitem>
+<para>In a <tag>p:viewport</tag> or <tag>p:for-each</tag>, it is a
+binding for the step's single, anonymous input port.</para>
+</listitem>
+<listitem>
+<para>In a <tag>p:choose</tag> or <tag>p:when</tag>, it is a
+binding for the context item for the test expression(s).</para>
+</listitem>
+<listitem>
+<para>Elsewhere, it is a binding for the primary input port of the
+step in which it occurs.
+<error code="S1002">It is a <glossterm>static error</glossterm> if there
+is no primary input port.</error>
+</para>
+</listitem>
+</itemizedlist>
 
 <para>If no connection is provided for a <glossterm>primary input
 port</glossterm>, the input will be connected to the
@@ -3586,9 +3603,14 @@ connection is provided for an input port which has a default
 connection, then the input is treated as if the default connection
 appeared.</para>
 
-<para>An input declaration may contain foreign element, scoped outside of XProc vocabulary 
+<para>An empty <tag>p:input</tag> connection is equivalent to an
+input connection that contains “<code>&lt;pipe/&gt;</code>”, which is
+in turn equivalent to a binding to the default readable port.
+</para>
+
+<para>An input declaration may contain foreign element, scoped outside of XProc vocabulary
 (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace. Each element is treated
-as if wrapped with a <tag>p:inline</tag> element. For definition of this implicit behaviour 
+as if wrapped with a <tag>p:inline</tag> element. For definition of this implicit behaviour
 see <tag>p:inline</tag>.</para>
 
 <para>A default connection does not satisfy the requirement that a
@@ -3644,7 +3666,7 @@ port.</para>
           that document</emphasis> and provide it on the output port. It <emphasis>does
           not</emphasis> cause the processor to <emphasis>write</emphasis> the output to that
         document.</para>
-        <para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .  
+        <para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .
         </para>
 </section>
     <!-- ============================================================ -->
@@ -3789,7 +3811,7 @@ the context node, size, or position when the context item is
 undefined.</error>
 </para>
 
-<para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .  
+<para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .
 </para>
 </section>
 
@@ -3937,7 +3959,7 @@ the context node, size, or position when the context item is
 undefined.</error>
 </para>
 
-<para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .  
+<para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .
 </para>
 </section>
 
@@ -4105,7 +4127,7 @@ referenced.</para>
 of XProc for which this step declaration was authored. If the
 <tag>p:declare-step</tag>
 has no ancestors in the XProc namespace, then it <rfc2119>must</rfc2119>
-have a <tag class="attribute">version</tag> attribute. 
+have a <tag class="attribute">version</tag> attribute.
 See <xref linkend="versioning-considerations"/>.</para>
 
 <para>For a description of <tag class="attribute">psvi-required</tag>,
@@ -4182,7 +4204,7 @@ attribute">extension
 of XProc for which this library was authored. If the
 <tag>p:library</tag>
 has no ancestors in the XProc namespace, then it <rfc2119>must</rfc2119>
-have a <tag class="attribute">version</tag> attribute. 
+have a <tag class="attribute">version</tag> attribute.
 See <xref linkend="versioning-considerations"/>.</para>
 
       <para>For a description of <tag class="attribute">psvi-required</tag>, see <xref
@@ -4195,7 +4217,7 @@ See <xref linkend="versioning-considerations"/>.</para>
           error to put a <tag>p:pipeline</tag> or <tag>p:declare-step</tag> without a <tag
             class="attribute">type</tag> in a <tag>p:library</tag>, but there is no standard
           mechanism for instantiating it or referring to it. It is effectively invisible.</para>
-      </note><para>Libraries can import pipelines and/or other libraries. 
+      </note><para>Libraries can import pipelines and/or other libraries.
 See also <xref linkend="handling-imports"
       />.</para></section>
     <!-- ============================================================ -->
@@ -4234,27 +4256,58 @@ See also <xref linkend="handling-imports"
         library.</para>
 
 </section>
-    <!-- ============================================================ -->
-    <section xml:id="p.pipe"><title>p:pipe</title><para>A <tag>p:pipe</tag> connects an input to a
-        port on another step.</para>
-      <e:rng-pattern name="Pipe"/>
-      <para>The <tag>p:pipe</tag> element connects to a readable port of another step. It identifies
-        the readable port to which it connects with the name of the step in the <tag
-          class="attribute">step</tag> attribute and the name of the port on that step in the <tag
-          class="attribute">port</tag> attribute.</para>
-<para><error code="S0022">In all cases
-          except the <tag>p:output</tag> of a <glossterm>compound step</glossterm>, it is a
-            <glossterm>static error</glossterm> if the port identified by a <tag>p:pipe</tag> is not
-          in the <glossterm>readable ports</glossterm> of the step that contains the
-            <tag>p:pipe</tag>.</error></para>
-<para>A <tag>p:pipe</tag> that is a
-          <glossterm>connection</glossterm> for an <tag>p:output</tag> of a <glossterm>compound
-          step</glossterm> may connect to one of the readable ports of the compound step or to an
-        output port on one of the compound step's <glossterm>contained steps</glossterm>. In other
-        words, the output of a compound step can simply be a copy of one of the available inputs or
-        it can be the output of one of its children.</para></section>
-      <section xml:id="p.inline"><title>p:inline</title><para>A <tag>p:inline</tag> provides a
-          document inline.</para>
+
+<!-- ============================================================ -->
+<section xml:id="p.pipe">
+<title>p:pipe</title>
+
+<para>A <tag>p:pipe</tag> connects an input to a port on another
+step.</para>
+
+<e:rng-pattern name="Pipe"/>
+
+<para>The <tag>p:pipe</tag> element connects to a readable port of
+another step. It identifies the readable port to which it connects
+with the name of the step in the <tag class="attribute">step</tag>
+attribute and the name of the port on that step in the
+<tag class="attribute">port</tag> attribute.</para>
+
+<para>If the <tag class="attribute">step</tag> attribute is not specified,
+it defaults to the step which provides the default readable port.
+If the  <tag class="attribute">port</tag> attribute is not specified,
+it defaults to the primary output port of the step identified (explicitly
+or implicitly).</para>
+
+<para>
+<error code="S1004">It is a <glossterm>static error</glossterm> if the
+<tag class="attribute">step</tag> attribute is not specified, and there
+is no default readable port.
+<error code="S1005">It is a <glossterm>static error</glossterm> if the
+<tag class="attribute">port</tag> attribute is not specified, and the
+step identified has no primary output port.</error>
+</error></para>
+
+<para><error code="S0022">In all cases except the <tag>p:output</tag>
+of a <glossterm>compound step</glossterm>, it is a <glossterm>static
+error</glossterm> if the port identified by a <tag>p:pipe</tag> is not
+in the <glossterm>readable ports</glossterm> of the step that contains
+the <tag>p:pipe</tag>.</error></para>
+
+<para>A <tag>p:pipe</tag> that is a <glossterm>connection</glossterm>
+for an <tag>p:output</tag> of a <glossterm>compound step</glossterm>
+may connect to one of the readable ports of the compound step or to an
+output port on one of the compound step's <glossterm>contained
+steps</glossterm>. In other words, the output of a compound step can
+simply be a copy of one of the available inputs or it can be the
+output of one of its children.</para>
+
+</section>
+
+<section xml:id="p.inline">
+<title>p:inline</title>
+
+<para>A <tag>p:inline</tag> provides a document inline.</para>
+
           <e:rng-pattern name="Inline"/>
           <para>The content of the <tag>p:inline</tag> element is wrapped in a document node and passed
               as input. The base URI of the document is the base URI of the <tag>p:inline</tag> element.
@@ -4282,11 +4335,11 @@ See also <xref linkend="handling-imports"
                           the ancestors of <tag>p:inline</tag> is cumulative.)</para>
                   </listitem>
               </itemizedlist>
-          
+
           <para>The value of each prefix in the <tag
               class="attribute">exclude-inline-prefixes</tag> attribute is
               interpreted as follows:</para>
-          
+
           <itemizedlist>
               <listitem>
                   <para>The value of the attribute is either <literal>#all</literal>, or
@@ -4318,47 +4371,47 @@ See also <xref linkend="handling-imports"
                       as excluded namespaces.</para>
               </listitem>
           </itemizedlist>
-          
+
           <para>The XProc processor <rfc2119>must</rfc2119> include all in-scope
               prefixes that are not explicitly excluded. If the namespace associated with
               an excluded prefix is used in the expanded-QName of a descendant
               element or attribute,
               the processor <rfc2119>may</rfc2119> include that prefix anyway, or it may
               generate a new prefix.</para>
-          
+
           <para>Consider this example:</para>
-          
+
           <programlisting language="xml"><xi:include href="examples/exclude-pfx.txt" parse="text"/></programlisting>
-          
+
           <para>which might produce a result like this:</para>
-          
+
           <programlisting language="xml"><![CDATA[<doc xmlns:c="http://example.com/c">
    <b:part xmlns:b="http://example.com/b"/>
  </doc>]]></programlisting>
-          
+
           <para>The declaration for “<literal>c</literal>” must
               be present because it was not excluded. The “<literal>part</literal>” element
               uses the namespace bound to “<literal>b</literal>”, so <emphasis>some</emphasis>
               binding must be present. In this example, the original
               prefix has been preserved, but it would be equally correct if a different
               prefix had been used.</para>
-          
+
           <para>If the <tag class="attribute">expand-text</tag> attribute is
               true, then each text node within the <tag>p:inline</tag> is evaluated as
               a <glossterm>text value template</glossterm>. The context node for
               these expressions is undefined.</para>
 
-          <para>Optionally, a single element scoped outside of XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) 
+          <para>Optionally, a single element scoped outside of XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>)
               namespace may be provided wherever a <tag>p:inline</tag> element can exist.
               The foreign element will be interpreted as if wrapped with an implicit <tag>p:inline</tag>.</para>
-          
+
           <para>The following example demonstrates this implied behaviour.</para>
           <programlisting language="xml"><![CDATA[<p:identity name="identity" code="my:implicitinline1">
     <p:input port="source">
         <c:data content-type="image/png">BASE64ENCODEDDATA</c:data>
     </p:input>
 </p:identity>]]></programlisting>
-          
+
           <para>Would be interpreted as the following code listing.</para>
           <programlisting language="xml"><![CDATA[<p:identity name="identity" code="my:implicitinline2">
     <p:input port="source">
@@ -4367,9 +4420,9 @@ See also <xref linkend="handling-imports"
         </p:inline>
     </p:input>
 </p:identity>]]></programlisting>
-          
+
           <para>Explicit <tag>p:inline</tag>(s) would be required if the author wants to include top level comments, processing instruction nodes,
-              or elements from XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace.</para>          
+              or elements from XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace.</para>
       </section>
 <section xml:id="p.document">
 <title>p:document</title>
