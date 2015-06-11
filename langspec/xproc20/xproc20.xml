@@ -713,7 +713,8 @@ that set.</error>
   <para>The input port or input context of some other step.</para>
 </listitem>
 <listitem>
-  <para>An option assigned with <tag>p:with-option</tag>.</para>
+  <para>An option assigned with <tag>p:with-option</tag> or a
+<tag>p:variable</tag> in a compound step.</para>
 </listitem>
 <listitem>
   <para>One of the outputs declared on its container. </para>
