@@ -32,9 +32,8 @@ For updated information, please refer to the latest version of the
 
 <dl xmlns:err="http://www.w3.org/ns/xproc-error">
    <dt><code>err:XC0023</code></dt><dd><p>It is a dynamic error if a select expression or match pattern returns a node type that is not allowed by the step.</p></dd>
-   <dt><code>err:XD0003</code></dt><dd><p>It is a dynamic error if the viewport source does not provide exactly one document.</p></dd>
    <dt><code>err:XD0004</code></dt><dd><p>It is a dynamic error if no subpipeline is selected by the p:choose and no default is provided.</p></dd>
-   <dt><code>err:XD0005</code></dt><dd><p>It is a dynamic error if more than one document appears on the connection for the xpath-context.</p></dd>
+   <dt><code>err:XD0005</code></dt><dd><p>It is a dynamic error if more than one document appears on the connection for this input port.</p></dd>
    <dt><code>err:XD0006</code></dt><dd><p>If sequence is not specified, or has the value false, then it is a dynamic error unless exactly one document appears on the declared port.</p></dd>
    <dt><code>err:XD0007</code></dt><dd><p>If sequence is not specified on p:output, or has the value false, then it is a dynamic error if the step does not produce exactly one document on the declared port.</p></dd>
    <dt><code>err:XD0008</code></dt><dd><p>It is a dynamic error if a document sequence appears where a document to be used as the context node is expected.</p></dd>
@@ -109,7 +108,10 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XS0062</code></dt><dd><p>It is a static error if a required version attribute is not present.</p></dd>
    <dt><code>err:XS0063</code></dt><dd><p>It is a static error if the value of the version attribute is not a xs:decimal.</p></dd>
    <dt><code>err:XS1001</code></dt><dd><p>It is a static error if the code attribute is missing from any but the last p:catch, if the last p:catch has a code, or if any error code is repeated.</p></dd>
+   <dt><code>err:XS1002</code></dt><dd><p>It is a static error if there is no primary input port.</p></dd>
    <dt><code>err:XS1003</code></dt><dd><p>It is a static error if an unescaped left curly bracket appears in a fixed part of a value template without a matching right curly bracket or if an unescaped right curly bracket appears in the fixed part of a value template.</p></dd>
+   <dt><code>err:XS1004</code></dt><dd><p>It is a static error if the step attribute is not specified, and there is no default readable port. It is a static error if the port attribute is not specified, and the step identified has no primary output port.</p></dd>
+   <dt><code>err:XS1005</code></dt><dd><p>It is a static error if the port attribute is not specified, and the step identified has no primary output port.</p></dd>
 </dl>
 </section>
 

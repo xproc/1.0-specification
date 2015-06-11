@@ -115,11 +115,6 @@ For updated information, please refer to the latest version of the
    </listitem>
    <listitem>
       <simpara>
-         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.iteration-source">p:iteration-source</link>
-      </simpara>
-   </listitem>
-   <listitem>
-      <simpara>
          <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.library">p:library</link>
       </simpara>
    </listitem>
@@ -205,22 +200,12 @@ For updated information, please refer to the latest version of the
    </listitem>
    <listitem>
       <simpara>
-         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.viewport-source">p:viewport-source</link>
-      </simpara>
-   </listitem>
-   <listitem>
-      <simpara>
          <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.when">p:when</link>
       </simpara>
    </listitem>
    <listitem>
       <simpara>
          <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.with-option">p:with-option</link>
-      </simpara>
-   </listitem>
-   <listitem>
-      <simpara>
-         <link xlink:href="http://www.w3.org/TR/2010/REC-xproc-20100511/#p.xpath-context">p:xpath-context</link>
       </simpara>
    </listitem>
    <listitem>

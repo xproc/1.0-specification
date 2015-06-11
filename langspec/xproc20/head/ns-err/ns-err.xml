@@ -49,9 +49,8 @@ For updated information, please refer to the latest version of the
 
 <!-- $Id: error-list.xsl,v 1.2 2009/09/10 17:17:57 NormanWalsh Exp $ --><error-list xmlns="http://www.w3.org/ns/xproc-error">
    <error code="XC0023">It is a dynamic error if a select expression or match pattern returns a node type that is not allowed by the step.</error>
-   <error code="XD0003">It is a dynamic error if the viewport source does not provide exactly one document.</error>
    <error code="XD0004">It is a dynamic error if no subpipeline is selected by the p:choose and no default is provided.</error>
-   <error code="XD0005">It is a dynamic error if more than one document appears on the connection for the xpath-context.</error>
+   <error code="XD0005">It is a dynamic error if more than one document appears on the connection for this input port.</error>
    <error code="XD0006">If sequence is not specified, or has the value false, then it is a dynamic error unless exactly one document appears on the declared port.</error>
    <error code="XD0007">If sequence is not specified on p:output, or has the value false, then it is a dynamic error if the step does not produce exactly one document on the declared port.</error>
    <error code="XD0008">It is a dynamic error if a document sequence appears where a document to be used as the context node is expected.</error>
@@ -126,7 +125,10 @@ For updated information, please refer to the latest version of the
    <error code="XS0062">It is a static error if a required version attribute is not present.</error>
    <error code="XS0063">It is a static error if the value of the version attribute is not a xs:decimal.</error>
    <error code="XS1001">It is a static error if the code attribute is missing from any but the last p:catch, if the last p:catch has a code, or if any error code is repeated.</error>
+   <error code="XS1002">It is a static error if there is no primary input port.</error>
    <error code="XS1003">It is a static error if an unescaped left curly bracket appears in a fixed part of a value template without a matching right curly bracket or if an unescaped right curly bracket appears in the fixed part of a value template.</error>
+   <error code="XS1004">It is a static error if the step attribute is not specified, and there is no default readable port. It is a static error if the port attribute is not specified, and the step identified has no primary output port.</error>
+   <error code="XS1005">It is a static error if the port attribute is not specified, and the step identified has no primary output port.</error>
 </error-list>
 </section>
 

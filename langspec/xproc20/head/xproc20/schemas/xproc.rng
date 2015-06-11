@@ -305,7 +305,9 @@
   </define>
   <define name="InputConnection" sa:class="language-construct">
     <element name="input">
-      <ref name="port.attr"/>
+      <optional>
+        <ref name="port.attr"/>
+      </optional>
       <optional>
         <ref name="select.attr"/>
       </optional>
@@ -347,7 +349,9 @@
   <!-- ============================================================ -->
   <define name="OutputDeclaration" sa:class="language-construct">
     <element name="output">
-      <ref name="port.attr"/>
+      <optional>
+        <ref name="port.attr"/>
+      </optional>
       <optional>
         <ref name="sequence.attr"/>
       </optional>
@@ -368,7 +372,9 @@
   </define>
   <define name="OutputConnection" sa:class="language-construct">
     <element name="output">
-      <ref name="port.attr"/>
+      <optional>
+        <ref name="port.attr"/>
+      </optional>
       <optional>
         <ref name="sequence.attr"/>
       </optional>
@@ -413,10 +419,14 @@
   </define>
   <define name="Pipe" sa:class="language-construct">
     <element name="pipe">
-      <attribute name="step">
-        <data type="NCName"/>
-      </attribute>
-      <ref name="port.attr"/>
+      <optional>
+        <attribute name="step">
+          <data type="NCName"/>
+        </attribute>
+      </optional>
+      <optional>
+        <ref name="port.attr"/>
+      </optional>
       <ref name="common.attributes"/>
       <optional>
         <ref name="use-when.attr"/>
@@ -473,7 +483,9 @@
       <optional>
         <ref name="use-when.attr"/>
       </optional>
-      <ref name="port.attr"/>
+      <optional>
+        <ref name="port.attr"/>
+      </optional>
       <optional>
         <ref name="href.attr"/>
       </optional>
@@ -783,7 +795,7 @@
       <group>
         <interleave>
           <optional>
-            <ref name="IterationSource"/>
+            <ref name="Input"/>
           </optional>
           <zeroOrMore>
             <choice>
@@ -796,41 +808,6 @@
         </interleave>
         <ref name="Subpipeline"/>
       </group>
-    </element>
-  </define>
-  <define name="IterationSource" sa:class="language-construct">
-    <element name="iteration-source">
-      <optional>
-        <ref name="select.attr"/>
-      </optional>
-      <ref name="common.attributes"/>
-      <ref name="inline.attributes"/>
-      <optional>
-        <ref name="use-when.attr"/>
-      </optional>
-      <choice>
-        <interleave>
-          <optional>
-            <choice>
-              <ref name="Empty"/>
-              <oneOrMore>
-                <choice>
-                  <ref name="Pipe"/>
-                  <ref name="Document"/>
-                  <ref name="Inline"/>
-                </choice>
-              </oneOrMore>
-            </choice>
-          </optional>
-          <zeroOrMore>
-            <choice>
-              <ref name="Documentation"/>
-              <ref name="PipeInfo"/>
-            </choice>
-          </zeroOrMore>
-        </interleave>
-        <ref name="Any"/>
-      </choice>
     </element>
   </define>
   <!-- ============================================================ -->
@@ -849,7 +826,7 @@
       <group>
         <interleave>
           <optional>
-            <ref name="ViewportSource"/>
+            <ref name="Input"/>
           </optional>
           <optional>
             <ref name="Output"/>
@@ -866,33 +843,6 @@
         </interleave>
         <ref name="Subpipeline"/>
       </group>
-    </element>
-  </define>
-  <define name="ViewportSource" sa:class="language-construct">
-    <element name="viewport-source">
-      <ref name="common.attributes"/>
-      <ref name="inline.attributes"/>
-      <optional>
-        <ref name="use-when.attr"/>
-      </optional>
-      <choice>
-        <interleave>
-          <optional>
-            <choice>
-              <ref name="Pipe"/>
-              <ref name="Document"/>
-              <ref name="Inline"/>
-            </choice>
-          </optional>
-          <zeroOrMore>
-            <choice>
-              <ref name="Documentation"/>
-              <ref name="PipeInfo"/>
-            </choice>
-          </zeroOrMore>
-        </interleave>
-        <ref name="Any"/>
-      </choice>
     </element>
   </define>
   <!-- ============================================================ -->
@@ -913,7 +863,7 @@
           </choice>
         </zeroOrMore>
         <optional>
-          <ref name="XPathContext"/>
+          <ref name="Input"/>
         </optional>
         <zeroOrMore>
           <ref name="Variable"/>
@@ -937,32 +887,6 @@
       </group>
     </element>
   </define>
-  <define name="XPathContext" sa:class="language-construct">
-    <element name="xpath-context">
-      <ref name="common.attributes"/>
-      <ref name="inline.attributes"/>
-      <optional>
-        <ref name="use-when.attr"/>
-      </optional>
-      <choice>
-        <interleave>
-          <choice>
-            <ref name="Empty"/>
-            <ref name="Pipe"/>
-            <ref name="Document"/>
-            <ref name="Inline"/>
-          </choice>
-          <zeroOrMore>
-            <choice>
-              <ref name="Documentation"/>
-              <ref name="PipeInfo"/>
-            </choice>
-          </zeroOrMore>
-        </interleave>
-        <ref name="Any"/>
-      </choice>
-    </element>
-  </define>
   <define name="When" sa:class="language-construct">
     <element name="when">
       <attribute name="test">
@@ -980,7 +904,7 @@
           </choice>
         </zeroOrMore>
         <optional>
-          <ref name="XPathContext"/>
+          <ref name="Input"/>
         </optional>
         <zeroOrMore>
           <choice>
