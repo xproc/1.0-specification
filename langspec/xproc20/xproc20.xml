@@ -3076,7 +3076,14 @@ its <tag class="attribute">test</tag> expression is to be evaluated.
 That context node is specified as a <glossterm>connection</glossterm>
 for the <tag>p:input</tag>. If no context is specified on the
 <tag>p:when</tag>, the context of the <tag>p:choose</tag> is
-used.</para></section><section xml:id="p.otherwise"
+used.
+<error code="D0005">It is a <glossterm>dynamic error</glossterm> if
+more than one document appears on the connection for this input
+port.</error>
+</para>
+</section>
+
+<section xml:id="p.otherwise"
 ><title>p:otherwise</title><para>An otherwise specifies the default
 branch; the subpipeline selected if no test expression on any
 preceding <tag>p:when</tag> evaluates to true.</para>
@@ -3604,8 +3611,10 @@ connection is provided for an input port which has a default
 connection, then the input is treated as if the default connection
 appeared.</para>
 
-<para>An empty <tag>p:input</tag> connection is equivalent to an
-input connection that contains “<code>&lt;pipe/&gt;</code>”, which is
+<para>A <tag>p:input</tag> element with no children
+(<foreignphrase>e.g.</foreignphrase>, “<code>&lt;p:input/&gt;</code>”)
+is equivalent to an
+input connection that contains only “<code>&lt;p:pipe/&gt;</code>”, which is
 in turn equivalent to a binding to the default readable port.
 </para>
 
