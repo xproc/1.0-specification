@@ -1,3 +1,5 @@
+<p:pipeline xmlns:p="http://www.w3.org/ns/xproc" version="1.0">
+
 <p:group>
   <p:variable name="db-key"
 	      select="'some-long-string-of-nearly-random-characters'"/>
@@ -29,3 +31,5 @@
     </p:otherwise>
   </p:choose>
 </p:group>
+
+</p:pipeline>
