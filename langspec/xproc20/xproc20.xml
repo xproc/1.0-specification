@@ -1760,36 +1760,6 @@ brackets in a value template, when interpreted as an XPath expression,
 contains errors. The error is signaled using the appropriate
 XPath error code.</para>
 
-<para><termdef xml:id="dt-effective-value">The result of evaluating a
-value template is referred to as its <firstterm>effective
-value</firstterm>.</termdef> The effective value is the string
-obtained by concatenating the expansions of the fixed and variable
-parts:</para>
-
-<itemizedlist>
-<listitem>
-<para>The expansion of a fixed part is obtained by replacing any double curly
-brackets (<code>{{</code> or <code>}}</code>) by the corresponding single curly
-bracket.</para>
-</listitem>
-<listitem>
-<para>The expansion of a variable part is obtained by evaluating the enclosed
-XPath expression and converting the
-resulting value to a string.</para>
-</listitem>
-</itemizedlist>
-
-<note xml:id="note-dynerr">
-<para>This process can generate dynamic errors, for example if the
-sequence contains an element with a complex content type (which cannot
-be atomized).</para>
-</note>
-
-<para>In the case of an attribute value template, the effective value
-becomes the string value of the new attribute node. In the case of a
-text value template, the effective value becomes the string value of
-the new text node.</para>
-
 <section xml:id="attribute-value-templates">
 <title>Attribute Value Templates</title>
 
@@ -1809,42 +1779,82 @@ brackets.</para>
 
 <para>Curly brackets are <emphasis>not</emphasis> recognized recursively
 inside expressions.</para>
+
+<para>The result of evaluating an
+attribute value template is the string obtained by concatenating the
+expansions of the fixed and variable parts:</para>
+
+<itemizedlist>
+<listitem>
+<para>The expansion of a fixed part is obtained by replacing any
+double curly brackets (<code>{{</code> or <code>}}</code>) by the
+corresponding single curly bracket.</para>
+</listitem>
+<listitem>
+<para>The expansion of a variable part is obtained by evaluating the
+enclosed XPath expression and converting the resulting value to a
+string.</para>
+</listitem>
+</itemizedlist>
+
+<note xml:id="note-dynerr">
+<para>This process can generate dynamic errors, for example if the
+sequence contains an element with a complex content type (which cannot
+be atomized).</para>
+</note>
+
+<para>The evaluated result becomes the string value of the new
+attribute node.</para>
 </section>
 
 <section xml:id="text-value-templates">
 <title>Text Value Templates</title>
 
-<para>The <tag class="attribute">expand-text</tag> attribute may appear on
-<tag>p:inline</tag> (and its parents in the case where the
-<tag>p:inline</tag> is omitted) and determines whether descendant text
-nodes of that element are treated as text value templates.</para>
+<para>This section describes how text nodes are processed when they
+are designated text value templates. All text nodes that are the
+descendants of a <tag>p:inline</tag> element are text value templates
+unless the <tag>p:inline</tag> has an <tag
+class="attribute">expand-text</tag> attribute with the value
+“<code>false</code>”. Text nodes that are not the descendants of
+a <tag>p:inline</tag> are never text value templates.</para>
 
-<para>This section describes how text nodes are processed when the
-effective value of <tag class="attribute">expand-text</tag>
-is <code>true</code>. Such
-text nodes are referred to as text value templates.</para>
-
-<para><termdef xml:id="dt-text-value-template">In a
-text node that is designated as a <firstterm>text value template</firstterm>,
+<para><termdef xml:id="dt-text-value-template">In a text node that is
+designated as a <firstterm>text value template</firstterm>,
 expressions can be used by surrounding each expression with curly
 brackets (<code>{}</code>).</termdef>
 </para>
 
-<para>The rules for text value templates are given in <xref
-linkend="value-templates"/>. A text node whose value is a text value
-template results in the construction of a text node in the result. The
-string value of that text node is obtained by computing the effective
-value of the value template.</para>
+<para>The rules for text value templates are given in
+<xref linkend="value-templates"/>. Each delimited expression within
+the text value template is evaluated and the value(s) of that
+expression are added to the resulting document.</para>
 
-<note xml:id="note-result-of-tvt">
-<para>The result of evaluating a text value template is a (possibly
-zero-length) text node. This text node becomes part of the result and
-is thereafter handled exactly as if the value had appeared explicitly
-as a text node in the stylesheet.</para>
-<para>Fixed parts consisting entirely of whitespace are significant
-and are handled in the same way as any other fixed part. This is
-different from the default treatment of "boundary space" in
-XQuery.</para>
+<para>The result of evaluating a
+text value template is the sequence of nodes obtained from the fixed
+and variable parts:</para>
+
+<itemizedlist>
+<listitem>
+<para>The expansion of a fixed part is obtained by replacing any
+double curly brackets (<code>{{</code> or <code>}}</code>) by the
+corresponding single curly bracket.</para>
+</listitem>
+<listitem>
+<para>The expansion of a variable part is obtained by evaluating the
+enclosed XPath expression.</para>
+</listitem>
+</itemizedlist>
+
+<para>The sequence of items obtained from the evaluation is
+added to the result. Nodes are added (copied) directly, atomic
+values are cast to <code>xs:string</code>, converted to text nodes,
+and added.</para>
+
+<note xml:id="unlike-xslt-tvts">
+<para>Unlike XSLT, in XProc, text value templates are not atomized
+and converted to text nodes. It is possible to insert nodes with
+text value templates in XProc, for example, if the XPath
+expressions refer to variables that have node content.</para>
 </note>
 </section>
 </section>
@@ -3480,7 +3490,7 @@ and <tag class="attribute">primary</tag> is not specified. <error
 code="S0030">It is a <glossterm>static error</glossterm> to specify
 that more than one input port is the primary.</error></para>
 
-<para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .
+<para>For <tag class="attribute">exclude-inline-prefixes</tag>, see <tag>p:inline</tag> .
 </para>
 
 <para>The <tag class="attribute">content-types</tag> attribute lists one
@@ -3676,7 +3686,7 @@ port.</para>
           that document</emphasis> and provide it on the output port. It <emphasis>does
           not</emphasis> cause the processor to <emphasis>write</emphasis> the output to that
         document.</para>
-        <para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .
+        <para>For <tag class="attribute">exclude-inline-prefixes</tag>, see <tag>p:inline</tag> .
         </para>
 </section>
     <!-- ============================================================ -->
@@ -3821,7 +3831,7 @@ the context node, size, or position when the context item is
 undefined.</error>
 </para>
 
-<para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .
+<para>For <tag class="attribute">exclude-inline-prefixes</tag>, see <tag>p:inline</tag> .
 </para>
 </section>
 
@@ -3969,7 +3979,7 @@ the context node, size, or position when the context item is
 undefined.</error>
 </para>
 
-<para>For <tag class="attribute">exclude-inline-prefixes</tag> and <tag class="attribute">expand-text</tag>, see <tag>p:inline</tag> .
+<para>For <tag class="attribute">exclude-inline-prefixes</tag>, see <tag>p:inline</tag> .
 </para>
 </section>
 
@@ -4406,10 +4416,10 @@ output of one of its children.</para>
               prefix has been preserved, but it would be equally correct if a different
               prefix had been used.</para>
 
-          <para>If the <tag class="attribute">expand-text</tag> attribute is
-              true, then each text node within the <tag>p:inline</tag> is evaluated as
-              a <glossterm>text value template</glossterm>. The context node for
-              these expressions is undefined.</para>
+<para>If the <tag class="attribute">expand-text</tag> attribute is
+not false, then each text node within the <tag>p:inline</tag> is evaluated
+as a <glossterm>text value template</glossterm>. The context node for
+these expressions is undefined.</para>
 
           <para>Optionally, a single element scoped outside of XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>)
               namespace may be provided wherever a <tag>p:inline</tag> element can exist.

@@ -87,7 +87,7 @@ version.attr = attribute version { text }
 
 common.attributes = xmlid.attr?, xmlbase.attr?, extension.attr*
 
-inline.attributes = exclude-inline-prefixes.attr?, attribute expand-text { xsd:boolean }?
+inline.attributes = exclude-inline-prefixes.attr?
 
 decl.attributes = psvi-required.attr?,
    xpath-version.attr?,
@@ -247,6 +247,7 @@ Inline =
    element inline {
       common.attributes,
       inline.attributes,
+      attribute expand-text { xsd:boolean }?,
       use-when.attr?,
       Any
    }
