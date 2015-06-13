@@ -4328,16 +4328,74 @@ output of one of its children.</para>
 
 <para>A <tag>p:inline</tag> provides a document inline.</para>
 
-          <e:rng-pattern name="Inline"/>
-          <para>The content of the <tag>p:inline</tag> element is wrapped in a document node and passed
-              as input. The base URI of the document is the base URI of the <tag>p:inline</tag> element.
-              <error code="S0024">It is a <glossterm>static error</glossterm> if the content of the
-                  <tag>p:inline</tag> element does not consist of exactly one element, optionally preceded
-                  and/or followed by any number of processing instructions, comments or whitespace
-                  characters.</error></para>
-          <para>The in-scope namespaces of the inline document differ from
-              the in-scope namespace of the content of the <tag>p:inline</tag> element in that bindings
-              for all its <emphasis>excluded namespaces</emphasis>, as defined below, are removed:</para><itemizedlist>
+<e:rng-pattern name="Inline"/>
+
+<para>The content of the <tag>p:inline</tag> element is interpreted
+as described below. A document containing the interpreted content
+is passed as input. The base URI of the document is the
+base URI of the <tag>p:inline</tag> element.</para>
+
+<para>Interpretation of the content of the <tag>p:inline</tag> element
+depends on the
+<tag class="attribute">encoding</tag> attribute.</para>
+
+<para>If the <tag class="attribute">encoding</tag> attribute is
+present:</para>
+
+<orderedlist>
+<listitem>
+<para><error code="S1007">It is a
+<glossterm>static error</glossterm> if the content includes
+any XML markup.</error> In other words, the entire content must
+be a single text node. CDATA sections and character references do
+not count as markup for this purpose because they will already have
+been replaced by the XML parser that read the pipeline.</para>
+</listitem>
+<listitem>
+<para>The element content is assumed to be an encoded
+representation of the actual content. The encoding value
+“<literal>base64</literal>” <rfc2119>must</rfc2119> be supported
+and identifies the content as being base64-encoded.</para>
+<para><impl>An implementation may
+support encodings other than <literal>base64</literal> but these
+encodings and their names are
+<glossterm>implementation-defined</glossterm>.</impl>
+<error code="S1006">It is a <glossterm>static error</glossterm> if the
+encoding specified is not supported by the implementation.</error>
+<error code="D1005">It is a <glossterm>dynamic error</glossterm> if
+the body is not correctly encoded per the value of the <tag
+class="attribute">encoding</tag> attribute.</error>
+</para>
+</listitem>
+<listitem>
+<para>The element content is decoded and the following discussion
+applies to the decoded content.
+</para>
+</listitem>
+</orderedlist>
+
+<para>The interpretation of the (possibily decoded) content
+depends on the <tag class="attribute">content-type</tag> attribute.
+</para>
+
+<section xml:id="inline-xml-content">
+<title>Inline XML content</title>
+
+<para>If the <tag class="attribute">content-type</tag> is not
+specified or specifies an XML content type, then the content is parsed
+as XML.
+<error code="S0024">It is a <glossterm>static error</glossterm>
+if the content of the
+<tag>p:inline</tag> element does not consist of exactly one element,
+optionally preceded and/or followed by any number of processing
+instructions, comments or whitespace characters.</error></para>
+
+<para>The in-scope namespaces of the inline document differ from the
+in-scope namespace of the content of the <tag>p:inline</tag> element
+in that bindings for all its <emphasis>excluded namespaces</emphasis>,
+as defined below, are removed:</para>
+
+<itemizedlist>
                   <listitem>
                       <para>The XProc namespace itself (<uri>http://www.w3.org/ns/xproc</uri>) is
                           excluded.</para>
@@ -4444,6 +4502,20 @@ these expressions is undefined.</para>
           <para>Explicit <tag>p:inline</tag>(s) would be required if the author wants to include top level comments, processing instruction nodes,
               or elements from XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace.</para>
       </section>
+
+<section xml:id="inline-non-xml">
+<title>Inline non-XML content</title>
+
+<para>If the <tag class="attribute">content-type</tag> specifies
+a non-XML content type, the (possibly decoded) content is the
+content.</para>
+
+<para><impl>The representation of non-XML content is
+<glossterm>implementation-dependent</glossterm></impl>.</para>
+
+</section>
+</section>
+
 <section xml:id="p.document">
 <title>p:document</title>
 

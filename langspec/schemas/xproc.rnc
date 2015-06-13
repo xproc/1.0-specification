@@ -25,6 +25,11 @@ XSLTMatchPattern = text
 XPathSequenceType = text
 
 [
+   sa:model = "MediaType"
+]
+MediaType = text
+
+[
    sa:model = "MediaTypes"
 ]
 MediaTypes = text
@@ -39,6 +44,9 @@ primary.attr = attribute primary { xsd:boolean }
 select.attr = attribute select { XPathExpression }
 xpath-version.attr = attribute xpath-version { text }
 psvi-required.attr = attribute psvi-required { xsd:boolean }
+content-type.attr = attribute content-type { MediaType }
+content-types.attr = attribute content-types { MediaTypes }
+
 
 exclude-inline-prefixes.attr =
    attribute exclude-inline-prefixes { ExcludeInlinePrefixes }
@@ -156,7 +164,7 @@ InputDeclaration =
       port.attr,
       sequence.attr?,
       primary.attr?,
-      attribute content-types { MediaTypes }?,
+      content-types.attr?,
       select.attr?,
       common.attributes,
       inline.attributes,
@@ -234,7 +242,7 @@ Pipe =
 Document =
    element document {
       href.attr,
-      attribute override-content-type { text }?,
+      attribute override-content-type { MediaType }?,
       common.attributes,
       use-when.attr?,
       (Documentation|PipeInfo)*
@@ -248,6 +256,8 @@ Inline =
       common.attributes,
       inline.attributes,
       attribute expand-text { xsd:boolean }?,
+      content-type.attr?,
+      attribute encoding { text }?,
       use-when.attr?,
       Any
    }
@@ -673,7 +683,7 @@ VocabHttpRequest =
       attribute password { text }?,
       attribute auth-method { text }?,
       attribute send-authorization { xsd:boolean }?,
-      attribute override-content-type { text }?,
+      attribute override-content-type { MediaType }?,
       (VocabHeader*,(VocabMultipart|VocabBody)?)
    }
 
@@ -692,7 +702,7 @@ VocabHeader =
 ]
 VocabMultipart =
    element c:multipart {
-      attribute content-type { text },
+      content-type.attr,
       attribute boundary { text },
       (VocabBody)+
    }
@@ -702,7 +712,7 @@ VocabMultipart =
 ]
 VocabBody =
    element c:body {
-      attribute content-type { text },
+      content-type.attr,
       attribute encoding { text }?,
       attribute id { text }?,
       attribute description { text }?,
@@ -740,7 +750,7 @@ VocabLine =
 ]
 VocabData =
    element c:data {
-      attribute content-type { text }?,
+      content-type.attr,
       attribute charset { text }?,
       attribute encoding { text }?,
       text
