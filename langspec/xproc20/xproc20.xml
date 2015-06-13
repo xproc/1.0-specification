@@ -3453,10 +3453,8 @@ specified name exists and identifies the properties of that port. In
 other contexts, it provides a connection for a port declared
 elsewhere. And in some contexts, it does both.</para>
 
-<!--
 <section xml:id="input-declarations">
 <title>Input declarations</title>
--->
 
 <para>The declaration of an input identifies the name of the
 port, whether or not the port accepts a sequence, whether or not the
@@ -3540,11 +3538,9 @@ code="S0042">It is a <glossterm>static error</glossterm> to attempt to
 provide a connection for an input port on the declaration of an atomic
 step.</error></para>
 
-<!--
 </section>
 <section xml:id="input-connections">
 <title>Input connections</title>
--->
 
 <para>An input <emphasis>connection</emphasis> has the following
 form:</para>
@@ -3647,9 +3643,7 @@ processor. In that case, the processor <rfc2119>must</rfc2119> use the
 default connection if no external connection is provided for the
 port.</para>
 
-<!--
 </section>
--->
 </section>
 
     <!-- ============================================================ -->
