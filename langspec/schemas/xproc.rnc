@@ -25,14 +25,14 @@ XSLTMatchPattern = text
 XPathSequenceType = text
 
 [
-   sa:model = "MediaType"
+   sa:model = "ContentType"
 ]
-MediaType = text
+ContentType = text
 
 [
-   sa:model = "MediaTypes"
+   sa:model = "ContentTypes"
 ]
-MediaTypes = text
+ContentTypes = text
 
 name.ncname.attr = attribute name { xsd:NCName }
 name.qname.attr = attribute name { xsd:QName }
@@ -44,8 +44,8 @@ primary.attr = attribute primary { xsd:boolean }
 select.attr = attribute select { XPathExpression }
 xpath-version.attr = attribute xpath-version { text }
 psvi-required.attr = attribute psvi-required { xsd:boolean }
-content-type.attr = attribute content-type { MediaType }
-content-types.attr = attribute content-types { MediaTypes }
+content-type.attr = attribute content-type { ContentType }
+content-types.attr = attribute content-types { ContentTypes }
 
 
 exclude-inline-prefixes.attr =
@@ -242,7 +242,7 @@ Pipe =
 Document =
    element document {
       href.attr,
-      attribute override-content-type { MediaType }?,
+      attribute override-content-type { ContentType }?,
       common.attributes,
       use-when.attr?,
       (Documentation|PipeInfo)*
@@ -683,7 +683,7 @@ VocabHttpRequest =
       attribute password { text }?,
       attribute auth-method { text }?,
       attribute send-authorization { xsd:boolean }?,
-      attribute override-content-type { MediaType }?,
+      attribute override-content-type { ContentType }?,
       (VocabHeader*,(VocabMultipart|VocabBody)?)
    }
 

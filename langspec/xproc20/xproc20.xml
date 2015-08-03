@@ -424,7 +424,7 @@ Several property keys are defined by this specification:</para>
 <term><code>content-type</code></term>
 <listitem>
 <para>The value of the “<code>content-type</code>”
-key identifies the <biblioref linkend="rfc2046"/> of the
+key identifies the media type (<biblioref linkend="rfc2046"/>) of the
 representation. The “<code>content-type</code>” <rfc2119>must</rfc2119>
 always be present.
 </para>
@@ -443,11 +443,26 @@ no base URI.</para>
 <para>Other property keys may also be present, including user
 defined properties.</para>
 
+<section xml:id="document-types">
+<title>Document Types</title>
+
+<para>From an XProc perspective, there are two kinds of documents: XML
+documents and non-XML documents. Non-XML documents can be further subdivided
+into text documents and binary documents. Text documents are called
+out specially because they can be easily represented inline within a
+pipeline.</para>
+
 <section xml:id="xml-documents">
 <title>XML Documents</title>
 
 <para>Representations of XML documents are instances of
-the <biblioref linkend="xpath-datamodel"/>.
+the <biblioref linkend="xpath-datamodel"/>. They are identified by
+an XML media type. <termdef xml:id="dt-XML-media-type">The
+“<literal>application/xml</literal>” and “<literal>text/xml</literal>
+media types and all media types of the form
+“<literal>application/<replaceable>something</replaceable>+xml</literal>”
+are <firstterm baseform="XML media type">XML media types</firstterm>.
+</termdef>
 </para>
 
 <para>In order to be consistent with the XPath data model, all general
@@ -462,16 +477,35 @@ in an XProc pipeline is <glossterm>implementation-defined</glossterm>.</impl>
 </para>
 </section>
 
+<section xml:id="text-documents">
+<title>Text Documents</title>
+
+<para>Text documents are non-XML documents.
+<impl>Representations of text documents are are
+<glossterm>implementation-dependent</glossterm>.</impl>
+</para>
+
+<para>Text documents are identified by a text media type.
+<termdef xml:id="dt-text-media-type">Media types of the form
+“<literal>text/<replaceable>something</replaceable></literal>”
+are <firstterm baseform="text media type">text media types</firstterm>.
+</termdef>
+</para>
+</section>
+
 <section xml:id="non-xml-documents">
 <title>Non-XML Documents</title>
 
 <para><impl>Representations of non-XML documents are
 are <glossterm>implementation-dependent</glossterm>.</impl>
+They are identified by media types that are not
+<glossterm baseform="XML media type">XML media types</glossterm>.
 </para>
 
 <para>Implementors are free to optimize by storing them in convenient
 formats, caching them on disk, etc.</para>
 
+</section>
 </section>
 </section>
 
@@ -1714,45 +1748,36 @@ do that?</para>
 <section xml:id="value-templates">
 <title>Value Templates</title>
 
-<para>The string value of an attribute or text node in a pipeline
-may, in particular circumstances, contain embedded expressions enclosed
-between curly brackets. Attributes and text nodes that use (or are
-permitted to use) this mechanism are referred to respectively as
-<glossterm baseform="attribute value template">attribute value templates</glossterm> and
-<glossterm baseform="text value template">text value templates.</glossterm>.</para>
+<para>An attribute or text node in a pipeline may, in particular
+circumstances, contain embedded expressions enclosed between curly
+brackets. Attributes and text nodes that use (or are permitted to use)
+this mechanism are referred to respectively as <glossterm
+baseform="attribute value template">attribute value
+templates</glossterm> and <glossterm baseform="text value
+template">text value templates.</glossterm>.</para>
 
 <para><termdef xml:id="dt-value-template">Collectively,
 attribute value templates and text value templates are referred to as
 <firstterm baseform="value template">value templates</firstterm>.</termdef>
 </para>
 
-<para>A value template is a string consisting of an alternating sequence
-of fixed parts and variable parts. A variable part consists of an
-XPath expression enclosed in curly brackets (<code>{}</code>). A fixed
-part may contain any characters, except that a left curly bracket
-<rfc2119>must</rfc2119> be written as <code>{{</code> and a right
-curly bracket <rfc2119>must</rfc2119> be written as <code>}}</code>.
-If the XPath expression ends with a closing curly bracket, this must
-be separated from the delimiting closing bracket by whitespace. If the
-XPath expression starts with an opening curly bracket, this must be
-preceded by whitespace, to avoid misinterpretation as an escaped
-<code>{{</code> sequence.</para>
+<para>A value template is a string that contains zero or more
+expressions delimited by curly brackets. Outside an expression, a
+doubled left or right curly brackets (“<literal>{{</literal>” or
+“<literal>}}</literal>”) represents a literal, single bracket and does
+not start or end an expression. Once an expression begins, it extends
+to the first unmatched right curly bracket that is not within a string
+literal or comment.</para>
 
-<note xml:id="note-curly">
-<para>An expression within a variable part may contain an unescaped curly
-bracket within a string literals or within a comment.</para>
-
-<para>Currently no XPath expression starts with an opening curly
-bracket, so the use of <code>{{</code> creates no ambiguity. If an
-enclosed expression ends with a closing curly bracket, no whitespace
-is required between this and the closing delimiter.</para>
-</note>
+<para>Value templates are not recursive. Curly brackets inside an
+expression are part of that expression and are not recognized as
+nested value templates.</para>
 
 <para>
-<error code="S1003">It is a <glossterm>static error</glossterm> if an
-unescaped left curly bracket appears in a value template without a
-matching right curly bracket or if an unescaped right curly bracket
-appears in the fixed part of a value template.</error>
+<error code="S1003">It is a <glossterm>static error</glossterm> if
+an expression does not have a closing right curly bracket or if an
+unescaped right curly bracket occurs outside of an expression.
+</error>
 </para>
 
 <para>It is a static error if the string contained between matching curly
@@ -1777,25 +1802,13 @@ attribute value templates. In an element syntax
 summary, the value of other such attributes is surrounded by curly
 brackets.</para>
 
-<para>Curly brackets are <emphasis>not</emphasis> recognized recursively
-inside expressions.</para>
+<para>An attribute value template can be seen as an alternating sequence
+of zero or more “fixed” (non-expression) parts and expression parts. Each
+expression is evaluated with an undefined context node.</para>
 
-<para>The result of evaluating an
-attribute value template is the string obtained by concatenating the
-expansions of the fixed and variable parts:</para>
-
-<itemizedlist>
-<listitem>
-<para>The expansion of a fixed part is obtained by replacing any
-double curly brackets (<code>{{</code> or <code>}}</code>) by the
-corresponding single curly bracket.</para>
-</listitem>
-<listitem>
-<para>The expansion of a variable part is obtained by evaluating the
-enclosed XPath expression and converting the resulting value to a
-string.</para>
-</listitem>
-</itemizedlist>
+<para>The result of the attribute value template is the concatentation
+of the fixed parts and the string-value of the result of evaluating
+each expression part.</para>
 
 <note xml:id="note-dynerr">
 <para>This process can generate dynamic errors, for example if the
@@ -1803,8 +1816,8 @@ sequence contains an element with a complex content type (which cannot
 be atomized).</para>
 </note>
 
-<para>The evaluated result becomes the string value of the new
-attribute node.</para>
+<para>The string value of the attribute is the result of the attribute
+value template as an <type>xs:untypedAtomic</type>.</para>
 </section>
 
 <section xml:id="text-value-templates">
@@ -1821,38 +1834,26 @@ a <tag>p:inline</tag> are never text value templates.</para>
 <para><termdef xml:id="dt-text-value-template">In a text node that is
 designated as a <firstterm>text value template</firstterm>,
 expressions can be used by surrounding each expression with curly
-brackets (<code>{}</code>).</termdef>
+brackets (<code>{}</code>), following the
+general rules for <glossterm baseform="value template">value
+templates</glossterm>.</termdef>
 </para>
 
-<para>The rules for text value templates are given in
-<xref linkend="value-templates"/>. Each delimited expression within
-the text value template is evaluated and the value(s) of that
-expression are added to the resulting document.</para>
+<para>A text value template can be seen as an alternating sequence of
+zero or more “fixed” (non-expression) parts and expression parts. Each
+expression is evaluated with an undefined context node.</para>
 
-<para>The result of evaluating a
-text value template is the sequence of nodes obtained from the fixed
-and variable parts:</para>
+<para>This produces a sequence of strings (the fixed parts) and items
+(the results of evaluating each expression). Any items that are
+non-string atomic values are converted to strings by taking their
+string value. Strings are converted into text nodes.</para>
 
-<itemizedlist>
-<listitem>
-<para>The expansion of a fixed part is obtained by replacing any
-double curly brackets (<code>{{</code> or <code>}}</code>) by the
-corresponding single curly bracket.</para>
-</listitem>
-<listitem>
-<para>The expansion of a variable part is obtained by evaluating the
-enclosed XPath expression.</para>
-</listitem>
-</itemizedlist>
-
-<para>The sequence of items obtained from the evaluation is
-added to the result. Nodes are added (copied) directly, atomic
-values are cast to <code>xs:string</code>, converted to text nodes,
-and added.</para>
+<para>The result of the text value template is this sequence of nodes.
+Adjacent text nodes are combined into a single text node.</para>
 
 <note xml:id="unlike-xslt-tvts">
 <para>Unlike XSLT, in XProc, text value templates are not atomized
-and converted to text nodes. It is possible to insert nodes with
+and converted to single text nodes. It is possible to insert nodes with
 text value templates in XProc, for example, if the XPath
 expressions refer to variables that have node content.</para>
 </note>
@@ -4324,34 +4325,73 @@ output of one of its children.</para>
 
 <e:rng-pattern name="Inline"/>
 
-<para>The content of the <tag>p:inline</tag> element is interpreted
-as described below. A document containing the interpreted content
-is passed as input. The base URI of the document is the
-base URI of the <tag>p:inline</tag> element.</para>
+<para>How the content of a <tag>p:inline</tag> element is interpreted
+depends on the <tag class="attribute">content-type</tag> and
+<tag class="attribute">encoding</tag> attributes. If no
+<tag class="attribute">content-type</tag> is provided, the value
+“<literal>application/xml</literal>” is assumed.
+</para>
 
-<para>Interpretation of the content of the <tag>p:inline</tag> element
-depends on the
-<tag class="attribute">encoding</tag> attribute.</para>
+<!--
+<informaltable>
+<thead>
+<tr>
+<td colspan="4"><tag class="attribute">content-type</tag></td>
+</tr>
+<tr>
+<td></td>
+<td><glossterm>XML media type</glossterm></td>
+<td><glossterm>text media type</glossterm></td>
+<td>Other media types</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th align="left"><tag class="attribute">encoding</tag> absent</th>
+<td>OK</td>
+<td>OK</td>
+<td>error</td>
+</tr>
+<tr>
+<th align="left"><tag class="attribute">encoding</tag>
+is “<literal>base64</literal>”.</th>
+<td>error</td>
+<td>OK</td>
+<td>OK</td>
+</tr>
+<tr>
+<th align="left"><tag class="attribute">encoding</tag> is something else.</th>
+<td>error</td>
+<td>implementation-defined</td>
+<td>implementation-defined</td>
+</tr>
+</tbody>
+</informaltable>
+-->
 
-<para>If the <tag class="attribute">encoding</tag> attribute is
-present:</para>
-
-<orderedlist>
-<listitem>
 <para><error code="S1007">It is a
-<glossterm>static error</glossterm> if the content includes
-any XML markup.</error> In other words, the entire content must
-be a single text node. CDATA sections and character references do
+<glossterm>static error</glossterm> if an encoding is specified
+and the content type is an <glossterm>XML media type</glossterm>.</error>
+</para>
+
+<para><error code="S1008">It is a <glossterm>static error</glossterm>
+if the content type value specifies a character set and the <tag
+class="attribute">encoding</tag> attribute is absent.</error>
+</para>
+
+<para><error code="S1009">It is a <glossterm>static error</glossterm>
+if an encoding is specified and the content of the <tag>p:inline</tag>
+contains any XML markup.</error> In other words, the entire content
+must be a single text node. CDATA sections and character references do
 not count as markup for this purpose because they will already have
 been replaced by the XML parser that read the pipeline.</para>
-</listitem>
-<listitem>
-<para>The element content is assumed to be an encoded
-representation of the actual content. The encoding value
-“<literal>base64</literal>” <rfc2119>must</rfc2119> be supported
-and identifies the content as being base64-encoded.</para>
-<para><impl>An implementation may
-support encodings other than <literal>base64</literal> but these
+
+<para>If the <tag class="attribute">encoding</tag> attribute is
+present, the content must be decoded. The encoding value
+“<literal>base64</literal>” <rfc2119>must</rfc2119> be supported and
+identifies the content as being base64-encoded.
+<impl>An implementation may
+support encodings other than <literal>base64</literal>, but these
 encodings and their names are
 <glossterm>implementation-defined</glossterm>.</impl>
 <error code="S1006">It is a <glossterm>static error</glossterm> if the
@@ -4360,29 +4400,32 @@ encoding specified is not supported by the implementation.</error>
 the body is not correctly encoded per the value of the <tag
 class="attribute">encoding</tag> attribute.</error>
 </para>
-</listitem>
-<listitem>
-<para>The element content is decoded and the following discussion
-applies to the decoded content.
-</para>
-</listitem>
-</orderedlist>
 
 <para>The interpretation of the (possibily decoded) content
 depends on the <tag class="attribute">content-type</tag> attribute.
 </para>
 
+<section xml:id="inline-non-xml">
+<title>Inline non-XML content</title>
+
+<para>If the <tag class="attribute">content-type</tag> is not
+an <glossterm>XML media type</glossterm>, then the content is
+non-XML.</para>
+
+<para><impl>The representation of non-XML content is
+<glossterm>implementation-dependent</glossterm></impl>.</para>
+</section>
+
 <section xml:id="inline-xml-content">
 <title>Inline XML content</title>
 
 <para>If the <tag class="attribute">content-type</tag> is not
-specified or specifies an XML content type, then the content is parsed
-as XML.
-<error code="S0024">It is a <glossterm>static error</glossterm>
-if the content of the
-<tag>p:inline</tag> element does not consist of exactly one element,
-optionally preceded and/or followed by any number of processing
-instructions, comments or whitespace characters.</error></para>
+specified or specifies an <glossterm>XML media type</glossterm>, then
+the content is XML. <error code="S0024">It is a <glossterm>static
+error</glossterm> if the content of the <tag>p:inline</tag> element
+does not consist of exactly one element, optionally preceded and/or
+followed by any number of processing instructions, comments or
+whitespace characters.</error></para>
 
 <para>The in-scope namespaces of the inline document differ from the
 in-scope namespace of the content of the <tag>p:inline</tag> element
@@ -4472,41 +4515,37 @@ as defined below, are removed:</para>
 not false, then each text node within the <tag>p:inline</tag> is evaluated
 as a <glossterm>text value template</glossterm>. The context node for
 these expressions is undefined.</para>
+</section>
 
-          <para>Optionally, a single element scoped outside of XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>)
-              namespace may be provided wherever a <tag>p:inline</tag> element can exist.
-              The foreign element will be interpreted as if wrapped with an implicit <tag>p:inline</tag>.</para>
+<section xml:id="implicit-inlines">
+<title>Implicit inlines</title>
 
-          <para>The following example demonstrates this implied behaviour.</para>
-          <programlisting language="xml"><![CDATA[<p:identity name="identity" code="my:implicitinline1">
+<para>As an authoring convenience, if a single element node,
+optionally preceded and/or followed by whitespace, in any namespace other
+than the XProc namespace, occurs where a <tag>p:inline</tag> is
+allowed, it is treated as if it was enclosed within a
+<tag>p:inline</tag> element (with no attributes). Any preceding or
+following whitespace is discarded.</para>
+
+<para>The following example demonstrates this implicit behaviour:</para>
+
+<programlisting language="xml"><![CDATA[<p:identity name="identity" code="my:implicitinline1">
     <p:input port="source">
-        <c:data content-type="image/png">BASE64ENCODEDDATA</c:data>
+        <para xmlns="http://docbook.org/ns/docbook">Some text</para>
     </p:input>
 </p:identity>]]></programlisting>
 
-          <para>Would be interpreted as the following code listing.</para>
-          <programlisting language="xml"><![CDATA[<p:identity name="identity" code="my:implicitinline2">
+<para>Is interpreted as follows:</para>
+
+<programlisting language="xml"><![CDATA[<p:identity name="identity" code="my:implicitinline2">
     <p:input port="source">
-        <p:inline>
-            <c:data content-type="image/png">BASE64ENCODEDDATA</c:data>
-        </p:inline>
+        <p:inline><para xmlns="http://docbook.org/ns/docbook">Some text</para></p:inline>
     </p:input>
 </p:identity>]]></programlisting>
 
-          <para>Explicit <tag>p:inline</tag>(s) would be required if the author wants to include top level comments, processing instruction nodes,
-              or elements from XProc vocabulary (<uri type="xmlnamespace">http://www.w3.org/ns/xproc</uri>) namespace.</para>
-      </section>
-
-<section xml:id="inline-non-xml">
-<title>Inline non-XML content</title>
-
-<para>If the <tag class="attribute">content-type</tag> specifies
-a non-XML content type, the (possibly decoded) content is the
-content.</para>
-
-<para><impl>The representation of non-XML content is
-<glossterm>implementation-dependent</glossterm></impl>.</para>
-
+<para>An explicit <tag>p:inline</tag> is required if the author
+wants to include top level comments, processing instructions, or whitespace,
+or if the document element is in the XProc namespace.</para>
 </section>
 </section>
 
