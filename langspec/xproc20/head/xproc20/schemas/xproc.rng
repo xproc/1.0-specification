@@ -11,7 +11,10 @@
   <define name="XPathSequenceType" sa:model="XPathSequenceType">
     <text/>
   </define>
-  <define name="MediaTypes" sa:model="MediaTypes">
+  <define name="ContentType" sa:model="ContentType">
+    <text/>
+  </define>
+  <define name="ContentTypes" sa:model="ContentTypes">
     <text/>
   </define>
   <define name="name.ncname.attr">
@@ -60,6 +63,16 @@
   <define name="psvi-required.attr">
     <attribute name="psvi-required">
       <data type="boolean"/>
+    </attribute>
+  </define>
+  <define name="content-type.attr">
+    <attribute name="content-type">
+      <ref name="ContentType"/>
+    </attribute>
+  </define>
+  <define name="content-types.attr">
+    <attribute name="content-types">
+      <ref name="ContentTypes"/>
     </attribute>
   </define>
   <define name="exclude-inline-prefixes.attr">
@@ -124,11 +137,6 @@
   <define name="inline.attributes">
     <optional>
       <ref name="exclude-inline-prefixes.attr"/>
-    </optional>
-    <optional>
-      <attribute name="expand-text">
-        <data type="boolean"/>
-      </attribute>
     </optional>
   </define>
   <define name="decl.attributes">
@@ -267,9 +275,7 @@
         <ref name="primary.attr"/>
       </optional>
       <optional>
-        <attribute name="content-types">
-          <ref name="MediaTypes"/>
-        </attribute>
+        <ref name="content-types.attr"/>
       </optional>
       <optional>
         <ref name="select.attr"/>
@@ -443,7 +449,9 @@
     <element name="document">
       <ref name="href.attr"/>
       <optional>
-        <attribute name="override-content-type"/>
+        <attribute name="override-content-type">
+          <ref name="ContentType"/>
+        </attribute>
       </optional>
       <ref name="common.attributes"/>
       <optional>
@@ -461,6 +469,17 @@
     <element name="inline">
       <ref name="common.attributes"/>
       <ref name="inline.attributes"/>
+      <optional>
+        <attribute name="expand-text">
+          <data type="boolean"/>
+        </attribute>
+      </optional>
+      <optional>
+        <ref name="content-type.attr"/>
+      </optional>
+      <optional>
+        <attribute name="encoding"/>
+      </optional>
       <optional>
         <ref name="use-when.attr"/>
       </optional>
@@ -1273,7 +1292,9 @@
         </attribute>
       </optional>
       <optional>
-        <attribute name="override-content-type"/>
+        <attribute name="override-content-type">
+          <ref name="ContentType"/>
+        </attribute>
       </optional>
       <group>
         <zeroOrMore>
@@ -1297,7 +1318,7 @@
   </define>
   <define name="VocabMultipart" sa:class="step-vocabulary">
     <element name="c:multipart">
-      <attribute name="content-type"/>
+      <ref name="content-type.attr"/>
       <attribute name="boundary"/>
       <oneOrMore>
         <ref name="VocabBody"/>
@@ -1306,7 +1327,7 @@
   </define>
   <define name="VocabBody" sa:class="step-vocabulary">
     <element name="c:body">
-      <attribute name="content-type"/>
+      <ref name="content-type.attr"/>
       <optional>
         <attribute name="encoding"/>
       </optional>
@@ -1356,9 +1377,7 @@
   </define>
   <define name="VocabData" sa:class="step-vocabulary">
     <element name="c:data">
-      <optional>
-        <attribute name="content-type"/>
-      </optional>
+      <ref name="content-type.attr"/>
       <optional>
         <attribute name="charset"/>
       </optional>

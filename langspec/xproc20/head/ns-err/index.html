@@ -62,6 +62,7 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XD1002</code></dt><dd><p>It is a dynamic error if any of the c:param elements are invalid.</p></dd>
    <dt><code>err:XD1003</code></dt><dd><p>If an input port provides a set of acceptable content types, it is a dynamic error if an input document that arrives on the port has a content type that does not match any content type in that set.</p></dd>
    <dt><code>err:XD1004</code></dt><dd><p>It is a dynamic error if the select is used and any input document is not an XML document.</p></dd>
+   <dt><code>err:XD1005</code></dt><dd><p>It is a dynamic error if the body is not correctly encoded per the value of the encoding attribute.</p></dd>
    <dt><code>err:XS0001</code></dt><dd><p>It is a static error if there are any loops in the connections between steps: no step can be connected to itself nor can there be any sequence of connections through other steps that leads back to itself.</p></dd>
    <dt><code>err:XS0002</code></dt><dd><p>All steps in the same scope must have unique names: it is a static error if two steps with the same name appear in the same scope.</p></dd>
    <dt><code>err:XS0003</code></dt><dd><p>It is a static error if any declared input is not connected.</p></dd>
@@ -109,9 +110,13 @@ For updated information, please refer to the latest version of the
    <dt><code>err:XS0063</code></dt><dd><p>It is a static error if the value of the version attribute is not a xs:decimal.</p></dd>
    <dt><code>err:XS1001</code></dt><dd><p>It is a static error if the code attribute is missing from any but the last p:catch, if the last p:catch has a code, or if any error code is repeated.</p></dd>
    <dt><code>err:XS1002</code></dt><dd><p>It is a static error if there is no primary input port.</p></dd>
-   <dt><code>err:XS1003</code></dt><dd><p>It is a static error if an unescaped left curly bracket appears in a fixed part of a value template without a matching right curly bracket or if an unescaped right curly bracket appears in the fixed part of a value template.</p></dd>
+   <dt><code>err:XS1003</code></dt><dd><p>It is a static error if an expression does not have a closing right curly bracket or if an unescaped right curly bracket occurs outside of an expression.</p></dd>
    <dt><code>err:XS1004</code></dt><dd><p>It is a static error if the step attribute is not specified, and there is no default readable port. It is a static error if the port attribute is not specified, and the step identified has no primary output port.</p></dd>
    <dt><code>err:XS1005</code></dt><dd><p>It is a static error if the port attribute is not specified, and the step identified has no primary output port.</p></dd>
+   <dt><code>err:XS1006</code></dt><dd><p>It is a static error if the encoding specified is not supported by the implementation.</p></dd>
+   <dt><code>err:XS1007</code></dt><dd><p>It is a static error if an encoding is specified and the content type is an XML media type.</p></dd>
+   <dt><code>err:XS1008</code></dt><dd><p>It is a static error if the content type value specifies a character set and the encoding attribute is absent.</p></dd>
+   <dt><code>err:XS1009</code></dt><dd><p>It is a static error if an encoding is specified and the content of the p:inline contains any XML markup.</p></dd>
 </dl>
 </section>
 

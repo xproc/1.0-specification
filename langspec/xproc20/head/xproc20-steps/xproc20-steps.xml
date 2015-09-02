@@ -872,8 +872,15 @@ request or as received in a response.</para>
 
 <e:rng-pattern name="VocabMultipart" xml:id="cv.multipart"/>
 
-<para>In the context of a request, the media type of the <tag>c:multipart</tag>
-<rfc2119>must</rfc2119> be a multipart media type (i.e. have a main type of 'multipart'). If the <code>content-type</code> attribute is not specified, a value of "multipart/mixed" will be assumed.</para>
+<para>In the context of a request, the media type of the
+<tag>c:multipart</tag> <rfc2119>must</rfc2119> be a multipart media
+type (i.e. have a main type of 'multipart'). If the
+<code>content-type</code> attribute is not specified, a value of
+“<literal>multipart/mixed</literal>” will be assumed. (<impl>Whether
+or not, and to what extent, “<literal>multipart/byte-ranges</literal>”
+responses are supported is
+<glossterm>implementation-defined</glossterm>.)</impl>
+</para>
 
 <para>The <code>boundary</code> attribute is required and is used to
 provide a multipart boundary marker. The implementation must use this
