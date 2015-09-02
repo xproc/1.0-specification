@@ -7,7 +7,7 @@
   <p:choose>
     <p:when test="/config/output = 'fo'">
       <p:xslt>
-	<p:with-param name="key" select="$db-key"/>
+	<p:with-option name="parameters" select="map {'key': $db-key }"/>
 	<p:input port="stylesheet">
 	  <p:document href="fo.xsl"/>
 	</p:input>
@@ -15,7 +15,7 @@
     </p:when>
     <p:when test="/config/output = 'svg'">
       <p:xslt>
-	<p:with-param name="key" select="$db-key"/>
+	<p:with-option name="parameters" select="map {'key': $db-key }"/>
 	<p:input port="stylesheet">
 	  <p:document href="svg.xsl"/>
 	</p:input>
@@ -23,7 +23,7 @@
     </p:when>
     <p:otherwise>
       <p:xslt>
-	<p:with-param name="key" select="$db-key"/>
+	<p:with-option name="parameters" select="map {'key': $db-key }"/>
 	<p:input port="stylesheet">
 	  <p:document href="html.xsl"/>
 	</p:input>
